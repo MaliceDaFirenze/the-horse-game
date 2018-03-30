@@ -6,9 +6,8 @@ public class Player : MonoBehaviour {
 
 	private Rigidbody rb;
 
-	private float speed = 2;
+	private float speed = 1.5f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
-	private Vector3 newRotationVector = new Vector3(0,0,0);
 
 	private void Start() {
 		rb = GetComponent<Rigidbody> ();
@@ -19,11 +18,12 @@ public class Player : MonoBehaviour {
 		newMovementVector.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 		newMovementVector.z = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
-		//newRotationVector = newMovementVector - rb.position;
-		//Debug.Log ("newRotationVector" + newRotationVector);
-
 		rb.MovePosition (rb.position += newMovementVector);
-		//rb.MoveRotation(Quaternion.Euler(newRotationVector));
+		if (newMovementVector.x != 0 || newMovementVector.z != 0) {
+			rb.MoveRotation (Quaternion.LookRotation (newMovementVector * 100));
+		} else {
+			rb.velocity = Vector3.zero;
+		}
 	}
 
 	private void OnTriggerEnter(Collider trigger){
