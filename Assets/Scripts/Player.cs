@@ -14,8 +14,12 @@ public class Player : MonoBehaviour {
 	private float speed = 1.5f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 
+	//References
+	private UI ui;
+
 	private void Start() {
 		rb = GetComponent<Rigidbody> ();
+		ui = FindObjectOfType<UI> ();
 	}
 
 	private void Update() {
@@ -42,6 +46,9 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider trigger){
 		nearestInteractable = trigger.GetComponent<Interactable> ();
+		if (nearestInteractable != null) {
+			ui.ShowInstruction(nearestInteractable);
+		}
 
 		if (trigger.tag.Equals("BuildingEntrance")){
 			trigger.transform.parent.GetComponent<Building> ().PlayerEntersBuildingTrigger ();
@@ -52,5 +59,8 @@ public class Player : MonoBehaviour {
 		if (trigger.tag.Equals("BuildingEntrance")){
 			trigger.transform.parent.GetComponent<Building> ().PlayerExitsBuildingTrigger ();
 		}
+
+		nearestInteractable = null;
+		ui.HideInstruction ();
 	}
 }
