@@ -8,6 +8,10 @@ public class UI : MonoBehaviour {
 	public GameObject instructionGO;
 	public Text instructionText;
 
+	void Start(){
+		HideInstruction ();
+	}
+
 	public void ShowInstruction(Interactable interactable){
 		instructionGO.SetActive (true);
 		instructionText.text = "E - " + interactable.action;

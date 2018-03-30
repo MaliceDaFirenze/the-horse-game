@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public bool allowPlayerInput;
+
 	//Interaction
 	public Interactable nearestInteractable;
 
@@ -26,30 +28,30 @@ public class Player : MonoBehaviour {
 
 	private void Update() {
 
-		//---------MOVEMENT---------//
+		if (allowPlayerInput) {
+			//---------MOVEMENT---------//
+			//GetAxis returns value between -1 and 1
+			newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
+			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
 
-		//GetAxis returns value between -1 and 1
-		newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
-		newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
+			rb.MovePosition (rb.position += newMovementVector);
+			if (newMovementVector.x != 0 || newMovementVector.z != 0) {
+				rb.MoveRotation (Quaternion.LookRotation (newMovementVector * 100));
+			} else {
+				rb.velocity = Vector3.zero;
+				rb.angularVelocity = Vector3.zero;
+			}
 
-		rb.MovePosition (rb.position += newMovementVector);
-		if (newMovementVector.x != 0 || newMovementVector.z != 0) {
-			rb.MoveRotation (Quaternion.LookRotation (newMovementVector * 100));
-		} else {
-			rb.velocity = Vector3.zero;
-			rb.angularVelocity = Vector3.zero;
-		}
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				speedMultiplier = sprintSpeedMultiplier;
+			} else {
+				speedMultiplier = 1f;
+			}
 
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			speedMultiplier = sprintSpeedMultiplier;
-		} else {
-			speedMultiplier = 1f;
-		}
-
-
-		//------INTERACTION-------//
-		if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null){
-			nearestInteractable.PlayerInteracts ();
+			//------INTERACTION-------//
+			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null){
+				nearestInteractable.PlayerInteracts ();
+			}
 		}
 	}
 

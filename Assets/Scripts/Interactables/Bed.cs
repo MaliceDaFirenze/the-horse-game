@@ -7,6 +7,6 @@ public class Bed : Interactable {
 	public override void PlayerInteracts(){
 		base.PlayerInteracts ();
 
-	//	FindObjectOfType<TimeLogic>().
+		FindObjectOfType<TimeLogic> ().EndDay ();
 	}
 }

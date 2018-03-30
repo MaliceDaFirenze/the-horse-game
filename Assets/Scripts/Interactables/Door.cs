@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : Interactable {
 	public GameObject doorGO;
+	public Collider doorCollider;
 	public Transform closedPosition;
 	public Transform openPosition;
 
@@ -22,5 +23,12 @@ public class Door : Interactable {
 			LeanTween.move (doorGO, openPosition.position, openDuration);
 			LeanTween.rotate (doorGO, openPosition.eulerAngles, openDuration);
 		}
+		doorCollider.enabled = false;
+		StartCoroutine(ResetCollider(true));
+	}
+
+	private IEnumerator ResetCollider (bool setTo){
+		yield return new WaitForSeconds (openDuration);
+		doorCollider.enabled = setTo;
 	}
 }
