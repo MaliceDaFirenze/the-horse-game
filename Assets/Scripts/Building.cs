@@ -5,15 +5,23 @@ using UnityEngine;
 public class Building : MonoBehaviour {
 
 	public GameObject hideOnEntry;
-	private bool playerIsInside;
+	//private bool playerIsInside;
+
+	private MainCam mainCam;
 	
-	public void PlayerEntersEntranceTrigger(){
-		if (playerIsInside) {
-			playerIsInside = false;
-			hideOnEntry.SetActive (true);
-		} else {
-			playerIsInside = true;
-			hideOnEntry.SetActive (false);
+	public void PlayerEntersBuildingTrigger(){
+		if (mainCam == null) {
+			mainCam = FindObjectOfType<MainCam> ();
 		}
+		hideOnEntry.SetActive (false);
+		mainCam.PlayerEntersBuilding ();
+	}
+
+	public void PlayerExitsBuildingTrigger(){
+		if (mainCam == null) {
+			mainCam = FindObjectOfType<MainCam> ();
+		}
+		hideOnEntry.SetActive (true);
+		mainCam.PlayerExitsBuilding ();
 	}
 }
