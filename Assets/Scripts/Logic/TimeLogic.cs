@@ -21,6 +21,9 @@ public class TimeLogic : MonoBehaviour {
 	public Text dateText;
 	public Image blackScreen;
 
+	//Time-dependant objects
+	private int lastMinuteCount;
+
 	void Start () {
 		player = FindObjectOfType<Player> ();
 		NewGame ();
@@ -46,10 +49,19 @@ public class TimeLogic : MonoBehaviour {
 	}
 
 	private void StartNewDay(){
+		//Time
 		timePassedToday = 0;
 		dayStartTime = Time.time;
 		timeCounting = true;
+
+		//Player
 		player.allowPlayerInput = true;
+
+		//Time-dependant objects
+		TimeDependantObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependantObject> ();
+		for (int i = 0; i < allTimeDependantObjects.Length; ++i) {
+			allTimeDependantObjects [i].IngameMinuteHasPassed ();
+		}
 	}
 
 	void Update () {
@@ -57,6 +69,15 @@ public class TimeLogic : MonoBehaviour {
 			timePassedToday = (Time.time - dayStartTime) * 0.65f;
 			timePassedTodaySpan = TimeSpan.FromSeconds (timePassedToday);
 			dateText.text = "Day " + day + " - " + string.Format("{0:00}:{1:00}", (timePassedTodaySpan.Minutes + dayStartTimeAddition), timePassedTodaySpan.Seconds);
+
+			if (lastMinuteCount != timePassedTodaySpan.Seconds) {
+				TimeDependantObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependantObject> ();
+				for (int i = 0; i < allTimeDependantObjects.Length; ++i) {
+					allTimeDependantObjects [i].IngameMinuteHasPassed ();
+				}
+
+				lastMinuteCount = timePassedTodaySpan.Seconds;
+			}
 		}
 	}
 }
