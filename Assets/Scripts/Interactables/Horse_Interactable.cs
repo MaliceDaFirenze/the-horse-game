@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Horse_Interactable : Interactable {
 
-	public Horse horse;
+	public Horse_Stats horseStats;
 
 	public override void PlayerInteracts(/*Tool tool, */){
 		base.PlayerInteracts ();
-		horse.IncreaseHappiness (10);
+		horseStats.IncreaseHappiness (10);
 	}
 }

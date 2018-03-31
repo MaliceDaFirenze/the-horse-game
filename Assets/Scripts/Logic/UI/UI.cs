@@ -23,7 +23,7 @@ public class UI : MonoBehaviour {
 		instructionGO.SetActive (false);
 	}
 
-	public void ShowHorseUI (Horse horse){
+	public void ShowHorseUI (Horse_Stats horse){
 		horseUI.ShowUIForHorse (horse);
 	}
 

@@ -9,7 +9,7 @@ public enum horseNeed {
 	HYGIENE
 }
 
-public class Horse : TimeDependantObject {
+public class Horse_Stats : TimeDependantObject {
 
 	//---Needs---//
 	[SerializeField]
@@ -26,7 +26,11 @@ public class Horse : TimeDependantObject {
 			return food;
 		}
 		private set { 
-			food = value;
+			if (value > needsMaximum) {
+				food = needsMaximum;
+			} else {
+				food = value;
+			}
 			NeedsWereUpdated ();
 		}
 	}
@@ -36,7 +40,11 @@ public class Horse : TimeDependantObject {
 			return water;
 		}
 		private set { 
-			water = value;
+			if (value > needsMaximum) {
+				water = needsMaximum;
+			} else {
+				water = value;
+			}
 			NeedsWereUpdated ();
 		}
 	}
@@ -46,7 +54,11 @@ public class Horse : TimeDependantObject {
 			return happiness;
 		}
 		private set { 
-			happiness = value;
+			if (value > needsMaximum) {
+				happiness = needsMaximum;
+			} else {
+				happiness = value;
+			}
 			NeedsWereUpdated ();
 		}
 	}
@@ -56,12 +68,21 @@ public class Horse : TimeDependantObject {
 			return hygiene;
 		}
 		private set { 
-			hygiene = value;
+			if (value > needsMaximum) {
+				hygiene = needsMaximum;
+			} else {
+				hygiene = value;
+			}
 			NeedsWereUpdated ();
 		}
 	}
 
-	private float needsMaximum = 100; //food, thirst, happiness and hygiene all have the same maximum, unlike stats like stamina or sth
+	private static float needsMaximum = 100; //food, thirst, happiness and hygiene all have the same maximum, unlike stats like stamina or sth
+	public static float NeedsMaximum{
+		get { 
+			return needsMaximum;
+		}
+	}
 
 	//---Decay---//
 	//these should probably be influenced by stats, surroundings, gear, whatever (at some point)

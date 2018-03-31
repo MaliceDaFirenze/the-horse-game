@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HorseUI : MonoBehaviour {
 
-	public Horse currentlyShowingHorse;
+	public Horse_Stats currentlyShowingHorse;
 
 	public Image foodImage;
 	public Image waterImage;
@@ -14,7 +14,7 @@ public class HorseUI : MonoBehaviour {
 
 	public GameObject uiElementsParent;
 
-	public void ShowUIForHorse(Horse horse){
+	public void ShowUIForHorse(Horse_Stats horse){
 		uiElementsParent.SetActive (true);
 		currentlyShowingHorse = horse;
 		UpdateNeedsDisplay (horseNeed.FOOD, horse.Food);	

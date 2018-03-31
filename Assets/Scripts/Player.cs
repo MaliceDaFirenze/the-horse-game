@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 
 	//Interaction
 	public Interactable nearestInteractable;
-	public Horse nearestHorse;
+	public Horse_Stats nearestHorse;
 
 	//Physics
 	private Rigidbody rb;
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
 		if (nearestInteractable != null) {
 			ui.ShowInstruction(nearestInteractable);
 
-			nearestHorse = nearestInteractable.GetComponent<Horse> ();
+			nearestHorse = nearestInteractable.GetComponent<Horse_Stats> ();
 			if (nearestHorse != null) {
 				ui.ShowHorseUI (nearestHorse);
 			}
