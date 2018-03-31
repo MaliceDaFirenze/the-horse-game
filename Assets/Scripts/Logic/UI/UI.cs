@@ -8,6 +8,8 @@ public class UI : MonoBehaviour {
 	public GameObject instructionGO;
 	public Text instructionText;
 
+	public HorseUI horseUI;
+
 	void Start(){
 		HideInstruction ();
 	}
@@ -19,5 +21,13 @@ public class UI : MonoBehaviour {
 
 	public void HideInstruction(){
 		instructionGO.SetActive (false);
+	}
+
+	public void ShowHorseUI (Horse horse){
+		horseUI.ShowUIForHorse (horse);
+	}
+
+	public void HideHorseUI(){
+		horseUI.Hide ();
 	}
 }

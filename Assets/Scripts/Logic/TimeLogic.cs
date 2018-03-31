@@ -60,7 +60,9 @@ public class TimeLogic : MonoBehaviour {
 		//Time-dependant objects
 		TimeDependantObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependantObject> ();
 		for (int i = 0; i < allTimeDependantObjects.Length; ++i) {
-			allTimeDependantObjects [i].IngameMinuteHasPassed ();
+			if (!allTimeDependantObjects [i].excludeFirstDayUpdate || day != 1) {
+				allTimeDependantObjects [i].StartNewDay ();
+			}
 		}
 	}
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeDependantObject : MonoBehaviour {
 
+	public bool excludeFirstDayUpdate;
+
 	public virtual void StartNewDay(){
 	
 	}

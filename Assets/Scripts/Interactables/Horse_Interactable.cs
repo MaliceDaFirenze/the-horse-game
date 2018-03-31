@@ -6,8 +6,8 @@ public class Horse_Interactable : Interactable {
 
 	public Horse horse;
 
-	public override void PlayerInteracts(/*Tool tool*/){
+	public override void PlayerInteracts(/*Tool tool, */){
 		base.PlayerInteracts ();
-
+		horse.IncreaseHappiness (10);
 	}
 }

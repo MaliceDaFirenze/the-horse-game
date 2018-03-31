@@ -13,7 +13,12 @@ public class Interactable : MonoBehaviour {
 			Debug.LogWarning ("Interactable " + name + " collider is not trigger!");
 		}
 	}
+
 	public virtual void PlayerInteracts(){
 	
+	}
+
+	public virtual void PlayerEntersIntTrigger(){
+		
 	}
 }

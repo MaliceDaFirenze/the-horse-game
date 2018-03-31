@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
 	//Interaction
 	public Interactable nearestInteractable;
+	public Horse nearestHorse;
 
 	//Physics
 	private Rigidbody rb;
@@ -59,6 +60,11 @@ public class Player : MonoBehaviour {
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
 			ui.ShowInstruction(nearestInteractable);
+
+			nearestHorse = nearestInteractable.GetComponent<Horse> ();
+			if (nearestHorse != null) {
+				ui.ShowHorseUI (nearestHorse);
+			}
 		}
 
 		if (trigger.tag.Equals("BuildingEntrance")){
@@ -73,5 +79,6 @@ public class Player : MonoBehaviour {
 
 		nearestInteractable = null;
 		ui.HideInstruction ();
+		ui.HideHorseUI ();
 	}
 }

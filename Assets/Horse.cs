@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum horseNeed {
+	FOOD,
+	WATER,
+	HAPPINESS,
+	HYGIENE
+}
+
 public class Horse : TimeDependantObject {
 
 	//---Needs---//
@@ -13,6 +20,46 @@ public class Horse : TimeDependantObject {
 	private float happiness;
 	[SerializeField]
 	private float hygiene;
+
+	public float Food{
+		get {
+			return food;
+		}
+		private set { 
+			food = value;
+			NeedsWereUpdated ();
+		}
+	}
+
+	public float Water{
+		get {
+			return water;
+		}
+		private set { 
+			water = value;
+			NeedsWereUpdated ();
+		}
+	}
+
+	public float Happiness{
+		get {
+			return happiness;
+		}
+		private set { 
+			happiness = value;
+			NeedsWereUpdated ();
+		}
+	}
+
+	public float Hygiene{
+		get {
+			return hygiene;
+		}
+		private set { 
+			hygiene = value;
+			NeedsWereUpdated ();
+		}
+	}
 
 	private float needsMaximum = 100; //food, thirst, happiness and hygiene all have the same maximum, unlike stats like stamina or sth
 
@@ -28,47 +75,68 @@ public class Horse : TimeDependantObject {
 	//Age (die after x days)
 	//speed, stamina, 
 
+	//---references---//
+	public Transform headBone;
+	private ParticleSystem heartParticles;
+	private HorseUI horseUI;
+
 	private void Start(){
 		InitializeHorse (); //later, obvs don't call this from start anymore
 	}
 
 	private void InitializeHorse(){
-		food = needsMaximum * 0.8f;
-		water = needsMaximum * 0.8f;
-		happiness = needsMaximum * 0.6f;
-		hygiene = needsMaximum * 0.9f;
+		Food = needsMaximum * 0.8f;
+		Water = needsMaximum * 0.8f;
+		Happiness = needsMaximum * 0.6f;
+		Hygiene = needsMaximum * 0.9f;
 	}
 
 	public override void StartNewDay(){
 		base.StartNewDay ();
-		food -= foodDecay * 1000;
-		water -= waterDecay * 800;
-		happiness -= happinessDecay * 100;
-		hygiene -= hygieneDecay * 200;
+		Food -= foodDecay * 1000;
+		Water -= waterDecay * 800;
+		Happiness -= happinessDecay * 100;
+		Hygiene -= hygieneDecay * 200;
 	}
-
+		
 	public override void IngameMinuteHasPassed(){
 		base.IngameMinuteHasPassed ();
 
-		food -= foodDecay;
-		water -= waterDecay;
-		happiness -= happinessDecay;
-		hygiene -= hygieneDecay;
+		Food -= foodDecay;
+		Water -= waterDecay;
+		Happiness -= happinessDecay;
+		Hygiene -= hygieneDecay;
 	}
 
-	public void IncreaseFood(){
-	
+	public void IncreaseFood(float value){
+		Food += value;
 	}
 
-	public void IncreaseWater(){
-
+	public void IncreaseWater(float value){
+		Water += value;
 	}
 
-	public void IncreaseHappiness(){
+	public void IncreaseHappiness(float value){
+		Happiness += value;
 
+		if (heartParticles == null) {
+			heartParticles = Instantiate (PrefabManager.instance.happinessParticles, headBone.position, Quaternion.identity).GetComponent<ParticleSystem> ();
+		}
+
+		heartParticles.GetComponent<DeactivateAfterTime> ().Activate ();
+		heartParticles.Play ();
 	}
 
-	public void IncreaseHygiene(){
+	public void IncreaseHygiene(float value){
+		Hygiene += value;
+	}
 
+	private void NeedsWereUpdated(){
+		if (horseUI == null) {
+			horseUI = FindObjectOfType<HorseUI> ();
+		}
+		if (horseUI.uiElementsParent.activeSelf && horseUI.currentlyShowingHorse == this) {
+			horseUI.ShowUIForHorse (this);
+		}
 	}
 }
