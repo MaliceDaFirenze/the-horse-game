@@ -5,4 +5,5 @@ using UnityEngine;
 public class Consumable : MonoBehaviour {
 
 	public horseNeed needSatisfiedByThis;
+	public float needValue;
 }
