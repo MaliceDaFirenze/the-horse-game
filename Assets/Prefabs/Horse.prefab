@@ -608,8 +608,8 @@ GameObject:
   - component: {fileID: 114896006632973644}
   - component: {fileID: 114236441731891576}
   - component: {fileID: 136977364952744488}
-  - component: {fileID: 195759057331485424}
   - component: {fileID: 114855094898275936}
+  - component: {fileID: 195432272415166156}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -996,7 +996,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834302026077554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.907964, y: -0.045, z: -7.019111}
+  m_LocalPosition: {x: -7.195, y: -0.045, z: -8.476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4835477401439470}
@@ -1276,15 +1276,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1962826196834350}
-  m_LocalRotation: {x: 0.010502823, y: -0.7001066, z: 0.010300085, w: 0.71388686}
-  m_LocalPosition: {x: 0.068, y: 0.843, z: -0.039}
+  m_LocalRotation: {x: 0.014712633, y: 0, z: 0, w: 0.99989176}
+  m_LocalPosition: {x: 0, y: 0.863, z: -0.707}
   m_LocalScale: {x: 0.15141435, y: 0.15141426, z: 0.1514143}
   m_Children:
   - {fileID: 4631684470305952}
   - {fileID: 4086488977123258}
   m_Father: {fileID: 4509144840628598}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 1.6860001, y: -88.883, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.6860001, y: 0, z: 0}
 --- !u!4 &4842077509053682
 Transform:
   m_ObjectHideFlags: 1
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67f6e6f81887c9408f70a875d9f2768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeHorseState: 0
+  currentHorseState: 0
 --- !u!114 &114896006632973644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1423,8 +1423,8 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 1
   m_Height: 2.5
-  m_Direction: 0
-  m_Center: {x: -0.24, y: 0.74, z: 0}
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.74, z: -0.35}
 --- !u!137 &137070497065301932
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1512,7 +1512,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.98080945, y: 0.22651672, z: -2.3602512}
     m_Extent: {x: 6.6004314, y: 4.584694, z: 5.8058043}
   m_DirtyAABB: 0
---- !u!195 &195759057331485424
+--- !u!195 &195432272415166156
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1520,7 +1520,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1834302026077554}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.33
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1529,7 +1529,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.59
+  m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 135612019924469976}
   m_Layer: 0
   m_Name: WaterBucket
-  m_TagString: Untagged
+  m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needSatisfiedByThis: 1
-  needValue: 20
+  totalNeedValue: 40
+  remainingNeedValue: 0
+  consumptionRate: 5
 --- !u!114 &114894627436939160
 MonoBehaviour:
   m_ObjectHideFlags: 1

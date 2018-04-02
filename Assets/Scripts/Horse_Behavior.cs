@@ -24,6 +24,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
 
 	private Consumable currentTargetConsumable;
+	private float reachDistToConsumable = 4;
 
 	void Start () {
 		//Initialize
@@ -38,6 +39,9 @@ public class Horse_Behavior : MonoBehaviour {
 		if (currentBehaviour != null) {
 			StopCoroutine (currentBehaviour);
 		}
+
+		anim.SetBool ("Eat", false);
+		anim.SetBool ("Walk", false);
 
 		currentHorseState = newState;
 		switch (newState) {
@@ -55,15 +59,31 @@ public class Horse_Behavior : MonoBehaviour {
 
 	private IEnumerator Idle(){
 		float idleDuration = Random.Range (minIdleDuration, maxIdleDuration);
+
+		//TODO: when horse is hungry but finds no food, it won't drink either
+		//check if hungry & food available, else check if thirsty and water available, only then else idle
+	
 		Debug.Log ("new idle duration: " + idleDuration);
 		yield return new WaitForSeconds (idleDuration);
 
-		if (stats.Food < Horse_Stats.NeedsMaximum) {
+		if (stats.Food < Horse_Stats.NeedsMaximum * 0.9f) {
+			Debug.Log ("looking for food");
 			currentTargetConsumable = FindConsumableInRange (horseNeed.FOOD);
-			ChangeState (horseState.WALKINGTOTARGET);
-		} else if  (stats.Water < Horse_Stats.NeedsMaximum * 0.9f){
+			if (currentTargetConsumable != null) {
+				ChangeState (horseState.WALKINGTOTARGET);
+			} else {
+				ChangeState (horseState.IDLE);
+			}
+		} else if (stats.Water < Horse_Stats.NeedsMaximum * 0.9f) {
+			Debug.Log ("looking for water");
 			currentTargetConsumable = FindConsumableInRange (horseNeed.WATER);
-			ChangeState (horseState.WALKINGTOTARGET);
+			if (currentTargetConsumable != null) {
+				ChangeState (horseState.WALKINGTOTARGET);
+			} else {
+				ChangeState (horseState.IDLE);
+			}
+		} else {
+			ChangeState (horseState.IDLE);
 		}
 	}
 
@@ -71,20 +91,27 @@ public class Horse_Behavior : MonoBehaviour {
 		Debug.Log ("start walking to: " + currentTargetConsumable);
 		anim.SetBool ("Walk", true);
 		navMeshAgent.SetDestination (currentTargetConsumable.transform.position);
-		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > 2) {
+		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable) {
 			yield return waitASecond;
 		}
 
+		Debug.Log ("walk over");
 		anim.SetBool ("Walk", false);
 		ChangeState (horseState.CONSUMING);
 	}
 
 	private IEnumerator Consume(){
-		if (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > 2){
+		Debug.Log ("start eating: " + currentTargetConsumable);
+
+		while (currentTargetConsumable != null && Vector3.Distance (currentTargetConsumable.transform.position, transform.position) <= reachDistToConsumable && currentTargetConsumable.remainingNeedValue > 0 && stats.GetNeedValue(currentTargetConsumable.needSatisfiedByThis) < Horse_Stats.NeedsMaximum){
 			anim.SetBool ("Eat", true);
+			stats.SatisfyNeed(currentTargetConsumable.needSatisfiedByThis, currentTargetConsumable.PartialConsume ());
 			yield return waitASecond;
 
 		}
+
+		Debug.Log ("eating over ");
+
 		anim.SetBool ("Eat", false);
 		ChangeState (horseState.IDLE);
 	}
@@ -108,12 +135,13 @@ public class Horse_Behavior : MonoBehaviour {
 				}
 
 				Debug.Log ("horse looking at  " + allConsumables [i].name + " dist: " + dist + ", isvisible: " + isVisible);
-				if (dist < minDist && isVisible) {
+				if (dist < minDist && isVisible && allConsumables[i].remainingNeedValue >= 0) {
 					minDist = dist;
 					result = allConsumables [i];
 				}
 			}
 		}
+
 		return result;
 	}
 }

@@ -129,27 +129,45 @@ public class Horse_Stats : TimeDependantObject {
 		Hygiene -= hygieneDecay;
 	}
 
-	public void IncreaseFood(float value){
-		Food += value;
-	}
-
-	public void IncreaseWater(float value){
-		Water += value;
-	}
-
-	public void IncreaseHappiness(float value){
-		Happiness += value;
-
-		if (heartParticles == null) {
-			heartParticles = Instantiate (PrefabManager.instance.happinessParticles, headBone.position, Quaternion.identity).GetComponent<ParticleSystem> ();
+	public float GetNeedValue (horseNeed need) {
+		switch (need) {
+		case horseNeed.FOOD:
+			return Food;
+		case horseNeed.WATER:
+			return Water;
+		case horseNeed.HAPPINESS:
+			return Happiness;
+		case horseNeed.HYGIENE:
+			return Hygiene;
+		default: 
+			Debug.LogWarning ("get invalid need");
+			return Food;
 		}
-
-		heartParticles.GetComponent<DeactivateAfterTime> ().Activate ();
-		heartParticles.Play ();
 	}
 
-	public void IncreaseHygiene(float value){
-		Hygiene += value;
+	public void SatisfyNeed (horseNeed need, float value){
+	
+		switch (need) {
+		case horseNeed.FOOD:
+			Food += value;
+			break;
+		case horseNeed.WATER:
+			Water += value;
+			break;
+		case horseNeed.HAPPINESS:
+			Happiness += value;
+
+			if (heartParticles == null) {
+				heartParticles = Instantiate (PrefabManager.instance.happinessParticles, headBone.position, Quaternion.identity).GetComponent<ParticleSystem> ();
+			}
+
+			heartParticles.GetComponent<DeactivateAfterTime> ().Activate ();
+			heartParticles.Play ();
+			break;
+		case horseNeed.HYGIENE:
+			Hygiene += value;
+			break;
+		}
 	}
 
 	private void NeedsWereUpdated(){
