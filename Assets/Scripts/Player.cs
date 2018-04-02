@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	//Interaction
 	public Interactable nearestInteractable;
 	public Horse_Stats nearestHorse;
+	public Equippable currentlyEquippedItem;
 
 	//Physics
 	private Rigidbody rb;
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour {
 
 	//References
 	private UI ui;
+	public Transform equippedItemPos;
+	public Transform dropItemPos;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody> ();
@@ -51,7 +54,12 @@ public class Player : MonoBehaviour {
 
 			//------INTERACTION-------//
 			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null){
-				nearestInteractable.PlayerInteracts ();
+				nearestInteractable.PlayerInteracts (this);
+			}
+
+			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != null){
+				//drop currently equipped item
+				currentlyEquippedItem.BeDropped();
 			}
 		}
 	}
@@ -80,5 +88,10 @@ public class Player : MonoBehaviour {
 		nearestInteractable = null;
 		ui.HideInstruction ();
 		ui.HideHorseUI ();
+	}
+
+	public void EquipAnItem(Equippable equippableItem){
+		currentlyEquippedItem = equippableItem;
+
 	}
 }

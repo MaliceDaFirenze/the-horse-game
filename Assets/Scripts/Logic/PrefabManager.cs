@@ -7,6 +7,10 @@ public class PrefabManager : MonoBehaviour {
 	//---Particles---//
 	public GameObject happinessParticles;
 
+	//---Items---//
+	public GameObject hayBale;
+
+
 	//---Singleton---//
 	private static PrefabManager _instance;
 	public static PrefabManager instance {

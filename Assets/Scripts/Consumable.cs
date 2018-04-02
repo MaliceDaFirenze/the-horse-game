@@ -8,6 +8,7 @@ public class Consumable : MonoBehaviour {
 	public float totalNeedValue;
 	public float remainingNeedValue;
 	public float consumptionRate;
+	public bool destroyWhenEmpty;
 
 	private void Start(){
 		remainingNeedValue = totalNeedValue;
@@ -21,7 +22,9 @@ public class Consumable : MonoBehaviour {
 		} else {
 			result = remainingNeedValue;
 			remainingNeedValue = 0;
-			StartCoroutine (Destroy ());
+			if (destroyWhenEmpty) {
+				StartCoroutine (Destroy ());
+			}
 		}
 		return result;
 	}

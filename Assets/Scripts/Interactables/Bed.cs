@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bed : Interactable {
 
-	public override void PlayerInteracts(){
-		base.PlayerInteracts ();
+	public override void PlayerInteracts(Player player){
+		base.PlayerInteracts (player);
 
 		FindObjectOfType<TimeLogic> ().EndDay ();
 	}

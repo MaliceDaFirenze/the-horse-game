@@ -11,8 +11,8 @@ public class Door : Interactable {
 	private bool isOpen;
 	private float openDuration = 0.3f;
 
-	public override void PlayerInteracts(){
-		base.PlayerInteracts ();
+	public override void PlayerInteracts(Player player){
+		base.PlayerInteracts (player);
 
 		if (isOpen) {
 			isOpen = false;

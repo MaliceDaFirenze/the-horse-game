@@ -20,7 +20,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private Coroutine currentBehaviour;
 
 	private float minIdleDuration = 3f;
-	private float maxIdleDuration = 5f;//12f;
+	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
 
 	private Consumable currentTargetConsumable;
@@ -65,23 +65,15 @@ public class Horse_Behavior : MonoBehaviour {
 	
 		Debug.Log ("new idle duration: " + idleDuration);
 		yield return new WaitForSeconds (idleDuration);
+		Consumable availableFood = FindConsumableInRange (horseNeed.FOOD);
+		Consumable availableWater = FindConsumableInRange (horseNeed.WATER);
 
-		if (stats.Food < Horse_Stats.NeedsMaximum * 0.9f) {
-			Debug.Log ("looking for food");
-			currentTargetConsumable = FindConsumableInRange (horseNeed.FOOD);
-			if (currentTargetConsumable != null) {
-				ChangeState (horseState.WALKINGTOTARGET);
-			} else {
-				ChangeState (horseState.IDLE);
-			}
-		} else if (stats.Water < Horse_Stats.NeedsMaximum * 0.9f) {
-			Debug.Log ("looking for water");
-			currentTargetConsumable = FindConsumableInRange (horseNeed.WATER);
-			if (currentTargetConsumable != null) {
-				ChangeState (horseState.WALKINGTOTARGET);
-			} else {
-				ChangeState (horseState.IDLE);
-			}
+		if (stats.Food < Horse_Stats.NeedsMaximum * 0.9f && availableFood != null) {
+			currentTargetConsumable = availableFood;
+			ChangeState (horseState.WALKINGTOTARGET);
+		} else if (stats.Water < Horse_Stats.NeedsMaximum * 0.9f && availableWater != null) {
+			currentTargetConsumable = availableWater;
+			ChangeState (horseState.WALKINGTOTARGET);
 		} else {
 			ChangeState (horseState.IDLE);
 		}

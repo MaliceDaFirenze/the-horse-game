@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class Equippable : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	private Vector3 regularScale;
+	public float equippedScaleFactor;
+	private Consumable consumable;
+
+	public void Initialize(){
+		regularScale = transform.localScale;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void BeEquipped(){
+		consumable = GetComponent<Consumable> ();
+		if (consumable != null) {
+			consumable.enabled = false;
+		}
+		transform.localScale *= equippedScaleFactor;
+	}
+
+	public void BeDropped(){
+		transform.localScale = regularScale;
+		consumable = GetComponent<Consumable> ();
+		if (consumable != null) {
+			consumable.enabled = true;
+		}
 	}
 }
