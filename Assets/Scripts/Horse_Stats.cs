@@ -159,6 +159,8 @@ public class Horse_Stats : TimeDependantObject {
 
 			if (heartParticles == null) {
 				heartParticles = Instantiate (PrefabManager.instance.happinessParticles, headBone.position, Quaternion.identity).GetComponent<ParticleSystem> ();
+			} else {
+				heartParticles.transform.position = headBone.position;
 			}
 
 			heartParticles.GetComponent<DeactivateAfterTime> ().Activate ();

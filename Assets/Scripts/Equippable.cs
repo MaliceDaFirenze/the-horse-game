@@ -8,8 +8,17 @@ public class Equippable : MonoBehaviour {
 	public float equippedScaleFactor;
 	private Consumable consumable;
 
+	private bool wasInitialized;
+
+	private void Start(){
+		Initialize ();
+	}
+
 	public void Initialize(){
-		regularScale = transform.localScale;
+		if (!wasInitialized) {
+			regularScale = transform.localScale;
+			wasInitialized = true;
+		}
 	}
 
 	public void BeEquipped(){

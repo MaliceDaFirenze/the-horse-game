@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Straw : Interactable {
+public class WaterBucket : Interactable {
 
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
@@ -10,5 +10,5 @@ public class Straw : Interactable {
 		GetComponent<Equippable> ().BeEquipped ();
 		player.EquipAnItem (equippable);
 	}
-
 }
+

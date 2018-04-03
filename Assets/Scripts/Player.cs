@@ -58,8 +58,7 @@ public class Player : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != null){
-				//drop currently equipped item
-				currentlyEquippedItem.BeDropped();
+				DropEquippedItem();
 			}
 		}
 	}
@@ -90,8 +89,17 @@ public class Player : MonoBehaviour {
 		ui.HideHorseUI ();
 	}
 
-	public void EquipAnItem(Equippable equippableItem){
-		currentlyEquippedItem = equippableItem;
+	public void DropEquippedItem(){
+		currentlyEquippedItem.transform.position = dropItemPos.position;
+		currentlyEquippedItem.transform.SetParent (null);
+		currentlyEquippedItem.BeDropped();
+		currentlyEquippedItem = null;
+	}
 
+	public void EquipAnItem(Equippable equippableItem){
+		equippableItem.BeEquipped ();
+		currentlyEquippedItem = equippableItem;
+		currentlyEquippedItem.transform.position = equippedItemPos.position;
+		currentlyEquippedItem.transform.SetParent (transform, true);
 	}
 }

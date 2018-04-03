@@ -24,7 +24,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
 
 	private Consumable currentTargetConsumable;
-	private float reachDistToConsumable = 4;
+	private float reachDistToConsumable = 2;
 
 	void Start () {
 		//Initialize
@@ -126,8 +126,8 @@ public class Horse_Behavior : MonoBehaviour {
 					}
 				}
 
-				Debug.Log ("horse looking at  " + allConsumables [i].name + " dist: " + dist + ", isvisible: " + isVisible);
-				if (dist < minDist && isVisible && allConsumables[i].remainingNeedValue >= 0) {
+				Debug.Log ("horse looking at  " + allConsumables [i].name + " dist: " + dist + ", isvisible: " + isVisible + " has remaining value: " + allConsumables[i].remainingNeedValue);
+				if (dist < minDist && isVisible && allConsumables[i].remainingNeedValue > 0) {
 					minDist = dist;
 					result = allConsumables [i];
 				}

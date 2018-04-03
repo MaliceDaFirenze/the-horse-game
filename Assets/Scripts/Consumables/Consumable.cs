@@ -10,7 +10,7 @@ public class Consumable : MonoBehaviour {
 	public float consumptionRate;
 	public bool destroyWhenEmpty;
 
-	private void Start(){
+	public virtual void Start(){
 		remainingNeedValue = totalNeedValue;
 	}
 
@@ -26,7 +26,12 @@ public class Consumable : MonoBehaviour {
 				StartCoroutine (Destroy ());
 			}
 		}
+		UpdateValue ();
 		return result;
+	}
+
+	public virtual void UpdateValue(){
+	
 	}
 
 	private IEnumerator Destroy(){

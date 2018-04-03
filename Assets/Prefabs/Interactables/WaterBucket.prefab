@@ -35,9 +35,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4915484451317098}
-  - component: {fileID: 114894627436939160}
-  - component: {fileID: 114216853669298470}
   - component: {fileID: 135612019924469976}
+  - component: {fileID: 114468827331685502}
   m_Layer: 0
   m_Name: WaterBucket
   m_TagString: Consumable
@@ -99,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248707922087834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4436655, y: 0.026, z: -10.911468}
+  m_LocalPosition: {x: -1.15, y: 0.026, z: -9.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919572160209214}
@@ -113,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993213316540894}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 2.6563275, z: -0.000000116111764}
+  m_LocalPosition: {x: -0, y: -1, z: -0.000000116111764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4919572160209214}
@@ -233,7 +232,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114216853669298470
+--- !u!114 &114468827331685502
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -241,25 +240,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248707922087834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c6a8017fda5ef148b90a2b1a1c96f12, type: 3}
+  m_Script: {fileID: 11500000, guid: 0977816722cd6024191e75dedc47de9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   needSatisfiedByThis: 1
   totalNeedValue: 40
   remainingNeedValue: 0
   consumptionRate: 5
---- !u!114 &114894627436939160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1248707922087834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6692c21a150305843913089b778756a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: 
+  destroyWhenEmpty: 0
+  waterModel: {fileID: 4916303463876542}
 --- !u!135 &135612019924469976
 SphereCollider:
   m_ObjectHideFlags: 1
