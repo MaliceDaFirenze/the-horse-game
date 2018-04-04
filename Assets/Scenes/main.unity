@@ -245,6 +245,11 @@ Prefab:
       propertyPath: m_Name
       value: HomeDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 114872513116751120, guid: 398334d7334f065498b53a17a2edef49,
+        type: 2}
+      propertyPath: emptyHandsAction
+      value: Open/Close
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 398334d7334f065498b53a17a2edef49, type: 2}
   m_IsPrefabParent: 0
@@ -331,14 +336,6 @@ Prefab:
     - target: {fileID: 4352399959791966, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4029224189278364, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.816
-      objectReference: {fileID: 0}
-    - target: {fileID: 4029224189278364, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.093
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
@@ -755,6 +752,11 @@ Prefab:
     - target: {fileID: 4509144840628598, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114236441731891576, guid: ed912b7379fbb8945a865e8173d9b50a,
+        type: 2}
+      propertyPath: emptyHandsAction
+      value: Pet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
@@ -1394,6 +1396,11 @@ Prefab:
     - target: {fileID: 4078783549993212, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -134.94101
+      objectReference: {fileID: 0}
+    - target: {fileID: 114872513116751120, guid: 398334d7334f065498b53a17a2edef49,
+        type: 2}
+      propertyPath: emptyHandsAction
+      value: Open/Close
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 398334d7334f065498b53a17a2edef49, type: 2}
@@ -2414,6 +2421,11 @@ Prefab:
     - target: {fileID: 1318740406512966, guid: 68198348e6d34fa448ddf1d1e6b7469a, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114158951968142982, guid: 68198348e6d34fa448ddf1d1e6b7469a,
+        type: 2}
+      propertyPath: emptyHandsAction
+      value: Sleep
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68198348e6d34fa448ddf1d1e6b7469a, type: 2}
@@ -3660,6 +3672,11 @@ Prefab:
     - target: {fileID: 1390458802760298, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_Name
       value: BarnDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114872513116751120, guid: 398334d7334f065498b53a17a2edef49,
+        type: 2}
+      propertyPath: emptyHandsAction
+      value: Open/Close
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 398334d7334f065498b53a17a2edef49, type: 2}

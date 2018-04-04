@@ -10,8 +10,17 @@ public class Consumable : MonoBehaviour {
 	public float consumptionRate;
 	public bool destroyWhenEmpty;
 
+	private bool wasInitialized;
+
 	public virtual void Start(){
-		remainingNeedValue = totalNeedValue;
+		Initialize ();
+	}
+
+	public void Initialize(){
+		if (!wasInitialized) {
+			remainingNeedValue = totalNeedValue;
+			wasInitialized = true;
+		}
 	}
 
 	public float PartialConsume(){

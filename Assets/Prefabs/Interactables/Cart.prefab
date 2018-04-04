@@ -281,7 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9719d45b3945d46a978dc3c9478d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Take Straw
+  emptyHandsAction: Take Hay Bale
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
 --- !u!136 &136141650923889246
 CapsuleCollider:
   m_ObjectHideFlags: 1

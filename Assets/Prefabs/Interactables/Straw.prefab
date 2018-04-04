@@ -228,8 +228,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983970110012648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: -0.027, z: -16.64}
+  m_LocalRotation: {x: -0, y: -0.52550083, z: -0, w: 0.8507931}
+  m_LocalPosition: {x: -11.13, y: -0.027, z: -11.7}
   m_LocalScale: {x: 0.40991277, y: 0.40991274, z: 0.40991274}
   m_Children:
   - {fileID: 4238998972829958}
@@ -684,7 +684,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae4d4e107116f9409364cf572459380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Pick up
+  emptyHandsAction: Pick Up
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
 --- !u!114 &114602865856247504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,6 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 0.5
+  id: 1
 --- !u!135 &135164502533063232
 SphereCollider:
   m_ObjectHideFlags: 1

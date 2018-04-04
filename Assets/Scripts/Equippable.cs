@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum equippableItemID{
+	BAREHANDS,
+	STRAW,
+	WATERBUCKET	
+}
+
 public class Equippable : MonoBehaviour {
 
 	private Vector3 regularScale;
 	public float equippedScaleFactor;
 	private Consumable consumable;
+
+	public equippableItemID id;
 
 	private bool wasInitialized;
 
@@ -23,6 +31,7 @@ public class Equippable : MonoBehaviour {
 
 	public void BeEquipped(){
 		consumable = GetComponent<Consumable> ();
+		consumable.Initialize ();
 		if (consumable != null) {
 			consumable.enabled = false;
 		}

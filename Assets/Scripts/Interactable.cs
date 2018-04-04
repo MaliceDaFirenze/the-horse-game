@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour {
 
-	public string action;
+	public string emptyHandsAction;
 	public Equippable equippable;
 	public Consumable consumable;
 
@@ -20,11 +20,14 @@ public class Interactable : MonoBehaviour {
 	}
 
 	public virtual void PlayerInteracts(Player player){
-		Debug.Log ("interact base");
 	
 	}
 
 	public virtual void PlayerEntersIntTrigger(){
 		
+	}
+
+	public virtual string GetInteractionString(Player player){
+		return emptyHandsAction;
 	}
 }

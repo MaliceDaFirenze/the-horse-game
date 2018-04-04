@@ -14,9 +14,11 @@ public class UI : MonoBehaviour {
 		HideInstruction ();
 	}
 
-	public void ShowInstruction(Interactable interactable){
-		instructionGO.SetActive (true);
-		instructionText.text = "E - " + interactable.action;
+	public void ShowInstruction(Interactable interactable, Player player){
+		if (interactable.GetInteractionString (player) != "") {
+			instructionGO.SetActive (true);
+			instructionText.text = "E - " + interactable.GetInteractionString(player);
+		}
 	}
 
 	public void HideInstruction(){

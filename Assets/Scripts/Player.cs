@@ -24,10 +24,13 @@ public class Player : MonoBehaviour {
 	private UI ui;
 	public Transform equippedItemPos;
 	public Transform dropItemPos;
+	private Equippable playerHands;
 
 	private void Start() {
 		rb = GetComponent<Rigidbody> ();
 		ui = FindObjectOfType<UI> ();
+		playerHands = GetComponent<Equippable> ();
+		currentlyEquippedItem = playerHands;
 	}
 
 	private void Update() {
@@ -57,7 +60,7 @@ public class Player : MonoBehaviour {
 				nearestInteractable.PlayerInteracts (this);
 			}
 
-			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != null){
+			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != playerHands){
 				DropEquippedItem();
 			}
 		}
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter(Collider trigger){
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
-			ui.ShowInstruction(nearestInteractable);
+			ui.ShowInstruction(nearestInteractable, this);
 
 			nearestHorse = nearestInteractable.GetComponent<Horse_Stats> ();
 			if (nearestHorse != null) {
@@ -89,11 +92,15 @@ public class Player : MonoBehaviour {
 		ui.HideHorseUI ();
 	}
 
-	public void DropEquippedItem(){
+	private void DropEquippedItem(){
 		currentlyEquippedItem.transform.position = dropItemPos.position;
 		currentlyEquippedItem.transform.SetParent (null);
 		currentlyEquippedItem.BeDropped();
-		currentlyEquippedItem = null;
+		currentlyEquippedItem = playerHands;
+	}
+
+	public void UnequipEquippedItem(){
+		currentlyEquippedItem = playerHands;
 	}
 
 	public void EquipAnItem(Equippable equippableItem){

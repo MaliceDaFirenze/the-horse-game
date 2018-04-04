@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4352399959791966}
   - component: {fileID: 114377831620234292}
   - component: {fileID: 54865066698184964}
+  - component: {fileID: 114921796864695578}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -170,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110695642067982}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.362, y: -0.058, z: 0.26900005}
+  m_LocalPosition: {x: -0.816, y: 0.093, z: 0.26900005}
   m_LocalScale: {x: 0.27944, y: 0.27944, z: 0.27944}
   m_Children: []
   m_Father: {fileID: 4352399959791966}
@@ -566,6 +567,19 @@ MonoBehaviour:
   currentlyEquippedItem: {fileID: 0}
   equippedItemPos: {fileID: 4075287413786586}
   dropItemPos: {fileID: 4029224189278364}
+--- !u!114 &114921796864695578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268129346126096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedScaleFactor: 1
+  id: 0
 --- !u!135 &135351864680645520
 SphereCollider:
   m_ObjectHideFlags: 1
