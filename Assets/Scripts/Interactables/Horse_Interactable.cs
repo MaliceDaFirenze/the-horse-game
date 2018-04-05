@@ -19,6 +19,9 @@ public class Horse_Interactable : Interactable {
 		case equippableItemID.STRAW:
 			FeedHorse (player);
 			break;
+		case equippableItemID.WATERBUCKET:
+			WaterHorse (player);
+			break;
 		default:
 			break;
 		}
@@ -34,6 +37,12 @@ public class Horse_Interactable : Interactable {
 		horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
+	}
+
+	private void WaterHorse (Player player){
+		horseStats.SatisfyNeed(horseNeed.WATER, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
+		player.currentlyEquippedItem.GetComponent<Consumable> ().remainingNeedValue = 0;
+		player.currentlyEquippedItem.GetComponent<WaterBucket_Consumable> ().UpdateValue ();
 	}
 
 	public override string GetInteractionString (Player player)	{

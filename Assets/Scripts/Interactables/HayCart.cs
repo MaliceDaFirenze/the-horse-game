@@ -35,7 +35,7 @@ public class HayCart : Interactable {
 	}
 
 	public override string GetInteractionString (Player player)	{
-		Debug.Log ("hay cart, get instr string for item with id " + player.currentlyEquippedItem.id);
+		
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;

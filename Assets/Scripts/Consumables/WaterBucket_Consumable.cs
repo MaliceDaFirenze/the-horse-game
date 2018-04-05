@@ -10,6 +10,7 @@ public class WaterBucket_Consumable : Consumable {
 	public override void Start(){
 		base.Start ();
 		originalScale = waterModel.localScale;	
+		UpdateValue ();
 	}
 
 	public override void UpdateValue(){

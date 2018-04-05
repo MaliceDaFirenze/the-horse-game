@@ -83,7 +83,7 @@ public class Horse_Behavior : MonoBehaviour {
 		Debug.Log ("start walking to: " + currentTargetConsumable);
 		anim.SetBool ("Walk", true);
 		navMeshAgent.SetDestination (currentTargetConsumable.transform.position);
-		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable) {
+		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable && currentTargetConsumable != null && currentTargetConsumable.enabled && currentTargetConsumable.remainingNeedValue > 0) {
 			yield return waitASecond;
 		}
 
@@ -127,7 +127,7 @@ public class Horse_Behavior : MonoBehaviour {
 				}
 
 				Debug.Log ("horse looking at  " + allConsumables [i].name + " dist: " + dist + ", isvisible: " + isVisible + " has remaining value: " + allConsumables[i].remainingNeedValue);
-				if (dist < minDist && isVisible && allConsumables[i].remainingNeedValue > 0) {
+				if (dist < minDist && isVisible && allConsumables[i].remainingNeedValue > 0 && allConsumables[i].enabled) {
 					minDist = dist;
 					result = allConsumables [i];
 				}

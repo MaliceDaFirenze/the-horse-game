@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 4915484451317098}
   - component: {fileID: 135612019924469976}
   - component: {fileID: 114468827331685502}
+  - component: {fileID: 114343601274884868}
+  - component: {fileID: 114469162233779084}
   m_Layer: 0
   m_Name: WaterBucket
   m_TagString: Consumable
@@ -232,6 +234,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114343601274884868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1248707922087834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedScaleFactor: 1
+  id: 2
 --- !u!114 &114468827331685502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +264,20 @@ MonoBehaviour:
   consumptionRate: 5
   destroyWhenEmpty: 0
   waterModel: {fileID: 4916303463876542}
+--- !u!114 &114469162233779084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1248707922087834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf8b002d07e84747a9788e244ef1ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyHandsAction: Pick Up
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
 --- !u!135 &135612019924469976
 SphereCollider:
   m_ObjectHideFlags: 1

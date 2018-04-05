@@ -9,6 +9,7 @@ public class Consumable : MonoBehaviour {
 	public float remainingNeedValue;
 	public float consumptionRate;
 	public bool destroyWhenEmpty;
+	public bool fullOnStart;
 
 	private bool wasInitialized;
 
@@ -17,7 +18,7 @@ public class Consumable : MonoBehaviour {
 	}
 
 	public void Initialize(){
-		if (!wasInitialized) {
+		if (!wasInitialized && fullOnStart) {
 			remainingNeedValue = totalNeedValue;
 			wasInitialized = true;
 		}
