@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour {
 	}
 
 	public virtual void PlayerInteracts(Player player){
-	
+		Debug.Log ("base interact");
 	}
 
 	public virtual void PlayerEntersIntTrigger(){

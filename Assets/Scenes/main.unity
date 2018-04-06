@@ -307,7 +307,6 @@ GameObject:
   m_Component:
   - component: {fileID: 114021805}
   - component: {fileID: 114021808}
-  - component: {fileID: 114021807}
   - component: {fileID: 114021806}
   m_Layer: 0
   m_Name: FloorGrill (2)
@@ -363,18 +362,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &114021807
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 114021804}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &114021808
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -807,7 +794,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4509144840628598, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.195
+      value: -5.77
       objectReference: {fileID: 0}
     - target: {fileID: 4509144840628598, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -815,7 +802,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4509144840628598, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -8.476
+      value: -11.3
       objectReference: {fileID: 0}
     - target: {fileID: 4509144840628598, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -841,6 +828,10 @@ Prefab:
         type: 2}
       propertyPath: emptyHandsAction
       value: Pet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834302026077554, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
@@ -1155,7 +1146,6 @@ GameObject:
   m_Component:
   - component: {fileID: 448564049}
   - component: {fileID: 448564052}
-  - component: {fileID: 448564051}
   - component: {fileID: 448564050}
   m_Layer: 0
   m_Name: FloorGrill (6)
@@ -1211,18 +1201,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &448564051
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448564048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &448564052
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1666,6 +1644,10 @@ Prefab:
     - target: {fileID: 4150706553864786, guid: da71daefc79c80f419a820a307a73b7e, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1983970110012648, guid: da71daefc79c80f419a820a307a73b7e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da71daefc79c80f419a820a307a73b7e, type: 2}
@@ -2154,7 +2136,6 @@ GameObject:
   m_Component:
   - component: {fileID: 952210688}
   - component: {fileID: 952210691}
-  - component: {fileID: 952210690}
   - component: {fileID: 952210689}
   m_Layer: 0
   m_Name: FloorGrill
@@ -2210,18 +2191,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &952210690
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 952210687}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &952210691
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2238,7 +2207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 981844682}
   - component: {fileID: 981844685}
-  - component: {fileID: 981844684}
   - component: {fileID: 981844683}
   m_Layer: 0
   m_Name: FloorGrill (1)
@@ -2294,18 +2262,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &981844684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 981844681}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &981844685
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2592,8 +2548,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.74}
+  m_Center: {x: 0, y: 0, z: -0.46}
 --- !u!33 &1215265881
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2770,6 +2726,77 @@ Transform:
   m_PrefabParentObject: {fileID: 4995397549251788, guid: 68198348e6d34fa448ddf1d1e6b7469a,
     type: 2}
   m_PrefabInternal: {fileID: 1465895744}
+--- !u!1 &1443505374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1443505376}
+  - component: {fileID: 1443505375}
+  - component: {fileID: 1443505378}
+  - component: {fileID: 1443505377}
+  m_Layer: 0
+  m_Name: Brush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1443505375
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1443505374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!4 &1443505376
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1443505374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.858, y: 0, z: -7.513}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1468986879}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443505377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1443505374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedScaleFactor: 1
+  id: 3
+--- !u!114 &1443505378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1443505374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60bddbd788e3874485ba64280e39767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyHandsAction: Pick Up
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
 --- !u!1 &1459324837
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,6 +2940,84 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68198348e6d34fa448ddf1d1e6b7469a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1468986878
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1443505376}
+    m_Modifications:
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15227586
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15227593
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15227593
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f5db4d707a87db24e8da568c0fd261c2, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &1468986879 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+  m_PrefabInternal: {fileID: 1468986878}
+--- !u!1 &1468986880 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: c132959f0aa63634aaebe00489af2b8a, type: 3}
+  m_PrefabInternal: {fileID: 1468986878}
+--- !u!65 &1468986881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1468986880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.23611, y: 2.1441386, z: 0.7289052}
+  m_Center: {x: 0, y: -0.015971188, z: 0.33955258}
 --- !u!1001 &1485065322
 Prefab:
   m_ObjectHideFlags: 0
@@ -2997,7 +3102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1506585829}
   - component: {fileID: 1506585832}
-  - component: {fileID: 1506585831}
   - component: {fileID: 1506585830}
   m_Layer: 0
   m_Name: FloorGrill
@@ -3053,18 +3157,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1506585831
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1506585828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1506585832
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3190,7 +3282,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1589093295}
   - component: {fileID: 1589093298}
-  - component: {fileID: 1589093297}
   - component: {fileID: 1589093296}
   m_Layer: 0
   m_Name: FloorGrill (4)
@@ -3246,18 +3337,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1589093297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1589093294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1589093298
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3274,7 +3353,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1627345151}
   - component: {fileID: 1627345154}
-  - component: {fileID: 1627345153}
   - component: {fileID: 1627345152}
   m_Layer: 0
   m_Name: FloorGrill
@@ -3330,18 +3408,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1627345153
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1627345150}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1627345154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3921,7 +3987,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4915484451317098, guid: c2dd953c7daa16a41957518a7ba53123, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.15
+      value: -6.31
       objectReference: {fileID: 0}
     - target: {fileID: 4915484451317098, guid: c2dd953c7daa16a41957518a7ba53123, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3929,7 +3995,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4915484451317098, guid: c2dd953c7daa16a41957518a7ba53123, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.05
+      value: -8.48
       objectReference: {fileID: 0}
     - target: {fileID: 4915484451317098, guid: c2dd953c7daa16a41957518a7ba53123, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4179,7 +4245,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1962431907}
   - component: {fileID: 1962431910}
-  - component: {fileID: 1962431909}
   - component: {fileID: 1962431908}
   m_Layer: 0
   m_Name: Faucet (1)
@@ -4235,18 +4300,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1962431909
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1962431906}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1962431910
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4352,7 +4405,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2018719742}
   - component: {fileID: 2018719745}
-  - component: {fileID: 2018719744}
   - component: {fileID: 2018719743}
   m_Layer: 0
   m_Name: FloorGrill (3)
@@ -4408,18 +4460,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2018719744
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2018719741}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2018719745
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4626,7 +4666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2107125082}
   - component: {fileID: 2107125085}
-  - component: {fileID: 2107125084}
   - component: {fileID: 2107125083}
   m_Layer: 0
   m_Name: FloorGrill (5)
@@ -4682,18 +4721,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2107125084
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2107125081}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2107125085
 MeshFilter:
   m_ObjectHideFlags: 0

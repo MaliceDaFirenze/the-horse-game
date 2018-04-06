@@ -5,13 +5,14 @@ using UnityEngine;
 public enum equippableItemID{
 	BAREHANDS,
 	STRAW,
-	WATERBUCKET	
+	WATERBUCKET,
+	BRUSH
 }
 
 public class Equippable : MonoBehaviour {
 
 	private Vector3 regularScale;
-	public float equippedScaleFactor;
+	public float equippedScaleFactor = 1;
 	private Consumable consumable;
 
 	public equippableItemID id;
@@ -31,8 +32,8 @@ public class Equippable : MonoBehaviour {
 
 	public void BeEquipped(){
 		consumable = GetComponent<Consumable> ();
-		consumable.Initialize ();
 		if (consumable != null) {
+			consumable.Initialize ();
 			consumable.enabled = false;
 		}
 		transform.localScale *= equippedScaleFactor;
