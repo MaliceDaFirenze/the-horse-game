@@ -20,12 +20,15 @@ public class HayCart : Interactable {
 	}
 
 	private void TakeHayBale(Player player){
-		GameObject newHayBale = Instantiate (PrefabManager.instance.hayBale, player.equippedItemPos.position, player.equippedItemPos.rotation) as GameObject;
+		if (player.currentlyEquippedItem.id == equippableItemID.BAREHANDS) {
 
-		Equippable equippable = newHayBale.GetComponent<Equippable> ();
-		equippable.Initialize ();
+			GameObject newHayBale = Instantiate (PrefabManager.instance.hayBale, player.equippedItemPos.position, player.equippedItemPos.rotation) as GameObject;
 
-		player.EquipAnItem (equippable);
+			Equippable equippable = newHayBale.GetComponent<Equippable> ();
+			equippable.Initialize ();
+
+			player.EquipAnItem (equippable);
+		}
 	}
 
 	private void PutAwayHayBale (Player player){

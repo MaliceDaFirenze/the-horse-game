@@ -59,11 +59,6 @@ public class Horse_Behavior : MonoBehaviour {
 
 	private IEnumerator Idle(){
 		float idleDuration = Random.Range (minIdleDuration, maxIdleDuration);
-
-		//TODO: when horse is hungry but finds no food, it won't drink either
-		//check if hungry & food available, else check if thirsty and water available, only then else idle
-	
-		Debug.Log ("new idle duration: " + idleDuration);
 		yield return new WaitForSeconds (idleDuration);
 		Consumable availableFood = FindConsumableInRange (horseNeed.FOOD);
 		Consumable availableWater = FindConsumableInRange (horseNeed.WATER);
@@ -80,29 +75,30 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator WalkToTarget(){
-		Debug.Log ("start walking to: " + currentTargetConsumable);
 		anim.SetBool ("Walk", true);
 		navMeshAgent.SetDestination (currentTargetConsumable.transform.position);
 		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable && currentTargetConsumable != null && currentTargetConsumable.enabled && currentTargetConsumable.remainingNeedValue > 0) {
 			yield return waitASecond;
 		}
 
-		Debug.Log ("walk over");
 		anim.SetBool ("Walk", false);
 		ChangeState (horseState.CONSUMING);
 	}
 
 	private IEnumerator Consume(){
-		Debug.Log ("start eating: " + currentTargetConsumable);
+
+		bool hasEaten = false;
 
 		while (currentTargetConsumable != null && Vector3.Distance (currentTargetConsumable.transform.position, transform.position) <= reachDistToConsumable && currentTargetConsumable.remainingNeedValue > 0 && stats.GetNeedValue(currentTargetConsumable.needSatisfiedByThis) < Horse_Stats.NeedsMaximum){
 			anim.SetBool ("Eat", true);
 			stats.SatisfyNeed(currentTargetConsumable.needSatisfiedByThis, currentTargetConsumable.PartialConsume ());
+			hasEaten = true;
 			yield return waitASecond;
-
 		}
 
-		Debug.Log ("eating over ");
+		if (hasEaten) {
+			StartCoroutine (ProduceManure ());
+		}
 
 		anim.SetBool ("Eat", false);
 		ChangeState (horseState.IDLE);
@@ -135,5 +131,9 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 
 		return result;
+	}
+
+	private IEnumerator ProduceManure(){
+		
 	}
 }

@@ -98,7 +98,9 @@ public class Horse_Stats : TimeDependantObject {
 
 	//---references---//
 	public Transform headBone;
+	public Transform withersBone;
 	private ParticleSystem heartParticles;
+	private ParticleSystem dustParticles;
 	private HorseUI horseUI;
 
 	private void Start(){
@@ -168,6 +170,15 @@ public class Horse_Stats : TimeDependantObject {
 			break;
 		case horseNeed.HYGIENE:
 			Hygiene += value;
+
+			if (dustParticles == null) {
+				dustParticles = Instantiate (PrefabManager.instance.dustParticles, withersBone.position, Quaternion.identity).GetComponent<ParticleSystem> ();
+			} else {
+				dustParticles.transform.position = withersBone.position;
+			}
+
+			dustParticles.GetComponent<DeactivateAfterTime> ().Activate ();
+			dustParticles.Play ();
 			break;
 		}
 	}

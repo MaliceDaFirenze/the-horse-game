@@ -67,6 +67,8 @@ public class Player : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider trigger){
+		Debug.Log ("enter trigger: " + trigger + ", collider is trigger: " + trigger.isTrigger);
+
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
 			ui.ShowInstruction(nearestInteractable, this);
@@ -83,6 +85,9 @@ public class Player : MonoBehaviour {
 	}
 
 	private void OnTriggerExit(Collider trigger){
+
+		Debug.Log ("exit trigger: " + trigger + ", collider is trigger: " + trigger.isTrigger);
+
 		if (trigger.tag.Equals("BuildingEntrance")){
 			trigger.transform.parent.GetComponent<Building> ().PlayerExitsBuildingTrigger ();
 		}
@@ -108,5 +113,7 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = equippableItem;
 		currentlyEquippedItem.transform.position = equippedItemPos.position;
 		currentlyEquippedItem.transform.SetParent (transform, true);
+		ui.HideInstruction ();
+
 	}
 }

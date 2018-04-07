@@ -6,6 +6,7 @@ public class PrefabManager : MonoBehaviour {
 
 	//---Particles---//
 	public GameObject happinessParticles;
+	public GameObject dustParticles;
 
 	//---Items---//
 	public GameObject hayBale;

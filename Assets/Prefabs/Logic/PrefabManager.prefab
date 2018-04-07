@@ -53,4 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happinessParticles: {fileID: 1733176384434400, guid: fb8c663254714b64a8308583aefddf70,
     type: 2}
+  dustParticles: {fileID: 1383872903917608, guid: 38506035646bce441b681a23b6f3e84f,
+    type: 2}
   hayBale: {fileID: 1983970110012648, guid: da71daefc79c80f419a820a307a73b7e, type: 2}

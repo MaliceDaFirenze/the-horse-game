@@ -19,6 +19,8 @@ public class Equippable : MonoBehaviour {
 
 	private bool wasInitialized;
 
+	private Collider[] allColliders = new Collider[0];
+
 	private void Start(){
 		Initialize ();
 	}
@@ -36,14 +38,27 @@ public class Equippable : MonoBehaviour {
 			consumable.Initialize ();
 			consumable.enabled = false;
 		}
+
+		EnableAllColliders (false);
+
 		transform.localScale *= equippedScaleFactor;
 	}
 
 	public void BeDropped(){
 		transform.localScale = regularScale;
+		EnableAllColliders (true);
 		consumable = GetComponent<Consumable> ();
 		if (consumable != null) {
 			consumable.enabled = true;
+		}
+	}
+
+	private void EnableAllColliders (bool enable){
+		if (allColliders.Length == 0) {
+			allColliders = GetComponentsInChildren<Collider> ();
+		}
+		for (int i = 0; i < allColliders.Length; ++i) {
+			allColliders [i].enabled = enable;
 		}
 	}
 }

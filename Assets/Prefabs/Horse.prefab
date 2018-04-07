@@ -996,7 +996,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834302026077554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.195, y: -0.045, z: -8.476}
+  m_LocalPosition: {x: -5.77, y: -0.045, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4835477401439470}
@@ -1381,8 +1381,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245d33408cf7294c8c1fecf490f9b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Pet
-  horseStats: {fileID: 0}
+  emptyHandsAction: Pet
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
 --- !u!114 &114855094898275936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1412,6 +1413,7 @@ MonoBehaviour:
   happiness: 0
   hygiene: 0
   headBone: {fileID: 4583278728271302}
+  withersBone: {fileID: 4664967751264882}
 --- !u!136 &136977364952744488
 CapsuleCollider:
   m_ObjectHideFlags: 1
