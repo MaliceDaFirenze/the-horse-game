@@ -5,8 +5,11 @@ using UnityEngine;
 public class Horse_Interactable : Interactable {
 
 	private Horse_Stats horseStats;
+	private Horse_Behavior horseBehaviour;
+
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
+		horseBehaviour = GetComponent<Horse_Behavior> ();
 	}
 
 	public override void PlayerInteracts(Player player){
@@ -50,6 +53,7 @@ public class Horse_Interactable : Interactable {
 		horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
+		horseBehaviour.StartCoroutine (horseBehaviour.WaitToProduceManure ());
 	}
 
 	private void WaterHorse (Player player){

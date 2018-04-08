@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public enum horseState{
 	IDLE,
 	CONSUMING,
-	WALKINGTOTARGET
+	WALKINGTOTARGET,
+	PRODUCINGMANURE
 }
 
 public class Horse_Behavior : MonoBehaviour {
@@ -19,12 +20,16 @@ public class Horse_Behavior : MonoBehaviour {
 	public horseState currentHorseState;
 	private Coroutine currentBehaviour;
 
+	private Consumable currentTargetConsumable;
+	private float reachDistToConsumable = 2;
+
+	//---Durations & Waits---//
 	private float minIdleDuration = 3f;
 	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
 
-	private Consumable currentTargetConsumable;
-	private float reachDistToConsumable = 2;
+	private float minManureDuration = 20f;
+	private float maxManureDuration = 40f;
 
 	void Start () {
 		//Initialize
@@ -53,6 +58,9 @@ public class Horse_Behavior : MonoBehaviour {
 			break;
 		case horseState.CONSUMING:
 			currentBehaviour = StartCoroutine (Consume ());
+			break;
+		case horseState.PRODUCINGMANURE:
+			currentBehaviour = StartCoroutine (ProduceManure());
 			break;
 		}
 	}
@@ -97,10 +105,20 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 
 		if (hasEaten) {
-			StartCoroutine (ProduceManure ());
+			StartCoroutine (WaitToProduceManure ());
 		}
 
 		anim.SetBool ("Eat", false);
+		ChangeState (horseState.IDLE);
+	}
+
+	private IEnumerator ProduceManure(){
+		anim.SetBool ("Poop", false);
+		GameObject manurePile = Instantiate (PrefabManager.instance.manurePile, stats.poopSpawnPoint.position, stats.poopSpawnPoint.rotation) as GameObject;
+
+		yield return StartCoroutine( manurePile.GetComponent<ManurePile>().GetProduced() );
+
+		anim.SetBool ("Poop", false);
 		ChangeState (horseState.IDLE);
 	}
 
@@ -133,7 +151,10 @@ public class Horse_Behavior : MonoBehaviour {
 		return result;
 	}
 
-	private IEnumerator ProduceManure(){
-		
+	public IEnumerator WaitToProduceManure(){
+		float duration = Random.Range (minManureDuration, maxManureDuration);
+
+		yield return new WaitForSeconds (duration);
+		ChangeState (horseState.PRODUCINGMANURE);
 	}
 }

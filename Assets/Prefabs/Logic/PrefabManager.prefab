@@ -56,3 +56,4 @@ MonoBehaviour:
   dustParticles: {fileID: 1383872903917608, guid: 38506035646bce441b681a23b6f3e84f,
     type: 2}
   hayBale: {fileID: 1983970110012648, guid: da71daefc79c80f419a820a307a73b7e, type: 2}
+  manurePile: {fileID: 1290200686215056, guid: fc98842abf4c8244c8ee01decfa6b1ce, type: 2}

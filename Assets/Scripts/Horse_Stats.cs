@@ -99,6 +99,7 @@ public class Horse_Stats : TimeDependantObject {
 	//---references---//
 	public Transform headBone;
 	public Transform withersBone;
+	public Transform poopSpawnPoint;
 	private ParticleSystem heartParticles;
 	private ParticleSystem dustParticles;
 	private HorseUI horseUI;
