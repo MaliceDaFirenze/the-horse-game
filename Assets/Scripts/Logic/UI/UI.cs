@@ -8,11 +8,16 @@ public class UI : MonoBehaviour {
 	public GameObject instructionGO;
 	public Text instructionText;
 
+	public GameObject arrowSequenceGO;
+	public Image[] arrows;
+
 	public HorseUI horseUI;
 
 	void Start(){
 		HideInstruction ();
 	}
+
+
 
 	public void ShowInstruction(Interactable interactable, Player player){
 		if (interactable.GetInteractionString (player) != "") {

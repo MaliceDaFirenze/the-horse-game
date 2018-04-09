@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum intID {
+	NO_SEQUENCE,
+	BRUSH_HORSE,
+	PET_HORSE,
+	FEED_HORSE,
+	WATER_HORSE,
+	CLEAN_MANURE,
+	FILL_BUCKET
+}
+
 public class Interactable : MonoBehaviour {
 
 	public string emptyHandsAction;
 	public Equippable equippable;
 	public Consumable consumable;
+
+	public intID currentlyRelevantIntId; //changes based on equippable, get set on enter int trigger
 
 	private void Awake(){
 		if (GetComponent<Collider> () == null) {
