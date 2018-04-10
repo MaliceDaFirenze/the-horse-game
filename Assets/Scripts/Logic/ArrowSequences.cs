@@ -11,7 +11,82 @@ public enum dir{
 
 public class ArrowSequences : MonoBehaviour {
 
-	public static dir[] ArrowSequence(intID id){
-	
+	public static dir[] GetArrowSequence(intID id){
+		switch (id) {
+		case intID.NO_SEQUENCE:
+			return null;
+		case intID.BRUSH_HORSE:
+			return BrushHorse ();
+		case intID.PET_HORSE:
+			return PetHorse ();
+		case intID.FEED_HORSE:
+			return FeedHorse();
+		case intID.WATER_HORSE:
+			return WaterHorse();
+		case intID.CLEAN_MANURE:
+			return CleanManure();
+		case intID.FILL_BUCKET:
+			return FillBucket();
+		default:
+			return null;
+		}
+	}
+
+	private static dir[] BrushHorse (){
+		dir[] result = new dir[4];
+
+		result [0] = dir.DOWN;
+		result [1] = dir.RIGHT;
+		result [2] = dir.DOWN;
+		result [3] = dir.LEFT;
+		return result;
+	}
+
+	private static dir[] FeedHorse (){
+		dir[] result = new dir[3];
+
+		result [0] = dir.LEFT;
+		result [1] = dir.LEFT;
+		result [2] = dir.UP;
+		return result;
+	}
+
+	private static dir[] WaterHorse (){
+		dir[] result = new dir[3];
+
+		result [0] = dir.RIGHT;
+		result [1] = dir.LEFT;
+		result [2] = dir.DOWN;
+		return result;
+	}
+
+	private static dir[] CleanManure (){
+		dir[] result = new dir[3];
+
+		result [0] = dir.RIGHT;
+		result [1] = dir.UP;
+		result [2] = dir.RIGHT;
+		return result;
+	}
+
+	private static dir[] FillBucket (){
+		dir[] result = new dir[2];
+
+		result [0] = dir.DOWN;
+		result [1] = dir.DOWN;
+		return result;
+	}
+
+	private static dir[] PetHorse (){
+		return GetRandomArray (3);
+	}
+
+	private static dir[] GetRandomArray(int length){
+		dir[] result = new dir[length];
+
+		for (int i = 0; i < result.Length; ++i) {
+			result [i] = (dir)Random.Range (0, 3);
+		}
+		return result;
 	}
 }

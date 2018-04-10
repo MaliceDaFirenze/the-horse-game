@@ -17,12 +17,12 @@ public class UI : MonoBehaviour {
 		HideInstruction ();
 	}
 
-
-
 	public void ShowInstruction(Interactable interactable, Player player){
 		if (interactable.GetInteractionString (player) != "") {
 			instructionGO.SetActive (true);
 			instructionText.text = "E - " + interactable.GetInteractionString(player);
+
+			dir[] sequence = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantIntId);
 		}
 	}
 
