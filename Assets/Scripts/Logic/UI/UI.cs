@@ -22,11 +22,11 @@ public class UI : MonoBehaviour {
 			instructionGO.SetActive (true);
 			instructionText.text = "E - " + interactable.GetInteractionString(player);
 
-			dir[] sequence = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
-			if (sequence != null) {
+			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
+			if (interactable.arrowInputRequired != null) {
 				for (int i = 0; i < arrows.Length; ++i) {
-					if (i < sequence.Length) {
-						arrows[i].rectTransform.eulerAngles = new Vector3(0,0, 90 * (int)sequence[i]); 
+					if (i < interactable.arrowInputRequired.Length) {
+						arrows[i].rectTransform.eulerAngles = new Vector3(0,0, 90 * (int)interactable.arrowInputRequired[i]); 
 						arrows [i].enabled = true;
 					} else {
 						arrows [i].enabled = false;

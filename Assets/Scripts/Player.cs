@@ -57,7 +57,11 @@ public class Player : MonoBehaviour {
 
 			//------INTERACTION-------//
 			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null){
-				nearestInteractable.PlayerInteracts (this);
+				if (nearestInteractable.arrowInputRequired != null) {
+					//still need to press E? Probably annoying...				
+				} else {
+					nearestInteractable.PlayerInteracts (this);
+				}
 			}
 
 			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != playerHands){

@@ -19,6 +19,7 @@ public class Interactable : MonoBehaviour {
 	public Consumable consumable;
 
 	public actionID currentlyRelevantActionID; //changes based on equippable, get set on enter int trigger
+	public dir[] arrowInputRequired; //changes with actionID
 
 	private void Awake(){
 		if (GetComponent<Collider> () == null) {
