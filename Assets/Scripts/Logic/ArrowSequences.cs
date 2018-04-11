@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum dir{
-	UP,
-	RIGHT,
+	LEFT,
 	DOWN,
-	LEFT
+	RIGHT,
+	UP
 }
 
 public class ArrowSequences : MonoBehaviour {
 
-	public static dir[] GetArrowSequence(intID id){
+	public static dir[] GetArrowSequence(actionID id){
 		switch (id) {
-		case intID.NO_SEQUENCE:
+		case actionID.NO_SEQUENCE:
 			return null;
-		case intID.BRUSH_HORSE:
+		case actionID.BRUSH_HORSE:
 			return BrushHorse ();
-		case intID.PET_HORSE:
+		case actionID.PET_HORSE:
 			return PetHorse ();
-		case intID.FEED_HORSE:
+		case actionID.FEED_HORSE:
 			return FeedHorse();
-		case intID.WATER_HORSE:
+		case actionID.WATER_HORSE:
 			return WaterHorse();
-		case intID.CLEAN_MANURE:
+		case actionID.CLEAN_MANURE:
 			return CleanManure();
-		case intID.FILL_BUCKET:
+		case actionID.FILL_BUCKET:
 			return FillBucket();
 		default:
 			return null;

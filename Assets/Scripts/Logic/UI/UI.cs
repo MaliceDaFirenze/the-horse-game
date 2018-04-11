@@ -22,12 +22,25 @@ public class UI : MonoBehaviour {
 			instructionGO.SetActive (true);
 			instructionText.text = "E - " + interactable.GetInteractionString(player);
 
-			dir[] sequence = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantIntId);
+			dir[] sequence = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
+			if (sequence != null) {
+				for (int i = 0; i < arrows.Length; ++i) {
+					if (i < sequence.Length) {
+						arrows[i].rectTransform.eulerAngles = new Vector3(0,0, 90 * (int)sequence[i]); 
+						arrows [i].enabled = true;
+					} else {
+						arrows [i].enabled = false;
+					}
+				}
+				arrowSequenceGO.SetActive (true);
+			}
+				
 		}
 	}
 
 	public void HideInstruction(){
 		instructionGO.SetActive (false);
+		arrowSequenceGO.SetActive (false);
 	}
 
 	public void ShowHorseUI (Horse_Stats horse){

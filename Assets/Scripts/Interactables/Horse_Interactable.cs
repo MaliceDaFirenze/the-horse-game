@@ -65,16 +65,16 @@ public class Horse_Interactable : Interactable {
 	public override string GetInteractionString (Player player)	{
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
-			currentlyRelevantIntId = intID.PET_HORSE;
+			currentlyRelevantActionID = actionID.PET_HORSE;
 			return emptyHandsAction;
 		case equippableItemID.STRAW:
-			currentlyRelevantIntId = intID.FEED_HORSE;
+			currentlyRelevantActionID = actionID.FEED_HORSE;
 		return "Feed";
 		case equippableItemID.WATERBUCKET:
-			currentlyRelevantIntId = intID.WATER_HORSE;
+			currentlyRelevantActionID = actionID.WATER_HORSE;
 			return "Water";
 		case equippableItemID.BRUSH:
-			currentlyRelevantIntId = intID.BRUSH_HORSE;
+			currentlyRelevantActionID = actionID.BRUSH_HORSE;
 			return "Brush";
 		default: 
 			return "";
