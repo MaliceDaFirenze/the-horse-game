@@ -26,4 +26,16 @@ public class ManurePile : Interactable {
 			}
 		} 
 	}
+
+	public override string GetInteractionString (Player player)	{
+		switch (player.currentlyEquippedItem.id) {
+		case equippableItemID.BAREHANDS: 
+			return emptyHandsAction;
+		case equippableItemID.PITCHFORK:
+			currentlyRelevantActionID = actionID.CLEAN_MANURE;
+			return "Clean Manure";
+		default: 
+			return "";
+		}
+	}
 }

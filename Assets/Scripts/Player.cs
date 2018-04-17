@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 
 	//References
-	private UI ui;
+	public UI ui;
 	public Transform equippedItemPos;
 	public Transform dropItemPos;
 	private Equippable playerHands;
@@ -56,11 +56,19 @@ public class Player : MonoBehaviour {
 			}
 
 			//------INTERACTION-------//
-			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null){
-				if (nearestInteractable.arrowInputRequired != null) {
-					//still need to press E? Probably annoying...				
-				} else {
-					nearestInteractable.PlayerInteracts (this);
+			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null){
+				nearestInteractable.PlayerInteracts (this);
+			}
+
+			if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
+				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+					nearestInteractable.PlayerPressesArrow (this, dir.LEFT);
+				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+					nearestInteractable.PlayerPressesArrow (this, dir.DOWN);
+				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+					nearestInteractable.PlayerPressesArrow (this, dir.RIGHT);
+				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+					nearestInteractable.PlayerPressesArrow (this, dir.UP);
 				}
 			}
 
@@ -75,6 +83,7 @@ public class Player : MonoBehaviour {
 
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
+			nearestInteractable.nextArrowIndexToInput = 0;
 			ui.ShowInstruction(nearestInteractable, this);
 
 			nearestHorse = nearestInteractable.GetComponent<Horse_Stats> ();

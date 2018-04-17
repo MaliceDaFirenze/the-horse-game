@@ -6,7 +6,8 @@ public enum equippableItemID{
 	BAREHANDS,
 	STRAW,
 	WATERBUCKET,
-	BRUSH
+	BRUSH,
+	PITCHFORK
 }
 
 public class Equippable : MonoBehaviour {
