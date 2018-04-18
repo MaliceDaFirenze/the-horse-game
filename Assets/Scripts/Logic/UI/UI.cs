@@ -54,6 +54,11 @@ public class UI : MonoBehaviour {
 		}
 	}
 
+	public void ArrowSequenceComplete(){
+		//scale up? particles? 
+		HideInstruction();
+	}
+
 	public void HideInstruction(){
 		instructionGO.SetActive (false);
 		arrowSequenceGO.SetActive (false);

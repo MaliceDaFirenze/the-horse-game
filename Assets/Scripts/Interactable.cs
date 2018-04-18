@@ -22,6 +22,8 @@ public class Interactable : MonoBehaviour {
 	public dir[] arrowInputRequired; //changes with actionID
 	public int nextArrowIndexToInput;
 
+	private WaitForSeconds waitForArrowHiding = new WaitForSeconds (0.3f);
+
 	private void Awake(){
 		if (GetComponent<Collider> () == null) {
 			Debug.LogWarning ("Interactable " + name + " does not have collider!");
@@ -40,7 +42,7 @@ public class Interactable : MonoBehaviour {
 			player.ui.UpdateArrows (nextArrowIndexToInput);
 			if (arrowInputRequired.Length == nextArrowIndexToInput) {
 				PlayerInteracts (player);
-				player.ui.HideInstruction ();
+				StartCoroutine (HideArrows (player));
 			}
 		} else {
 			Debug.Log ("arrow false");
@@ -48,6 +50,11 @@ public class Interactable : MonoBehaviour {
 			player.ui.UpdateArrows (nextArrowIndexToInput);
 			player.ui.ShakeArrows ();
 		}
+	}
+
+	private IEnumerator HideArrows(Player player){
+		yield return waitForArrowHiding;
+		player.ui.ArrowSequenceComplete ();
 	}
 
 	public virtual void PlayerInteracts(Player player){
