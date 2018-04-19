@@ -42,7 +42,8 @@ public class Interactable : MonoBehaviour {
 			player.ui.UpdateArrows (nextArrowIndexToInput);
 			if (arrowInputRequired.Length == nextArrowIndexToInput) {
 				PlayerInteracts (player);
-				StartCoroutine (HideArrows (player));
+				player.ui.ArrowSequenceComplete ();
+			//	StartCoroutine (HideArrows (player));
 			}
 		} else {
 			Debug.Log ("arrow false");
@@ -52,10 +53,9 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator HideArrows(Player player){
+	/*private IEnumerator HideArrows(Player player){
 		yield return waitForArrowHiding;
-		player.ui.ArrowSequenceComplete ();
-	}
+	}*/
 
 	public virtual void PlayerInteracts(Player player){
 		Debug.Log ("base interact");

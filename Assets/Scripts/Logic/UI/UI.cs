@@ -13,6 +13,8 @@ public class UI : MonoBehaviour {
 
 	public Color arrowCompleteColor;
 	public Color arrowIncompleteColor;
+	private Vector3 arrowOriginalScale;
+	private Vector3 arrowBigScale;
 
 	public HorseUI horseUI;
 
@@ -21,6 +23,8 @@ public class UI : MonoBehaviour {
 	void Start(){
 		HideInstruction ();
 		originalArrowsPos = arrowSequenceGO.transform.position;
+		arrowOriginalScale = arrowSequenceGO.transform.localScale;
+		arrowBigScale = arrowOriginalScale * 1.1f;
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){
@@ -55,8 +59,28 @@ public class UI : MonoBehaviour {
 	}
 
 	public void ArrowSequenceComplete(){
-		//scale up? particles? 
+		StartCoroutine(ArrowSequenceCompleteEffects());
+	}
+
+	private IEnumerator ArrowSequenceCompleteEffects(){
+		for (int i = 0; i < arrows.Length; ++i) {
+			if (arrows [i].gameObject.activeSelf) {
+				LeanTween.scale (arrows [i].gameObject, arrowBigScale, 0.15f);
+			}
+		} 
+		yield return new WaitForSeconds (0.15f);
+		for (int i = 0; i < arrows.Length; ++i) {
+			if (arrows [i].gameObject.activeSelf) {
+				LeanTween.scale (arrows [i].gameObject, arrowOriginalScale, 0.1f);
+			}
+		} 
+		yield return new WaitForSeconds (0.1f);
+
+		for (int i = 0; i < arrows.Length; ++i) {
+			arrows [i].transform.localScale = arrowOriginalScale;
+		} 
 		HideInstruction();
+	
 	}
 
 	public void HideInstruction(){
