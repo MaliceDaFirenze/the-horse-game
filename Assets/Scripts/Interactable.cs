@@ -22,8 +22,6 @@ public class Interactable : MonoBehaviour {
 	public dir[] arrowInputRequired; //changes with actionID
 	public int nextArrowIndexToInput;
 
-	private WaitForSeconds waitForArrowHiding = new WaitForSeconds (0.3f);
-
 	private void Awake(){
 		if (GetComponent<Collider> () == null) {
 			Debug.LogWarning ("Interactable " + name + " does not have collider!");
@@ -37,28 +35,23 @@ public class Interactable : MonoBehaviour {
 
 	public void PlayerPressesArrow(Player player, dir input){
 		if (input == arrowInputRequired [nextArrowIndexToInput]) {
-			Debug.Log ("arrow correct");
+			//Debug.Log ("arrow correct");
 			++nextArrowIndexToInput;
 			player.ui.UpdateArrows (nextArrowIndexToInput);
 			if (arrowInputRequired.Length == nextArrowIndexToInput) {
 				PlayerInteracts (player);
 				player.ui.ArrowSequenceComplete ();
-			//	StartCoroutine (HideArrows (player));
 			}
 		} else {
-			Debug.Log ("arrow false");
+			//Debug.Log ("arrow false");
 			nextArrowIndexToInput = 0;
 			player.ui.UpdateArrows (nextArrowIndexToInput);
 			player.ui.ShakeArrows ();
 		}
 	}
 
-	/*private IEnumerator HideArrows(Player player){
-		yield return waitForArrowHiding;
-	}*/
-
 	public virtual void PlayerInteracts(Player player){
-		Debug.Log ("base interact");
+		//Debug.Log ("base interact");
 	}
 
 	public virtual void PlayerEntersIntTrigger(){

@@ -23,8 +23,8 @@ public class UI : MonoBehaviour {
 	void Start(){
 		HideInstruction ();
 		originalArrowsPos = arrowSequenceGO.transform.position;
-		arrowOriginalScale = arrowSequenceGO.transform.localScale;
-		arrowBigScale = arrowOriginalScale * 1.1f;
+		arrowOriginalScale = arrows[0].transform.localScale;
+		arrowBigScale = arrowOriginalScale * 1.4f;
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){
@@ -65,16 +65,17 @@ public class UI : MonoBehaviour {
 	private IEnumerator ArrowSequenceCompleteEffects(){
 		for (int i = 0; i < arrows.Length; ++i) {
 			if (arrows [i].gameObject.activeSelf) {
-				LeanTween.scale (arrows [i].gameObject, arrowBigScale, 0.15f);
+				LeanTween.scale (arrows [i].gameObject, arrowBigScale, 0.14f);
 			}
 		} 
-		yield return new WaitForSeconds (0.15f);
+		yield return new WaitForSeconds (0.14f);
 		for (int i = 0; i < arrows.Length; ++i) {
 			if (arrows [i].gameObject.activeSelf) {
-				LeanTween.scale (arrows [i].gameObject, arrowOriginalScale, 0.1f);
+				LeanTween.scale (arrows [i].gameObject, arrowOriginalScale, 0.14f);
 			}
 		} 
-		yield return new WaitForSeconds (0.1f);
+
+		yield return new WaitForSeconds (0.16f);
 
 		for (int i = 0; i < arrows.Length; ++i) {
 			arrows [i].transform.localScale = arrowOriginalScale;
@@ -103,7 +104,6 @@ public class UI : MonoBehaviour {
 	private WaitForSeconds shakeWait = new WaitForSeconds(0.075f);
 
 	public void ShakeArrows(float duration = 0.1f, float amount = 8f){
-		Debug.Log ("shake dur: " + duration + ", amount: " + amount);
 		shakeAmount = amount;
 		shakeDuration = duration;
 
