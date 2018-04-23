@@ -9,7 +9,8 @@ public enum actionID {
 	FEED_HORSE,
 	WATER_HORSE,
 	CLEAN_MANURE,
-	FILL_BUCKET
+	FILL_BUCKET,
+	EMPTY_PITCHFORK
 }
 
 public class Interactable : MonoBehaviour {

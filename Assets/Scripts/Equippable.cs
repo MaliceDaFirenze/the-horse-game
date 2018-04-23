@@ -10,10 +10,18 @@ public enum equippableItemID{
 	PITCHFORK
 }
 
+public enum equippableStatus{
+	EMPTY,
+	FULL
+}
+
 public class Equippable : MonoBehaviour {
 
 	private Vector3 regularScale;
 	public float equippedScaleFactor = 1;
+	public float dropPosYOffset;
+	public float playerSpeedModifier = 1; //player is slower when they carry this
+	public Vector3 equippedRotation;
 	private Consumable consumable;
 
 	public equippableItemID id;
@@ -21,6 +29,10 @@ public class Equippable : MonoBehaviour {
 	private bool wasInitialized;
 
 	private Collider[] allColliders = new Collider[0];
+
+	public equippableStatus status;
+	public Transform fillNullPos;
+	public GameObject content;
 
 	private void Start(){
 		Initialize ();

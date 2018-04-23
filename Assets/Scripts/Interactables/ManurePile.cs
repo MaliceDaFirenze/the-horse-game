@@ -9,9 +9,26 @@ public class ManurePile : Interactable {
 	private float minWait = 0.5f;
 	private float maxWait = 1.5f;
 
+	void Start(){
+		StartCoroutine (GetProduced ());
+	}
+
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
-
+		//how does filling pitchfork work?
+		switch (player.currentlyEquippedItem.id) {
+		case equippableItemID.PITCHFORK:
+			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
+				player.currentlyEquippedItem.status = equippableStatus.FULL;
+				transform.SetParent (player.currentlyEquippedItem.transform);
+				transform.position = player.currentlyEquippedItem.fillNullPos.position;
+				EnableAllColliders (false);
+				player.currentlyEquippedItem.content = gameObject;
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
 	public IEnumerator GetProduced(){
@@ -32,10 +49,21 @@ public class ManurePile : Interactable {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;
 		case equippableItemID.PITCHFORK:
-			currentlyRelevantActionID = actionID.CLEAN_MANURE;
-			return "Clean Manure";
+			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
+				currentlyRelevantActionID = actionID.CLEAN_MANURE;
+				return "Clean Manure";
+			} else {
+				return "";
+			}
 		default: 
 			return "";
+		}
+	}
+
+	public void EnableAllColliders (bool enable){
+		Collider[] allColliders = GetComponentsInChildren<Collider> ();
+		for (int i = 0; i < allColliders.Length; ++i) {
+			allColliders [i].enabled = enable;
 		}
 	}
 }

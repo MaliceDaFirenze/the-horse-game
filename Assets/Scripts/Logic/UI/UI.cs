@@ -20,6 +20,8 @@ public class UI : MonoBehaviour {
 
 	private Vector3 originalArrowsPos;
 
+	public bool arrowCompletionFXInProgress;
+
 	void Start(){
 		HideInstruction ();
 		originalArrowsPos = arrowSequenceGO.transform.position;
@@ -63,6 +65,7 @@ public class UI : MonoBehaviour {
 	}
 
 	private IEnumerator ArrowSequenceCompleteEffects(){
+		arrowCompletionFXInProgress = true;
 		for (int i = 0; i < arrows.Length; ++i) {
 			if (arrows [i].gameObject.activeSelf) {
 				LeanTween.scale (arrows [i].gameObject, arrowBigScale, 0.14f);
@@ -81,7 +84,7 @@ public class UI : MonoBehaviour {
 			arrows [i].transform.localScale = arrowOriginalScale;
 		} 
 		HideInstruction();
-	
+		arrowCompletionFXInProgress = false;
 	}
 
 	public void HideInstruction(){

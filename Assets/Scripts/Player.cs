@@ -49,7 +49,9 @@ public class Player : MonoBehaviour {
 				rb.angularVelocity = Vector3.zero;
 			}
 
-			if (Input.GetKey (KeyCode.LeftShift)) {
+			if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1) {
+				speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
+			} else if (Input.GetKey (KeyCode.LeftShift)) {
 				speedMultiplier = sprintSpeedMultiplier;
 			} else {
 				speedMultiplier = 1f;
@@ -106,12 +108,14 @@ public class Player : MonoBehaviour {
 		}
 
 		nearestInteractable = null;
-		ui.HideInstruction ();
+		if (!ui.arrowCompletionFXInProgress) {
+			ui.HideInstruction ();
+		}
 		ui.HideHorseUI ();
 	}
 
 	private void DropEquippedItem(){
-		currentlyEquippedItem.transform.position = dropItemPos.position;
+		currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
 		currentlyEquippedItem.transform.SetParent (null);
 		currentlyEquippedItem.BeDropped();
 		currentlyEquippedItem = playerHands;
@@ -126,6 +130,7 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = equippableItem;
 		currentlyEquippedItem.transform.position = equippedItemPos.position;
 		currentlyEquippedItem.transform.SetParent (transform, true);
+		currentlyEquippedItem.transform.eulerAngles = currentlyEquippedItem.equippedRotation;
 		ui.HideInstruction ();
 
 	}

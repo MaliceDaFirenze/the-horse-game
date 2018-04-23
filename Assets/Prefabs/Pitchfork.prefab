@@ -48,19 +48,48 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1382795768367098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4910331712462094}
+  m_Layer: 0
+  m_Name: FillPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4417686566318420
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1232615610324456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.1791077, y: 0.69, z: -12.576172}
+  m_LocalRotation: {x: -0, y: -0.9719571, z: -0, w: 0.23515825}
+  m_LocalPosition: {x: -8.81, y: 0.51, z: -6.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4967025491169172}
+  - {fileID: 4910331712462094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -152.798, z: 0}
+--- !u!4 &4910331712462094
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382795768367098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.44, y: -0.482, z: 0.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4417686566318420}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4967025491169172
 Transform:
@@ -68,13 +97,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206496442954014}
-  m_LocalRotation: {x: -0.6844608, y: -0.6844608, z: 0.17752008, w: 0.17751996}
-  m_LocalPosition: {x: -0.509, y: -0.482, z: -0.29}
+  m_LocalRotation: {x: -0.38893315, y: -0.3889332, z: 0.5905349, w: 0.5905341}
+  m_LocalPosition: {x: -0.533, y: -0.482, z: 0.354}
   m_LocalScale: {x: 0.07826041, y: 0.33858258, z: 0.33858258}
   m_Children: []
   m_Father: {fileID: 4417686566318420}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -150.921, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: -66.739006, z: 90.00001}
 --- !u!23 &23850376489169272
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -159,7 +188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
+  dropPosYOffset: 0.5
+  equippedRotation: {x: 0, y: -256, z: 0}
   id: 4
+  status: 0
+  fillNullPos: {fileID: 4910331712462094}
+  content: {fileID: 0}
 --- !u!114 &114552319108090828
 MonoBehaviour:
   m_ObjectHideFlags: 1

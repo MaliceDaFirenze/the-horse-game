@@ -16,5 +16,4 @@ public class GenericInteractToEquip : Interactable {
 			player.EquipAnItem (equippable);
 		}
 	}
-
 }
