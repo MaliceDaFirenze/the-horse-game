@@ -406,7 +406,7 @@ MonoBehaviour:
   dropPosYOffset: 0.4
   playerSpeedModifier: 0.5
   equippedRotation: {x: 0, y: 80, z: 0}
-  id: 0
+  id: 5
   status: 0
   fillNullPos: {fileID: 0}
   content: {fileID: 0}

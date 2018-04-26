@@ -7,11 +7,13 @@ public enum equippableItemID{
 	STRAW,
 	WATERBUCKET,
 	BRUSH,
-	PITCHFORK
+	PITCHFORK,
+	WHEELBARROW
 }
 
 public enum equippableStatus{
 	EMPTY,
+	PARTIALFULL,
 	FULL
 }
 

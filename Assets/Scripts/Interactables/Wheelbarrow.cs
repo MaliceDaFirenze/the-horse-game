@@ -23,6 +23,13 @@ public class Wheelbarrow : Interactable {
 				player.currentlyEquippedItem.content.GetComponent<Collider> ().enabled = false;
 				player.currentlyEquippedItem.content = null;
 				player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+
+				//update wheelbarrow status
+				if (contentPosIndex == contentPositions.Length) {
+					GetComponent<Equippable> ().status = equippableStatus.FULL;
+				} else {
+					GetComponent<Equippable> ().status = equippableStatus.PARTIALFULL;
+				}
 			}
 			break;
 		default:

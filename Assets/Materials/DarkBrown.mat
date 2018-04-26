@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Brown
+  m_Name: DarkBrown
   m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -30,7 +30,7 @@ Material:
     - _Outline: 0.0023
     - _Shininess: 0.579717
     m_Colors:
-    - _Color: {r: 0.33088237, g: 0.22517453, b: 0.1119161, a: 1}
+    - _Color: {r: 0.1102941, g: 0.05250715, b: 0.008109862, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
