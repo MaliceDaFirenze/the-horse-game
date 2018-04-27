@@ -43,7 +43,8 @@ public class HayCart : Interactable {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;
 		case equippableItemID.STRAW:
-			return "Put Away Hay Bale";
+			currentlyRelevantActionID = actionID.PUT_AWAY_STRAW;
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		default: 
 			return "";
 		}

@@ -66,16 +66,16 @@ public class Horse_Interactable : Interactable {
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			currentlyRelevantActionID = actionID.PET_HORSE;
-			return emptyHandsAction;
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		case equippableItemID.STRAW:
 			currentlyRelevantActionID = actionID.FEED_HORSE;
-		return "Feed";
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		case equippableItemID.WATERBUCKET:
 			currentlyRelevantActionID = actionID.WATER_HORSE;
-			return "Water";
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		case equippableItemID.BRUSH:
 			currentlyRelevantActionID = actionID.BRUSH_HORSE;
-			return "Brush";
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		default: 
 			return "";
 		}

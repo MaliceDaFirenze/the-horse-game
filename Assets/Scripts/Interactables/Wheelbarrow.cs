@@ -7,6 +7,16 @@ public class Wheelbarrow : Interactable {
 	public Transform[] contentPositions;
 	private int contentPosIndex = 0;
 
+	private List<GameObject> contents = new List<GameObject> ();
+
+	public void Empty(){
+		for (int i = 0; i < contents.Count; ++i) {
+			Destroy (contents [i]);
+		}
+		contents.Clear ();
+		contentPosIndex = 0;
+	}
+
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
@@ -21,6 +31,7 @@ public class Wheelbarrow : Interactable {
 				player.currentlyEquippedItem.content.transform.position = contentPositions[contentPosIndex].position;
 				++contentPosIndex;
 				player.currentlyEquippedItem.content.GetComponent<Collider> ().enabled = false;
+				contents.Add (player.currentlyEquippedItem.content);
 				player.currentlyEquippedItem.content = null;
 				player.currentlyEquippedItem.status = equippableStatus.EMPTY;
 
@@ -44,7 +55,7 @@ public class Wheelbarrow : Interactable {
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == equippableStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
-				return "Empty Pitchfork";
+				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {
 				return "";
 			}

@@ -6,16 +6,14 @@ public class Muckheap : Interactable {
 
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
-		//how does filling pitchfork work?
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
-				player.currentlyEquippedItem.status = equippableStatus.FULL;
-				transform.SetParent (player.currentlyEquippedItem.transform);
-				transform.position = player.currentlyEquippedItem.fillNullPos.position;
-				EnableAllColliders (false);
-				player.currentlyEquippedItem.content = gameObject;
-			}
+			player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+			Destroy (player.currentlyEquippedItem.content);
+			break;
+		case equippableItemID.WHEELBARROW:
+			player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+			player.currentlyEquippedItem.GetComponent<Wheelbarrow> ().Empty ();
 			break;
 		default:
 			break;
@@ -30,26 +28,19 @@ public class Muckheap : Interactable {
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == equippableStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
-				return "Empty Pitchfork";
+				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {
 				return "";
 			}
 		case equippableItemID.WHEELBARROW:
 			if (player.currentlyEquippedItem.status != equippableStatus.EMPTY) {
 				currentlyRelevantActionID = actionID.EMPTY_WHEELBARROW;
-				return "Empty Wheelbarrow";
+				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {
 				return "";
 			}
 		default: 
 			return "";
-		}
-	}
-
-	public void EnableAllColliders (bool enable){
-		Collider[] allColliders = GetComponentsInChildren<Collider> ();
-		for (int i = 0; i < allColliders.Length; ++i) {
-			allColliders [i].enabled = enable;
 		}
 	}
 }

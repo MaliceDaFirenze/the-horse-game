@@ -51,7 +51,7 @@ public class ManurePile : Interactable {
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
 				currentlyRelevantActionID = actionID.CLEAN_MANURE;
-				return "Clean Manure";
+				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {
 				return "";
 			}

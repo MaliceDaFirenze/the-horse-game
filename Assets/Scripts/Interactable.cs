@@ -11,7 +11,8 @@ public enum actionID {
 	CLEAN_MANURE,
 	FILL_BUCKET,
 	EMPTY_PITCHFORK,
-	EMPTY_WHEELBARROW
+	EMPTY_WHEELBARROW,
+	PUT_AWAY_STRAW
 }
 
 public class Interactable : MonoBehaviour {

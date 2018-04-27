@@ -26,7 +26,7 @@ public class Faucet : Interactable {
 			return emptyHandsAction;
 		case equippableItemID.WATERBUCKET:
 			currentlyRelevantActionID = actionID.FILL_BUCKET;
-			return "Fill Bucket";
+			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 		default: 
 			return "";
 		}
