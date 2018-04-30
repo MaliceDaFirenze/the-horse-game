@@ -130,7 +130,7 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = equippableItem;
 		currentlyEquippedItem.transform.position = equippedItemPos.position;
 		currentlyEquippedItem.transform.SetParent (transform, true);
-		currentlyEquippedItem.transform.eulerAngles = currentlyEquippedItem.equippedRotation;
+		currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
 		Debug.Log ("setting " + currentlyEquippedItem.name + " to " + currentlyEquippedItem.equippedRotation + ", rot is " + currentlyEquippedItem.transform.eulerAngles);
 		ui.HideInstruction ();
 
