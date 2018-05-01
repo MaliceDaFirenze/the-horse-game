@@ -8,10 +8,12 @@ public enum equippableItemID{
 	WATERBUCKET,
 	BRUSH,
 	PITCHFORK,
-	WHEELBARROW
+	WHEELBARROW,
+	HALTER,
+	LEAD
 }
 
-public enum equippableStatus{
+public enum containerStatus{
 	EMPTY,
 	PARTIALFULL,
 	FULL
@@ -32,7 +34,7 @@ public class Equippable : MonoBehaviour {
 
 	private Collider[] allColliders = new Collider[0];
 
-	public equippableStatus status;
+	public containerStatus status;
 	public Transform fillNullPos;
 	public GameObject content;
 

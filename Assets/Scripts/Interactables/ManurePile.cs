@@ -18,8 +18,8 @@ public class ManurePile : Interactable {
 		//how does filling pitchfork work?
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
-				player.currentlyEquippedItem.status = equippableStatus.FULL;
+			if (player.currentlyEquippedItem.status == containerStatus.EMPTY) {
+				player.currentlyEquippedItem.status = containerStatus.FULL;
 				transform.SetParent (player.currentlyEquippedItem.transform);
 				transform.position = player.currentlyEquippedItem.fillNullPos.position;
 				EnableAllColliders (false);
@@ -49,7 +49,7 @@ public class ManurePile : Interactable {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.EMPTY) {
+			if (player.currentlyEquippedItem.status == containerStatus.EMPTY) {
 				currentlyRelevantActionID = actionID.CLEAN_MANURE;
 				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {

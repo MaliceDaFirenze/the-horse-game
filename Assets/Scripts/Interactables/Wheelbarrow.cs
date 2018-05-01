@@ -26,20 +26,20 @@ public class Wheelbarrow : Interactable {
 			player.EquipAnItem (equippable);
 			break;
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.FULL && contentPosIndex < contentPositions.Length) {
+			if (player.currentlyEquippedItem.status == containerStatus.FULL && contentPosIndex < contentPositions.Length) {
 				player.currentlyEquippedItem.content.transform.SetParent (transform, true);
 				player.currentlyEquippedItem.content.transform.position = contentPositions[contentPosIndex].position;
 				++contentPosIndex;
 				player.currentlyEquippedItem.content.GetComponent<Collider> ().enabled = false;
 				contents.Add (player.currentlyEquippedItem.content);
 				player.currentlyEquippedItem.content = null;
-				player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+				player.currentlyEquippedItem.status = containerStatus.EMPTY;
 
 				//update wheelbarrow status
 				if (contentPosIndex == contentPositions.Length) {
-					GetComponent<Equippable> ().status = equippableStatus.FULL;
+					GetComponent<Equippable> ().status = containerStatus.FULL;
 				} else {
-					GetComponent<Equippable> ().status = equippableStatus.PARTIALFULL;
+					GetComponent<Equippable> ().status = containerStatus.PARTIALFULL;
 				}
 			}
 			break;
@@ -53,7 +53,7 @@ public class Wheelbarrow : Interactable {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.FULL) {
+			if (player.currentlyEquippedItem.status == containerStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
 				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {

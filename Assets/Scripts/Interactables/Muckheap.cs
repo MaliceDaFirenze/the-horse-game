@@ -8,11 +8,11 @@ public class Muckheap : Interactable {
 		base.PlayerInteracts (player);
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.PITCHFORK:
-			player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+			player.currentlyEquippedItem.status = containerStatus.EMPTY;
 			Destroy (player.currentlyEquippedItem.content);
 			break;
 		case equippableItemID.WHEELBARROW:
-			player.currentlyEquippedItem.status = equippableStatus.EMPTY;
+			player.currentlyEquippedItem.status = containerStatus.EMPTY;
 			player.currentlyEquippedItem.GetComponent<Wheelbarrow> ().Empty ();
 			break;
 		default:
@@ -26,14 +26,14 @@ public class Muckheap : Interactable {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;
 		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == equippableStatus.FULL) {
+			if (player.currentlyEquippedItem.status == containerStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
 				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {
 				return "";
 			}
 		case equippableItemID.WHEELBARROW:
-			if (player.currentlyEquippedItem.status != equippableStatus.EMPTY) {
+			if (player.currentlyEquippedItem.status != containerStatus.EMPTY) {
 				currentlyRelevantActionID = actionID.EMPTY_WHEELBARROW;
 				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
 			} else {

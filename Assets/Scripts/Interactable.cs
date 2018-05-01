@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum actionID {
+	_EMPTYSTRING,
 	NO_SEQUENCE,
 	BRUSH_HORSE,
 	PET_HORSE,
@@ -12,7 +13,11 @@ public enum actionID {
 	FILL_BUCKET,
 	EMPTY_PITCHFORK,
 	EMPTY_WHEELBARROW,
-	PUT_AWAY_STRAW
+	PUT_AWAY_STRAW,
+	HANG_UP_HALTER,
+	HANG_UP_LEAD,
+	TAKE_HALTER,
+	TAKE_LEAD
 }
 
 public class Interactable : MonoBehaviour {
