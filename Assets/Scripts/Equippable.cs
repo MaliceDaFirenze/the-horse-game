@@ -70,7 +70,7 @@ public class Equippable : MonoBehaviour {
 		}
 	}
 
-	private void EnableAllColliders (bool enable){
+	public void EnableAllColliders (bool enable){
 		if (allColliders.Length == 0) {
 			allColliders = GetComponentsInChildren<Collider> ();
 		}

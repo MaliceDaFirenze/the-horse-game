@@ -7,6 +7,17 @@ public class Hook : Interactable {
 	public containerStatus hookStatus;
 	public Equippable content;
 
+	private void Start(){
+		//search in children, 'equip' halter or lead if any are there
+		content = GetComponentInChildren<Equippable>();
+		if (content != null) {
+			content.EnableAllColliders (false);
+			hookStatus = containerStatus.FULL;
+		} else {
+			hookStatus = containerStatus.EMPTY;
+		}
+	}
+
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
@@ -14,16 +25,28 @@ public class Hook : Interactable {
 		case equippableItemID.BAREHANDS:
 			if (hookStatus == containerStatus.FULL) {
 				//take halter or lead or whatever hangs here
+				hookStatus = containerStatus.EMPTY;
+				player.EquipAnItem(content);
+				content.BeEquipped ();
+				content = null;
 			}
 			break;
 		case equippableItemID.HALTER:
 			if (hookStatus == containerStatus.EMPTY) {
-				//hang up
+				hookStatus = containerStatus.FULL;
+				content = player.currentlyEquippedItem;
+				player.UnequipEquippedItem ();
+				content.transform.SetParent (transform);
+				content.transform.localPosition = Vector3.zero;
 			}
 			break;
 		case equippableItemID.LEAD:
 			if (hookStatus == containerStatus.EMPTY) {
-				//hang up
+				hookStatus = containerStatus.FULL;
+				content = player.currentlyEquippedItem;
+				player.UnequipEquippedItem ();
+				content.transform.SetParent (transform);
+				content.transform.localPosition = Vector3.zero;
 			}
 			break;
 		default:
