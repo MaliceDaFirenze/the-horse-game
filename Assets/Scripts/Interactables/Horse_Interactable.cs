@@ -7,6 +7,11 @@ public class Horse_Interactable : Interactable {
 	private Horse_Stats horseStats;
 	private Horse_Behavior horseBehaviour;
 
+	//Gear
+	public HorseGear headGear;  //halter, bit etc
+	public HorseGear headGearAttachment;  //lead
+	public HorseGear backGear; //saddle, blanket, saddlepad?   
+
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
 		horseBehaviour = GetComponent<Horse_Behavior> ();
@@ -32,6 +37,11 @@ public class Horse_Interactable : Interactable {
 		case equippableItemID.BRUSH:
 			if (horseStats.Hygiene < Horse_Stats.NeedsMaximum) {
 				BrushHorse (player);
+			}
+			break;
+		case equippableItemID.HALTER:
+			if (headGear == null) {
+				//put halter on horse
 			}
 			break;
 		default:
