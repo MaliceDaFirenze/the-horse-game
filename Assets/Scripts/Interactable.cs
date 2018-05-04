@@ -17,7 +17,9 @@ public enum actionID {
 	HANG_UP_HALTER,
 	HANG_UP_LEAD,
 	TAKE_HALTER,
-	TAKE_LEAD
+	TAKE_LEAD,
+	PUT_ON_HALTER,
+	PUT_ON_LEAD
 }
 
 public class Interactable : MonoBehaviour {

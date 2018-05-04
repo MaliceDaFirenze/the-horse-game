@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Horse_Interactable : Interactable {
-
+	
+	//References
 	private Horse_Stats horseStats;
 	private Horse_Behavior horseBehaviour;
+	public Transform halterTransform;
 
 	//Gear
 	public HorseGear headGear;  //halter, bit etc
@@ -41,7 +43,7 @@ public class Horse_Interactable : Interactable {
 			break;
 		case equippableItemID.HALTER:
 			if (headGear == null) {
-				//put halter on horse
+				PutOnHalter (player);
 			}
 			break;
 		default:
@@ -72,22 +74,50 @@ public class Horse_Interactable : Interactable {
 		player.currentlyEquippedItem.GetComponent<WaterBucket_Consumable> ().UpdateValue ();
 	}
 
+	private void PutOnHalter(Player player){
+		headGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+		headGear.transform.position = halterTransform.position;
+		headGear.transform.SetParent (halterTransform);
+	}
+
+	private void PutOnLead(){
+
+	}
+
+	private void TakeOffHalter(){
+
+	}
+
+	private void TakeOffLead(){
+
+	}
+
+
 	public override string GetInteractionString (Player player)	{
+
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			currentlyRelevantActionID = actionID.PET_HORSE;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
+			break;
 		case equippableItemID.STRAW:
 			currentlyRelevantActionID = actionID.FEED_HORSE;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
+			break;
 		case equippableItemID.WATERBUCKET:
 			currentlyRelevantActionID = actionID.WATER_HORSE;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
+			break;
 		case equippableItemID.BRUSH:
 			currentlyRelevantActionID = actionID.BRUSH_HORSE;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-		default: 
-			return "";
+			break;
+		case equippableItemID.HALTER:
+			if (headGear == null) {
+				currentlyRelevantActionID = actionID.PUT_ON_HALTER;
+			}
+			break;
 		}
+
+		return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
+
 	}
 }

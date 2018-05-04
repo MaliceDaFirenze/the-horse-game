@@ -27,6 +27,10 @@ public class ArrowSequences : MonoBehaviour {
 			return CleanManure();
 		case actionID.FILL_BUCKET:
 			return FillBucket();
+		case actionID.PUT_ON_HALTER:
+			return PutOnHalter();
+		case actionID.PUT_ON_LEAD:
+			return PutOnLead();
 		default:
 			return null;
 		}
@@ -74,6 +78,23 @@ public class ArrowSequences : MonoBehaviour {
 
 		result [0] = dir.DOWN;
 		result [1] = dir.DOWN;
+		return result;
+	}
+
+	private static dir[] PutOnHalter (){
+		dir[] result = new dir[3];
+
+		result [0] = dir.RIGHT;
+		result [1] = dir.UP;
+		result [2] = dir.UP;
+		return result;
+	}
+
+	private static dir[] PutOnLead (){
+		dir[] result = new dir[2];
+
+		result [0] = dir.UP;
+		result [1] = dir.RIGHT;
 		return result;
 	}
 
