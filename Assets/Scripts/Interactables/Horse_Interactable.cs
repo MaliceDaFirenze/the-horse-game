@@ -77,7 +77,9 @@ public class Horse_Interactable : Interactable {
 	private void PutOnHalter(Player player){
 		headGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
 		headGear.transform.position = halterTransform.position;
+		headGear.transform.rotation = halterTransform.rotation;
 		headGear.transform.SetParent (halterTransform);
+		player.UnequipEquippedItem ();
 	}
 
 	private void PutOnLead(){
