@@ -54,7 +54,7 @@ public class Hook : Interactable {
 		}
 	}
 
-	public override string GetInteractionString (Player player)	{
+	public override List<string> GetInteractionStrings (Player player)	{
 
 		currentlyRelevantActionID = actionID._EMPTYSTRING;
 

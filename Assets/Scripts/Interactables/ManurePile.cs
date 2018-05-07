@@ -44,7 +44,7 @@ public class ManurePile : Interactable {
 		} 
 	}
 
-	public override string GetInteractionString (Player player)	{
+	public override List<string> GetInteractionStrings (Player player)	{
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			return emptyHandsAction;

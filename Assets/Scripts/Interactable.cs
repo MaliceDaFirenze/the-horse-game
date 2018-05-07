@@ -68,7 +68,9 @@ public class Interactable : MonoBehaviour {
 		nextArrowIndexToInput = 0;
 	}
 
-	public virtual string GetInteractionString(Player player){
-		return emptyHandsAction;
+	public virtual List<string> GetInteractionStrings(Player player){
+		List<string> result = new List<string> ();
+		result.Add (emptyHandsAction);
+		return result;
 	}
 }

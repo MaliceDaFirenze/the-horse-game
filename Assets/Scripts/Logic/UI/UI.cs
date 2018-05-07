@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
-	public GameObject instructionGO;
-	public Text instructionText;
+	public GameObject[] instructionGOs;
+	public Text[] instructionTexts;
 
 	public GameObject arrowSequenceGO;
 	public Image[] arrows;
@@ -30,9 +30,9 @@ public class UI : MonoBehaviour {
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){
-		if (interactable.GetInteractionString (player) != "") {
-			instructionGO.SetActive (true);
-			instructionText.text = "E - " + interactable.GetInteractionString(player);
+		if (interactable.GetInteractionStrings (player)[0] != "") {
+			instructionGOs[0].SetActive (true);
+			instructionTexts[0].text = "E - " + interactable.GetInteractionStrings(player)[0];
 
 			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
 			if (interactable.arrowInputRequired != null) {
@@ -88,7 +88,10 @@ public class UI : MonoBehaviour {
 	}
 
 	public void HideInstruction(){
-		instructionGO.SetActive (false);
+
+		for (int i = 0; i < instructionGOs.Length; ++i) {
+			instructionGOs[i].SetActive (false);
+		}
 		arrowSequenceGO.SetActive (false);
 	}
 

@@ -37,16 +37,19 @@ public class HayCart : Interactable {
 		player.UnequipEquippedItem ();
 	}
 
-	public override string GetInteractionString (Player player)	{
+	public override List<string> GetInteractionStrings (Player player)	{
+
+		List<string> result = new List<string> ();
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
 		
 		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS: 
-			return emptyHandsAction;
+	
 		case equippableItemID.STRAW:
 			currentlyRelevantActionID = actionID.PUT_AWAY_STRAW;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-		default: 
-			return "";
+			break;
 		}
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+
 	}
 }

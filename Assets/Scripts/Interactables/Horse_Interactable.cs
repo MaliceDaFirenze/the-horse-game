@@ -95,7 +95,8 @@ public class Horse_Interactable : Interactable {
 	}
 
 
-	public override string GetInteractionString (Player player)	{
+	public override List<string> GetInteractionStrings (Player player)	{
+		List<string> result = new List<string> ();
 
 		currentlyRelevantActionID = actionID._EMPTYSTRING;
 
@@ -119,7 +120,7 @@ public class Horse_Interactable : Interactable {
 			break;
 		}
 
-		return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
 	}
 }

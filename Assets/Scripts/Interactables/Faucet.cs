@@ -20,15 +20,18 @@ public class Faucet : Interactable {
 		}
 	}
 
-	public override string GetInteractionString (Player player)	{
+	public override List<string> GetInteractionStrings (Player player)	{
+		List<string> result = new List<string> ();
+
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
 		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS: 
-			return emptyHandsAction;
 		case equippableItemID.WATERBUCKET:
 			currentlyRelevantActionID = actionID.FILL_BUCKET;
-			return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-		default: 
-			return "";
+			break;
 		}
+
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+
 	}
 }
