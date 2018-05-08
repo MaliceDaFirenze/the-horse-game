@@ -79,6 +79,7 @@ public class Horse_Interactable : Interactable {
 		headGear.transform.position = halterTransform.position;
 		headGear.transform.rotation = halterTransform.rotation;
 		headGear.transform.SetParent (halterTransform);
+		GenericUtilities.EnableAllColliders (headGear.transform, false);
 		player.UnequipEquippedItem ();
 	}
 
@@ -98,29 +99,31 @@ public class Horse_Interactable : Interactable {
 	public override List<string> GetInteractionStrings (Player player)	{
 		List<string> result = new List<string> ();
 
-		currentlyRelevantActionID = actionID._EMPTYSTRING;
-
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
-			currentlyRelevantActionID = actionID.PET_HORSE;
+			result.Add (InteractionStrings.GetInteractionStringById (actionID.PET_HORSE));
+			if (headGear != null) {
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+			}
 			break;
 		case equippableItemID.STRAW:
-			currentlyRelevantActionID = actionID.FEED_HORSE;
+			result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
 			break;
 		case equippableItemID.WATERBUCKET:
-			currentlyRelevantActionID = actionID.WATER_HORSE;
+			result.Add (InteractionStrings.GetInteractionStringById (actionID.WATER_HORSE));
 			break;
 		case equippableItemID.BRUSH:
-			currentlyRelevantActionID = actionID.BRUSH_HORSE;
+			if (backGear == null) {
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.BRUSH_HORSE));
+			}
 			break;
 		case equippableItemID.HALTER:
 			if (headGear == null) {
-				currentlyRelevantActionID = actionID.PUT_ON_HALTER;
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_HALTER));
 			}
 			break;
 		}
 
-		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
 		return result;
 	}
 }

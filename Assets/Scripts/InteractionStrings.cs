@@ -12,6 +12,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.CLEAN_MANURE, "Clean Manure");
 		allInteractionStrings.Add (actionID.EMPTY_PITCHFORK, "Empty Pitchfork");
 		allInteractionStrings.Add (actionID.EMPTY_WHEELBARROW, "Empty Wheelbarrow");
+		allInteractionStrings.Add (actionID.PUSH_WHEELBARROW, "Push Wheelbarrow");
 		allInteractionStrings.Add (actionID.FEED_HORSE, "Feed Horse");
 		allInteractionStrings.Add (actionID.FILL_BUCKET, "Fill Bucket");
 		allInteractionStrings.Add (actionID.NO_SEQUENCE, "");

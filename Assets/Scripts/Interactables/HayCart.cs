@@ -41,7 +41,6 @@ public class HayCart : Interactable {
 
 		List<string> result = new List<string> ();
 		currentlyRelevantActionID = actionID._EMPTYSTRING;
-
 		
 		switch (player.currentlyEquippedItem.id) {
 	
@@ -50,6 +49,6 @@ public class HayCart : Interactable {
 			break;
 		}
 		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
-
+		return result;
 	}
 }

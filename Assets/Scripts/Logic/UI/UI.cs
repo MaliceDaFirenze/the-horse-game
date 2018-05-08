@@ -30,9 +30,15 @@ public class UI : MonoBehaviour {
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){
-		if (interactable.GetInteractionStrings (player)[0] != "") {
-			instructionGOs[0].SetActive (true);
-			instructionTexts[0].text = "E - " + interactable.GetInteractionStrings(player)[0];
+
+		List<string> possibleActions = interactable.GetInteractionStrings (player);
+
+		if (possibleActions.Count > 0 && possibleActions[0] != "") {
+
+			for (int i = 0; i < possibleActions.Count; ++i) {
+				instructionGOs[i].SetActive (true);
+				instructionTexts[i].text = "E - " + interactable.GetInteractionStrings(player)[i];
+			}
 
 			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
 			if (interactable.arrowInputRequired != null) {

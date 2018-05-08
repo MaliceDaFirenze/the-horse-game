@@ -22,25 +22,24 @@ public class Muckheap : Interactable {
 
 
 	public override List<string> GetInteractionStrings (Player player)	{
+
+		List<string> result = new List<string> ();
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
 		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS: 
-			return emptyHandsAction;
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == containerStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
-				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-			} else {
-				return "";
-			}
+			} 
+			break;
 		case equippableItemID.WHEELBARROW:
 			if (player.currentlyEquippedItem.status != containerStatus.EMPTY) {
 				currentlyRelevantActionID = actionID.EMPTY_WHEELBARROW;
-				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-			} else {
-				return "";
 			}
-		default: 
-			return "";
+			break;
 		}
+
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
 	}
 }

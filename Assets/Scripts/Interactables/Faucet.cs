@@ -32,6 +32,7 @@ public class Faucet : Interactable {
 		}
 
 		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
 
 	}
 }

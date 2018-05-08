@@ -49,18 +49,22 @@ public class Wheelbarrow : Interactable {
 	}
 
 	public override List<string> GetInteractionStrings (Player player)	{
+
+		List<string> result = new List<string> ();
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
-			return emptyHandsAction;
+			currentlyRelevantActionID = actionID.PUSH_WHEELBARROW;
+			break;
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == containerStatus.FULL) {
 				currentlyRelevantActionID = actionID.EMPTY_PITCHFORK;
-				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-			} else {
-				return "";
-			}
-		default: 
-			return "";
+			} 
+			break;
 		}
+
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
 	}
 }

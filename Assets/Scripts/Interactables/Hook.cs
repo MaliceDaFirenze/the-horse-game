@@ -55,7 +55,7 @@ public class Hook : Interactable {
 	}
 
 	public override List<string> GetInteractionStrings (Player player)	{
-
+		List<string> result = new List<string> ();
 		currentlyRelevantActionID = actionID._EMPTYSTRING;
 
 		switch (player.currentlyEquippedItem.id) {
@@ -80,7 +80,8 @@ public class Hook : Interactable {
 			break;
 		}
 
-		return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
 
 	}
 }

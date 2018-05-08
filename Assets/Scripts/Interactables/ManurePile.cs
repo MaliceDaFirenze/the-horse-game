@@ -44,26 +44,28 @@ public class ManurePile : Interactable {
 		} 
 	}
 
-	public override List<string> GetInteractionStrings (Player player)	{
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS: 
-			return emptyHandsAction;
-		case equippableItemID.PITCHFORK:
-			if (player.currentlyEquippedItem.status == containerStatus.EMPTY) {
-				currentlyRelevantActionID = actionID.CLEAN_MANURE;
-				return InteractionStrings.GetInteractionStringById (currentlyRelevantActionID);
-			} else {
-				return "";
-			}
-		default: 
-			return "";
-		}
-	}
-
 	public void EnableAllColliders (bool enable){
 		Collider[] allColliders = GetComponentsInChildren<Collider> ();
 		for (int i = 0; i < allColliders.Length; ++i) {
 			allColliders [i].enabled = enable;
 		}
+	}
+
+	public override List<string> GetInteractionStrings (Player player)	{
+
+		List<string> result = new List<string> ();
+		currentlyRelevantActionID = actionID._EMPTYSTRING;
+
+		switch (player.currentlyEquippedItem.id) {
+		case equippableItemID.PITCHFORK:
+			if (player.currentlyEquippedItem.status == containerStatus.EMPTY) {
+				currentlyRelevantActionID = actionID.CLEAN_MANURE;
+			}
+			break;
+		}
+
+		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
+		return result;
+
 	}
 }
