@@ -102,6 +102,7 @@ public class Horse_Interactable : Interactable {
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			result.Add (InteractionStrings.GetInteractionStringById (actionID.PET_HORSE));
+			currentlyRelevantActionIDs.Add (actionID.PET_HORSE);
 			if (headGear != null) {
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 			}
