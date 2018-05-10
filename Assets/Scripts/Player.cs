@@ -74,6 +74,16 @@ public class Player : MonoBehaviour {
 				}
 			}
 
+			if (nearestInteractable != null && nearestInteractable.currentlyRelevantActionIDs.Count > 1) {
+				if (Input.GetKeyDown (KeyCode.R)) {
+					++nearestInteractable.selectedInteractionIndex;
+					if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
+						nearestInteractable.selectedInteractionIndex = 0;
+					}
+					ui.ShowInstruction (nearestInteractable, this);
+				}
+			}
+
 			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != playerHands){
 				DropEquippedItem();
 			}

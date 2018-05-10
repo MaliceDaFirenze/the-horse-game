@@ -98,28 +98,34 @@ public class Horse_Interactable : Interactable {
 
 	public override List<string> GetInteractionStrings (Player player)	{
 		List<string> result = new List<string> ();
+		currentlyRelevantActionIDs.Clear ();
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			result.Add (InteractionStrings.GetInteractionStringById (actionID.PET_HORSE));
 			currentlyRelevantActionIDs.Add (actionID.PET_HORSE);
 			if (headGear != null) {
+				currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 			}
 			break;
 		case equippableItemID.STRAW:
+			currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
 			result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
 			break;
 		case equippableItemID.WATERBUCKET:
+			currentlyRelevantActionIDs.Add (actionID.WATER_HORSE);
 			result.Add (InteractionStrings.GetInteractionStringById (actionID.WATER_HORSE));
 			break;
 		case equippableItemID.BRUSH:
 			if (backGear == null) {
+				currentlyRelevantActionIDs.Add (actionID.BRUSH_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.BRUSH_HORSE));
 			}
 			break;
 		case equippableItemID.HALTER:
 			if (headGear == null) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_ON_HALTER);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_HALTER));
 			}
 			break;

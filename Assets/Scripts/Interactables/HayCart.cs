@@ -38,17 +38,16 @@ public class HayCart : Interactable {
 	}
 
 	public override List<string> GetInteractionStrings (Player player)	{
-
 		List<string> result = new List<string> ();
-		currentlyRelevantActionID = actionID._EMPTYSTRING;
-		
+		currentlyRelevantActionIDs.Clear ();
+
 		switch (player.currentlyEquippedItem.id) {
 	
 		case equippableItemID.STRAW:
-			currentlyRelevantActionID = actionID.PUT_AWAY_STRAW;
+			currentlyRelevantActionIDs.Add(actionID.PUT_AWAY_STRAW);
+			result.Add(InteractionStrings.GetInteractionStringById(actionID.PUT_AWAY_STRAW));
 			break;
 		}
-		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
 		return result;
 	}
 }

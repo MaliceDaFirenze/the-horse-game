@@ -54,17 +54,17 @@ public class ManurePile : Interactable {
 	public override List<string> GetInteractionStrings (Player player)	{
 
 		List<string> result = new List<string> ();
-		currentlyRelevantActionID = actionID._EMPTYSTRING;
+		currentlyRelevantActionIDs.Clear();
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.PITCHFORK:
 			if (player.currentlyEquippedItem.status == containerStatus.EMPTY) {
-				currentlyRelevantActionID = actionID.CLEAN_MANURE;
+				currentlyRelevantActionIDs.Add(actionID.CLEAN_MANURE);
+				result.Add(InteractionStrings.GetInteractionStringById(actionID.CLEAN_MANURE));
 			}
 			break;
 		}
 
-		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
 		return result;
 
 	}

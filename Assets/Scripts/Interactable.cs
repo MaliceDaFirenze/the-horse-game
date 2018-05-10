@@ -29,7 +29,8 @@ public class Interactable : MonoBehaviour {
 	public Equippable equippable;
 	public Consumable consumable;
 
-	public List<actionID> currentlyRelevantActionIDs = new List(); //changes based on equippable, get set on enter int trigger
+	public List<actionID> currentlyRelevantActionIDs = new List<actionID>(); //changes based on equippable, get set on enter int trigger
+	public int selectedInteractionIndex;
 	public dir[] arrowInputRequired; //changes with actionID
 	public int nextArrowIndexToInput;
 
@@ -67,6 +68,7 @@ public class Interactable : MonoBehaviour {
 
 	public virtual void PlayerEntersIntTrigger(){
 		nextArrowIndexToInput = 0;
+		selectedInteractionIndex = 0;
 	}
 
 	public virtual List<string> GetInteractionStrings(Player player){

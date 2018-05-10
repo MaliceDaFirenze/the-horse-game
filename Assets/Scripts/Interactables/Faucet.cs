@@ -22,16 +22,15 @@ public class Faucet : Interactable {
 
 	public override List<string> GetInteractionStrings (Player player)	{
 		List<string> result = new List<string> ();
-
-		currentlyRelevantActionID = actionID._EMPTYSTRING;
+		currentlyRelevantActionIDs.Clear ();
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.WATERBUCKET:
-			currentlyRelevantActionID = actionID.FILL_BUCKET;
+			currentlyRelevantActionIDs.Add(actionID.FILL_BUCKET);
+			result.Add(InteractionStrings.GetInteractionStringById(actionID.FILL_BUCKET));
 			break;
 		}
 
-		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
 		return result;
 
 	}

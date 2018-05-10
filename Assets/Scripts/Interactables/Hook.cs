@@ -56,31 +56,34 @@ public class Hook : Interactable {
 
 	public override List<string> GetInteractionStrings (Player player)	{
 		List<string> result = new List<string> ();
-		currentlyRelevantActionID = actionID._EMPTYSTRING;
+		currentlyRelevantActionIDs.Clear();
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS: 
 			if (hookStatus == containerStatus.FULL) {
 				if (content.id == equippableItemID.HALTER) {
-					currentlyRelevantActionID = actionID.TAKE_HALTER;
+					currentlyRelevantActionIDs.Add(actionID.TAKE_HALTER);
+					result.Add(InteractionStrings.GetInteractionStringById(actionID.TAKE_HALTER));
 				} else if (content.id == equippableItemID.LEAD) {
-					currentlyRelevantActionID = actionID.TAKE_LEAD;
+					currentlyRelevantActionIDs.Add(actionID.TAKE_LEAD);
+					result.Add(InteractionStrings.GetInteractionStringById(actionID.TAKE_LEAD));
 				} 
 			}
 			break;
 		case equippableItemID.HALTER:
 			if (hookStatus == containerStatus.EMPTY) {
-				currentlyRelevantActionID = actionID.HANG_UP_HALTER;
+				currentlyRelevantActionIDs.Add(actionID.HANG_UP_HALTER);
+				result.Add(InteractionStrings.GetInteractionStringById(actionID.HANG_UP_HALTER));
 			}
 			break;
 		case equippableItemID.LEAD:
 			if (hookStatus == containerStatus.EMPTY) {
-				currentlyRelevantActionID = actionID.HANG_UP_LEAD;
+				currentlyRelevantActionIDs.Add(actionID.HANG_UP_LEAD);
+				result.Add(InteractionStrings.GetInteractionStringById(actionID.HANG_UP_LEAD));
 			}
 			break;
 		}
 
-		result.Add(InteractionStrings.GetInteractionStringById(currentlyRelevantActionID));
 		return result;
 
 	}

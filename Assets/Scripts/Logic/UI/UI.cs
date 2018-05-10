@@ -40,7 +40,16 @@ public class UI : MonoBehaviour {
 				instructionTexts[i].text = "E - " + interactable.GetInteractionStrings(player)[i];
 			}
 
-			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionID);
+			if (interactable.currentlyRelevantActionIDs.Count != possibleActions.Count) {
+				Debug.LogError ("different count for possible actions (" + possibleActions.Count + ") and currentlyRelevantActionIDs (" + interactable.currentlyRelevantActionIDs.Count + ") on interactable: " + interactable);
+				string log = "possible actions: ";
+				for (int i = 0; i < possibleActions.Count; ++i) {
+					log += "\n" + possibleActions [i];
+				}
+				Debug.LogWarning (log);
+			}
+
+			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[interactable.selectedInteractionIndex]);
 			if (interactable.arrowInputRequired != null) {
 				for (int i = 0; i < arrows.Length; ++i) {
 					if (i < interactable.arrowInputRequired.Length) {
@@ -53,6 +62,7 @@ public class UI : MonoBehaviour {
 				arrowSequenceGO.SetActive (true);
 				UpdateArrows (0);
 			}
+
 		}
 	}
 
