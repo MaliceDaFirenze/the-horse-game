@@ -571,7 +571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1612578620513976
 GameObject:
   m_ObjectHideFlags: 1
@@ -1660,6 +1660,12 @@ MonoBehaviour:
   - {fileID: 114404261019432096}
   - {fileID: 114161066436109646}
   - {fileID: 114739249012225224}
+  instructionImages:
+  - {fileID: 114103947471960128}
+  - {fileID: 114652060722564360}
+  - {fileID: 114488268862627560}
+  - {fileID: 114498431310062012}
+  - {fileID: 114533576573919348}
   arrowSequenceGO: {fileID: 1515276007501750}
   arrows:
   - {fileID: 114170320915896474}
@@ -1675,6 +1681,8 @@ MonoBehaviour:
   - {fileID: 114892526546629120}
   arrowCompleteColor: {r: 1, g: 1, b: 1, a: 0.872}
   arrowIncompleteColor: {r: 0, g: 0, b: 0, a: 0.62352943}
+  selectedActionOptionColor: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0.59607846}
+  inactiveActionOptionColor: {r: 0.34509805, g: 0.34509805, b: 0.34509805, a: 0.59607846}
   horseUI: {fileID: 114570947259975692}
   arrowCompletionFXInProgress: 0
 --- !u!114 &114680718858079196
@@ -2602,8 +2610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24.1, y: 0}
-  m_SizeDelta: {x: 300, y: 80}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 350, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224431697604655420
 RectTransform:

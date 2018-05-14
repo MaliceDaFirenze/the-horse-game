@@ -7,6 +7,7 @@ public class UI : MonoBehaviour {
 
 	public GameObject[] instructionGOs;
 	public Text[] instructionTexts;
+	public Image[] instructionImages;
 
 	public GameObject arrowSequenceGO;
 	public Image[] arrows;
@@ -15,6 +16,9 @@ public class UI : MonoBehaviour {
 	public Color arrowIncompleteColor;
 	private Vector3 arrowOriginalScale;
 	private Vector3 arrowBigScale;
+
+	public Color selectedActionOptionColor;
+	public Color inactiveActionOptionColor;
 
 	public HorseUI horseUI;
 
@@ -33,13 +37,27 @@ public class UI : MonoBehaviour {
 
 		List<string> possibleActions = interactable.GetInteractionStrings (player);
 
-		if (possibleActions.Count > 0 && possibleActions[0] != "") {
+		if (possibleActions.Count > 0) {
+
+			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[interactable.selectedInteractionIndex]);
 
 			for (int i = 0; i < possibleActions.Count; ++i) {
 				instructionGOs[i].SetActive (true);
-				instructionTexts[i].text = "E - " + interactable.GetInteractionStrings(player)[i];
+				if (i == interactable.selectedInteractionIndex) {
+					instructionImages [i].color = selectedActionOptionColor;
+				} else {
+					instructionImages [i].color = inactiveActionOptionColor;
+				}
+
+				Debug.Log (" selected index: " + interactable.selectedInteractionIndex + ", action: " + interactable.GetInteractionStrings (player) [i] + " sequence for that action is: " + ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]));
+				if (ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]) != null) {
+					instructionTexts [i].text = interactable.GetInteractionStrings (player) [i];
+				} else {
+					instructionTexts [i].text = "E - " + interactable.GetInteractionStrings (player) [i];
+				}
 			}
 
+			//--Debug--//
 			if (interactable.currentlyRelevantActionIDs.Count != possibleActions.Count) {
 				Debug.LogError ("different count for possible actions (" + possibleActions.Count + ") and currentlyRelevantActionIDs (" + interactable.currentlyRelevantActionIDs.Count + ") on interactable: " + interactable);
 				string log = "possible actions: ";
@@ -48,12 +66,12 @@ public class UI : MonoBehaviour {
 				}
 				Debug.LogWarning (log);
 			}
+			//----//
 
-			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[interactable.selectedInteractionIndex]);
 			if (interactable.arrowInputRequired != null) {
 				for (int i = 0; i < arrows.Length; ++i) {
 					if (i < interactable.arrowInputRequired.Length) {
-						arrows[i].rectTransform.eulerAngles = new Vector3(0,0, 90 * (int)interactable.arrowInputRequired[i]); 
+						arrows [i].rectTransform.eulerAngles = new Vector3 (0, 0, 90 * (int)interactable.arrowInputRequired [i]); 
 						arrows [i].enabled = true;
 					} else {
 						arrows [i].enabled = false;
@@ -61,8 +79,9 @@ public class UI : MonoBehaviour {
 				}
 				arrowSequenceGO.SetActive (true);
 				UpdateArrows (0);
+			} else {
+				arrowSequenceGO.SetActive (false);
 			}
-
 		}
 	}
 
