@@ -49,7 +49,6 @@ public class UI : MonoBehaviour {
 					instructionImages [i].color = inactiveActionOptionColor;
 				}
 
-				Debug.Log (" selected index: " + interactable.selectedInteractionIndex + ", action: " + interactable.GetInteractionStrings (player) [i] + " sequence for that action is: " + ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]));
 				if (ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]) != null) {
 					instructionTexts [i].text = interactable.GetInteractionStrings (player) [i];
 				} else {

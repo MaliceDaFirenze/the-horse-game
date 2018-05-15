@@ -22,31 +22,25 @@ public class Horse_Interactable : Interactable {
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS:
+
+		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
+		case actionID.PET_HORSE:
 			PetHorse (player);
 			break;
-		case equippableItemID.STRAW:
-			if (horseStats.Food < Horse_Stats.NeedsMaximum) {
-				FeedHorse (player);
-			}
+		case actionID.TAKE_HALTER:
+			TakeOffHalter (player);
 			break;
-		case equippableItemID.WATERBUCKET:
-			if (horseStats.Water < Horse_Stats.NeedsMaximum) {
-				WaterHorse (player);
-			}
+		case actionID.FEED_HORSE:
+			FeedHorse (player);
 			break;
-		case equippableItemID.BRUSH:
-			if (horseStats.Hygiene < Horse_Stats.NeedsMaximum) {
-				BrushHorse (player);
-			}
+		case actionID.WATER_HORSE:
+			WaterHorse (player);
 			break;
-		case equippableItemID.HALTER:
-			if (headGear == null) {
-				PutOnHalter (player);
-			}
+		case actionID.BRUSH_HORSE:
+			BrushHorse (player);
 			break;
-		default:
+		case actionID.PUT_ON_HALTER:
+			PutOnHalter (player);
 			break;
 		}
 	}
@@ -83,15 +77,18 @@ public class Horse_Interactable : Interactable {
 		player.UnequipEquippedItem ();
 	}
 
-	private void PutOnLead(){
+	private void PutOnLead(Player player){
 
 	}
 
-	private void TakeOffHalter(){
+	private void TakeOffHalter(Player player){
+		Equippable halterEquippable = headGear.GetComponent<Equippable> ();
 
+		player.EquipAnItem(halterEquippable);
+		halterEquippable.BeEquipped ();
 	}
 
-	private void TakeOffLead(){
+	private void TakeOffLead(Player player){
 
 	}
 
@@ -110,15 +107,19 @@ public class Horse_Interactable : Interactable {
 			}
 			break;
 		case equippableItemID.STRAW:
-			currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
-			result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
+			if (horseStats.Food < Horse_Stats.NeedsMaximum) {
+				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
+			}
 			break;
 		case equippableItemID.WATERBUCKET:
-			currentlyRelevantActionIDs.Add (actionID.WATER_HORSE);
-			result.Add (InteractionStrings.GetInteractionStringById (actionID.WATER_HORSE));
+			if (horseStats.Water < Horse_Stats.NeedsMaximum) {
+				currentlyRelevantActionIDs.Add (actionID.WATER_HORSE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.WATER_HORSE));
+			}
 			break;
 		case equippableItemID.BRUSH:
-			if (backGear == null) {
+			if (backGear == null && horseStats.Hygiene < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.BRUSH_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.BRUSH_HORSE));
 			}
