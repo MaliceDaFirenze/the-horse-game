@@ -22,7 +22,6 @@ public class Horse_Interactable : Interactable {
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
-
 		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 		case actionID.PET_HORSE:
 			PetHorse (player);
@@ -93,7 +92,7 @@ public class Horse_Interactable : Interactable {
 	}
 
 
-	public override List<string> GetInteractionStrings (Player player)	{
+	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear ();
 

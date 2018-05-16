@@ -60,6 +60,7 @@ public class Player : MonoBehaviour {
 			//------INTERACTION-------//
 			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null){
 				nearestInteractable.PlayerInteracts (this);
+				ui.ShowInstruction (nearestInteractable, this);
 			}
 
 			if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
@@ -141,7 +142,5 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem.transform.position = equippedItemPos.position;
 		currentlyEquippedItem.transform.SetParent (transform, true);
 		currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
-		ui.HideInstruction ();
-
 	}
 }

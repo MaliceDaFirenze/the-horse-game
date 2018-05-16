@@ -54,7 +54,7 @@ public class Hook : Interactable {
 		}
 	}
 
-	public override List<string> GetInteractionStrings (Player player)	{
+	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear();
 

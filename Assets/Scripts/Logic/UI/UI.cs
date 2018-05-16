@@ -26,6 +26,9 @@ public class UI : MonoBehaviour {
 
 	public bool arrowCompletionFXInProgress;
 
+	private Player lastRelevantPlayer;
+	private Interactable lastRelevantInteractable;
+
 	void Start(){
 		HideInstruction ();
 		originalArrowsPos = arrowSequenceGO.transform.position;
@@ -35,7 +38,10 @@ public class UI : MonoBehaviour {
 
 	public void ShowInstruction(Interactable interactable, Player player){
 
-		List<string> possibleActions = interactable.GetInteractionStrings (player);
+		lastRelevantInteractable = interactable;
+		lastRelevantPlayer = player;
+
+		List<string> possibleActions = interactable.DefineInteraction (player);
 
 		if (possibleActions.Count > 0) {
 
@@ -50,9 +56,9 @@ public class UI : MonoBehaviour {
 				}
 
 				if (ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]) != null) {
-					instructionTexts [i].text = interactable.GetInteractionStrings (player) [i];
+					instructionTexts [i].text = interactable.DefineInteraction (player) [i];
 				} else {
-					instructionTexts [i].text = "E - " + interactable.GetInteractionStrings (player) [i];
+					instructionTexts [i].text = "E - " + interactable.DefineInteraction (player) [i];
 				}
 			}
 
@@ -117,7 +123,8 @@ public class UI : MonoBehaviour {
 		for (int i = 0; i < arrows.Length; ++i) {
 			arrows [i].transform.localScale = arrowOriginalScale;
 		} 
-		HideInstruction();
+
+		ShowInstruction (lastRelevantInteractable, lastRelevantPlayer);
 		arrowCompletionFXInProgress = false;
 	}
 

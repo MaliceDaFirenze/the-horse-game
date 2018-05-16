@@ -7,20 +7,20 @@ public class Faucet : Interactable {
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
-		Debug.Log ("interact with faucet, item: " + player.currentlyEquippedItem.id);
-
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.WATERBUCKET:
-			WaterBucket_Consumable bucket = player.currentlyEquippedItem.GetComponent<WaterBucket_Consumable> ();
-			bucket.remainingNeedValue = bucket.totalNeedValue;
-			bucket.UpdateValue ();
-			break;
-		default:
+		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
+		case actionID.FILL_BUCKET:
+			FillBucket (player);
 			break;
 		}
 	}
 
-	public override List<string> GetInteractionStrings (Player player)	{
+	private void FillBucket(Player player){
+		WaterBucket_Consumable bucket = player.currentlyEquippedItem.GetComponent<WaterBucket_Consumable> ();
+		bucket.remainingNeedValue = bucket.totalNeedValue;
+		bucket.UpdateValue ();
+	}
+
+	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear ();
 

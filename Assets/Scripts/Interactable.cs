@@ -20,7 +20,8 @@ public enum actionID {
 	TAKE_HALTER,
 	TAKE_LEAD,
 	PUT_ON_HALTER,
-	PUT_ON_LEAD
+	PUT_ON_LEAD,
+	PICK_UP
 }
 
 public class Interactable : MonoBehaviour {
@@ -71,7 +72,7 @@ public class Interactable : MonoBehaviour {
 		selectedInteractionIndex = 0;
 	}
 
-	public virtual List<string> GetInteractionStrings(Player player){
+	public virtual List<string> DefineInteraction(Player player){
 		List<string> result = new List<string> ();
 		result.Add (emptyHandsAction);
 		return result;

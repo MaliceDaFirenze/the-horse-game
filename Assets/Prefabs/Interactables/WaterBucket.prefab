@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 135612019924469976}
   - component: {fileID: 114468827331685502}
   - component: {fileID: 114343601274884868}
-  - component: {fileID: 114469162233779084}
+  - component: {fileID: 114735515134366686}
   m_Layer: 0
   m_Name: WaterBucket
   m_TagString: Consumable
@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248707922087834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.15, y: 0.026, z: -9.05}
+  m_LocalPosition: {x: -6.31, y: 0.026, z: -8.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919572160209214}
@@ -246,7 +246,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
+  dropPosYOffset: 0
+  playerSpeedModifier: 1
+  equippedRotation: {x: 0, y: 0, z: 0}
   id: 2
+  status: 0
+  fillNullPos: {fileID: 0}
+  content: {fileID: 0}
 --- !u!114 &114468827331685502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,8 +269,9 @@ MonoBehaviour:
   remainingNeedValue: 0
   consumptionRate: 5
   destroyWhenEmpty: 0
+  fullOnStart: 0
   waterModel: {fileID: 4916303463876542}
---- !u!114 &114469162233779084
+--- !u!114 &114735515134366686
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -272,12 +279,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248707922087834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbf8b002d07e84747a9788e244ef1ee1, type: 3}
+  m_Script: {fileID: 11500000, guid: a1210bad3e66e1b4dbd8dca4e8211f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyHandsAction: Pick Up
+  emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
+  arrowInputRequired: 
+  nextArrowIndexToInput: 0
 --- !u!135 &135612019924469976
 SphereCollider:
   m_ObjectHideFlags: 1
