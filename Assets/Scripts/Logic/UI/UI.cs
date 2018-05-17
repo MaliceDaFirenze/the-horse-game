@@ -45,20 +45,29 @@ public class UI : MonoBehaviour {
 
 		if (possibleActions.Count > 0) {
 
-			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[interactable.selectedInteractionIndex]);
+			if (interactable.selectedInteractionIndex >= interactable.currentlyRelevantActionIDs.Count) {
+				//if three actions were possible and one no longer is, the selection should go to the 'second' action
+				interactable.selectedInteractionIndex = interactable.currentlyRelevantActionIDs.Count - 1;
+			}
 
-			for (int i = 0; i < possibleActions.Count; ++i) {
-				instructionGOs[i].SetActive (true);
-				if (i == interactable.selectedInteractionIndex) {
-					instructionImages [i].color = selectedActionOptionColor;
-				} else {
-					instructionImages [i].color = inactiveActionOptionColor;
-				}
+			interactable.arrowInputRequired = ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs [interactable.selectedInteractionIndex]);
 
-				if (ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs[i]) != null) {
-					instructionTexts [i].text = interactable.DefineInteraction (player) [i];
+			for (int i = 0; i < instructionGOs.Length; ++i) {
+				if (i < possibleActions.Count) {
+					instructionGOs [i].SetActive (true);
+					if (i == interactable.selectedInteractionIndex) {
+						instructionImages [i].color = selectedActionOptionColor;
+					} else {
+						instructionImages [i].color = inactiveActionOptionColor;
+					}
+
+					if (ArrowSequences.GetArrowSequence (interactable.currentlyRelevantActionIDs [i]) != null) {
+						instructionTexts [i].text = interactable.DefineInteraction (player) [i];
+					} else {
+						instructionTexts [i].text = "E - " + interactable.DefineInteraction (player) [i];
+					}
 				} else {
-					instructionTexts [i].text = "E - " + interactable.DefineInteraction (player) [i];
+					instructionGOs [i].SetActive (false);
 				}
 			}
 
@@ -87,6 +96,8 @@ public class UI : MonoBehaviour {
 			} else {
 				arrowSequenceGO.SetActive (false);
 			}
+		} else {
+			HideInstruction ();
 		}
 	}
 

@@ -15,6 +15,7 @@ public enum actionID {
 	PUSH_WHEELBARROW,
 	EMPTY_WHEELBARROW,
 	PUT_AWAY_STRAW,
+	TAKE_STRAW,
 	HANG_UP_HALTER,
 	HANG_UP_LEAD,
 	TAKE_HALTER,
@@ -64,6 +65,8 @@ public class Interactable : MonoBehaviour {
 	}
 
 	public virtual void PlayerInteracts(Player player){
+		nextArrowIndexToInput = 0;
+
 		//Debug.Log ("base interact");
 	}
 

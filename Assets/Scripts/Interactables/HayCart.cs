@@ -7,11 +7,11 @@ public class HayCart : Interactable {
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS:
+		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
+		case actionID.TAKE_STRAW:
 			TakeHayBale (player);
 			break;
-		case equippableItemID.STRAW:
+		case actionID.PUT_AWAY_STRAW:
 			PutAwayHayBale (player);
 			break;
 		default:
@@ -42,7 +42,10 @@ public class HayCart : Interactable {
 		currentlyRelevantActionIDs.Clear ();
 
 		switch (player.currentlyEquippedItem.id) {
-	
+		case equippableItemID.BAREHANDS:
+			currentlyRelevantActionIDs.Add (actionID.TAKE_STRAW);
+			result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_STRAW));
+			break;
 		case equippableItemID.STRAW:
 			currentlyRelevantActionIDs.Add(actionID.PUT_AWAY_STRAW);
 			result.Add(InteractionStrings.GetInteractionStringById(actionID.PUT_AWAY_STRAW));

@@ -82,6 +82,7 @@ public class Horse_Interactable : Interactable {
 
 	private void TakeOffHalter(Player player){
 		Equippable halterEquippable = headGear.GetComponent<Equippable> ();
+		headGear = null;
 
 		player.EquipAnItem(halterEquippable);
 		halterEquippable.BeEquipped ();
