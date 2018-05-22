@@ -76,8 +76,10 @@ public class Interactable : MonoBehaviour {
 	}
 
 	public virtual List<string> DefineInteraction(Player player){
+		currentlyRelevantActionIDs.Clear ();
 		List<string> result = new List<string> ();
 		result.Add (emptyHandsAction);
+		currentlyRelevantActionIDs.Add (actionID.NO_SEQUENCE);
 		return result;
 	}
 }

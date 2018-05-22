@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorseGear : MonoBehaviour {
+public enum horseGearType{
+	HALTER,
+	LEAD,
+	BRIDLE,
+	SADDLE
+}
 
+public class HorseGear : MonoBehaviour {
+	public horseGearType type;
 }

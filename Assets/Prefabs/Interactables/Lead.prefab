@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f73bad8bcdb9fe4b99d365d4a8f24b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!114 &114425480527981180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -623,7 +624,8 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
-  currentlyRelevantActionID: 0
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
 --- !u!114 &114624750975426460

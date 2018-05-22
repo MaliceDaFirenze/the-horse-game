@@ -130,7 +130,14 @@ public class Horse_Interactable : Interactable {
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_HALTER));
 			}
 			break;
+		case equippableItemID.LEAD:
+			if (headGear != null && headGear.type == horseGearType.HALTER) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_ON_LEAD);
+				result.Add(InteractionStrings.GetInteractionStringById(actionID.PUT_ON_LEAD));
+			}
+			break;
 		}
+
 
 		return result;
 	}

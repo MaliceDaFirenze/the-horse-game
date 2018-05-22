@@ -118,11 +118,18 @@ public class Player : MonoBehaviour {
 			trigger.transform.parent.GetComponent<Building> ().PlayerExitsBuildingTrigger ();
 		}
 
+		if (nearestInteractable != null) {
+			ExitInteractableTrigger ();
+		}
+
+		ui.HideHorseUI ();
+	}
+
+	public void ExitInteractableTrigger(){
 		nearestInteractable = null;
 		if (!ui.arrowCompletionFXInProgress) {
 			ui.HideInstruction ();
 		}
-		ui.HideHorseUI ();
 	}
 
 	private void DropEquippedItem(){
