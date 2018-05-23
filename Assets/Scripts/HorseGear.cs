@@ -11,4 +11,9 @@ public enum horseGearType{
 
 public class HorseGear : MonoBehaviour {
 	public horseGearType type;
+	public Animator anim;
+
+	void Start(){
+		anim = GetComponentInChildren<Animator> ();
+	}
 }

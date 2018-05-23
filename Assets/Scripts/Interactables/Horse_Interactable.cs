@@ -7,7 +7,9 @@ public class Horse_Interactable : Interactable {
 	//References
 	private Horse_Stats horseStats;
 	private Horse_Behavior horseBehaviour;
+	private Equippable horseOnLeadEquippable;
 	public Transform halterTransform;
+	public Transform leadTransform;
 
 	//Gear
 	public HorseGear headGear;  //halter, bit etc
@@ -17,6 +19,7 @@ public class Horse_Interactable : Interactable {
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
 		horseBehaviour = GetComponent<Horse_Behavior> ();
+		horseOnLeadEquippable = GetComponent<Equippable> ();
 	}
 
 	public override void PlayerInteracts(Player player){
@@ -40,6 +43,9 @@ public class Horse_Interactable : Interactable {
 			break;
 		case actionID.PUT_ON_HALTER:
 			PutOnHalter (player);
+			break;
+		case actionID.PUT_ON_LEAD:
+			PutOnLead (player);
 			break;
 		}
 	}
@@ -77,6 +83,15 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void PutOnLead(Player player){
+		headGearAttachment = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+		headGearAttachment.anim.Play ("Leading");
+		headGearAttachment.transform.position = leadTransform.position;
+		headGearAttachment.transform.rotation = leadTransform.rotation;
+		headGearAttachment.transform.SetParent (leadTransform);
+		GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
+
+		//instead of this, start leading horse
+		player.UnequipEquippedItem ();
 
 	}
 
@@ -92,6 +107,19 @@ public class Horse_Interactable : Interactable {
 
 	}
 
+	private void StartLeadingHorse(Player player){
+		//how should this work 
+
+		//easiest way:
+		//parent horse to player?
+
+		//nicest way:
+		//the lead has physics, you can actually pull on it?
+		//the horse has a chance of not listening/not coming right away?
+
+		//horseOnLead as equippable
+		player.EquipAnItem(horseOnLeadEquippable);
+	}
 
 	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
@@ -131,13 +159,12 @@ public class Horse_Interactable : Interactable {
 			}
 			break;
 		case equippableItemID.LEAD:
-			if (headGear != null && headGear.type == horseGearType.HALTER) {
+			if (headGear != null && headGear.type == horseGearType.HALTER && headGearAttachment == null) {
 				currentlyRelevantActionIDs.Add (actionID.PUT_ON_LEAD);
 				result.Add(InteractionStrings.GetInteractionStringById(actionID.PUT_ON_LEAD));
 			}
 			break;
 		}
-
 
 		return result;
 	}

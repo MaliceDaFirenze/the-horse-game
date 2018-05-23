@@ -10,7 +10,8 @@ public enum equippableItemID{
 	PITCHFORK,
 	WHEELBARROW,
 	HALTER,
-	LEAD
+	LEAD,
+	HORSE_ON_LEAD
 }
 
 public enum containerStatus{
