@@ -92,7 +92,7 @@ public class Horse_Interactable : Interactable {
 
 		//instead of this, start leading horse
 		player.UnequipEquippedItem ();
-
+		StartLeadingHorse (player);
 	}
 
 	private void TakeOffHalter(Player player){
@@ -118,7 +118,13 @@ public class Horse_Interactable : Interactable {
 		//the horse has a chance of not listening/not coming right away?
 
 		//horseOnLead as equippable
+		horseBehaviour.PutHorseOnLead(true);
 		player.EquipAnItem(horseOnLeadEquippable);
+	}
+
+	private void StopLeadingHorse(Player player){
+		horseBehaviour.PutHorseOnLead(false);
+	
 	}
 
 	public override List<string> DefineInteraction (Player player)	{

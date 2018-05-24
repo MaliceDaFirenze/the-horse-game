@@ -7,7 +7,8 @@ public enum horseState{
 	IDLE,
 	CONSUMING,
 	WALKINGTOTARGET,
-	PRODUCINGMANURE
+	PRODUCINGMANURE,
+	WAITINGONLEAD
 }
 
 public class Horse_Behavior : MonoBehaviour {
@@ -61,6 +62,9 @@ public class Horse_Behavior : MonoBehaviour {
 			break;
 		case horseState.PRODUCINGMANURE:
 			currentBehaviour = StartCoroutine (ProduceManure());
+			break;
+		case horseState.WAITINGONLEAD:
+			currentBehaviour = StartCoroutine (WaitOnLead ());
 			break;
 		}
 	}
@@ -120,6 +124,20 @@ public class Horse_Behavior : MonoBehaviour {
 
 		anim.SetBool ("Poop", false);
 		ChangeState (horseState.IDLE);
+	}
+
+	private IEnumerator WaitOnLead(){
+		while (true) {
+			yield return waitASecond;
+		}
+	}
+
+	public void PutHorseOnLead(bool onLead){
+		if (onLead) {
+			ChangeState (horseState.WAITINGONLEAD);
+		} else {
+			ChangeState (horseState.IDLE);
+		}
 	}
 
 	private Consumable FindConsumableInRange(horseNeed need){
