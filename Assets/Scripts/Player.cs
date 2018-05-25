@@ -147,7 +147,8 @@ public class Player : MonoBehaviour {
 		equippableItem.BeEquipped ();
 		currentlyEquippedItem = equippableItem;
 		currentlyEquippedItem.transform.position = equippedItemPos.position;
-		currentlyEquippedItem.transform.SetParent (transform, true);
+		currentlyEquippedItem.transform.SetParent (equippedItemPos, true);
 		currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
+		currentlyEquippedItem.transform.localPosition = equippableItem.equippedOffset;
 	}
 }

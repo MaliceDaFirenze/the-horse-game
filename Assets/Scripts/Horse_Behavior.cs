@@ -127,6 +127,7 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator WaitOnLead(){
+		anim.SetBool ("Still", true);
 		while (true) {
 			yield return waitASecond;
 		}
@@ -136,6 +137,7 @@ public class Horse_Behavior : MonoBehaviour {
 		if (onLead) {
 			ChangeState (horseState.WAITINGONLEAD);
 		} else {
+			anim.SetBool ("Still", false);
 			ChangeState (horseState.IDLE);
 		}
 	}

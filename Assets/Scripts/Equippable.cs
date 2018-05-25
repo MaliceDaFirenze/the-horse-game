@@ -25,6 +25,7 @@ public class Equippable : MonoBehaviour {
 	private Vector3 regularScale;
 	public float equippedScaleFactor = 1;
 	public float dropPosYOffset;
+	public Vector3 equippedOffset;
 	public float playerSpeedModifier = 1; //player is slower when they carry this
 	public Vector3 equippedRotation;
 	private Consumable consumable;
