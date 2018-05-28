@@ -140,15 +140,19 @@ public class Player : MonoBehaviour {
 	}
 
 	public void UnequipEquippedItem(){
+		currentlyEquippedItem.transform.SetParent (null);
 		currentlyEquippedItem = playerHands;
 	}
 
-	public void EquipAnItem(Equippable equippableItem){
+	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true){
 		equippableItem.BeEquipped ();
 		currentlyEquippedItem = equippableItem;
-		currentlyEquippedItem.transform.position = equippedItemPos.position;
 		currentlyEquippedItem.transform.SetParent (equippedItemPos, true);
-		currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
-		currentlyEquippedItem.transform.localPosition = equippableItem.equippedOffset;
+
+		if (moveItemToPlayer) {
+			currentlyEquippedItem.transform.position = equippedItemPos.position;
+			currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
+			currentlyEquippedItem.transform.localPosition = equippableItem.equippedOffset;
+		}
 	}
 }

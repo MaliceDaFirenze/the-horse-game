@@ -10,6 +10,7 @@ public class Horse_Interactable : Interactable {
 	private Equippable horseOnLeadEquippable;
 	public Transform halterTransform;
 	public Transform leadTransform;
+	public Transform playerLeadingPos;
 
 	//Gear
 	public HorseGear headGear;  //halter, bit etc
@@ -47,6 +48,9 @@ public class Horse_Interactable : Interactable {
 		case actionID.PUT_ON_LEAD:
 			PutOnLead (player);
 			break;
+		case actionID.TAKE_LEAD:
+			TakeOffLead (player);
+			break;
 		}
 	}
 
@@ -75,23 +79,26 @@ public class Horse_Interactable : Interactable {
 
 	private void PutOnHalter(Player player){
 		headGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+
+		player.UnequipEquippedItem ();
+
 		headGear.transform.position = halterTransform.position;
 		headGear.transform.rotation = halterTransform.rotation;
 		headGear.transform.SetParent (halterTransform);
 		GenericUtilities.EnableAllColliders (headGear.transform, false);
-		player.UnequipEquippedItem ();
 	}
 
 	private void PutOnLead(Player player){
 		headGearAttachment = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+
+		player.UnequipEquippedItem ();
+
 		headGearAttachment.anim.Play ("Leading");
 		headGearAttachment.transform.position = leadTransform.position;
 		headGearAttachment.transform.rotation = leadTransform.rotation;
 		headGearAttachment.transform.SetParent (leadTransform);
 		GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
 
-		//instead of this, start leading horse
-		player.UnequipEquippedItem ();
 		StartLeadingHorse (player);
 	}
 
@@ -104,7 +111,14 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void TakeOffLead(Player player){
+		Equippable leadEquippable = headGearAttachment.GetComponent<Equippable> ();
+		headGearAttachment = null;
+		player.UnequipEquippedItem ();
 
+		player.EquipAnItem(leadEquippable);
+		leadEquippable.BeEquipped ();
+
+		StopLeadingHorse (player);
 	}
 
 	private void StartLeadingHorse(Player player){
@@ -119,7 +133,12 @@ public class Horse_Interactable : Interactable {
 
 		//horseOnLead as equippable
 		horseBehaviour.PutHorseOnLead(true);
-		player.EquipAnItem(horseOnLeadEquippable);
+
+		//move player to leading position
+		player.transform.position = playerLeadingPos.position;
+		player.transform.rotation = playerLeadingPos.rotation;
+
+		player.EquipAnItem(horseOnLeadEquippable, false);
 	}
 
 	private void StopLeadingHorse(Player player){
@@ -168,6 +187,12 @@ public class Horse_Interactable : Interactable {
 			if (headGear != null && headGear.type == horseGearType.HALTER && headGearAttachment == null) {
 				currentlyRelevantActionIDs.Add (actionID.PUT_ON_LEAD);
 				result.Add(InteractionStrings.GetInteractionStringById(actionID.PUT_ON_LEAD));
+			}
+			break;
+		case equippableItemID.HORSE_ON_LEAD:
+			if (player.currentlyEquippedItem == horseOnLeadEquippable) { //i.e. it's this horse and not a different horse
+				currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+				result.Add(InteractionStrings.GetInteractionStringById(actionID.TAKE_LEAD));
 			}
 			break;
 		}
