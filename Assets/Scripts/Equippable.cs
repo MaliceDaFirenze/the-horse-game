@@ -64,6 +64,7 @@ public class Equippable : MonoBehaviour {
 	}
 
 	public void BeDropped(){
+
 		transform.localScale = regularScale;
 		EnableAllColliders (true);
 		consumable = GetComponent<Consumable> ();

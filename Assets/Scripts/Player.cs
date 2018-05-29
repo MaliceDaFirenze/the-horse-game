@@ -133,9 +133,19 @@ public class Player : MonoBehaviour {
 	}
 
 	private void DropEquippedItem(){
-		currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
+		Debug.Log ("drop item: " + currentlyEquippedItem.id);
+		if (currentlyEquippedItem.id != equippableItemID.HORSE_ON_LEAD) { 
+			currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
+		} 
+
 		currentlyEquippedItem.transform.SetParent (null);
+
+		if (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
+			currentlyEquippedItem.GetComponent<Horse_Interactable> ().LeadIsDropped(this);
+		}
+
 		currentlyEquippedItem.BeDropped();
+
 		currentlyEquippedItem = playerHands;
 	}
 

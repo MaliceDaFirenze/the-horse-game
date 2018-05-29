@@ -9,7 +9,8 @@ public class Horse_Interactable : Interactable {
 	private Horse_Behavior horseBehaviour;
 	private Equippable horseOnLeadEquippable;
 	public Transform halterTransform;
-	public Transform leadTransform;
+	public Transform leadTransformLeading;
+	public Transform leadTransformHanging;
 	public Transform playerLeadingPos;
 
 	//Gear
@@ -94,9 +95,9 @@ public class Horse_Interactable : Interactable {
 		player.UnequipEquippedItem ();
 
 		headGearAttachment.anim.Play ("Leading");
-		headGearAttachment.transform.position = leadTransform.position;
-		headGearAttachment.transform.rotation = leadTransform.rotation;
-		headGearAttachment.transform.SetParent (leadTransform);
+		headGearAttachment.transform.position = leadTransformLeading.position;
+		headGearAttachment.transform.rotation = leadTransformLeading.rotation;
+		headGearAttachment.transform.SetParent (leadTransformLeading);
 		GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
 
 		StartLeadingHorse (player);
@@ -111,6 +112,8 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void TakeOffLead(Player player){
+		headGearAttachment.anim.Play ("Still");
+
 		Equippable leadEquippable = headGearAttachment.GetComponent<Equippable> ();
 		headGearAttachment = null;
 		player.UnequipEquippedItem ();
@@ -122,14 +125,6 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void StartLeadingHorse(Player player){
-		//how should this work 
-
-		//easiest way:
-		//parent horse to player?
-
-		//nicest way:
-		//the lead has physics, you can actually pull on it?
-		//the horse has a chance of not listening/not coming right away?
 
 		//horseOnLead as equippable
 		horseBehaviour.PutHorseOnLead(true);
@@ -141,9 +136,17 @@ public class Horse_Interactable : Interactable {
 		player.EquipAnItem(horseOnLeadEquippable, false);
 	}
 
+	public void LeadIsDropped(Player player){
+		headGearAttachment.anim.Play ("Hanging");
+		headGearAttachment.transform.position = leadTransformHanging.position;
+		headGearAttachment.transform.rotation = leadTransformHanging.rotation;
+		headGearAttachment.transform.SetParent (leadTransformHanging);
+		StopLeadingHorse (player);
+		//adjust position of lead for hanging pose
+	}
+
 	private void StopLeadingHorse(Player player){
 		horseBehaviour.PutHorseOnLead(false);
-	
 	}
 
 	public override List<string> DefineInteraction (Player player)	{
