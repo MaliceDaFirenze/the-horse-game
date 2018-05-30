@@ -31,9 +31,6 @@ public class Horse_Interactable : Interactable {
 		case actionID.PET_HORSE:
 			PetHorse (player);
 			break;
-		case actionID.TAKE_HALTER:
-			TakeOffHalter (player);
-			break;
 		case actionID.FEED_HORSE:
 			FeedHorse (player);
 			break;
@@ -49,8 +46,14 @@ public class Horse_Interactable : Interactable {
 		case actionID.PUT_ON_LEAD:
 			PutOnLead (player);
 			break;
+		case actionID.TAKE_HALTER:
+			TakeOffHalter (player);
+			break;
 		case actionID.TAKE_LEAD:
 			TakeOffLead (player);
+			break;
+		case actionID.TAKE_HALTER_AND_LEAD:
+			TakeOffHalterAndLead (player);
 			break;
 		}
 	}
@@ -124,6 +127,22 @@ public class Horse_Interactable : Interactable {
 		StopLeadingHorse (player);
 	}
 
+	private void TakeOffHalterAndLead(Player player){
+		Equippable combinedEquippable = headGear.transform.GetChild (0).GetComponent<Equippable> ();
+
+		headGearAttachment.anim.Play ("Still");
+		headGearAttachment.transform.SetParent (combinedEquippable.transform);
+
+		headGearAttachment = null;
+		headGear = null;
+		player.UnequipEquippedItem ();
+
+		player.EquipAnItem(combinedEquippable);
+		combinedEquippable.BeEquipped ();
+
+		StopLeadingHorse (player);
+	}
+
 	private void StartLeadingHorse(Player player){
 
 		//horseOnLead as equippable
@@ -158,8 +177,18 @@ public class Horse_Interactable : Interactable {
 			result.Add (InteractionStrings.GetInteractionStringById (actionID.PET_HORSE));
 			currentlyRelevantActionIDs.Add (actionID.PET_HORSE);
 			if (headGear != null) {
-				currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
-				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+				if (headGear.type == horseGearType.HALTER) {
+					if (headGearAttachment != null && headGearAttachment.type == horseGearType.LEAD) {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+
+						currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
+					}
+					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+				}
+
 			}
 			break;
 		case equippableItemID.STRAW:
@@ -196,10 +225,12 @@ public class Horse_Interactable : Interactable {
 			if (player.currentlyEquippedItem == horseOnLeadEquippable) { //i.e. it's this horse and not a different horse
 				currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
 				result.Add(InteractionStrings.GetInteractionStringById(actionID.TAKE_LEAD));
+
+				currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
 			}
 			break;
 		}
-
 		return result;
 	}
 }

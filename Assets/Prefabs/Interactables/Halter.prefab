@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1519757011378708}
   m_IsPrefabParent: 1
+--- !u!1 &1207768211482218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4050168155875742}
+  - component: {fileID: 114093943118638622}
+  m_Layer: 0
+  m_Name: HalterWithLead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1301788237680766
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +63,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4050168155875742
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207768211482218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4246585505799472}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4246585505799472
 Transform:
   m_ObjectHideFlags: 1
@@ -57,6 +86,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7369944, y: 0.7369944, z: 0.7369944}
   m_Children:
+  - {fileID: 4050168155875742}
   - {fileID: 4391056115729732}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +102,7 @@ Transform:
   m_LocalScale: {x: 0.20502594, y: 0.20502602, z: 0.20502579}
   m_Children: []
   m_Father: {fileID: 4246585505799472}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -51.892002, y: 0, z: 180.00002}
 --- !u!23 &23771902158842692
 MeshRenderer:
@@ -115,6 +145,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301788237680766}
   m_Mesh: {fileID: 4300000, guid: 0db0a27066dbc8b42bd98c3e58e0c10f, type: 3}
+--- !u!114 &114093943118638622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207768211482218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedScaleFactor: 1
+  dropPosYOffset: 0
+  equippedOffset: {x: 0, y: 0, z: 0}
+  playerSpeedModifier: 1
+  equippedRotation: {x: 0, y: 0, z: 0}
+  id: 9
+  status: 0
+  fillNullPos: {fileID: 0}
+  content: {fileID: 0}
 --- !u!114 &114164160570056044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +179,8 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
-  currentlyRelevantActionID: 0
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
 --- !u!114 &114717210886239856
@@ -143,7 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f73bad8bcdb9fe4b99d365d4a8f24b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleOnHorse: {x: 0, y: 0, z: 0}
+  type: 0
+  anim: {fileID: 0}
 --- !u!114 &114744181769214958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
   dropPosYOffset: 0
+  equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 6

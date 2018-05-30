@@ -22,6 +22,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.PUT_AWAY_STRAW, "Put Straw Away");
 		allInteractionStrings.Add (actionID.TAKE_HALTER, "Take Halter");
 		allInteractionStrings.Add (actionID.TAKE_LEAD, "Take Lead");
+		allInteractionStrings.Add (actionID.TAKE_HALTER_AND_LEAD, "Take Halter and Lead");
 		allInteractionStrings.Add (actionID.HANG_UP_HALTER, "Hang Up Halter");
 		allInteractionStrings.Add (actionID.HANG_UP_LEAD, "Hang Up Lead");
 		allInteractionStrings.Add (actionID.PUT_ON_HALTER, "Put on Halter");
