@@ -154,10 +154,20 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 	}
 
-	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true){
+	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?
+
+		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);
+		
 		equippableItem.BeEquipped ();
 		currentlyEquippedItem = equippableItem;
-		currentlyEquippedItem.transform.SetParent (equippedItemPos, true);
+
+		if (overwriteTransform != null) {
+			Debug.Log ("overwrite transform, parent " + overwriteTransform.name + " to equippeditemPos");
+			overwriteTransform.SetParent (equippedItemPos, true);
+		} else {
+			currentlyEquippedItem.transform.SetParent (equippedItemPos, true);
+		}
+
 
 		if (moveItemToPlayer) {
 			currentlyEquippedItem.transform.position = equippedItemPos.position;

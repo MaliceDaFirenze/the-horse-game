@@ -137,7 +137,22 @@ public class Horse_Interactable : Interactable {
 		headGear = null;
 		player.UnequipEquippedItem ();
 
+		//Debug.Log ("combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
+
+		combinedEquippable.transform.parent.SetParent (combinedEquippable.transform, true);
+
 		player.EquipAnItem(combinedEquippable);
+
+		/*foreach (Transform child in combinedEquippable.transform) {
+			//fix positions
+			child.position = player.equippedItemPos.position;
+			child.localEulerAngles = player.currentlyEquippedItem.equippedRotation;
+			child.localPosition = child.GetComponent<Equippable>().equippedOffset;
+		}*/
+
+		//Debug.Log ("after equipping: combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
+
+
 		combinedEquippable.BeEquipped ();
 
 		StopLeadingHorse (player);
