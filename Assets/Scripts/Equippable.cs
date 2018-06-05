@@ -75,6 +75,8 @@ public class Equippable : MonoBehaviour {
 	}
 
 	public void EnableAllColliders (bool enable){
+		Debug.Log ("set all colliders on " + name + " to enabled == " + enable);
+
 		if (allColliders.Length == 0) {
 			allColliders = GetComponentsInChildren<Collider> ();
 		}

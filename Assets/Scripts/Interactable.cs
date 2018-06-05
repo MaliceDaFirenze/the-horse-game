@@ -23,6 +23,7 @@ public enum actionID {
 	TAKE_HALTER_AND_LEAD,
 	PUT_ON_HALTER,
 	PUT_ON_LEAD,
+	PUT_ON_HALTER_AND_LEAD,
 	PICK_UP
 }
 

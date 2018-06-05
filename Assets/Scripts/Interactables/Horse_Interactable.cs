@@ -55,6 +55,9 @@ public class Horse_Interactable : Interactable {
 		case actionID.TAKE_HALTER_AND_LEAD:
 			TakeOffHalterAndLead (player);
 			break;
+		case actionID.PUT_ON_HALTER_AND_LEAD:
+			PutOnHalterAndLead (player);
+			break;
 		}
 	}
 
@@ -132,25 +135,6 @@ public class Horse_Interactable : Interactable {
 
 		headGearAttachment.anim.Play ("Still");
 		headGearAttachment.transform.SetParent (combinedEquippable.transform);
-		//Debug.Log ("parent of halter is " + headGear.transform.parent); 
-
-	
-
-		//Debug.Log ("halter and lead should now be parents of combined. ");
-
-		//Debug.Log ("combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
-
-	//	combinedEquippable.transform.parent.SetParent (combinedEquippable.transform, true);
-
-
-		/*foreach (Transform child in combinedEquippable.transform) {
-			//fix positions
-			child.position = player.equippedItemPos.position;
-			child.localEulerAngles = player.currentlyEquippedItem.equippedRotation;
-			child.localPosition = child.GetComponent<Equippable>().equippedOffset;
-		}*/
-
-		//Debug.Log ("after equipping: combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
 
 		player.UnequipEquippedItem ();
 
@@ -160,21 +144,49 @@ public class Horse_Interactable : Interactable {
 
 		Debug.Log ("combined was equipped");
 
-		StartCoroutine(DelayedRestOfFunction(player, combinedEquippable));
-
-	}
-
-	IEnumerator DelayedRestOfFunction(Player player, Equippable combinedEquippable){
-		yield return new WaitForSeconds (10f);
-
-
-
-
 		headGear.transform.SetParent (combinedEquippable.transform);
-
 
 		headGearAttachment = null;
 		headGear = null;
+
+		foreach (Transform child in combinedEquippable.transform) {
+			//fix positions
+			child.position = player.equippedItemPos.position;
+			child.localEulerAngles = player.currentlyEquippedItem.equippedRotation;
+			child.localPosition = child.GetComponent<Equippable>().equippedOffset;
+		}
+
+		horseOnLeadEquippable.EnableAllColliders (true);
+	}
+
+	private void PutOnHalterAndLead(Player player){
+
+		foreach (Transform child in player.currentlyEquippedItem.transform) {
+			Debug.Log ("equipping " + child);
+			horseGearType type = child.GetComponent<HorseGear> ().type;
+
+			switch (type) {
+			case horseGearType.HALTER:
+				headGear = child.GetComponent<HorseGear> ();
+
+				headGear.transform.position = halterTransform.position;
+				headGear.transform.rotation = halterTransform.rotation;
+				headGear.transform.SetParent (halterTransform);
+				GenericUtilities.EnableAllColliders (headGear.transform, false);
+				break;
+			case horseGearType.LEAD:
+				headGearAttachment = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+
+				headGearAttachment.anim.Play ("Leading");
+				headGearAttachment.transform.position = leadTransformLeading.position;
+				headGearAttachment.transform.rotation = leadTransformLeading.rotation;
+				headGearAttachment.transform.SetParent (leadTransformLeading);
+				break;
+			}
+			headGear = child.GetComponent<HorseGear> ();
+
+		}
+		player.UnequipEquippedItem ();
 	}
 
 	private void StartLeadingHorse(Player player){
@@ -262,6 +274,12 @@ public class Horse_Interactable : Interactable {
 
 				currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+			}
+			break;
+		case equippableItemID.HALTER_WITH_LEAD:
+			if (headGear == null) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_ON_HALTER_AND_LEAD);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_HALTER_AND_LEAD));
 			}
 			break;
 		}
