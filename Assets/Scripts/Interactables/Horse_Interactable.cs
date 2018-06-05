@@ -132,16 +132,16 @@ public class Horse_Interactable : Interactable {
 
 		headGearAttachment.anim.Play ("Still");
 		headGearAttachment.transform.SetParent (combinedEquippable.transform);
+		//Debug.Log ("parent of halter is " + headGear.transform.parent); 
 
-		headGearAttachment = null;
-		headGear = null;
-		player.UnequipEquippedItem ();
+	
+
+		//Debug.Log ("halter and lead should now be parents of combined. ");
 
 		//Debug.Log ("combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
 
-		combinedEquippable.transform.parent.SetParent (combinedEquippable.transform, true);
+	//	combinedEquippable.transform.parent.SetParent (combinedEquippable.transform, true);
 
-		player.EquipAnItem(combinedEquippable);
 
 		/*foreach (Transform child in combinedEquippable.transform) {
 			//fix positions
@@ -152,10 +152,29 @@ public class Horse_Interactable : Interactable {
 
 		//Debug.Log ("after equipping: combined equippable GO is " + combinedEquippable.name + " its parent is " + combinedEquippable.transform.parent.name);
 
+		player.UnequipEquippedItem ();
 
+		player.EquipAnItem(combinedEquippable);
 		combinedEquippable.BeEquipped ();
-
 		StopLeadingHorse (player);
+
+		Debug.Log ("combined was equipped");
+
+		StartCoroutine(DelayedRestOfFunction(player, combinedEquippable));
+
+	}
+
+	IEnumerator DelayedRestOfFunction(Player player, Equippable combinedEquippable){
+		yield return new WaitForSeconds (10f);
+
+
+
+
+		headGear.transform.SetParent (combinedEquippable.transform);
+
+
+		headGearAttachment = null;
+		headGear = null;
 	}
 
 	private void StartLeadingHorse(Player player){
