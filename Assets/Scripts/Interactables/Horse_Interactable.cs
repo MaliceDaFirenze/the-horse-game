@@ -127,11 +127,22 @@ public class Horse_Interactable : Interactable {
 		player.EquipAnItem(leadEquippable);
 		leadEquippable.BeEquipped ();
 
+		horseOnLeadEquippable.EnableAllColliders (true);
+
 		StopLeadingHorse (player);
 	}
 
 	private void TakeOffHalterAndLead(Player player){
-		Equippable combinedEquippable = headGear.transform.GetChild (0).GetComponent<Equippable> ();
+
+		//find combined equippable, which is a child of Halter (but hierarchy changes, so it's not always the 0th child)
+		Equippable combinedEquippable = null;
+		Equippable[] equippablesInHalter = headGear.GetComponentsInChildren<Equippable> ();
+
+		for (int i = 0; i < equippablesInHalter.Length; ++i) {
+			if (equippablesInHalter [i].id == equippableItemID.HALTER_WITH_LEAD) {
+				combinedEquippable = equippablesInHalter [i];
+			}
+		}
 
 		headGearAttachment.anim.Play ("Still");
 		headGearAttachment.transform.SetParent (combinedEquippable.transform);
@@ -161,6 +172,10 @@ public class Horse_Interactable : Interactable {
 
 	private void PutOnHalterAndLead(Player player){
 
+
+		//store this here so that I can still access it once it's been unequipped
+		Equippable combinedEquippable = player.currentlyEquippedItem;
+
 		foreach (Transform child in player.currentlyEquippedItem.transform) {
 			Debug.Log ("equipping " + child);
 			horseGearType type = child.GetComponent<HorseGear> ().type;
@@ -171,22 +186,26 @@ public class Horse_Interactable : Interactable {
 
 				headGear.transform.position = halterTransform.position;
 				headGear.transform.rotation = halterTransform.rotation;
-				headGear.transform.SetParent (halterTransform);
 				GenericUtilities.EnableAllColliders (headGear.transform, false);
 				break;
 			case horseGearType.LEAD:
-				headGearAttachment = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+				headGearAttachment = child.GetComponent<HorseGear> ();
 
 				headGearAttachment.anim.Play ("Leading");
 				headGearAttachment.transform.position = leadTransformLeading.position;
 				headGearAttachment.transform.rotation = leadTransformLeading.rotation;
-				headGearAttachment.transform.SetParent (leadTransformLeading);
+				GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
 				break;
 			}
-			headGear = child.GetComponent<HorseGear> ();
-
 		}
+
+		headGear.transform.SetParent (halterTransform);
+		headGearAttachment.transform.SetParent (leadTransformLeading);
+
 		player.UnequipEquippedItem ();
+
+		combinedEquippable.transform.SetParent (headGear.transform);
+		StartLeadingHorse (player);
 	}
 
 	private void StartLeadingHorse(Player player){
