@@ -33,6 +33,8 @@ public class ArrowSequences : MonoBehaviour {
 			return PutOnLead();
 		case actionID.PUT_ON_HALTER_AND_LEAD:
 			return PutOnHalterAndLead();
+		case actionID.LEAD_HORSE:
+			return LeadHorse();
 		default:
 			return null;
 		}
@@ -106,6 +108,14 @@ public class ArrowSequences : MonoBehaviour {
 		dir[] result = new dir[2];
 
 		result [0] = dir.UP;
+		result [1] = dir.RIGHT;
+		return result;
+	}
+
+	private static dir[] LeadHorse (){
+		dir[] result = new dir[2];
+
+		result [0] = dir.RIGHT;
 		result [1] = dir.RIGHT;
 		return result;
 	}

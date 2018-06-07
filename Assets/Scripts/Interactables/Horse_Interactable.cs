@@ -58,6 +58,9 @@ public class Horse_Interactable : Interactable {
 		case actionID.PUT_ON_HALTER_AND_LEAD:
 			PutOnHalterAndLead (player);
 			break;
+		case actionID.LEAD_HORSE:
+			StartLeadingHorse (player);
+			break;
 		}
 	}
 
@@ -100,7 +103,6 @@ public class Horse_Interactable : Interactable {
 
 		player.UnequipEquippedItem ();
 
-		headGearAttachment.anim.Play ("Leading");
 		headGearAttachment.transform.position = leadTransformLeading.position;
 		headGearAttachment.transform.rotation = leadTransformLeading.rotation;
 		headGearAttachment.transform.SetParent (leadTransformLeading);
@@ -191,7 +193,6 @@ public class Horse_Interactable : Interactable {
 			case horseGearType.LEAD:
 				headGearAttachment = child.GetComponent<HorseGear> ();
 
-				headGearAttachment.anim.Play ("Leading");
 				headGearAttachment.transform.position = leadTransformLeading.position;
 				headGearAttachment.transform.rotation = leadTransformLeading.rotation;
 				GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
@@ -209,6 +210,13 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void StartLeadingHorse(Player player){
+		headGearAttachment.anim.Play ("Leading");
+
+
+		//set lead position (again) in case it was in hanging pos before
+		headGearAttachment.transform.position = leadTransformLeading.position;
+		headGearAttachment.transform.rotation = leadTransformLeading.rotation;
+		headGearAttachment.transform.SetParent (leadTransformLeading);
 
 		//horseOnLead as equippable
 		horseBehaviour.PutHorseOnLead(true);
@@ -249,11 +257,14 @@ public class Horse_Interactable : Interactable {
 
 						currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
 						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
-					}
-					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
-				}
 
+						currentlyRelevantActionIDs.Add (actionID.LEAD_HORSE);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.LEAD_HORSE));
+					} else {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+					}
+				}
 			}
 			break;
 		case equippableItemID.STRAW:
