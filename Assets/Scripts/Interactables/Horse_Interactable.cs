@@ -234,7 +234,10 @@ public class Horse_Interactable : Interactable {
 		headGearAttachment.transform.rotation = leadTransformHanging.rotation;
 		headGearAttachment.transform.SetParent (leadTransformHanging);
 		StopLeadingHorse (player);
-		//adjust position of lead for hanging pose
+
+		//set lead and halter colliders to disabled again, bc they get enabled along with horse colliders when dropping the lead
+		GenericUtilities.EnableAllColliders(headGear.transform, false);
+		GenericUtilities.EnableAllColliders(headGearAttachment.transform, false);
 	}
 
 	private void StopLeadingHorse(Player player){

@@ -139,12 +139,11 @@ public class Player : MonoBehaviour {
 		} 
 
 		currentlyEquippedItem.transform.SetParent (null);
+		currentlyEquippedItem.BeDropped();
 
 		if (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
 			currentlyEquippedItem.GetComponent<Horse_Interactable> ().LeadIsDropped(this);
 		}
-
-		currentlyEquippedItem.BeDropped();
 
 		currentlyEquippedItem = playerHands;
 	}
