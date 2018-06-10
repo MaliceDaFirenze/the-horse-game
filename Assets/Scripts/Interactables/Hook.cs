@@ -78,11 +78,31 @@ public class Hook : Interactable {
 	}
 
 	private void TakeContent(Player player, equippableItemID contentToTake){
+
+		Equippable combined = content;
+		Equippable halter = null;
+		Equippable lead = null;
+
+		if (content.id == equippableItemID.HALTER_WITH_LEAD) {
+			foreach (Transform child in content.transform) {
+				Equippable childEquippable = child.GetComponent<Equippable> ();
+				if (childEquippable.id == equippableItemID.HALTER) {
+					halter = childEquippable;
+				} else if (childEquippable.id == equippableItemID.LEAD) {
+					lead = childEquippable;
+				}
+			}
+		}
+
 		switch (contentToTake){
 		case equippableItemID.HALTER:
 			//if content.id is halter and lead, but i only want to take halter, unparent lead and halter from halter_w_lead. take halter, lead remains
 			if (content.id == equippableItemID.HALTER_WITH_LEAD) {
-				
+				content = lead;
+				halter.BeEquipped ();
+				player.EquipAnItem (halter);
+				combined.transform.SetParent (halter.transform);
+				lead.transform.SetParent (transform);
 			} else if (content.id == equippableItemID.HALTER){
 				TakeAllContent (player);
 			}
@@ -90,7 +110,11 @@ public class Hook : Interactable {
 		case equippableItemID.LEAD:
 			//if content.id is halter and lead, but i only want to take halter, unparent lead and halter from halter_w_lead. take lead, halter remains
 			if (content.id == equippableItemID.HALTER_WITH_LEAD) {
-
+				content = halter;
+				lead.BeEquipped ();
+				player.EquipAnItem (lead);
+				combined.transform.SetParent (halter.transform);
+				halter.transform.SetParent (transform);
 			} else if (content.id == equippableItemID.LEAD){
 				TakeAllContent (player);
 			}
@@ -148,8 +172,13 @@ public class Hook : Interactable {
 					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
 				} else if (content.id == equippableItemID.HALTER_WITH_LEAD) {
+					//if halter and lead are hanging there, you can take one, the other or both
 					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
 				}
 			}
 			break;
