@@ -174,7 +174,6 @@ public class Horse_Interactable : Interactable {
 
 	private void PutOnHalterAndLead(Player player){
 
-
 		//store this here so that I can still access it once it's been unequipped
 		Equippable combinedEquippable = player.currentlyEquippedItem;
 

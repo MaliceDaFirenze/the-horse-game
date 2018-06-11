@@ -65,13 +65,13 @@ public class Hook : Interactable {
 			TakeContent (player, equippableItemID.HALTER_WITH_LEAD);
 			break;
 		case actionID.HANG_UP_HALTER:
-			HangUpGear (player, equippableItemID.HALTER);
+			HangUpGear (player);
 			break;
 		case actionID.HANG_UP_LEAD:
-			HangUpGear (player, equippableItemID.LEAD);
+			HangUpGear (player);
 			break;
 		case actionID.HANG_UP_HALTER_AND_LEAD:
-			HangUpGear (player, equippableItemID.HALTER_WITH_LEAD);
+			HangUpGear (player);
 			break;
 		}
 
@@ -133,13 +133,38 @@ public class Hook : Interactable {
 		content = null;
 	}
 
-	private void HangUpGear(Player player, equippableItemID contentToHangUp){
+	private void HangUpGear(Player player){
 		if (hookStatus == containerStatus.EMPTY) {
 			//if the hook is empty, you just hang up what you have
 			HangUpWithoutCombining (player);
 		} else {
+			Equippable halter = null;
+			Equippable lead = null;
+			Equippable combinedEquippable = null;
+
+			switch (player.currentlyEquippedItem.id) {
+			case equippableItemID.HALTER:
+				halter = player.currentlyEquippedItem;
+				lead = content;
+				break;
+			case equippableItemID.LEAD:
+				lead = player.currentlyEquippedItem;
+				halter = content;
+				break;
+			}
+		
+
+			//Find combined equippable in halter children
+			Equippable[] equippablesInHalter = halter.GetComponentsInChildren<Equippable> ();
+
+			for (int i = 0; i < equippablesInHalter.Length; ++i) {
+				if (equippablesInHalter [i].id == equippableItemID.HALTER_WITH_LEAD) {
+					combinedEquippable = equippablesInHalter [i];
+				}
+			}
+
 			//if something's already on the hook, and you hold a halter or a lead, you can combine the two
-			switch (contentToHangUp) {
+			switch (player.currentlyEquippedItem.id) {
 			case equippableItemID.HALTER:
 
 				break;
