@@ -113,8 +113,8 @@ public class Hook : Interactable {
 				content = halter;
 				lead.BeEquipped ();
 				player.EquipAnItem (lead);
-				combined.transform.SetParent (halter.transform);
 				halter.transform.SetParent (transform);
+				combined.transform.SetParent (halter.transform);
 			} else if (content.id == equippableItemID.LEAD){
 				TakeAllContent (player);
 			}
@@ -153,7 +153,6 @@ public class Hook : Interactable {
 				break;
 			}
 		
-
 			//Find combined equippable in halter children
 			Equippable[] equippablesInHalter = halter.GetComponentsInChildren<Equippable> ();
 
@@ -164,14 +163,18 @@ public class Hook : Interactable {
 			}
 
 			//if something's already on the hook, and you hold a halter or a lead, you can combine the two
-			switch (player.currentlyEquippedItem.id) {
-			case equippableItemID.HALTER:
-
-				break;
-			case equippableItemID.LEAD:
-
-				break;
-			}
+			player.UnequipEquippedItem ();
+			combinedEquippable.transform.SetParent (transform);
+			halter.transform.SetParent (combinedEquippable.transform);
+			lead.transform.SetParent (combinedEquippable.transform);
+			combinedEquippable.transform.localPosition = Vector3.zero;
+			halter.transform.localPosition = Vector3.zero;
+			lead.transform.localPosition = Vector3.zero;
+			combinedEquippable.transform.eulerAngles = Vector3.zero;
+			halter.transform.eulerAngles = Vector3.zero;
+			lead.transform.eulerAngles = Vector3.zero;
+			hookStatus = containerStatus.FULL;
+			content = combinedEquippable;
 		}
 	}
 
