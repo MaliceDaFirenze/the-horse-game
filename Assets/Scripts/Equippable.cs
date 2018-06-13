@@ -74,13 +74,14 @@ public class Equippable : MonoBehaviour {
 		}
 	}
 
-	public void EnableAllColliders (bool enable){
+	public void EnableAllColliders (bool enable, bool forceUpdateCollidersList = false){
 		Debug.Log ("set all colliders on " + name + " to enabled == " + enable);
 
-		if (allColliders.Length == 0) {
+		if (allColliders.Length == 0 || forceUpdateCollidersList) {
 			allColliders = GetComponentsInChildren<Collider> ();
 		}
 		for (int i = 0; i < allColliders.Length; ++i) {
+			Debug.Log ("in " + name + ", set collider of " + allColliders [i].name + " to " + enable);
 			allColliders [i].enabled = enable;
 		}
 	}

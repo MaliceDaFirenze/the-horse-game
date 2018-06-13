@@ -169,7 +169,8 @@ public class Horse_Interactable : Interactable {
 			child.localPosition = child.GetComponent<Equippable>().equippedOffset;
 		}
 
-		horseOnLeadEquippable.EnableAllColliders (true);
+		horseOnLeadEquippable.EnableAllColliders (true, true);
+		combinedEquippable.EnableAllColliders (false, true);
 	}
 
 	private void PutOnHalterAndLead(Player player){
