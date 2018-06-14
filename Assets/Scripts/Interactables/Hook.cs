@@ -21,39 +21,8 @@ public class Hook : Interactable {
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
-		/*switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS:
-			if (hookStatus == containerStatus.FULL) {
-				//take halter or lead or whatever hangs here
-				hookStatus = containerStatus.EMPTY;
-				player.EquipAnItem(content);
-				content.BeEquipped ();
-				content = null;
-			}
-			break;
-		case equippableItemID.HALTER:
-			if (hookStatus == containerStatus.EMPTY) {
-				hookStatus = containerStatus.FULL;
-				content = player.currentlyEquippedItem;
-				player.UnequipEquippedItem ();
-				content.transform.SetParent (transform);
-				content.transform.localPosition = Vector3.zero;
-			}
-			break;
-		case equippableItemID.LEAD:
-			if (hookStatus == containerStatus.EMPTY) {
-				hookStatus = containerStatus.FULL;
-				content = player.currentlyEquippedItem;
-				player.UnequipEquippedItem ();
-				content.transform.SetParent (transform);
-				content.transform.localPosition = Vector3.zero;
-			}
-			break;
-		default:
-			break;
-		}*/
-
-		//getintstring needs to recognize whether you can take halter, lead or both. content id can be halter&lead, and then add all three options (take one, take the other, take both) to the currentlyrelevantids
+		//getintstring needs to recognize whether you can take halter, lead or both. 
+		//content id can be halter&lead, and then add all three options (take one, take the other, take both) to the currentlyrelevantids
 		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 		case actionID.TAKE_HALTER:
 			TakeContent (player, equippableItemID.HALTER);

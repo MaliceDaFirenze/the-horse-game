@@ -52,7 +52,7 @@ public class Equippable : MonoBehaviour {
 		}
 	}
 
-	public void BeEquipped(){
+	public virtual void BeEquipped(){
 		consumable = GetComponent<Consumable> ();
 		if (consumable != null) {
 			consumable.Initialize ();
@@ -64,7 +64,7 @@ public class Equippable : MonoBehaviour {
 		transform.localScale *= equippedScaleFactor;
 	}
 
-	public void BeDropped(){
+	public virtual void BeDropped(){
 
 		transform.localScale = regularScale;
 		EnableAllColliders (true);
