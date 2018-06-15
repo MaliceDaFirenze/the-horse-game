@@ -81,9 +81,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4531080300482724}
   - component: {fileID: 135056809343420000}
-  - component: {fileID: 114425480527981180}
-  - component: {fileID: 114624750975426460}
   - component: {fileID: 114410753599189204}
+  - component: {fileID: 114937897619399540}
+  - component: {fileID: 114412605431385270}
   m_Layer: 0
   m_Name: Lead
   m_TagString: Untagged
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   anim: {fileID: 0}
---- !u!114 &114425480527981180
+--- !u!114 &114412605431385270
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408892319223318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1210bad3e66e1b4dbd8dca4e8211f78, type: 3}
+  m_Script: {fileID: 11500000, guid: e52cc3b60b2834a46beaecbec4994750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   emptyHandsAction: 
@@ -629,7 +629,7 @@ MonoBehaviour:
   selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
---- !u!114 &114624750975426460
+--- !u!114 &114937897619399540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -637,11 +637,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408892319223318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Script: {fileID: 11500000, guid: fff247362c3aee3499066cc4e0b3dd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
   dropPosYOffset: 0
+  equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 7

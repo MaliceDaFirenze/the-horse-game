@@ -19,8 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4050168155875742}
-  - component: {fileID: 114093943118638622}
   - component: {fileID: 135199540768127854}
+  - component: {fileID: 114830978950093052}
+  - component: {fileID: 114455975083106702}
   m_Layer: 0
   m_Name: HalterWithLead
   m_TagString: Untagged
@@ -54,9 +55,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4246585505799472}
   - component: {fileID: 135359960814913598}
-  - component: {fileID: 114164160570056044}
-  - component: {fileID: 114744181769214958}
   - component: {fileID: 114717210886239856}
+  - component: {fileID: 114319997449188220}
+  - component: {fileID: 114115518308771620}
   m_Layer: 0
   m_Name: Halter
   m_TagString: Untagged
@@ -146,27 +147,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301788237680766}
   m_Mesh: {fileID: 4300000, guid: 0db0a27066dbc8b42bd98c3e58e0c10f, type: 3}
---- !u!114 &114093943118638622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1207768211482218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedScaleFactor: 1
-  dropPosYOffset: 0
-  equippedOffset: {x: 0, y: 0, z: 0}
-  playerSpeedModifier: 1
-  equippedRotation: {x: 0, y: 0, z: 0}
-  id: 9
-  status: 0
-  fillNullPos: {fileID: 0}
-  content: {fileID: 0}
---- !u!114 &114164160570056044
+--- !u!114 &114115518308771620
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -174,7 +155,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 1519757011378708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1210bad3e66e1b4dbd8dca4e8211f78, type: 3}
+  m_Script: {fileID: 11500000, guid: e52cc3b60b2834a46beaecbec4994750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyHandsAction: 
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
+  arrowInputRequired: 
+  nextArrowIndexToInput: 0
+--- !u!114 &114319997449188220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519757011378708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff247362c3aee3499066cc4e0b3dd00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedScaleFactor: 1
+  dropPosYOffset: 0
+  equippedOffset: {x: 0, y: 0, z: 0}
+  playerSpeedModifier: 1
+  equippedRotation: {x: 0, y: 0, z: 0}
+  id: 6
+  status: 0
+  fillNullPos: {fileID: 0}
+  content: {fileID: 0}
+--- !u!114 &114455975083106702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207768211482218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52cc3b60b2834a46beaecbec4994750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   emptyHandsAction: 
@@ -197,15 +216,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   anim: {fileID: 0}
---- !u!114 &114744181769214958
+--- !u!114 &114830978950093052
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519757011378708}
+  m_GameObject: {fileID: 1207768211482218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
+  m_Script: {fileID: 11500000, guid: fff247362c3aee3499066cc4e0b3dd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
@@ -213,7 +232,7 @@ MonoBehaviour:
   equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
   equippedRotation: {x: 0, y: 0, z: 0}
-  id: 6
+  id: 9
   status: 0
   fillNullPos: {fileID: 0}
   content: {fileID: 0}

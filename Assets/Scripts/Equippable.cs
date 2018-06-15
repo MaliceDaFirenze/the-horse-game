@@ -81,7 +81,6 @@ public class Equippable : MonoBehaviour {
 			allColliders = GetComponentsInChildren<Collider> ();
 		}
 		for (int i = 0; i < allColliders.Length; ++i) {
-			Debug.Log ("in " + name + ", set collider of " + allColliders [i].name + " to " + enable);
 			allColliders [i].enabled = enable;
 		}
 	}
