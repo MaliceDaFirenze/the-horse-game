@@ -27,6 +27,7 @@ public class HorseGear_Interactable : Interactable {
 		Equippable lead = null;
 
 		if (equippable.id == equippableItemID.HALTER_WITH_LEAD) {
+			combined = equippable;
 			foreach (Transform child in equippable.transform) {
 				Equippable childEquippable = child.GetComponent<Equippable> ();
 				if (childEquippable.id == equippableItemID.HALTER) {
@@ -44,7 +45,8 @@ public class HorseGear_Interactable : Interactable {
 				halter.BeEquipped ();
 				player.EquipAnItem (halter);
 				combined.transform.SetParent (halter.transform);
-				lead.transform.SetParent (transform);
+				lead.transform.SetParent (null);
+				lead.GetComponent<SphereCollider> ().enabled = true;
 			} else if (equippable.id == equippableItemID.HALTER){
 				PickUpAll (player);
 			}
@@ -54,8 +56,10 @@ public class HorseGear_Interactable : Interactable {
 			if (equippable.id == equippableItemID.HALTER_WITH_LEAD) {
 				lead.BeEquipped ();
 				player.EquipAnItem (lead);
-				halter.transform.SetParent (transform);
+				halter.transform.SetParent (null);
 				combined.transform.SetParent (halter.transform);
+				halter.GetComponent<SphereCollider> ().enabled = true;
+				combined.GetComponent<SphereCollider> ().enabled = false;
 			} else if (equippable.id == equippableItemID.LEAD){
 				PickUpAll (player);
 			}
