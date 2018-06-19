@@ -35,6 +35,8 @@ public class ArrowSequences : MonoBehaviour {
 			return PutOnHalterAndLead();
 		case actionID.LEAD_HORSE:
 			return LeadHorse();
+		case actionID.TIE_HORSE_TO_POST:
+			return TieHorseToPost();
 		default:
 			return null;
 		}
@@ -120,6 +122,15 @@ public class ArrowSequences : MonoBehaviour {
 		return result;
 	}
 
+	private static dir[] TieHorseToPost (){
+		dir[] result = new dir[3];
+
+		result [0] = dir.LEFT;
+		result [1] = dir.DOWN;
+		result [2] = dir.RIGHT;
+		return result;
+	}
+
 	private static dir[] PetHorse (){
 		return GetRandomArray (3);
 	}
@@ -129,6 +140,11 @@ public class ArrowSequences : MonoBehaviour {
 
 		for (int i = 0; i < result.Length; ++i) {
 			result [i] = (dir)Random.Range (0, 3);
+			if (i >= 2) {
+				while (result [i - 1] == result [i] && result [i - 2] == result [i]) {
+					result [i] = (dir)Random.Range (0, 3);
+				}
+			}
 		}
 		return result;
 	}

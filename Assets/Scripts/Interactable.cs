@@ -26,7 +26,8 @@ public enum actionID {
 	PUT_ON_HALTER_AND_LEAD,
 	HANG_UP_HALTER_AND_LEAD,
 	LEAD_HORSE,
-	PICK_UP,
+	TIE_HORSE_TO_POST,
+	PICK_UP
 }
 
 public class Interactable : MonoBehaviour {

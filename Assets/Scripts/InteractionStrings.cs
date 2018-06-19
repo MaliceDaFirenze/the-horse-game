@@ -30,6 +30,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.PUT_ON_LEAD, "Put on Lead");
 		allInteractionStrings.Add (actionID.PUT_ON_HALTER_AND_LEAD, "Put on Halter and Lead");
 		allInteractionStrings.Add (actionID.LEAD_HORSE, "Lead Horse");
+		allInteractionStrings.Add (actionID.TIE_HORSE_TO_POST, "Tie Horse to Post");
 		allInteractionStrings.Add (actionID.PICK_UP, "Pick Up");
 	}
 
