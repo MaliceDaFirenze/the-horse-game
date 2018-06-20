@@ -240,10 +240,21 @@ public class Horse_Interactable : Interactable {
 		GenericUtilities.EnableAllColliders(headGearAttachment.transform, false);
 	}
 
+	public void TieHorseToPost(Player player){
+		StopLeadingHorse (player);
+		headGearAttachment.anim.Play ("Tied");
+		horseBehaviour.TieHorseToPost (true);
+	}
+
+	public void TakeHorseFromPost(Player player){
+		horseBehaviour.TieHorseToPost (false);
+		StartLeadingHorse (player);
+	}
+
 	private void StopLeadingHorse(Player player){
 		horseBehaviour.PutHorseOnLead(false);
 	}
-
+		
 	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear ();

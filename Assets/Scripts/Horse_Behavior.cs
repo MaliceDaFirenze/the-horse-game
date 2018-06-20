@@ -8,7 +8,8 @@ public enum horseState{
 	CONSUMING,
 	WALKINGTOTARGET,
 	PRODUCINGMANURE,
-	WAITINGONLEAD
+	WAITINGONLEAD,
+	TIEDTOPOST
 }
 
 public class Horse_Behavior : MonoBehaviour {
@@ -65,6 +66,9 @@ public class Horse_Behavior : MonoBehaviour {
 			break;
 		case horseState.WAITINGONLEAD:
 			currentBehaviour = StartCoroutine (WaitOnLead ());
+			break;
+		case horseState.TIEDTOPOST:
+			currentBehaviour = StartCoroutine (BeTiedToPost ());
 			break;
 		}
 	}
@@ -133,9 +137,25 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 	}
 
+	private IEnumerator BeTiedToPost(){
+		anim.SetBool ("Still", true);
+		while (true) {
+			yield return waitASecond;
+		}
+	}
+
 	public void PutHorseOnLead(bool onLead){
 		if (onLead) {
 			ChangeState (horseState.WAITINGONLEAD);
+		} else {
+			anim.SetBool ("Still", false);
+			ChangeState (horseState.IDLE);
+		}
+	}
+
+	public void TieHorseToPost(bool onPost){
+		if (onPost) {
+			ChangeState (horseState.TIEDTOPOST);
 		} else {
 			anim.SetBool ("Still", false);
 			ChangeState (horseState.IDLE);

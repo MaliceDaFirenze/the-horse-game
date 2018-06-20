@@ -1261,6 +1261,47 @@ Transform:
   m_Father: {fileID: 703288679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &459204448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 459204449}
+  - component: {fileID: 459204450}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &459204449
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459204448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 889601245}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &459204450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459204448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &527057878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,8 +2060,8 @@ GameObject:
   m_Component:
   - component: {fileID: 889601245}
   - component: {fileID: 889601244}
-  - component: {fileID: 889601243}
   - component: {fileID: 889601242}
+  - component: {fileID: 889601243}
   m_Layer: 0
   m_Name: Post
   m_TagString: Untagged
@@ -2062,8 +2103,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &889601243
-BoxCollider:
+--- !u!136 &889601243
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -2071,9 +2112,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 4.18
+  m_Height: 1.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.06, z: -2.48}
 --- !u!33 &889601244
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2092,6 +2134,7 @@ Transform:
   m_LocalScale: {x: 0.086460985, y: 0.85280573, z: 0.086460985}
   m_Children:
   - {fileID: 159382693}
+  - {fileID: 459204449}
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
