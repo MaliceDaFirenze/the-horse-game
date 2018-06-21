@@ -11,12 +11,16 @@ public class Horse_Interactable : Interactable {
 	public Transform halterTransform;
 	public Transform leadTransformLeading;
 	public Transform leadTransformHanging;
+	public Transform leadTransformTied;
 	public Transform playerLeadingPos;
 
 	//Gear
 	public HorseGear headGear;  //halter, bit etc
 	public HorseGear headGearAttachment;  //lead
 	public HorseGear backGear; //saddle, blanket, saddlepad?   
+
+	//definitions
+	private Vector3 positionOnPost = new Vector3(3.2f, -0.4f, -11.4f);
 
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
@@ -242,12 +246,19 @@ public class Horse_Interactable : Interactable {
 
 	public void TieHorseToPost(Player player){
 		StopLeadingHorse (player);
+		player.UnequipEquippedItem ();
 		headGearAttachment.anim.Play ("Tied");
+		transform.SetParent (player.nearestInteractable.transform);
+		transform.localPosition = positionOnPost;
+		headGearAttachment.transform.position = leadTransformTied.position;
+		headGearAttachment.transform.rotation = leadTransformTied.rotation;
+		headGearAttachment.transform.SetParent (leadTransformTied);
 		horseBehaviour.TieHorseToPost (true);
 	}
 
 	public void TakeHorseFromPost(Player player){
 		horseBehaviour.TieHorseToPost (false);
+		player.EquipAnItem (horseOnLeadEquippable);
 		StartLeadingHorse (player);
 	}
 
