@@ -28,6 +28,7 @@ public class Equippable : MonoBehaviour {
 	public float dropPosYOffset;
 	public Vector3 equippedOffset;
 	public float playerSpeedModifier = 1; //player is slower when they carry this
+	public bool preventSprintingWhileEquipped = true;
 	public Vector3 equippedRotation;
 	private Consumable consumable;
 

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 	//Interaction
 	public Interactable nearestInteractable;
 	public Horse_Stats nearestHorse;
+	public Horse_Behavior leadingHorse;
 	public Equippable currentlyEquippedItem;
 
 	//Physics
@@ -49,12 +50,31 @@ public class Player : MonoBehaviour {
 				rb.angularVelocity = Vector3.zero;
 			}
 
-			if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1) {
+			if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
 				speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
 			} else if (Input.GetKey (KeyCode.LeftShift)) {
 				speedMultiplier = sprintSpeedMultiplier;
 			} else {
 				speedMultiplier = 1f;
+			}
+
+			if (currentlyEquippedItem != null && currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
+				Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
+
+				if (leadingHorse == null) {
+					leadingHorse = currentlyEquippedItem.GetComponent<Horse_Behavior> ();
+				}
+
+				if (newMovementVector.magnitude > 0) {
+					if (Input.GetKey (KeyCode.LeftShift)) {
+						leadingHorse.currentHorseGait = horseGait.TROT;
+					} else {
+						leadingHorse.currentHorseGait = horseGait.WALK;
+					}
+				} else {
+					leadingHorse.currentHorseGait = horseGait.STAND;
+				}
+				
 			}
 
 			//------INTERACTION-------//

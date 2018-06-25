@@ -12,6 +12,14 @@ public enum horseState{
 	TIEDTOPOST
 }
 
+public enum horseGait{
+	STAND,
+	WALK,
+	TROT,
+	CANTER,
+	GALLOP
+}
+
 public class Horse_Behavior : MonoBehaviour {
 
 	//---References---/
@@ -21,6 +29,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 	public horseState currentHorseState;
 	private Coroutine currentBehaviour;
+	public horseGait currentHorseGait;
 
 	private Consumable currentTargetConsumable;
 	private float reachDistToConsumable = 2;
@@ -65,7 +74,7 @@ public class Horse_Behavior : MonoBehaviour {
 			currentBehaviour = StartCoroutine (ProduceManure());
 			break;
 		case horseState.WAITINGONLEAD:
-			currentBehaviour = StartCoroutine (WaitOnLead ());
+			currentBehaviour = StartCoroutine (BeLead ());
 			break;
 		case horseState.TIEDTOPOST:
 			currentBehaviour = StartCoroutine (BeTiedToPost ());
@@ -130,9 +139,26 @@ public class Horse_Behavior : MonoBehaviour {
 		ChangeState (horseState.IDLE);
 	}
 
-	private IEnumerator WaitOnLead(){
+	private IEnumerator BeLead(){
 		anim.SetBool ("Still", true);
 		while (true) {
+			switch (currentHorseGait) {
+			case horseGait.STAND:
+				anim.SetBool ("Still", true);
+				anim.SetBool ("Trot", false);
+				anim.SetBool ("Walk", false);
+				break;
+			case horseGait.WALK: 
+				anim.SetBool ("Walk", true);
+				anim.SetBool ("Trot", false);
+				anim.SetBool ("Still", false);
+				break;
+			case horseGait.TROT: 
+				anim.SetBool ("Trot", true);
+				anim.SetBool ("Still", false);
+				anim.SetBool ("Walk", false);
+				break;
+			}
 			yield return waitASecond;
 		}
 	}
