@@ -1,0 +1,214 @@
+fileFormatVersion: 2
+guid: 22e272c8789df184b95ae1b7d3309216
+timeCreated: 1530079027
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone_008
+    100004: Bone_009
+    100006: Cube
+    100008: Cylinder
+    100010: Elle_L
+    100012: Elle_R
+    100014: FesselHinten_L
+    100016: FesselHinten_R
+    100018: FesselVorne_L
+    100020: FesselVorne_R
+    100022: H_fte_L
+    100024: H_fte_R
+    100026: HalswirbelMitte
+    100028: HalswirbelOben
+    100030: HalswirbelUnten
+    100032: HufHinten_L
+    100034: HufHinten_R
+    100036: HufHintenIK_L
+    100038: HufHintenIK_R
+    100040: HufVorne_L
+    100042: HufVorne_R
+    100044: HufVorneIK_L
+    100046: HufVorneIK_R
+    100048: Kiefer
+    100050: Kopf
+    100052: KopfIK
+    100054: Kruppenwirbel
+    100056: Oberarm_L
+    100058: Oberarm_R
+    100060: Oberschenkel_L
+    100062: Oberschenkel_R
+    100064: R_ckenwirbel1
+    100066: R_ckenwirbel2
+    100068: R_hrbein_L
+    100070: R_hrbein_R
+    100072: Root
+    100074: //RootNode
+    100076: Schulter_L
+    100078: Schulter_R
+    100080: Schweifwirbel1
+    100082: Schweifwirbel2
+    100084: Schweifwirbel3
+    100086: Schweifwirbel4
+    100088: Unterschenkel_L
+    100090: Unterschenkel_R
+    100092: Girth
+    100094: HorseBody
+    100096: Pad
+    100098: Saddle
+    400000: Armature
+    400002: Bone_008
+    400004: Bone_009
+    400006: Cube
+    400008: Cylinder
+    400010: Elle_L
+    400012: Elle_R
+    400014: FesselHinten_L
+    400016: FesselHinten_R
+    400018: FesselVorne_L
+    400020: FesselVorne_R
+    400022: H_fte_L
+    400024: H_fte_R
+    400026: HalswirbelMitte
+    400028: HalswirbelOben
+    400030: HalswirbelUnten
+    400032: HufHinten_L
+    400034: HufHinten_R
+    400036: HufHintenIK_L
+    400038: HufHintenIK_R
+    400040: HufVorne_L
+    400042: HufVorne_R
+    400044: HufVorneIK_L
+    400046: HufVorneIK_R
+    400048: Kiefer
+    400050: Kopf
+    400052: KopfIK
+    400054: Kruppenwirbel
+    400056: Oberarm_L
+    400058: Oberarm_R
+    400060: Oberschenkel_L
+    400062: Oberschenkel_R
+    400064: R_ckenwirbel1
+    400066: R_ckenwirbel2
+    400068: R_hrbein_L
+    400070: R_hrbein_R
+    400072: Root
+    400074: //RootNode
+    400076: Schulter_L
+    400078: Schulter_R
+    400080: Schweifwirbel1
+    400082: Schweifwirbel2
+    400084: Schweifwirbel3
+    400086: Schweifwirbel4
+    400088: Unterschenkel_L
+    400090: Unterschenkel_R
+    400092: Girth
+    400094: HorseBody
+    400096: Pad
+    400098: Saddle
+    2100000: unnamed
+    2100002: Material_002
+    2100004: Material_003
+    2300000: Cylinder
+    2300002: Girth
+    2300004: HorseBody
+    2300006: Pad
+    2300008: Saddle
+    3300000: Cylinder
+    3300002: Girth
+    3300004: HorseBody
+    3300006: Pad
+    3300008: Saddle
+    4300000: Cylinder
+    4300002: Cube
+    4300004: Girth
+    4300006: Saddle
+    4300008: Pad
+    4300010: HorseBody
+    7400000: Default Take
+    7400002: ArmatureAction_001
+    7400004: Eat_001
+    7400006: Idle_002
+    7400008: Trot_001
+    7400010: Walk_002
+    9500000: //RootNode
+    13700000: Cube
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
