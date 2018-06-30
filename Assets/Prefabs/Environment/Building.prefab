@@ -1655,7 +1655,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad94f5bb1b543345ba6b9fee834a6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action: Sleep
+  emptyHandsAction: 
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
+  arrowInputRequired: 
+  nextArrowIndexToInput: 0
 --- !u!114 &114170429022080832
 MonoBehaviour:
   m_ObjectHideFlags: 1

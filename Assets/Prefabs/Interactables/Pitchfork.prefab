@@ -189,6 +189,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
   dropPosYOffset: 0.5
+  equippedOffset: {x: 0, y: 0, z: 0}
+  playerSpeedModifier: 1
+  preventSprintingWhileEquipped: 1
   equippedRotation: {x: 0, y: -256, z: 0}
   id: 4
   status: 0
@@ -208,7 +211,8 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
-  currentlyRelevantActionID: 0
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
 --- !u!135 &135709997359480464

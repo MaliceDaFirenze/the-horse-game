@@ -158,7 +158,8 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
-  currentlyRelevantActionID: 0
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
   hookStatus: 0
