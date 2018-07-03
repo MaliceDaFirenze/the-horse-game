@@ -176,6 +176,9 @@ public class Hook : Interactable {
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
+				} else if (content.id == equippableItemID.SADDLE_WITH_PAD) {
+					currentlyRelevantActionIDs.Add (actionID.TAKE_SADDLE_WITH_PAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
 				}
 			}
 			break;
