@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum hookType{
+	SADDLE,
+	SMALL
+}
+
 public class Hook : Interactable {
 
 	public containerStatus hookStatus;
+	public hookType type;
 	public Equippable content;
 
 	private void Start(){
@@ -33,6 +39,9 @@ public class Hook : Interactable {
 		case actionID.TAKE_HALTER_AND_LEAD:
 			TakeContent (player, equippableItemID.HALTER_WITH_LEAD);
 			break;
+		case actionID.TAKE_SADDLE_WITH_PAD:
+			TakeAllContent(player);
+			break;
 		case actionID.HANG_UP_HALTER:
 			HangUpGear (player);
 			break;
@@ -41,6 +50,9 @@ public class Hook : Interactable {
 			break;
 		case actionID.HANG_UP_HALTER_AND_LEAD:
 			HangUpGear (player);
+			break;
+		case actionID.HANG_UP_SADDLE_WITH_PAD:
+			HangUpWithoutCombining(player);
 			break;
 		}
 
@@ -159,49 +171,67 @@ public class Hook : Interactable {
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear();
 
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS: 
-			if (hookStatus == containerStatus.FULL) {
-				if (content.id == equippableItemID.HALTER) {
-					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
-				} else if (content.id == equippableItemID.LEAD) {
-					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
-				} else if (content.id == equippableItemID.HALTER_WITH_LEAD) {
-					//if halter and lead are hanging there, you can take one, the other or both
-					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
-					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
-					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
-				} else if (content.id == equippableItemID.SADDLE_WITH_PAD) {
-					currentlyRelevantActionIDs.Add (actionID.TAKE_SADDLE_WITH_PAD);
-					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
-				}
-			}
-			break;
-		case equippableItemID.HALTER:
-			if (hookStatus == containerStatus.EMPTY || (content != null && content.id == equippableItemID.LEAD)) {//TODO: if lead is there already, combine
-				currentlyRelevantActionIDs.Add(actionID.HANG_UP_HALTER);
-				result.Add(InteractionStrings.GetInteractionStringById(actionID.HANG_UP_HALTER));
-			}
-			break;
-		case equippableItemID.LEAD:
-			if (hookStatus == containerStatus.EMPTY || (content != null && content.id == equippableItemID.HALTER)) { //TODO: if halter is there already, combine
-				currentlyRelevantActionIDs.Add(actionID.HANG_UP_LEAD);
-				result.Add(InteractionStrings.GetInteractionStringById(actionID.HANG_UP_LEAD));
-			}
-			break;
-		case equippableItemID.HALTER_WITH_LEAD:
-			if (hookStatus == containerStatus.EMPTY) {
-				currentlyRelevantActionIDs.Add(actionID.HANG_UP_HALTER_AND_LEAD);
-				result.Add(InteractionStrings.GetInteractionStringById(actionID.HANG_UP_HALTER_AND_LEAD));
-			}
-			break;
-		}
 
+		if (type == hookType.SMALL) {
+		
+			switch (player.currentlyEquippedItem.id) {
+			case equippableItemID.BAREHANDS: 
+				if (hookStatus == containerStatus.FULL) {
+					if (content.id == equippableItemID.HALTER) {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+					} else if (content.id == equippableItemID.LEAD) {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
+					} else if (content.id == equippableItemID.HALTER_WITH_LEAD) {
+						//if halter and lead are hanging there, you can take one, the other or both
+						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
+						currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
+					} 
+				}
+				break;
+			case equippableItemID.HALTER:
+				if (hookStatus == containerStatus.EMPTY || (content != null && content.id == equippableItemID.LEAD)) {//TODO: if lead is there already, combine
+					currentlyRelevantActionIDs.Add (actionID.HANG_UP_HALTER);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_HALTER));
+				}
+				break;
+			case equippableItemID.LEAD:
+				if (hookStatus == containerStatus.EMPTY || (content != null && content.id == equippableItemID.HALTER)) { //TODO: if halter is there already, combine
+					currentlyRelevantActionIDs.Add (actionID.HANG_UP_LEAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_LEAD));
+				}
+				break;
+			case equippableItemID.HALTER_WITH_LEAD:
+				if (hookStatus == containerStatus.EMPTY) {
+					currentlyRelevantActionIDs.Add (actionID.HANG_UP_HALTER_AND_LEAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_HALTER_AND_LEAD));
+				}
+				break;
+			}
+		} else if (type == hookType.SADDLE) {
+			switch (player.currentlyEquippedItem.id) {
+			case equippableItemID.BAREHANDS: 
+				if (hookStatus == containerStatus.FULL) {
+					if (content.id == equippableItemID.SADDLE_WITH_PAD) {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_SADDLE_WITH_PAD);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
+					}
+				}
+				break;
+			case equippableItemID.SADDLE_WITH_PAD:
+				if (hookStatus == containerStatus.EMPTY) {
+					currentlyRelevantActionIDs.Add (actionID.HANG_UP_SADDLE_WITH_PAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_SADDLE_WITH_PAD));
+				}
+				break;
+			}
+		}
+			
 		return result;
 
 	}

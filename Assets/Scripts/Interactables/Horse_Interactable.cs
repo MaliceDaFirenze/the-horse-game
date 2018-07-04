@@ -12,6 +12,7 @@ public class Horse_Interactable : Interactable {
 	public Transform leadTransformLeading;
 	public Transform leadTransformHanging;
 	public Transform leadTransformTied;
+	public Transform saddleTransform;
 	public Transform playerLeadingPos;
 
 	//Gear
