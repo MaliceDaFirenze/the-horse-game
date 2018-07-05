@@ -57,11 +57,17 @@ public class Horse_Interactable : Interactable {
 		case actionID.TAKE_LEAD:
 			TakeOffLead (player);
 			break;
+		case actionID.TAKE_SADDLE_WITH_PAD:
+			TakeOffSaddleAndPad (player);
+			break;
 		case actionID.TAKE_HALTER_AND_LEAD:
 			TakeOffHalterAndLead (player);
 			break;
 		case actionID.PUT_ON_HALTER_AND_LEAD:
 			PutOnHalterAndLead (player);
+			break;
+		case actionID.PUT_ON_SADDLE_WITH_PAD:
+			PutOnSaddleAndPad (player);
 			break;
 		case actionID.LEAD_HORSE:
 			StartLeadingHorse (player);
@@ -114,6 +120,26 @@ public class Horse_Interactable : Interactable {
 		GenericUtilities.EnableAllColliders (headGearAttachment.transform, false);
 
 		StartLeadingHorse (player);
+	}
+
+	private void PutOnSaddleAndPad (Player player){
+		//TODO: girth pos
+		backGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+
+		player.UnequipEquippedItem ();
+
+		backGear.transform.position = saddleTransform.position;
+		backGear.transform.rotation = saddleTransform.rotation;
+		backGear.transform.SetParent (saddleTransform);
+		GenericUtilities.EnableAllColliders (backGear.transform, false);
+	} 
+	private void TakeOffSaddleAndPad (Player player){
+		//TODO: girth pos
+		Equippable saddleEquippable = backGear.GetComponent<Equippable> ();
+		backGear = null;
+
+		player.EquipAnItem(saddleEquippable);
+		saddleEquippable.BeEquipped ();
 	}
 
 	private void TakeOffHalter(Player player){
@@ -266,7 +292,7 @@ public class Horse_Interactable : Interactable {
 	private void StopLeadingHorse(Player player){
 		horseBehaviour.PutHorseOnLead(false);
 	}
-		
+
 	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear ();
@@ -291,6 +317,10 @@ public class Horse_Interactable : Interactable {
 						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 					}
 				}
+			}
+			if (backGear != null) {
+				currentlyRelevantActionIDs.Add (actionID.TAKE_SADDLE_WITH_PAD);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
 			}
 			break;
 		case equippableItemID.STRAW:
@@ -338,6 +368,12 @@ public class Horse_Interactable : Interactable {
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_HALTER_AND_LEAD));
 			}
 			break;
+		case equippableItemID.SADDLE_WITH_PAD:
+			if (backGear == null) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_ON_SADDLE_WITH_PAD);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_SADDLE_WITH_PAD));
+			}
+		break;
 		}
 		return result;
 	}

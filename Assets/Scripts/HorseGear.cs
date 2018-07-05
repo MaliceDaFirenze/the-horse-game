@@ -6,7 +6,7 @@ public enum horseGearType{
 	HALTER,
 	LEAD,
 	BRIDLE,
-	SADDLE
+	SADDLE_WITH_PAD
 }
 
 public class HorseGear : MonoBehaviour {
