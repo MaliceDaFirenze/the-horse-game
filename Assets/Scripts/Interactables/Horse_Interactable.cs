@@ -123,8 +123,10 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void PutOnSaddleAndPad (Player player){
-		//TODO: girth pos
 		backGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+
+		backGear.girth.position = backGear.girthPosOnHorse.position;
+		backGear.girth.rotation = backGear.girthPosOnHorse.rotation;
 
 		player.UnequipEquippedItem ();
 
@@ -134,8 +136,10 @@ public class Horse_Interactable : Interactable {
 		GenericUtilities.EnableAllColliders (backGear.transform, false);
 	} 
 	private void TakeOffSaddleAndPad (Player player){
-		//TODO: girth pos
 		Equippable saddleEquippable = backGear.GetComponent<Equippable> ();
+		backGear.girth.position = backGear.girthPosHanging.position;
+		backGear.girth.rotation = backGear.girthPosHanging.rotation;
+
 		backGear = null;
 
 		player.EquipAnItem(saddleEquippable);

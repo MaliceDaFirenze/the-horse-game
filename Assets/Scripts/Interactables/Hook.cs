@@ -12,6 +12,7 @@ public class Hook : Interactable {
 	public containerStatus hookStatus;
 	public hookType type;
 	public Equippable content;
+	public Transform overrideContentPos;
 
 	private void Start(){
 		//search in children, 'equip' halter or lead if any are there
@@ -163,8 +164,14 @@ public class Hook : Interactable {
 		hookStatus = containerStatus.FULL;
 		content = player.currentlyEquippedItem;
 		player.UnequipEquippedItem ();
+
 		content.transform.SetParent (transform);
-		content.transform.localPosition = Vector3.zero;
+		if (overrideContentPos == null) {
+			content.transform.localPosition = Vector3.zero;
+		} else {
+			content.transform.position = overrideContentPos.position;
+			content.transform.rotation = overrideContentPos.rotation;
+		}
 	}
 
 	public override List<string> DefineInteraction (Player player)	{

@@ -13,6 +13,10 @@ public class HorseGear : MonoBehaviour {
 	public horseGearType type;
 	public Animator anim;
 
+	public Transform girthPosOnHorse;
+	public Transform girthPosHanging;
+	public Transform girth;
+
 	void Start(){
 		anim = GetComponentInChildren<Animator> ();
 	}
