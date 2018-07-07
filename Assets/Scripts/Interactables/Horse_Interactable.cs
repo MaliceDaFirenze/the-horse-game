@@ -285,6 +285,7 @@ public class Horse_Interactable : Interactable {
 		headGearAttachment.transform.rotation = leadTransformTied.rotation;
 		headGearAttachment.transform.SetParent (leadTransformTied);
 		horseBehaviour.TieHorseToPost (true);
+		GenericUtilities.EnableAllColliders (transform, true);
 	}
 
 	public void TakeHorseFromPost(Player player){

@@ -37,6 +37,8 @@ public class ArrowSequences : MonoBehaviour {
 			return LeadHorse();
 		case actionID.TIE_HORSE_TO_POST:
 			return TieHorseToPost();
+		case actionID.PUT_ON_SADDLE_WITH_PAD:
+			return PutOnSaddleWithPad();
 		default:
 			return null;
 		}
@@ -131,6 +133,15 @@ public class ArrowSequences : MonoBehaviour {
 		return result;
 	}
 
+	private static dir[] PutOnSaddleWithPad (){
+		dir[] result = new dir[4];
+
+		result [0] = dir.UP;
+		result [1] = dir.UP;
+		result [2] = dir.DOWN;
+		result [3] = dir.RIGHT;
+		return result;
+	}
 	private static dir[] PetHorse (){
 		return GetRandomArray (3);
 	}

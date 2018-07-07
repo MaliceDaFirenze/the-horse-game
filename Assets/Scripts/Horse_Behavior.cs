@@ -106,6 +106,8 @@ public class Horse_Behavior : MonoBehaviour {
 			yield return waitASecond;
 		}
 
+		navMeshAgent.Stop ();
+		navMeshAgent.ResetPath ();
 		anim.SetBool ("Walk", false);
 		ChangeState (horseState.CONSUMING);
 	}

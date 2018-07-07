@@ -59,7 +59,7 @@ public class Player : MonoBehaviour {
 			}
 
 			if (currentlyEquippedItem != null && currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
-				Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
+				//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
 
 				if (leadingHorse == null) {
 					leadingHorse = currentlyEquippedItem.GetComponent<Horse_Behavior> ();
