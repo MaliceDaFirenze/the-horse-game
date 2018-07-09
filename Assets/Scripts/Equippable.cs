@@ -49,7 +49,7 @@ public class Equippable : MonoBehaviour {
 
 	public void Initialize(){
 		if (!wasInitialized) {
-			regularScale = transform.localScale;
+			regularScale = transform.lossyScale;
 			wasInitialized = true;
 		}
 	}
