@@ -9,10 +9,22 @@ ModelImporter:
     100002: Cylinder
     100004: Plane
     100006: Cube
+    100008: Armature
+    100010: Bone
+    100012: Bone_001
+    100014: Bone_002
+    100016: Bone_003
+    100018: Bone_004
     400000: //RootNode
     400002: Cylinder
     400004: Plane
     400006: Cube
+    400008: Armature
+    400010: Bone
+    400012: Bone_001
+    400014: Bone_002
+    400016: Bone_003
+    400018: Bone_004
     2100000: unnamed
     2100002: Material_001
     2300000: //RootNode
@@ -27,7 +39,11 @@ ModelImporter:
     4300002: Plane
     4300004: Cube
     7400000: Default Take
+    7400002: Hanging
+    7400004: Leading
+    7400006: OnHorse
     9500000: //RootNode
+    13700000: Plane
   externalObjects: {}
   materials:
     importMaterials: 1
