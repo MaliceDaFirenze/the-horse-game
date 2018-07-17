@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	private Rigidbody rb;
 
 	//Movement
-	private float speed = 1.5f;
+	private float speed = 3f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier;
 	private Vector3 newMovementVector = new Vector3(0,0,0);

@@ -13,7 +13,8 @@ public enum equippableItemID{
 	LEAD,
 	HORSE_ON_LEAD,
 	HALTER_WITH_LEAD,
-	SADDLE_WITH_PAD	
+	SADDLE_WITH_PAD,
+	BRIDLE
 }
 
 public enum containerStatus{
