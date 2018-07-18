@@ -33,7 +33,9 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.TIE_HORSE_TO_POST, "Tie Horse to Post");
 		allInteractionStrings.Add (actionID.TAKE_SADDLE_WITH_PAD, "Take Saddle and Pad");
 		allInteractionStrings.Add (actionID.PUT_ON_SADDLE_WITH_PAD, "Put on Saddle and Pad");
-		allInteractionStrings.Add (actionID.HANG_UP_SADDLE_WITH_PAD, "Stow Saddle and Pad");
+		allInteractionStrings.Add (actionID.TAKE_BRIDLE, "Take Bridle");
+		allInteractionStrings.Add (actionID.PUT_ON_BRIDLE, "Put on Bridle");
+		allInteractionStrings.Add (actionID.HANG_UP_BRIDLE, "Hang up Bridle");
 		allInteractionStrings.Add (actionID.PICK_UP, "Pick Up");
 	}
 

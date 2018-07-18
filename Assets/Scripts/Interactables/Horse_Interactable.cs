@@ -13,6 +13,7 @@ public class Horse_Interactable : Interactable {
 	public Transform leadTransformHanging;
 	public Transform leadTransformTied;
 	public Transform saddleTransform;
+	public Transform bridleTransform;
 	public Transform playerLeadingPos;
 
 	//Gear
@@ -68,6 +69,9 @@ public class Horse_Interactable : Interactable {
 			break;
 		case actionID.PUT_ON_SADDLE_WITH_PAD:
 			PutOnSaddleAndPad (player);
+			break;
+		case actionID.PUT_ON_BRIDLE:
+			PutOnBridle (player);
 			break;
 		case actionID.LEAD_HORSE:
 			StartLeadingHorse (player);
@@ -144,6 +148,25 @@ public class Horse_Interactable : Interactable {
 
 		player.EquipAnItem(saddleEquippable);
 		saddleEquippable.BeEquipped ();
+	}
+
+	private void PutOnBridle(Player player){
+		headGear = player.currentlyEquippedItem.GetComponent<HorseGear> ();
+		player.UnequipEquippedItem ();
+
+		headGear.transform.position = bridleTransform.position;
+		headGear.transform.rotation = bridleTransform.rotation;
+		headGear.transform.SetParent (bridleTransform);
+		GenericUtilities.EnableAllColliders (headGear.transform, false);
+	}
+
+	private void TakeOffBridle(Player player){
+		Equippable bridleEquippable = headGear.GetComponent<Equippable> ();
+
+		headGear = null;
+
+		player.EquipAnItem(bridleEquippable);
+		bridleEquippable.BeEquipped ();
 	}
 
 	private void TakeOffHalter(Player player){
@@ -321,6 +344,9 @@ public class Horse_Interactable : Interactable {
 						currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER);
 						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 					}
+				} else if (headGear.type == horseGearType.BRIDLE) {
+					currentlyRelevantActionIDs.Add (actionID.TAKE_BRIDLE);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_BRIDLE));
 				}
 			}
 			if (backGear != null) {
@@ -378,7 +404,13 @@ public class Horse_Interactable : Interactable {
 				currentlyRelevantActionIDs.Add (actionID.PUT_ON_SADDLE_WITH_PAD);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_SADDLE_WITH_PAD));
 			}
-		break;
+			break;
+		case equippableItemID.BRIDLE:
+			if (headGear == null) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_ON_BRIDLE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_ON_BRIDLE));
+			}
+			break;
 		}
 		return result;
 	}

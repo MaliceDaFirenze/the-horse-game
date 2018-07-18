@@ -43,6 +43,9 @@ public class Hook : Interactable {
 		case actionID.TAKE_SADDLE_WITH_PAD:
 			TakeAllContent(player);
 			break;
+		case actionID.TAKE_BRIDLE:
+			TakeAllContent(player);
+			break;
 		case actionID.HANG_UP_HALTER:
 			HangUpGear (player);
 			break;
@@ -53,6 +56,9 @@ public class Hook : Interactable {
 			HangUpGear (player);
 			break;
 		case actionID.HANG_UP_SADDLE_WITH_PAD:
+			HangUpWithoutCombining(player);
+			break;
+		case actionID.HANG_UP_BRIDLE:
 			HangUpWithoutCombining(player);
 			break;
 		}
@@ -198,7 +204,10 @@ public class Hook : Interactable {
 						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER));
 						currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
 						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
-					} 
+					} else if (content.id == equippableItemID.BRIDLE) {
+						currentlyRelevantActionIDs.Add (actionID.TAKE_BRIDLE);
+						result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_BRIDLE));
+					}
 				}
 				break;
 			case equippableItemID.HALTER:
@@ -217,6 +226,12 @@ public class Hook : Interactable {
 				if (hookStatus == containerStatus.EMPTY) {
 					currentlyRelevantActionIDs.Add (actionID.HANG_UP_HALTER_AND_LEAD);
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_HALTER_AND_LEAD));
+				}
+				break;
+			case equippableItemID.BRIDLE:
+				if (hookStatus == containerStatus.EMPTY) {
+					currentlyRelevantActionIDs.Add (actionID.HANG_UP_BRIDLE);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.HANG_UP_BRIDLE));
 				}
 				break;
 			}
