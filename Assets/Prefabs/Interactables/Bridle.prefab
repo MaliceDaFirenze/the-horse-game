@@ -300,21 +300,21 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768555163770380}
-  m_LocalRotation: {x: 0.9144259, y: 0, z: 0, w: -0.40475336}
-  m_LocalPosition: {x: 1.5999423, y: 2.838767, z: 0.6747601}
+  m_LocalRotation: {x: -0.8992297, y: 0, z: 0, w: 0.43747687}
+  m_LocalPosition: {x: 1.6, y: 2.841, z: 0.624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4890680019867064}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -128.114, y: 0, z: 0}
 --- !u!4 &4884685169900510
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629085980235510}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.056, y: 0.741, z: -8.773}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -14.82281, y: 0.9824613, z: 4.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4890680019867064}
@@ -327,8 +327,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160784208792256}
-  m_LocalRotation: {x: -0.00051005435, y: -0.5953549, z: 0.01576848, w: 0.80330795}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0123310555, y: 0.9998689, z: -0.009845541, w: -0.0036382074}
+  m_LocalPosition: {x: 0.58, y: -0.996, z: 0.119}
   m_LocalScale: {x: 0.32953188, y: 0.32953185, z: 0.32953194}
   m_Children:
   - {fileID: 4327104404202066}
@@ -337,7 +337,7 @@ Transform:
   - {fileID: 4578812784505204}
   m_Father: {fileID: 4884685169900510}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -358.971, y: -73.073006, z: 1.4870001}
+  m_LocalEulerAnglesHint: {x: -358.867, y: -179.59702, z: -1.409}
 --- !u!23 &23092446227587350
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  anim: {fileID: 0}
+  anim: {fileID: 95008758028670622}
   girthPosOnHorse: {fileID: 0}
   girthPosHanging: {fileID: 0}
   girth: {fileID: 0}

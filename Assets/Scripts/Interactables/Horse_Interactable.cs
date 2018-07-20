@@ -73,8 +73,17 @@ public class Horse_Interactable : Interactable {
 		case actionID.PUT_ON_BRIDLE:
 			PutOnBridle (player);
 			break;
+		case actionID.TAKE_BRIDLE:
+			TakeOffBridle (player);
+			break;
 		case actionID.LEAD_HORSE:
 			StartLeadingHorse (player);
+			break;
+		case actionID.LEAD_BY_REINS:
+			StartLeadingHorseByReins (player);
+			break;
+		case actionID.STOP_LEADING_BY_REINS:
+			StopLeadingHorseByReins (player);
 			break;
 		}
 	}
@@ -157,10 +166,12 @@ public class Horse_Interactable : Interactable {
 		headGear.transform.position = bridleTransform.position;
 		headGear.transform.rotation = bridleTransform.rotation;
 		headGear.transform.SetParent (bridleTransform);
+		headGear.anim.Play ("OnHorse");
 		GenericUtilities.EnableAllColliders (headGear.transform, false);
 	}
 
 	private void TakeOffBridle(Player player){
+		headGear.anim.Play ("Still");
 		Equippable bridleEquippable = headGear.GetComponent<Equippable> ();
 
 		headGear = null;
@@ -286,6 +297,17 @@ public class Horse_Interactable : Interactable {
 		player.EquipAnItem(horseOnLeadEquippable, false);
 	}
 
+	private void StartLeadingHorseByReins(Player player){
+		headGear.anim.Play ("Leading");
+
+		horseBehaviour.PutHorseOnLead(true);
+	
+		player.transform.position = playerLeadingPos.position;
+		player.transform.rotation = playerLeadingPos.rotation;
+
+		player.EquipAnItem(horseOnLeadEquippable, false);
+	}
+
 	public void LeadIsDropped(Player player){
 		headGearAttachment.anim.Play ("Hanging");
 		headGearAttachment.transform.position = leadTransformHanging.position;
@@ -320,6 +342,11 @@ public class Horse_Interactable : Interactable {
 	private void StopLeadingHorse(Player player){
 		horseBehaviour.PutHorseOnLead(false);
 	}
+	private void StopLeadingHorseByReins (Player player){
+		player.UnequipEquippedItem ();
+		horseBehaviour.PutHorseOnLead(false);
+		headGear.anim.Play ("OnHorse");
+	}
 
 	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
@@ -347,6 +374,8 @@ public class Horse_Interactable : Interactable {
 				} else if (headGear.type == horseGearType.BRIDLE) {
 					currentlyRelevantActionIDs.Add (actionID.TAKE_BRIDLE);
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_BRIDLE));
+					currentlyRelevantActionIDs.Add (actionID.LEAD_BY_REINS);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.LEAD_BY_REINS));
 				}
 			}
 			if (backGear != null) {
@@ -386,11 +415,16 @@ public class Horse_Interactable : Interactable {
 			break;
 		case equippableItemID.HORSE_ON_LEAD:
 			if (player.currentlyEquippedItem == horseOnLeadEquippable) { //i.e. it's this horse and not a different horse
-				currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
-				result.Add(InteractionStrings.GetInteractionStringById(actionID.TAKE_LEAD));
+				if (headGear.type == horseGearType.HALTER) {
+					currentlyRelevantActionIDs.Add (actionID.TAKE_LEAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_LEAD));
 
-				currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
-				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+					currentlyRelevantActionIDs.Add (actionID.TAKE_HALTER_AND_LEAD);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_HALTER_AND_LEAD));
+				} else if (headGear.type == horseGearType.BRIDLE) {
+					currentlyRelevantActionIDs.Add (actionID.STOP_LEADING_BY_REINS);
+					result.Add (InteractionStrings.GetInteractionStringById (actionID.STOP_LEADING_BY_REINS));
+				}
 			}
 			break;
 		case equippableItemID.HALTER_WITH_LEAD:
