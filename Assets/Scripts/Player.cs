@@ -162,7 +162,12 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem.BeDropped();
 
 		if (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
-			currentlyEquippedItem.GetComponent<Horse_Interactable> ().LeadIsDropped(this);
+			Horse_Interactable horseInt = currentlyEquippedItem.GetComponent<Horse_Interactable> ();
+			if (horseInt.headGear.type == horseGearType.HALTER) {
+				horseInt.LeadIsDropped (this);
+			} else if (horseInt.headGear.type == horseGearType.BRIDLE) {
+				horseInt.StopLeadingHorseByReins (this);
+			}
 		}
 
 		currentlyEquippedItem = playerHands;

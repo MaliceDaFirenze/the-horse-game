@@ -342,10 +342,11 @@ public class Horse_Interactable : Interactable {
 	private void StopLeadingHorse(Player player){
 		horseBehaviour.PutHorseOnLead(false);
 	}
-	private void StopLeadingHorseByReins (Player player){
+	public void StopLeadingHorseByReins (Player player){
 		player.UnequipEquippedItem ();
 		horseBehaviour.PutHorseOnLead(false);
 		headGear.anim.Play ("OnHorse");
+		GenericUtilities.EnableAllColliders (transform, true);
 	}
 
 	public override List<string> DefineInteraction (Player player)	{
