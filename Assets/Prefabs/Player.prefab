@@ -70,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4694251238733578}
   - component: {fileID: 33660962599871894}
-  - component: {fileID: 135351864680645520}
   - component: {fileID: 23555344400687852}
   m_Layer: 0
   m_Name: Sphere
@@ -138,7 +137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4154992725229244}
   - component: {fileID: 33079656271156494}
-  - component: {fileID: 135456536684650050}
   - component: {fileID: 23518764861768560}
   m_Layer: 0
   m_Name: Sphere (1)
@@ -222,9 +220,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1268129346126096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 0, z: -7.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -17.009949, y: -0.79557496, z: -6.174716}
+  m_LocalScale: {x: 2.0736501, y: 2.0736504, z: 2.0736504}
   m_Children:
   - {fileID: 4075287413786586}
   - {fileID: 4055700981585036}
@@ -270,8 +268,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1826530123389404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.006, y: 0.04, z: -0.01}
-  m_LocalScale: {x: 0.47457373, y: 0.87449896, z: 0.47789663}
+  m_LocalPosition: {x: -0.006, y: 0.156, z: -0.01}
+  m_LocalScale: {x: 0.47457373, y: 0.631064, z: 0.47789663}
   m_Children: []
   m_Father: {fileID: 4352399959791966}
   m_RootOrder: 4
@@ -564,7 +562,9 @@ MonoBehaviour:
   allowPlayerInput: 0
   nearestInteractable: {fileID: 0}
   nearestHorse: {fileID: 0}
+  leadingHorse: {fileID: 0}
   currentlyEquippedItem: {fileID: 0}
+  ui: {fileID: 0}
   equippedItemPos: {fileID: 4075287413786586}
   dropItemPos: {fileID: 4029224189278364}
 --- !u!114 &114921796864695578
@@ -579,31 +579,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
+  dropPosYOffset: 0
+  equippedOffset: {x: 0, y: 0, z: 0}
+  playerSpeedModifier: 1
+  preventSprintingWhileEquipped: 1
+  equippedRotation: {x: 0, y: 0, z: 0}
   id: 0
---- !u!135 &135351864680645520
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1397888516955870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135456536684650050
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1654201508241838}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  status: 0
+  fillNullPos: {fileID: 0}
+  content: {fileID: 0}
 --- !u!136 &136026833078911656
 CapsuleCollider:
   m_ObjectHideFlags: 1

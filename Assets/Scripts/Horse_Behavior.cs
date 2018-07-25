@@ -181,7 +181,6 @@ public class Horse_Behavior : MonoBehaviour {
 			ChangeState (horseState.IDLE);
 		}
 	}
-
 	public void TieHorseToPost(bool onPost){
 		if (onPost) {
 			ChangeState (horseState.TIEDTOPOST);

@@ -8,6 +8,7 @@ public class InteractionStrings : MonoBehaviour {
 
 	public static void SetupStrings(){
 		allInteractionStrings.Add (actionID._EMPTYSTRING, "");
+		allInteractionStrings.Add (actionID.PICK_UP, "Pick Up");
 		allInteractionStrings.Add (actionID.BRUSH_HORSE, "Brush Horse");
 		allInteractionStrings.Add (actionID.CLEAN_MANURE, "Clean Manure");
 		allInteractionStrings.Add (actionID.EMPTY_PITCHFORK, "Empty Pitchfork");
@@ -39,7 +40,8 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.HANG_UP_BRIDLE, "Hang up Bridle");
 		allInteractionStrings.Add (actionID.LEAD_BY_REINS, "Lead Horse by Reins");
 		allInteractionStrings.Add (actionID.STOP_LEADING_BY_REINS, "Stop Leading by Reins");
-		allInteractionStrings.Add (actionID.PICK_UP, "Pick Up");
+		allInteractionStrings.Add (actionID.MOUNT_HORSE, "Mount Horse");
+		allInteractionStrings.Add (actionID.DISMOUNT_HORSE, "Dismount"); //this is probably not used anywhere
 	}
 
 	public static string GetInteractionStringById(actionID id){

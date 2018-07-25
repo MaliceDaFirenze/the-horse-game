@@ -8,6 +8,7 @@ public class Horse_Interactable : Interactable {
 	private Horse_Stats horseStats;
 	private Horse_Behavior horseBehaviour;
 	private Equippable horseOnLeadEquippable;
+	private Equippable mountedHorseEquippable;
 	public Transform halterTransform;
 	public Transform leadTransformLeading;
 	public Transform leadTransformHanging;
@@ -15,6 +16,7 @@ public class Horse_Interactable : Interactable {
 	public Transform saddleTransform;
 	public Transform bridleTransform;
 	public Transform playerLeadingPos;
+	public Transform playerMountedPos;
 
 	//Gear
 	public HorseGear headGear;  //halter, bit etc
@@ -27,7 +29,19 @@ public class Horse_Interactable : Interactable {
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
 		horseBehaviour = GetComponent<Horse_Behavior> ();
-		horseOnLeadEquippable = GetComponent<Equippable> ();
+
+		//get all equippable components on this GO, go through and assign them by id
+		Equippable[] allEquippables = GetComponents<Equippable>();
+		foreach (Equippable e in allEquippables) {
+			switch (e.id) {
+			case equippableItemID.HORSE_ON_LEAD:
+				horseOnLeadEquippable = e;
+				break;
+			case equippableItemID.HORSE_MOUNTED:
+				mountedHorseEquippable = e;
+				break;
+			}
+		}
 	}
 
 	public override void PlayerInteracts(Player player){
@@ -84,6 +98,12 @@ public class Horse_Interactable : Interactable {
 			break;
 		case actionID.STOP_LEADING_BY_REINS:
 			StopLeadingHorseByReins (player);
+			break;
+		case actionID.MOUNT_HORSE:
+			MountHorse (player);
+			break;
+		case actionID.DISMOUNT_HORSE:
+			Dismount (player);
 			break;
 		}
 	}
@@ -349,6 +369,24 @@ public class Horse_Interactable : Interactable {
 		GenericUtilities.EnableAllColliders (transform, true);
 	}
 
+	private void MountHorse(Player player){
+		horseBehaviour.PutHorseOnLead(true);
+		//atm this doesnt seem to need its own particular 'put under saddle' function yet, functionality is the same for now
+
+		//move player to leading position
+		player.transform.position = playerMountedPos.position;
+		player.transform.rotation = playerMountedPos.rotation;
+		player.transform.SetParent (playerMountedPos);
+
+		player.EquipAnItem(mountedHorseEquippable, false);
+	}
+
+	public void Dismount(Player player){
+		player.UnequipEquippedItem ();
+		horseBehaviour.PutHorseOnLead(false);
+		GenericUtilities.EnableAllColliders (transform, true);
+	}
+
 	public override List<string> DefineInteraction (Player player)	{
 		List<string> result = new List<string> ();
 		currentlyRelevantActionIDs.Clear ();
@@ -379,10 +417,16 @@ public class Horse_Interactable : Interactable {
 					result.Add (InteractionStrings.GetInteractionStringById (actionID.LEAD_BY_REINS));
 				}
 			}
-			if (backGear != null) {
+			if (backGear != null && backGear.type == horseGearType.SADDLE_WITH_PAD) {
 				currentlyRelevantActionIDs.Add (actionID.TAKE_SADDLE_WITH_PAD);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
 			}
+
+			if (backGear != null && headGear != null && backGear.type == horseGearType.SADDLE_WITH_PAD && headGear.type == horseGearType.BRIDLE) {
+				currentlyRelevantActionIDs.Add (actionID.MOUNT_HORSE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.MOUNT_HORSE));
+			}
+
 			break;
 		case equippableItemID.STRAW:
 			if (horseStats.Food < Horse_Stats.NeedsMaximum) {

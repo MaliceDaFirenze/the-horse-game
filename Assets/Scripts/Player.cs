@@ -58,7 +58,7 @@ public class Player : MonoBehaviour {
 				speedMultiplier = 1f;
 			}
 
-			if (currentlyEquippedItem != null && currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
+			if (currentlyEquippedItem != null && (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD || currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED)) {
 				//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
 
 				if (leadingHorse == null) {
@@ -168,6 +168,9 @@ public class Player : MonoBehaviour {
 			} else if (horseInt.headGear.type == horseGearType.BRIDLE) {
 				horseInt.StopLeadingHorseByReins (this);
 			}
+		} else if (currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED) {
+			Horse_Interactable horseInt = currentlyEquippedItem.GetComponent<Horse_Interactable> ();
+			horseInt.Dismount (this);
 		}
 
 		currentlyEquippedItem = playerHands;
