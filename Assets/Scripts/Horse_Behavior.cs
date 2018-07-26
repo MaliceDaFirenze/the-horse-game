@@ -178,6 +178,7 @@ public class Horse_Behavior : MonoBehaviour {
 			ChangeState (horseState.WAITINGONLEAD);
 		} else {
 			anim.SetBool ("Still", false);
+			currentHorseGait = horseGait.STAND;
 			ChangeState (horseState.IDLE);
 		}
 	}

@@ -376,12 +376,13 @@ public class Horse_Interactable : Interactable {
 		//move player to leading position
 		player.transform.position = playerMountedPos.position;
 		player.transform.rotation = playerMountedPos.rotation;
-		player.transform.SetParent (playerMountedPos);
+		player.playerModel.transform.SetParent (playerMountedPos);
 
 		player.EquipAnItem(mountedHorseEquippable, false);
 	}
 
 	public void Dismount(Player player){
+		player.playerModel.transform.SetParent (player.transform);
 		player.UnequipEquippedItem ();
 		horseBehaviour.PutHorseOnLead(false);
 		GenericUtilities.EnableAllColliders (transform, true);

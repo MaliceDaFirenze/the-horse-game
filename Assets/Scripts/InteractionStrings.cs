@@ -48,7 +48,7 @@ public class InteractionStrings : MonoBehaviour {
 		if (allInteractionStrings.Count == 0) {
 			SetupStrings ();
 		}
-		Debug.Log ("request string for id " + id);
+		//Debug.Log ("request string for id " + id);
 
 		return allInteractionStrings [id];
 	}

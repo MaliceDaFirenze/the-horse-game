@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
 	public Transform equippedItemPos;
 	public Transform dropItemPos;
 	private Equippable playerHands;
+	public Transform playerModel; //to parent to horse pos for riding
 
 	private void Start() {
 		rb = GetComponent<Rigidbody> ();
