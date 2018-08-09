@@ -382,15 +382,17 @@ public class Horse_Interactable : Interactable {
 	}
 
 	public void Dismount(Player player){
-		player.playerModel.transform.SetParent (player.transform);
-		player.transform.position = playerLeadingPos.position;
-		player.transform.rotation = playerLeadingPos.rotation;
-		player.playerModel.transform.localPosition = Vector3.zero;
-		player.playerModel.transform.localEulerAngles = Vector3.zero;
-	
 		player.UnequipEquippedItem ();
 		horseBehaviour.PutHorseOnLead(false);
+		player.transform.position = playerLeadingPos.position;
+		player.transform.rotation = playerLeadingPos.rotation;
+		player.playerModel.transform.position = player.transform.position;
+		player.playerModel.transform.rotation = player.transform.rotation;
+
+		player.playerModel.transform.SetParent (player.transform);
+
 		GenericUtilities.EnableAllColliders (transform, true);
+
 	}
 
 	public override List<string> DefineInteraction (Player player)	{

@@ -155,7 +155,7 @@ public class Player : MonoBehaviour {
 
 	private void DropEquippedItem(){
 		Debug.Log ("drop item: " + currentlyEquippedItem.id);
-		if (currentlyEquippedItem.id != equippableItemID.HORSE_ON_LEAD) { 
+		if (currentlyEquippedItem.id != equippableItemID.HORSE_ON_LEAD && currentlyEquippedItem.id != equippableItemID.HORSE_MOUNTED) { 
 			currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
 		} 
 
