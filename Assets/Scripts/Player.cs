@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum playerMovementSet{
+	WALKING,
+	RIDING
+	//alternatively: grounded, mounted... more? carriages eventually?
+}
+
 public class Player : MonoBehaviour {
 
 	public bool allowPlayerInput;
@@ -20,6 +26,7 @@ public class Player : MonoBehaviour {
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
+	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
 
 	//References
 	public UI ui;
@@ -51,63 +58,73 @@ public class Player : MonoBehaviour {
 				rb.angularVelocity = Vector3.zero;
 			}
 
-			if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
-				speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
-			} else if (Input.GetKey (KeyCode.LeftShift)) {
-				speedMultiplier = sprintSpeedMultiplier;
-			} else {
-				speedMultiplier = 1f;
-			}
-
-			if (currentlyEquippedItem != null && (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD || currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED)) {
-				//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
-
-				if (leadingHorse == null) {
-					leadingHorse = currentlyEquippedItem.GetComponent<Horse_Behavior> ();
-				}
-
-				if (newMovementVector.magnitude > 0) {
-					if (Input.GetKey (KeyCode.LeftShift)) {
-						leadingHorse.currentHorseGait = horseGait.TROT;
-					} else {
-						leadingHorse.currentHorseGait = horseGait.WALK;
-					}
+			if (currentMovementSet = playerMovementSet.WALKING) {
+				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
+					speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
+				} else if (Input.GetKey (KeyCode.LeftShift)) {
+					speedMultiplier = sprintSpeedMultiplier;
 				} else {
-					leadingHorse.currentHorseGait = horseGait.STAND;
+					speedMultiplier = 1f;
 				}
-				
-			}
 
-			//------INTERACTION-------//
-			if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null){
-				nearestInteractable.PlayerInteracts (this);
-				ui.ShowInstruction (nearestInteractable, this);
-			}
+				if (currentlyEquippedItem != null && (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD || currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED)) {
+					//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
 
-			if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
-				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-					nearestInteractable.PlayerPressesArrow (this, dir.LEFT);
-				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-					nearestInteractable.PlayerPressesArrow (this, dir.DOWN);
-				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-					nearestInteractable.PlayerPressesArrow (this, dir.RIGHT);
-				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-					nearestInteractable.PlayerPressesArrow (this, dir.UP);
-				}
-			}
-
-			if (nearestInteractable != null && nearestInteractable.currentlyRelevantActionIDs.Count > 1) {
-				if (Input.GetKeyDown (KeyCode.R)) {
-					++nearestInteractable.selectedInteractionIndex;
-					if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
-						nearestInteractable.selectedInteractionIndex = 0;
+					if (leadingHorse == null) {
+						leadingHorse = currentlyEquippedItem.GetComponent<Horse_Behavior> ();
 					}
+
+					if (newMovementVector.magnitude > 0) {
+						if (Input.GetKey (KeyCode.LeftShift)) {
+							leadingHorse.currentHorseGait = horseGait.TROT;
+						} else {
+							leadingHorse.currentHorseGait = horseGait.WALK;
+						}
+					} else {
+						leadingHorse.currentHorseGait = horseGait.STAND;
+					}
+					
+				}
+
+				//------INTERACTION-------//
+				if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null){
+					nearestInteractable.PlayerInteracts (this);
 					ui.ShowInstruction (nearestInteractable, this);
+				}
+
+				if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
+					if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+						nearestInteractable.PlayerPressesArrow (this, dir.LEFT);
+					} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+						nearestInteractable.PlayerPressesArrow (this, dir.DOWN);
+					} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+						nearestInteractable.PlayerPressesArrow (this, dir.RIGHT);
+					} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+						nearestInteractable.PlayerPressesArrow (this, dir.UP);
+					}
+				}
+
+				if (nearestInteractable != null && nearestInteractable.currentlyRelevantActionIDs.Count > 1) {
+					if (Input.GetKeyDown (KeyCode.R)) {
+						++nearestInteractable.selectedInteractionIndex;
+						if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
+							nearestInteractable.selectedInteractionIndex = 0;
+						}
+						ui.ShowInstruction (nearestInteractable, this);
+					}
 				}
 			}
 
 			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != playerHands){
 				DropEquippedItem();
+			}
+
+			//------RIDING-------//
+			//on mount: reference to Horse_Mounted
+			//differentiate between walking and riding so movement works differently (to a degree)
+
+			if (currentMovementSet == playerMovementSet.RIDING) {
+			
 			}
 		}
 	}

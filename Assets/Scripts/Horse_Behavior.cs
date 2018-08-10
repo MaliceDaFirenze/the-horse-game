@@ -8,7 +8,7 @@ public enum horseState{
 	CONSUMING,
 	WALKINGTOTARGET,
 	PRODUCINGMANURE,
-	WAITINGONLEAD,
+	ONLEAD,
 	TIEDTOPOST
 }
 
@@ -73,7 +73,7 @@ public class Horse_Behavior : MonoBehaviour {
 		case horseState.PRODUCINGMANURE:
 			currentBehaviour = StartCoroutine (ProduceManure());
 			break;
-		case horseState.WAITINGONLEAD:
+		case horseState.ONLEAD:
 			currentBehaviour = StartCoroutine (BeLead ());
 			break;
 		case horseState.TIEDTOPOST:
@@ -175,7 +175,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 	public void PutHorseOnLead(bool onLead){
 		if (onLead) {
-			ChangeState (horseState.WAITINGONLEAD);
+			ChangeState (horseState.ONLEAD);
 		} else {
 			anim.SetBool ("Still", false);
 			currentHorseGait = horseGait.STAND;
@@ -189,6 +189,12 @@ public class Horse_Behavior : MonoBehaviour {
 			anim.SetBool ("Still", false);
 			ChangeState (horseState.IDLE);
 		}
+	}
+
+	public void ChangeGaitByRiding(){
+		//change currenthorsegait
+		//update bools
+		//change state? or state is just "under saddle" "being ridden"?
 	}
 
 	private Consumable FindConsumableInRange(horseNeed need){
