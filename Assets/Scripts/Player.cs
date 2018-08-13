@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	public Interactable nearestInteractable;
 	public Horse_Stats nearestHorse;
 	public Horse_Behavior leadingHorse;
+	public Horse_Mounted ridingHorse;
 	public Equippable currentlyEquippedItem;
 
 	//Physics
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour {
 				rb.angularVelocity = Vector3.zero;
 			}
 
-			if (currentMovementSet = playerMovementSet.WALKING) {
+			if (currentMovementSet == playerMovementSet.WALKING) {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
 					speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
 				} else if (Input.GetKey (KeyCode.LeftShift)) {
@@ -120,11 +121,17 @@ public class Player : MonoBehaviour {
 			}
 
 			//------RIDING-------//
-			//on mount: reference to Horse_Mounted
-			//differentiate between walking and riding so movement works differently (to a degree)
 
 			if (currentMovementSet == playerMovementSet.RIDING) {
-			
+				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.LEFT);
+				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
+				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.RIGHT);
+				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.UP);
+				}
 			}
 		}
 	}
@@ -189,6 +196,7 @@ public class Player : MonoBehaviour {
 		} else if (currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED) {
 			Horse_Interactable horseInt = currentlyEquippedItem.GetComponent<Horse_Interactable> ();
 			horseInt.Dismount (this);
+			currentMovementSet = playerMovementSet.WALKING;
 		}
 
 		currentlyEquippedItem = playerHands;
@@ -197,6 +205,11 @@ public class Player : MonoBehaviour {
 	public void UnequipEquippedItem(){
 		currentlyEquippedItem.transform.SetParent (null);
 		currentlyEquippedItem = playerHands;
+	}
+
+	public void MountHorse(Horse_Mounted mountedHorse){
+		currentMovementSet = playerMovementSet.RIDING;
+		ridingHorse = mountedHorse;
 	}
 
 	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?
@@ -212,7 +225,6 @@ public class Player : MonoBehaviour {
 		} else {
 			currentlyEquippedItem.transform.SetParent (equippedItemPos, true);
 		}
-
 
 		if (moveItemToPlayer) {
 			currentlyEquippedItem.transform.position = equippedItemPos.position;

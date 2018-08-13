@@ -10,8 +10,9 @@ public class Horse_Mounted : MonoBehaviour {
 	//input can be handled in Player script, but needs to be forwarded to this, where
 	//the speed up/down and gait up/down logic is handled
 
-	public void ReceivePlayerInput(Player player, KeyCode input){
+	public void ReceivePlayerInput(Player player, dir input){
 	
+		Debug.Log ("player input: " + input);
 
 		horseBehaviour.ChangeGaitByRiding (/*parameters?*/);
 	}

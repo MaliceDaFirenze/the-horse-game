@@ -9,6 +9,7 @@ public class Horse_Interactable : Interactable {
 	private Horse_Behavior horseBehaviour;
 	private Equippable horseOnLeadEquippable;
 	private Equippable mountedHorseEquippable;
+	private Horse_Mounted horseMounted;
 	public Transform halterTransform;
 	public Transform leadTransformLeading;
 	public Transform leadTransformHanging;
@@ -29,6 +30,7 @@ public class Horse_Interactable : Interactable {
 	private void Start(){
 		horseStats = GetComponent<Horse_Stats> ();
 		horseBehaviour = GetComponent<Horse_Behavior> ();
+		horseMounted = GetComponent<Horse_Mounted> ();
 
 		//get all equippable components on this GO, go through and assign them by id
 		Equippable[] allEquippables = GetComponents<Equippable>();
@@ -378,6 +380,7 @@ public class Horse_Interactable : Interactable {
 		player.transform.rotation = playerMountedPos.rotation;
 		player.playerModel.transform.SetParent (playerMountedPos);
 
+		player.MountHorse (horseMounted);
 		player.EquipAnItem(mountedHorseEquippable, false);
 	}
 

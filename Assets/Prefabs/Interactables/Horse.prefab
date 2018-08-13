@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 114855094898275936}
   - component: {fileID: 195432272415166156}
   - component: {fileID: 114485538718027092}
-  - component: {fileID: 114249761866348742}
+  - component: {fileID: 114408462068550078}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -1200,7 +1200,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834302026077554}
   m_LocalRotation: {x: -0, y: -0.59829813, z: -0, w: 0.80127364}
-  m_LocalPosition: {x: -9.13, y: -0.9510986, z: -7.77}
+  m_LocalPosition: {x: -6.47, y: -0.9510986, z: 0.24}
   m_LocalScale: {x: 2.0736508, y: 2.0736504, z: 2.0736506}
   m_Children:
   - {fileID: 4835477401439470}
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   headGear: {fileID: 0}
   headGearAttachment: {fileID: 0}
   backGear: {fileID: 0}
---- !u!114 &114249761866348742
+--- !u!114 &114408462068550078
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1672,14 +1672,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834302026077554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff247362c3aee3499066cc4e0b3dd00, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b1cf2fa19907b445a1e5ccfb6628b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
   dropPosYOffset: 0
   equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
-  preventSprintingWhileEquipped: 1
+  preventSprintingWhileEquipped: 0
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 12
   status: 0
