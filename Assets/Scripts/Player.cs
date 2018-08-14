@@ -84,7 +84,6 @@ public class Player : MonoBehaviour {
 					} else {
 						leadingHorse.currentHorseGait = horseGait.STAND;
 					}
-					
 				}
 
 				//------INTERACTION-------//
@@ -121,17 +120,23 @@ public class Player : MonoBehaviour {
 			}
 
 			//------RIDING-------//
-
 			if (currentMovementSet == playerMovementSet.RIDING) {
-				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.LEFT);
-				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
-				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.RIGHT);
-				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.UP);
+
+				if (ridingHorse.horseBehaviour.currentHorseGait == horseGait.STAND && newMovementVector.magnitude > 0) {
+					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;
+				} else if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
+					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				}
+
+				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.LEFT, newMovementVector);
+				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.DOWN, newMovementVector);
+				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.RIGHT, newMovementVector);
+				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+					ridingHorse.ReceivePlayerInput (this, dir.UP, newMovementVector);
+				} 
 			}
 		}
 	}

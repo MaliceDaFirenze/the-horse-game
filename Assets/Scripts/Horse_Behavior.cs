@@ -38,6 +38,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private float minIdleDuration = 3f;
 	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
+	private WaitForSeconds horseGaitChangeDelay = new WaitForSeconds(0.5f); //not bc I want delay but bc I don't want this to check every single frame
 
 	private float minManureDuration = 20f;
 	private float maxManureDuration = 40f;
@@ -162,7 +163,7 @@ public class Horse_Behavior : MonoBehaviour {
 				anim.SetBool ("Walk", false);
 				break;
 			}
-			yield return waitASecond;
+			yield return horseGaitChangeDelay;
 		}
 	}
 
