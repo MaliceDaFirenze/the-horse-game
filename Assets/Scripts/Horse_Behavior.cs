@@ -49,7 +49,7 @@ public class Horse_Behavior : MonoBehaviour {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		anim = GetComponentInChildren<Animator> ();
 
-		ChangeState (horseState.IDLE);
+		//ChangeState (horseState.IDLE);
 	}
 
 	private void ChangeState(horseState newState){
@@ -192,7 +192,13 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 	}
 
-	public void ChangeGaitByRiding(){
+	public void ChangeGaitByRiding(float newGaitWeight, float newGaitAniSpeed){
+		anim.SetBool ("Walk", true);
+		anim.SetFloat ("GaitSpeedWeight", newGaitWeight);
+		anim.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
+
+		//set ani speed & gait weight separately? 
+
 		//change currenthorsegait
 		//update bools
 		//change state? or state is just "under saddle" "being ridden"?
