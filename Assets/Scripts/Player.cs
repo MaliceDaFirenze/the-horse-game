@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 				}
 
 				//------INTERACTION-------//
-				if (Input.GetKeyDown(KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null){
+				if (Input.GetKeyDown (KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null) {
 					nearestInteractable.PlayerInteracts (this);
 					ui.ShowInstruction (nearestInteractable, this);
 				}
@@ -121,6 +121,8 @@ public class Player : MonoBehaviour {
 
 			//------RIDING-------//
 			if (currentMovementSet == playerMovementSet.RIDING) {
+
+				speedMultiplier = ridingHorse.actualMovementSpeedMultiplier;
 
 				if (ridingHorse.horseBehaviour.currentHorseGait == horseGait.STAND && newMovementVector.magnitude > 0) {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;

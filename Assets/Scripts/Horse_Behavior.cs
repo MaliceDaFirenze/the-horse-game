@@ -49,7 +49,7 @@ public class Horse_Behavior : MonoBehaviour {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		anim = GetComponentInChildren<Animator> ();
 
-		//ChangeState (horseState.IDLE);
+		ChangeState (horseState.IDLE);
 	}
 
 	private void ChangeState(horseState newState){
@@ -143,7 +143,7 @@ public class Horse_Behavior : MonoBehaviour {
 		ChangeState (horseState.IDLE);
 	}
 
-	private IEnumerator BeLead(){
+	private IEnumerator BeLead(){ //actually, on lead or under saddle
 		anim.SetBool ("Still", true);
 		while (true) {
 			switch (currentHorseGait) {
@@ -193,7 +193,6 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	public void ChangeGaitByRiding(float newGaitWeight, float newGaitAniSpeed){
-		anim.SetBool ("Walk", true);
 		anim.SetFloat ("GaitSpeedWeight", newGaitWeight);
 		anim.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
 
