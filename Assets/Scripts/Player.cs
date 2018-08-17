@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	//Movement
 	private float speed = 3f;
 	private float sprintSpeedMultiplier = 1.8f;
-	private float speedMultiplier;
+	private float speedMultiplier = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
 

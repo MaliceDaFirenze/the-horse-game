@@ -381,6 +381,7 @@ public class Horse_Interactable : Interactable {
 		player.playerModel.transform.SetParent (playerMountedPos);
 
 		player.MountHorse (horseMounted);
+		horseMounted.MountHorse (player);
 		player.EquipAnItem(mountedHorseEquippable, false);
 	}
 

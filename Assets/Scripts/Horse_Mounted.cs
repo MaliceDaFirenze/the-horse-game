@@ -13,18 +13,34 @@ public class Horse_Mounted : MonoBehaviour {
 	private float gaitWeight;
 	private float gaitAniSpeed;
 
-	public float actualMovementSpeedMultiplier; //which is used by the player for the actual movement
+	public float actualMovementSpeedMultiplier = 1f; //which is used by the player for the actual movement
 
 	private float changeSpeedValueBy;
 	private float changeSpeedValueByMin = 0.05f;
 	private float changeSpeedValueByMax = 0.2f;
 
-	private float minAniSpeed = 0.6f;
-	private float maxAniSpeed = 1.5f;
+	private float minAniSpeed = 0.8f;
+	private float maxAniSpeed = 1.7f;
+
+	private HorseRidingUI ui;
 
 	private void Start(){
+
+		ui = FindObjectOfType<HorseRidingUI> ();
+	}
+
+	private void Update(){
+		//only if mounted is active / rider is on horse
+		//gradually move speed towards 0.5 and ani speed towards 1 (depending on horse mood / energy / character though)
+	
+	}
+
+	public void MountHorse(Player player){
 		gaitWeight = 0.5f;
 		gaitAniSpeed = 1f;
+		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
+		actualMovementSpeedMultiplier = gaitAniSpeed;
+		ui.speedBar.fillAmount = gaitWeight;
 	}
 
 	public void ReceivePlayerInput(Player player, dir input, Vector3 playerMovementVector){
@@ -55,6 +71,7 @@ public class Horse_Mounted : MonoBehaviour {
 		}
 
 		//gait weight: normalize to get val between 0 and 1
+		gaitWeight = (gaitAniSpeed - minAniSpeed) / (maxAniSpeed - minAniSpeed);
 
 		//randomize: if you haven't given any input after a while, the horse might slow down or speed up on its own?
 		//depending on its energy, motivation, shyness, surroundings? 
@@ -62,7 +79,8 @@ public class Horse_Mounted : MonoBehaviour {
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
 		actualMovementSpeedMultiplier = gaitAniSpeed; //like this, I could also just have the player access gaitAniSpeed, or write a public getter for it? 
 
-		Debug.Log ("new gait speed: " + gaitAniSpeed);
+		Debug.Log ("new gait speed: " + gaitAniSpeed + ", new gait weight: " + gaitWeight);
+		ui.speedBar.fillAmount = gaitWeight;
 
 		//calc a value for both of these at once maybe, find a 'formula' to always have two values that fit together?
 	}
