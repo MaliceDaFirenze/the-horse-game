@@ -14,12 +14,13 @@ public class Horse_Mounted : MonoBehaviour {
 	private float gaitAniSpeed;
 
 	public float actualMovementSpeedMultiplier = 1f; //which is used by the player for the actual movement
+	private float speedAdjustmentModifier = 0.5f;
 
 	private float changeSpeedValueBy;
 	private float changeSpeedValueByMin = 0.05f;
 	private float changeSpeedValueByMax = 0.2f;
 
-	private float minAniSpeed = 0.8f;
+	private float minAniSpeed = 0.85f;
 	private float maxAniSpeed = 1.7f;
 
 	private HorseRidingUI ui;
@@ -45,7 +46,7 @@ public class Horse_Mounted : MonoBehaviour {
 
 	public void ReceivePlayerInput(Player player, dir input, Vector3 playerMovementVector){
 
-		Debug.Log ("player input: " + input);
+		//Debug.Log ("player input: " + input);
 
 		//add speed meter within gait to UI
 
@@ -77,9 +78,9 @@ public class Horse_Mounted : MonoBehaviour {
 		//depending on its energy, motivation, shyness, surroundings? 
 
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
-		actualMovementSpeedMultiplier = gaitAniSpeed; //like this, I could also just have the player access gaitAniSpeed, or write a public getter for it? 
+		actualMovementSpeedMultiplier = gaitAniSpeed * gaitAniSpeed * speedAdjustmentModifier;
 
-		Debug.Log ("new gait speed: " + gaitAniSpeed + ", new gait weight: " + gaitWeight);
+		Debug.Log ("new gait speed: " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 		ui.speedBar.fillAmount = gaitWeight;
 
 		//calc a value for both of these at once maybe, find a 'formula' to always have two values that fit together?
