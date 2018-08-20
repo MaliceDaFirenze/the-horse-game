@@ -30,38 +30,42 @@ public class Hook : Interactable {
 
 		//getintstring needs to recognize whether you can take halter, lead or both. 
 		//content id can be halter&lead, and then add all three options (take one, take the other, take both) to the currentlyrelevantids
-		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
-		case actionID.TAKE_HALTER:
-			TakeContent (player, equippableItemID.HALTER);
-			break;
-		case actionID.TAKE_LEAD:
-			TakeContent (player, equippableItemID.LEAD);
-			break;
-		case actionID.TAKE_HALTER_AND_LEAD:
-			TakeContent (player, equippableItemID.HALTER_WITH_LEAD);
-			break;
-		case actionID.TAKE_SADDLE_WITH_PAD:
-			TakeAllContent(player);
-			break;
-		case actionID.TAKE_BRIDLE:
-			TakeAllContent(player);
-			break;
-		case actionID.HANG_UP_HALTER:
-			HangUpGear (player);
-			break;
-		case actionID.HANG_UP_LEAD:
-			HangUpGear (player);
-			break;
-		case actionID.HANG_UP_HALTER_AND_LEAD:
-			HangUpGear (player);
-			break;
-		case actionID.HANG_UP_SADDLE_WITH_PAD:
-			HangUpWithoutCombining(player);
-			break;
-		case actionID.HANG_UP_BRIDLE:
-			HangUpWithoutCombining(player);
-			break;
+
+		if (currentlyRelevantActionIDs.Count > selectedInteractionIndex) {
+			switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
+			case actionID.TAKE_HALTER:
+				TakeContent (player, equippableItemID.HALTER);
+				break;
+			case actionID.TAKE_LEAD:
+				TakeContent (player, equippableItemID.LEAD);
+				break;
+			case actionID.TAKE_HALTER_AND_LEAD:
+				TakeContent (player, equippableItemID.HALTER_WITH_LEAD);
+				break;
+			case actionID.TAKE_SADDLE_WITH_PAD:
+				TakeAllContent(player);
+				break;
+			case actionID.TAKE_BRIDLE:
+				TakeAllContent(player);
+				break;
+			case actionID.HANG_UP_HALTER:
+				HangUpGear (player);
+				break;
+			case actionID.HANG_UP_LEAD:
+				HangUpGear (player);
+				break;
+			case actionID.HANG_UP_HALTER_AND_LEAD:
+				HangUpGear (player);
+				break;
+			case actionID.HANG_UP_SADDLE_WITH_PAD:
+				HangUpWithoutCombining(player);
+				break;
+			case actionID.HANG_UP_BRIDLE:
+				HangUpWithoutCombining(player);
+				break;
+			}
 		}
+			
 
 	}
 

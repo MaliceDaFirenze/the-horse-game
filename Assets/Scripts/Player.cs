@@ -131,13 +131,13 @@ public class Player : MonoBehaviour {
 				}
 
 				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.LEFT, newMovementVector);
+					ridingHorse.ReceivePlayerInput (this, dir.LEFT);
 				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.DOWN, newMovementVector);
+					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
 				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.RIGHT, newMovementVector);
+					ridingHorse.ReceivePlayerInput (this, dir.RIGHT);
 				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-					ridingHorse.ReceivePlayerInput (this, dir.UP, newMovementVector);
+					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				} 
 			}
 		}
