@@ -1948,6 +1948,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 195432272415166156, guid: ed912b7379fbb8945a865e8173d9b50a,
+        type: 2}
+      propertyPath: m_BaseOffset
+      value: -0.07
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed912b7379fbb8945a865e8173d9b50a, type: 2}
   m_IsPrefabParent: 0
@@ -1988,7 +1993,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualMovementSpeedMultiplier: 0
-  testModifier: 1
 --- !u!1001 &874484418
 Prefab:
   m_ObjectHideFlags: 0
