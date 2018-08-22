@@ -25,6 +25,10 @@ public class Horse_Mounted : MonoBehaviour {
 
 	private HorseRidingUI ui;
 
+	private float pressedLeftLastTime = 0f;
+	private float pressedRightLastTime = 0f;
+	private float gaitChangeTapInterval = 0.6f;
+
 	private void Start(){
 
 		ui = FindObjectOfType<HorseRidingUI> ();
@@ -71,8 +75,16 @@ public class Horse_Mounted : MonoBehaviour {
 			}
 			break;
 		case dir.LEFT:
+			if (Time.time - pressedLeftLastTime < gaitChangeTapInterval) {
+				horseBehaviour.currentHorseGait = DecreaseGaitByOne ();
+			}
+			pressedLeftLastTime = Time.time;
 			break;
 		case dir.RIGHT:
+			if (Time.time - pressedRightLastTime < gaitChangeTapInterval) {
+				horseBehaviour.currentHorseGait = IncreaseGaitByOne ();
+			}
+			pressedRightLastTime = Time.time;
 			break;
 		}
 
@@ -89,6 +101,24 @@ public class Horse_Mounted : MonoBehaviour {
 		ui.speedBar.fillAmount = gaitWeight;
 
 		//calc a value for both of these at once maybe, find a 'formula' to always have two values that fit together?
+	}
+
+	private horseGait IncreaseGaitByOne(){
+		horseGait result = horseBehaviour.currentHorseGait + 1;
+		if ((int)result > 3) {
+			result = horseGait.CANTER;
+		}
+		Debug.Log ("increase gait, old: " + horseBehaviour.currentHorseGait + " new: " + result); 
+		return result;
+	}
+
+	private horseGait DecreaseGaitByOne(){
+		horseGait result = horseBehaviour.currentHorseGait - 1;
+		if ((int)result < 0) {
+			result = horseGait.STAND;
+		}
+		Debug.Log ("increase gait, old: " + horseBehaviour.currentHorseGait + " new: " + result); 
+		return result;
 	}
 
 	//references

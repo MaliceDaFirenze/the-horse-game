@@ -16,8 +16,7 @@ public enum horseGait{
 	STAND,
 	WALK,
 	TROT,
-	CANTER,
-	GALLOP
+	CANTER
 }
 
 public class Horse_Behavior : MonoBehaviour {
@@ -144,6 +143,7 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator BeLead(){ //actually, on lead or under saddle
+		//shouldn't I be able to call a gait change directly, without "setting the state" and waiting for it?
 		anim.SetBool ("Still", true);
 		while (true) {
 			switch (currentHorseGait) {
