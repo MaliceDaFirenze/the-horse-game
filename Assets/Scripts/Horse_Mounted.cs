@@ -14,14 +14,20 @@ public class Horse_Mounted : MonoBehaviour {
 	private float gaitAniSpeed;
 
 	public float actualMovementSpeedMultiplier = 1f; //which is used by the player for the actual movement
-	private float speedAdjustmentModifier = 0.5f;
+//	private float speedAdjustmentModifier = 0.5f;
+	//private Dictionary<horseGait, float> speedAdjustmentModifierPerGait = new Dictionary<horseGait, float> ();
+	private Dictionary<horseGait, float> minSpeedMod = new Dictionary<horseGait, float> ();
+	private Dictionary<horseGait, float> maxSpeedMod = new Dictionary<horseGait, float> ();
 
 	private float changeSpeedValueBy;
 	private float changeSpeedValueByMin = 0.05f;
 	private float changeSpeedValueByMax = 0.2f;
 
-	private float minAniSpeed = 0.85f;
-	private float maxAniSpeed = 1.7f;
+//	private float minAniSpeed = 0.85f;
+	//private float maxAniSpeed = 1.7f;
+
+	private Dictionary<horseGait, float> minAniSpeed = new Dictionary<horseGait, float> ();
+	private Dictionary<horseGait, float> maxAniSpeed = new Dictionary<horseGait, float> ();
 
 	private HorseRidingUI ui;
 
@@ -32,6 +38,33 @@ public class Horse_Mounted : MonoBehaviour {
 	private void Start(){
 
 		ui = FindObjectOfType<HorseRidingUI> ();
+
+		minAniSpeed.Add (horseGait.STAND, 0.5f);
+		minAniSpeed.Add (horseGait.WALK, 0.7f);
+		minAniSpeed.Add (horseGait.TROT, 0.85f);
+		minAniSpeed.Add (horseGait.CANTER, 0.85f);
+
+
+		maxAniSpeed.Add (horseGait.STAND, 1f);
+		maxAniSpeed.Add (horseGait.WALK, 1.7f);
+		maxAniSpeed.Add (horseGait.TROT, 2.6f);
+		maxAniSpeed.Add (horseGait.CANTER, 1.7f);
+
+		/*speedAdjustmentModifierPerGait.Add (horseGait.STAND, 1f);
+		speedAdjustmentModifierPerGait.Add (horseGait.WALK, 0.5f);
+		speedAdjustmentModifierPerGait.Add (horseGait.TROT, 1f);
+		speedAdjustmentModifierPerGait.Add (horseGait.CANTER, 1f);*/
+
+		minSpeedMod.Add (horseGait.STAND, 0.5f);
+		minSpeedMod.Add (horseGait.WALK, 0.25f);
+		minSpeedMod.Add (horseGait.TROT, 0.5f);
+		minSpeedMod.Add (horseGait.CANTER, 0.85f);
+
+
+		maxSpeedMod.Add (horseGait.STAND, 1f);
+		maxSpeedMod.Add (horseGait.WALK, 1.9f);
+		maxSpeedMod.Add (horseGait.TROT, 2.6f);
+		maxSpeedMod.Add (horseGait.CANTER, 1.7f);
 	}
 
 	private void Update(){
@@ -64,14 +97,14 @@ public class Horse_Mounted : MonoBehaviour {
 		switch (input) {
 		case dir.UP: 
 			gaitAniSpeed += changeSpeedValueBy;
-			if (gaitAniSpeed > maxAniSpeed) {
-				gaitAniSpeed = maxAniSpeed;
+			if (gaitAniSpeed > maxAniSpeed[horseBehaviour.currentHorseGait]) {
+				gaitAniSpeed = maxAniSpeed[horseBehaviour.currentHorseGait];
 			}
 			break;
 		case dir.DOWN:
 			gaitAniSpeed -= changeSpeedValueBy;
-			if (gaitAniSpeed < minAniSpeed) {
-				gaitAniSpeed = minAniSpeed;
+			if (gaitAniSpeed < minAniSpeed[horseBehaviour.currentHorseGait]) {
+				gaitAniSpeed = minAniSpeed[horseBehaviour.currentHorseGait];
 			}
 			break;
 		case dir.LEFT:
@@ -89,18 +122,30 @@ public class Horse_Mounted : MonoBehaviour {
 		}
 
 		//gait weight: normalize to get val between 0 and 1
-		gaitWeight = (gaitAniSpeed - minAniSpeed) / (maxAniSpeed - minAniSpeed);
+		gaitWeight = (gaitAniSpeed - minAniSpeed[horseBehaviour.currentHorseGait]) / (maxAniSpeed[horseBehaviour.currentHorseGait] - minAniSpeed[horseBehaviour.currentHorseGait]);
 
 		//randomize: if you haven't given any input after a while, the horse might slow down or speed up on its own?
 		//depending on its energy, motivation, shyness, surroundings? 
 
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
-		actualMovementSpeedMultiplier = gaitAniSpeed * gaitAniSpeed * speedAdjustmentModifier;
+		//actualMovementSpeedMultiplier = gaitAniSpeed * gaitAniSpeed * speedAdjustmentModifierPerGait[horseBehaviour.currentHorseGait]; 
 
-		Debug.Log ("new gait speed: " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+
+		//TODO: this normalizes the speedmod between 0 and 1, which I DONT want. 
+		//What I want is to get a value that is between min and max, which is "gaitweight"(val between 0 and 1) along the scale between min and max
+		actualMovementSpeedMultiplier = (gaitAniSpeed - minSpeedMod[horseBehaviour.currentHorseGait]) / (maxSpeedMod[horseBehaviour.currentHorseGait] - minSpeedMod[horseBehaviour.currentHorseGait]);
+
+
+
+		Debug.Log ("new gait speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+	
+		if (actualMovementSpeedMultiplier == null) {
+			actualMovementSpeedMultiplier = 1;
+			Debug.LogWarning ("had speed mod null, overwrite with 1");
+		}
+
 		ui.speedBar.fillAmount = gaitWeight;
 
-		//calc a value for both of these at once maybe, find a 'formula' to always have two values that fit together?
 	}
 
 	private horseGait IncreaseGaitByOne(){
