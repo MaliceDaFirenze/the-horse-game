@@ -41,13 +41,13 @@ public class Horse_Mounted : MonoBehaviour {
 
 		minAniSpeed.Add (horseGait.STAND, 0.5f);
 		minAniSpeed.Add (horseGait.WALK, 0.7f);
-		minAniSpeed.Add (horseGait.TROT, 0.85f);
+		minAniSpeed.Add (horseGait.TROT, 0.65f);
 		minAniSpeed.Add (horseGait.CANTER, 0.85f);
 
 
 		maxAniSpeed.Add (horseGait.STAND, 1f);
-		maxAniSpeed.Add (horseGait.WALK, 1.7f);
-		maxAniSpeed.Add (horseGait.TROT, 2.6f);
+		maxAniSpeed.Add (horseGait.WALK, 1.9f);
+		maxAniSpeed.Add (horseGait.TROT, 3f);
 		maxAniSpeed.Add (horseGait.CANTER, 1.7f);
 
 		/*speedAdjustmentModifierPerGait.Add (horseGait.STAND, 1f);
@@ -57,14 +57,14 @@ public class Horse_Mounted : MonoBehaviour {
 
 		minSpeedMod.Add (horseGait.STAND, 0.5f);
 		minSpeedMod.Add (horseGait.WALK, 0.25f);
-		minSpeedMod.Add (horseGait.TROT, 0.5f);
+		minSpeedMod.Add (horseGait.TROT, 0.7f);
 		minSpeedMod.Add (horseGait.CANTER, 0.85f);
 
 
 		maxSpeedMod.Add (horseGait.STAND, 1f);
-		maxSpeedMod.Add (horseGait.WALK, 1.9f);
-		maxSpeedMod.Add (horseGait.TROT, 2.6f);
-		maxSpeedMod.Add (horseGait.CANTER, 1.7f);
+		maxSpeedMod.Add (horseGait.WALK, 1.7f);
+		maxSpeedMod.Add (horseGait.TROT, 3.3f);
+		maxSpeedMod.Add (horseGait.CANTER, 4f);
 	}
 
 	private void Update(){
@@ -130,20 +130,10 @@ public class Horse_Mounted : MonoBehaviour {
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
 		//actualMovementSpeedMultiplier = gaitAniSpeed * gaitAniSpeed * speedAdjustmentModifierPerGait[horseBehaviour.currentHorseGait]; 
 
+		actualMovementSpeedMultiplier = minSpeedMod[horseBehaviour.currentHorseGait] + gaitWeight * (maxSpeedMod[horseBehaviour.currentHorseGait] - minSpeedMod[horseBehaviour.currentHorseGait] );
 
-		//TODO: this normalizes the speedmod between 0 and 1, which I DONT want. 
-		//What I want is to get a value that is between min and max, which is "gaitweight"(val between 0 and 1) along the scale between min and max
-		actualMovementSpeedMultiplier = (gaitAniSpeed - minSpeedMod[horseBehaviour.currentHorseGait]) / (maxSpeedMod[horseBehaviour.currentHorseGait] - minSpeedMod[horseBehaviour.currentHorseGait]);
-
-
-
-		Debug.Log ("new gait speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		Debug.Log ("new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 	
-		if (actualMovementSpeedMultiplier == null) {
-			actualMovementSpeedMultiplier = 1;
-			Debug.LogWarning ("had speed mod null, overwrite with 1");
-		}
-
 		ui.speedBar.fillAmount = gaitWeight;
 
 	}
