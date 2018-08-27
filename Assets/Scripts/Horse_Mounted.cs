@@ -41,13 +41,13 @@ public class Horse_Mounted : MonoBehaviour {
 
 		minAniSpeed.Add (horseGait.STAND, 0.5f);
 		minAniSpeed.Add (horseGait.WALK, 0.7f);
-		minAniSpeed.Add (horseGait.TROT, 0.65f);
+		minAniSpeed.Add (horseGait.TROT, 1f);
 		minAniSpeed.Add (horseGait.CANTER, 0.85f);
 
 
 		maxAniSpeed.Add (horseGait.STAND, 1f);
-		maxAniSpeed.Add (horseGait.WALK, 1.9f);
-		maxAniSpeed.Add (horseGait.TROT, 3f);
+		maxAniSpeed.Add (horseGait.WALK, 2.2f);
+		maxAniSpeed.Add (horseGait.TROT, 1.8f);
 		maxAniSpeed.Add (horseGait.CANTER, 1.7f);
 
 		/*speedAdjustmentModifierPerGait.Add (horseGait.STAND, 1f);
@@ -62,8 +62,8 @@ public class Horse_Mounted : MonoBehaviour {
 
 
 		maxSpeedMod.Add (horseGait.STAND, 1f);
-		maxSpeedMod.Add (horseGait.WALK, 1.7f);
-		maxSpeedMod.Add (horseGait.TROT, 3.3f);
+		maxSpeedMod.Add (horseGait.WALK, 1.4f);
+		maxSpeedMod.Add (horseGait.TROT, 2.4f);
 		maxSpeedMod.Add (horseGait.CANTER, 4f);
 	}
 
