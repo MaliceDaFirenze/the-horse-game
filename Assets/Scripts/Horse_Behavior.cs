@@ -143,26 +143,14 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator BeLead(){ //actually, on lead or under saddle
-		//shouldn't I be able to call a gait change directly, without "setting the state" and waiting for it?
+		//shouldn't I be able to call a gait change directly, without "setting the state" and waiting for it? (this is good enough for BeLead, riding changes it directly)
 		anim.SetBool ("Still", true);
 		while (true) {
-			switch (currentHorseGait) {
-			case horseGait.STAND:
-				anim.SetBool ("Still", true);
-				anim.SetBool ("Trot", false);
-				anim.SetBool ("Walk", false);
-				break;
-			case horseGait.WALK: 
-				anim.SetBool ("Walk", true);
-				anim.SetBool ("Trot", false);
-				anim.SetBool ("Still", false);
-				break;
-			case horseGait.TROT: 
-				anim.SetBool ("Trot", true);
-				anim.SetBool ("Still", false);
-				anim.SetBool ("Walk", false);
-				break;
-			}
+			anim.SetInteger ("GaitIndex", (int)currentHorseGait);
+
+			//with "changegaitbyriding setting the index, this coroutine isn't needed anymore for riding
+			//need to set "Still" to true somewhere though? 
+			//still need the coroutine for actual leading
 			yield return horseGaitChangeDelay;
 		}
 	}
@@ -195,6 +183,8 @@ public class Horse_Behavior : MonoBehaviour {
 	public void ChangeGaitByRiding(float newGaitWeight, float newGaitAniSpeed){
 		anim.SetFloat ("GaitSpeedWeight", newGaitWeight);
 		anim.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
+
+		anim.SetInteger ("GaitIndex", (int)currentHorseGait);
 
 		//set ani speed & gait weight separately? 
 

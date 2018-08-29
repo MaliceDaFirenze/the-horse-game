@@ -39,32 +39,28 @@ public class Horse_Mounted : MonoBehaviour {
 
 		ui = FindObjectOfType<HorseRidingUI> ();
 
+		//Animation Speed
 		minAniSpeed.Add (horseGait.STAND, 0.5f);
 		minAniSpeed.Add (horseGait.WALK, 0.7f);
 		minAniSpeed.Add (horseGait.TROT, 1f);
-		minAniSpeed.Add (horseGait.CANTER, 0.85f);
+		minAniSpeed.Add (horseGait.CANTER, 1.1f);
 
 
 		maxAniSpeed.Add (horseGait.STAND, 1f);
 		maxAniSpeed.Add (horseGait.WALK, 2.2f);
 		maxAniSpeed.Add (horseGait.TROT, 1.8f);
-		maxAniSpeed.Add (horseGait.CANTER, 1.7f);
+		maxAniSpeed.Add (horseGait.CANTER, 2.3f);
 
-		/*speedAdjustmentModifierPerGait.Add (horseGait.STAND, 1f);
-		speedAdjustmentModifierPerGait.Add (horseGait.WALK, 0.5f);
-		speedAdjustmentModifierPerGait.Add (horseGait.TROT, 1f);
-		speedAdjustmentModifierPerGait.Add (horseGait.CANTER, 1f);*/
-
+		//Movement Speed
 		minSpeedMod.Add (horseGait.STAND, 0.5f);
 		minSpeedMod.Add (horseGait.WALK, 0.25f);
 		minSpeedMod.Add (horseGait.TROT, 0.7f);
-		minSpeedMod.Add (horseGait.CANTER, 0.85f);
-
+		minSpeedMod.Add (horseGait.CANTER, 1.3f);
 
 		maxSpeedMod.Add (horseGait.STAND, 1f);
 		maxSpeedMod.Add (horseGait.WALK, 1.4f);
 		maxSpeedMod.Add (horseGait.TROT, 2.4f);
-		maxSpeedMod.Add (horseGait.CANTER, 4f);
+		maxSpeedMod.Add (horseGait.CANTER, 5f);
 	}
 
 	private void Update(){
