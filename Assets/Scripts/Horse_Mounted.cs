@@ -60,7 +60,7 @@ public class Horse_Mounted : MonoBehaviour {
 		maxSpeedMod.Add (horseGait.STAND, 1f);
 		maxSpeedMod.Add (horseGait.WALK, 1.4f);
 		maxSpeedMod.Add (horseGait.TROT, 2.4f);
-		maxSpeedMod.Add (horseGait.CANTER, 5f);
+		maxSpeedMod.Add (horseGait.CANTER, 5.3f);
 	}
 
 	private void Update(){
