@@ -56,14 +56,14 @@ public class Equippable : MonoBehaviour {
 		}
 	}
 
-	public virtual void BeEquipped(){
+	public virtual void BeEquipped(bool overwriteCollidersTo = false){
 		consumable = GetComponent<Consumable> ();
 		if (consumable != null) {
 			consumable.Initialize ();
 			consumable.enabled = false;
 		}
 
-		EnableAllColliders (false);
+		EnableAllColliders (overwriteCollidersTo);
 
 		transform.localScale *= equippedScaleFactor;
 	}

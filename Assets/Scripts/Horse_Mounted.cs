@@ -73,22 +73,22 @@ public class Horse_Mounted : MonoBehaviour {
 		gaitWeight = 0.5f;
 		gaitAniSpeed = 1f;
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
-		actualMovementSpeedMultiplier = gaitAniSpeed;
+		actualMovementSpeedMultiplier = minSpeedMod[horseGait.WALK] + gaitWeight * (maxSpeedMod[horseGait.WALK] - minSpeedMod[horseGait.WALK]);
 		ui.speedBar.fillAmount = gaitWeight;
-		Debug.Log ("mount horse: " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		Debug.Log ("mount horse: speed " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 	
 	
-		ReceivePlayerInput (player, dir.UP);
+		//ReceivePlayerInput (player, dir.UP);
 	
 	}
 
 	public void ReceivePlayerInput(Player player, dir input/*, Vector3 playerMovementVector = Vector3.one*/){
 
-		Debug.Log ("player input: " + input);
 
 		//add speed meter within gait to UI
 
 		changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
+		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 
 		switch (input) {
 		case dir.UP: 

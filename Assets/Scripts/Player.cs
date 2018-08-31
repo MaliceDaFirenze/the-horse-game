@@ -223,7 +223,7 @@ public class Player : MonoBehaviour {
 
 		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);
 		
-		equippableItem.BeEquipped ();
+		equippableItem.BeEquipped (true);
 		currentlyEquippedItem = equippableItem;
 
 		if (overwriteTransform != null) {

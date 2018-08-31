@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HorseGear_Equippable : Equippable {
 
-	public override void BeEquipped(){
+	public override void BeEquipped(bool overwriteCollidersTo = false){
 		base.BeEquipped ();
 
 	}
