@@ -52,8 +52,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4352399959791966}
   - component: {fileID: 114377831620234292}
-  - component: {fileID: 54865066698184964}
   - component: {fileID: 114921796864695578}
+  - component: {fileID: 195566038197857512}
+  - component: {fileID: 54141527205615742}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -562,7 +563,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1397888516955870}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54865066698184964
+--- !u!54 &54141527205615742
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -573,9 +574,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &114377831620234292
 MonoBehaviour:
@@ -592,6 +593,7 @@ MonoBehaviour:
   nearestInteractable: {fileID: 0}
   nearestHorse: {fileID: 0}
   leadingHorse: {fileID: 0}
+  ridingHorse: {fileID: 0}
   currentlyEquippedItem: {fileID: 0}
   ui: {fileID: 0}
   equippedItemPos: {fileID: 4075287413786586}
@@ -631,3 +633,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195566038197857512
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268129346126096}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 60
+  m_Acceleration: 12
+  avoidancePriority: 50
+  m_AngularSpeed: 200
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

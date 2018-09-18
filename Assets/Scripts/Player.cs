@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum playerMovementSet{
 	WALKING,
@@ -20,10 +21,10 @@ public class Player : MonoBehaviour {
 	public Equippable currentlyEquippedItem;
 
 	//Physics
-	private Rigidbody rb;
+	private NavMeshAgent navMeshAgent;
 
 	//Movement
-	private float speed = 3f;
+	private float speed = 10f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour {
 	public Transform playerModel; //to parent to horse pos for riding
 
 	private void Start() {
-		rb = GetComponent<Rigidbody> ();
+		navMeshAgent = GetComponent<NavMeshAgent> ();
 		ui = FindObjectOfType<UI> ();
 		playerHands = GetComponent<Equippable> ();
 		currentlyEquippedItem = playerHands;
@@ -51,13 +52,14 @@ public class Player : MonoBehaviour {
 			newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
 			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
 
-			rb.MovePosition (rb.position += newMovementVector);
-			if (newMovementVector.x != 0 || newMovementVector.z != 0) {
+			navMeshAgent.SetDestination (transform.position + newMovementVector);
+
+			/*if (newMovementVector.x != 0 || newMovementVector.z != 0) {
 				rb.MoveRotation (Quaternion.LookRotation (newMovementVector * 100));
 			} else {
 				rb.velocity = Vector3.zero;
 				rb.angularVelocity = Vector3.zero;
-			}
+			}*/
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
