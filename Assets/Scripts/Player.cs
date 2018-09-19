@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	private NavMeshAgent navMeshAgent;
 
 	//Movement
-	private float speed = 10f;
+	private float speed = 30f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
@@ -44,6 +44,9 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 	}
 
+	public Transform destinationOverride;
+	public Transform debugSphere;
+
 	private void Update() {
 
 		if (allowPlayerInput) {
@@ -52,14 +55,30 @@ public class Player : MonoBehaviour {
 			newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
 			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
 
-			navMeshAgent.SetDestination (transform.position + newMovementVector);
-
-			/*if (newMovementVector.x != 0 || newMovementVector.z != 0) {
-				rb.MoveRotation (Quaternion.LookRotation (newMovementVector * 100));
+			if (destinationOverride != null) {
+				navMeshAgent.SetDestination (destinationOverride.position);
 			} else {
-				rb.velocity = Vector3.zero;
-				rb.angularVelocity = Vector3.zero;
-			}*/
+				navMeshAgent.SetDestination (transform.position + newMovementVector);
+			}
+
+			if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
+				//the player is standing and moving against an edge of the navmesh
+				//I need to check if there are offmesh links available nearby
+
+				int save = 0;
+				Vector3 overrideMoVe;
+				Debug.Log ("no path, but trying to move");
+
+				while (!navMeshAgent.hasPath && save < 100) {
+					overrideMoVe = newMovementVector * save;
+					Debug.Log ("trying to find path with movement vector " + newMovementVector + " * " + save + " = " +  overrideMoVe);
+					debugSphere.transform.position = transform.position + overrideMoVe;
+					navMeshAgent.SetDestination (transform.position + overrideMoVe);
+					++save;
+				}
+
+			}
+
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
