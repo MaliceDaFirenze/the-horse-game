@@ -600,6 +600,8 @@ MonoBehaviour:
   dropItemPos: {fileID: 4029224189278364}
   playerModel: {fileID: 4185063140433810}
   destinationOverride: {fileID: 0}
+  debugSphere: {fileID: 0}
+  movementVectorScale: 8
 --- !u!114 &114921796864695578
 MonoBehaviour:
   m_ObjectHideFlags: 1

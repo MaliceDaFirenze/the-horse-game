@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 
 	public Transform destinationOverride;
 	public Transform debugSphere;
+	public float movementVectorScale;
 
 	private void Update() {
 
@@ -65,18 +66,12 @@ public class Player : MonoBehaviour {
 				//the player is standing and moving against an edge of the navmesh
 				//I need to check if there are offmesh links available nearby
 
-				int save = 0;
 				Vector3 overrideMoVe;
 				Debug.Log ("no path, but trying to move");
-
-				while (!navMeshAgent.hasPath && save < 100) {
-					overrideMoVe = newMovementVector * save;
-					Debug.Log ("trying to find path with movement vector " + newMovementVector + " * " + save + " = " +  overrideMoVe);
-					debugSphere.transform.position = transform.position + overrideMoVe;
-					navMeshAgent.SetDestination (transform.position + overrideMoVe);
-					++save;
-				}
-
+		
+				overrideMoVe = newMovementVector * movementVectorScale;
+				debugSphere.transform.position = transform.position + overrideMoVe;
+				navMeshAgent.SetDestination (transform.position + overrideMoVe);
 			}
 
 
