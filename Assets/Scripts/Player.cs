@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 	public Transform destinationOverride;
 	public Transform debugSphere;
 	public float movementVectorScale;
+	private Vector3 destination;
 
 	private void Update() {
 
@@ -57,10 +58,14 @@ public class Player : MonoBehaviour {
 			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
 
 			if (destinationOverride != null) {
-				navMeshAgent.SetDestination (destinationOverride.position);
+				destination = destinationOverride.position;
 			} else {
-				navMeshAgent.SetDestination (transform.position + newMovementVector);
+				destination = transform.position + newMovementVector;
 			}
+
+			navMeshAgent.SetDestination (destination);
+
+			transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
 
 			if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
 				//the player is standing and moving against an edge of the navmesh
