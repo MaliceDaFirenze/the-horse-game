@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	private NavMeshAgent navMeshAgent;
 
 	//Movement
-	private float speed = 30f;
+	private float speed = 3f;//30f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
@@ -37,17 +37,25 @@ public class Player : MonoBehaviour {
 	private Equippable playerHands;
 	public Transform playerModel; //to parent to horse pos for riding
 
+	//NavmeshMovement
+	public Transform destinationOverride;
+	public Transform debugSphere;
+	public float movementVectorScale;
+	private Vector3 destination;
+
+	//Physics
+	private Rigidbody rb;
+
 	private void Start() {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		ui = FindObjectOfType<UI> ();
 		playerHands = GetComponent<Equippable> ();
 		currentlyEquippedItem = playerHands;
+		rb = GetComponent<Rigidbody> ();
 	}
 
-	public Transform destinationOverride;
-	public Transform debugSphere;
-	public float movementVectorScale;
-	private Vector3 destination;
+
+
 
 	private void Update() {
 
@@ -57,17 +65,16 @@ public class Player : MonoBehaviour {
 			newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
 			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
 
-			if (destinationOverride != null) {
+			/*if (destinationOverride != null) {
 				destination = destinationOverride.position;
-			} else {
+			} else {*/
 				destination = transform.position + newMovementVector;
-			}
+			//}
 
-			navMeshAgent.SetDestination (destination);
-
+			//navMeshAgent.SetDestination (destination);
 			transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
 
-			if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
+			/*if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
 				//the player is standing and moving against an edge of the navmesh
 				//I need to check if there are offmesh links available nearby
 
@@ -77,7 +84,9 @@ public class Player : MonoBehaviour {
 				overrideMoVe = newMovementVector * movementVectorScale;
 				debugSphere.transform.position = transform.position + overrideMoVe;
 				navMeshAgent.SetDestination (transform.position + overrideMoVe);
-			}
+			}*/
+
+			rb.MovePosition (rb.position + newMovementVector);
 
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
