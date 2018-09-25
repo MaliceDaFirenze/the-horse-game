@@ -8,12 +8,6 @@ AnimatorController:
   m_Name: HorseAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Walk
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Eat
     m_Type: 4
     m_DefaultFloat: 0
@@ -27,12 +21,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Still
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Trot
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -189,11 +177,8 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Still
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Trot
+  - m_ConditionMode: 6
+    m_ConditionEvent: GaitIndex
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102229511456552548}
@@ -290,6 +275,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Still
+    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: GaitIndex
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102741519433438776}
@@ -573,15 +561,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Trot
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Still
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: GaitIndex
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102726058031573304}
   m_Solo: 0
@@ -675,14 +657,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Walk
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Trot
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Still
+  - m_ConditionMode: 6
+    m_ConditionEvent: GaitIndex
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102229511456552548}

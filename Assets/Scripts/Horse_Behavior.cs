@@ -9,6 +9,7 @@ public enum horseState{
 	WALKINGTOTARGET,
 	PRODUCINGMANURE,
 	ONLEAD,
+	RIDING,
 	TIEDTOPOST
 }
 
@@ -57,7 +58,7 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 
 		anim.SetBool ("Eat", false);
-		anim.SetBool ("Walk", false);
+		anim.SetInteger ("GaitIndex", 0);
 
 		currentHorseState = newState;
 		switch (newState) {
@@ -75,6 +76,9 @@ public class Horse_Behavior : MonoBehaviour {
 			break;
 		case horseState.ONLEAD:
 			currentBehaviour = StartCoroutine (BeLead ());
+			break;
+		case horseState.RIDING:
+			currentBehaviour = StartCoroutine (BeRidden ());
 			break;
 		case horseState.TIEDTOPOST:
 			currentBehaviour = StartCoroutine (BeTiedToPost ());
@@ -100,7 +104,7 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator WalkToTarget(){
-		anim.SetBool ("Walk", true);
+		anim.SetInteger ("GaitIndex", 1);
 		navMeshAgent.SetDestination (currentTargetConsumable.transform.position);
 		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable && currentTargetConsumable != null && currentTargetConsumable.enabled && currentTargetConsumable.remainingNeedValue > 0) {
 			yield return waitASecond;
@@ -109,7 +113,10 @@ public class Horse_Behavior : MonoBehaviour {
 		//navMeshAgent.Stop ();
 		navMeshAgent.isStopped = true;
 		navMeshAgent.ResetPath ();
-		anim.SetBool ("Walk", false);
+		anim.SetInteger ("GaitIndex", 0);
+
+		yield return new WaitForEndOfFrame ();
+
 		ChangeState (horseState.CONSUMING);
 	}
 
@@ -142,8 +149,7 @@ public class Horse_Behavior : MonoBehaviour {
 		ChangeState (horseState.IDLE);
 	}
 
-	private IEnumerator BeLead(){ //actually, on lead or under saddle
-		//shouldn't I be able to call a gait change directly, without "setting the state" and waiting for it? (this is good enough for BeLead, riding changes it directly)
+	private IEnumerator BeLead(){ 
 		anim.SetBool ("Still", true);
 		while (true) {
 			anim.SetInteger ("GaitIndex", (int)currentHorseGait);
@@ -153,6 +159,18 @@ public class Horse_Behavior : MonoBehaviour {
 			//still need the coroutine for actual leading
 			yield return horseGaitChangeDelay;
 		}
+	}
+
+	private IEnumerator BeRidden(){
+		//horse stays in this state until change from outside
+		while (true) {
+
+			//raycast ahead for obstacles
+
+			yield return waitASecond;
+		
+		}
+
 	}
 
 	private IEnumerator BeTiedToPost(){
@@ -165,16 +183,33 @@ public class Horse_Behavior : MonoBehaviour {
 	public void PutHorseOnLead(bool onLead){
 		if (onLead) {
 			ChangeState (horseState.ONLEAD);
+			navMeshAgent.enabled = false;
 		} else {
+			navMeshAgent.enabled = true;
 			anim.SetBool ("Still", false);
 			currentHorseGait = horseGait.STAND;
 			ChangeState (horseState.IDLE);
 		}
 	}
+
+	public void RidingHorse(bool mountUp){
+		if (mountUp) {
+			ChangeState (horseState.RIDING);
+			navMeshAgent.enabled = false;
+		} else {
+			navMeshAgent.enabled = true;
+			anim.SetBool ("Still", false);
+			currentHorseGait = horseGait.STAND;
+			ChangeState (horseState.IDLE);
+		}
+	}
+
 	public void TieHorseToPost(bool onPost){
 		if (onPost) {
+			navMeshAgent.enabled = false;
 			ChangeState (horseState.TIEDTOPOST);
 		} else {
+			navMeshAgent.enabled = true;
 			anim.SetBool ("Still", false);
 			ChangeState (horseState.IDLE);
 		}
@@ -185,12 +220,6 @@ public class Horse_Behavior : MonoBehaviour {
 		anim.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
 
 		anim.SetInteger ("GaitIndex", (int)currentHorseGait);
-
-		//set ani speed & gait weight separately? 
-
-		//change currenthorsegait
-		//update bools
-		//change state? or state is just "under saddle" "being ridden"?
 	}
 
 	private Consumable FindConsumableInRange(horseNeed need){

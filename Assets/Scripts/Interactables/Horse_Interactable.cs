@@ -372,7 +372,7 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void MountHorse(Player player){
-		horseBehaviour.PutHorseOnLead(true);
+		horseBehaviour.RidingHorse(true);
 		//atm this doesnt seem to need its own particular 'put under saddle' function yet, functionality is the same for now
 
 		//move player to leading position
@@ -387,7 +387,7 @@ public class Horse_Interactable : Interactable {
 
 	public void Dismount(Player player){
 		player.UnequipEquippedItem ();
-		horseBehaviour.PutHorseOnLead(false);
+		horseBehaviour.RidingHorse(false);
 		player.transform.position = playerLeadingPos.position;
 		player.transform.rotation = playerLeadingPos.rotation;
 		player.playerModel.transform.position = player.transform.position;
