@@ -43,6 +43,8 @@ public class Horse_Behavior : MonoBehaviour {
 	private float minManureDuration = 20f;
 	private float maxManureDuration = 40f;
 
+	public LayerMask obstacleRaycastLayers;
+
 	void Start () {
 		//Initialize
 		stats = GetComponent<Horse_Stats> ();
@@ -166,6 +168,13 @@ public class Horse_Behavior : MonoBehaviour {
 		while (true) {
 
 			//raycast ahead for obstacles
+			Vector3 castTarget = transform.position + transform.forward * 10;
+			RaycastHit hit;
+
+			Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
+			if (Physics.Raycast(stats.headBone.position, castTarget-stats.headBone.position, out hit, 100, obstacleRaycastLayers)){
+				Debug.Log ("obstacle ahead: " + hit.collider.name);
+			} 
 
 			yield return waitASecond;
 		

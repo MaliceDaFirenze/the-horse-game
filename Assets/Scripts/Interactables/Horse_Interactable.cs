@@ -373,7 +373,6 @@ public class Horse_Interactable : Interactable {
 
 	private void MountHorse(Player player){
 		horseBehaviour.RidingHorse(true);
-		//atm this doesnt seem to need its own particular 'put under saddle' function yet, functionality is the same for now
 
 		//move player to leading position
 		player.transform.position = playerMountedPos.position;
@@ -383,6 +382,9 @@ public class Horse_Interactable : Interactable {
 		player.MountHorse (horseMounted);
 		horseMounted.MountHorse (player);
 		player.EquipAnItem(mountedHorseEquippable, false);
+
+		//Disable horse's trigger
+		GetComponent<Collider>().enabled = false;
 	}
 
 	public void Dismount(Player player){
@@ -395,6 +397,7 @@ public class Horse_Interactable : Interactable {
 
 		player.playerModel.transform.SetParent (player.transform);
 
+		//enable all colliders (but only trigger really matters, right?
 		GenericUtilities.EnableAllColliders (transform, true);
 
 	}

@@ -20,8 +20,6 @@ public class Player : MonoBehaviour {
 	public Horse_Mounted ridingHorse;
 	public Equippable currentlyEquippedItem;
 
-	//Physics
-	private NavMeshAgent navMeshAgent;
 
 	//Movement
 	private float speed = 3f;//30f;
@@ -42,12 +40,13 @@ public class Player : MonoBehaviour {
 	public Transform debugSphere;
 	public float movementVectorScale;
 	private Vector3 destination;
+	//private NavMeshAgent navMeshAgent;
 
 	//Physics
 	private Rigidbody rb;
 
 	private void Start() {
-		navMeshAgent = GetComponent<NavMeshAgent> ();
+		//navMeshAgent = GetComponent<NavMeshAgent> ();
 		ui = FindObjectOfType<UI> ();
 		playerHands = GetComponent<Equippable> ();
 		currentlyEquippedItem = playerHands;
