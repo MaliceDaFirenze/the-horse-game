@@ -35,6 +35,8 @@ public class Horse_Mounted : MonoBehaviour {
 	private float pressedRightLastTime = 0f;
 	private float gaitChangeTapInterval = 0.6f;
 
+	public bool ignorePlayerInput;
+
 	private void Start(){
 
 		ui = FindObjectOfType<HorseRidingUI> ();
@@ -77,15 +79,13 @@ public class Horse_Mounted : MonoBehaviour {
 		ui.speedBar.fillAmount = gaitWeight;
 		Debug.Log ("mount horse: speed " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 	
-	
-		//ReceivePlayerInput (player, dir.UP);
-	
 	}
 
 	public void ReceivePlayerInput(Player player, dir input/*, Vector3 playerMovementVector = Vector3.one*/){
 
-
-		//add speed meter within gait to UI
+		if (ignorePlayerInput) {
+			return;
+		}
 
 		changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
 		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
@@ -132,6 +132,18 @@ public class Horse_Mounted : MonoBehaviour {
 	
 		ui.speedBar.fillAmount = gaitWeight;
 
+	}
+
+	public void Stop(){
+		horseBehaviour.ChangeGaitByRiding (0.1f, 0.1f);
+		horseBehaviour.currentHorseGait = horseGait.STAND;
+		ignorePlayerInput = true;
+		StartCoroutine (ResetIgnorePlayer ());
+	}
+
+	private IEnumerator ResetIgnorePlayer(){
+		yield return new WaitForSeconds (3f);
+		ignorePlayerInput = false;
 	}
 
 	private horseGait IncreaseGaitByOne(){

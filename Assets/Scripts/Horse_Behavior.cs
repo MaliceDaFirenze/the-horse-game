@@ -24,6 +24,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 	//---References---/
 	private Horse_Stats stats;
+	private Horse_Mounted mounted;
 	private Animator anim;
 	private NavMeshAgent navMeshAgent;
 
@@ -50,6 +51,7 @@ public class Horse_Behavior : MonoBehaviour {
 		stats = GetComponent<Horse_Stats> ();
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		anim = GetComponentInChildren<Animator> ();
+		mounted	= GetComponent<Horse_Mounted>();
 
 		ChangeState (horseState.IDLE);
 	}
@@ -174,6 +176,7 @@ public class Horse_Behavior : MonoBehaviour {
 			Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
 			if (Physics.Raycast(stats.headBone.position, castTarget-stats.headBone.position, out hit, 100, obstacleRaycastLayers)){
 				Debug.Log ("obstacle ahead: " + hit.collider.name);
+				mounted.Stop ();
 			} 
 
 			yield return waitASecond;

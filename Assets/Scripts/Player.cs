@@ -44,6 +44,7 @@ public class Player : MonoBehaviour {
 
 	//Physics
 	private Rigidbody rb;
+	private Vector3 previousMovementVector;
 
 	private void Start() {
 		//navMeshAgent = GetComponent<NavMeshAgent> ();
@@ -52,9 +53,6 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 		rb = GetComponent<Rigidbody> ();
 	}
-
-
-
 
 	private void Update() {
 
@@ -155,6 +153,9 @@ public class Player : MonoBehaviour {
 
 				if (ridingHorse.horseBehaviour.currentHorseGait == horseGait.STAND && newMovementVector.magnitude > 0) {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;
+					if (previousMovementVector.magnitude == 0) {
+						ridingHorse.ReceivePlayerInput (this, dir.UP);
+					}
 				} else if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				}
@@ -168,7 +169,13 @@ public class Player : MonoBehaviour {
 				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
 					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				} 
+
+				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
+				}
 			}
+
+			previousMovementVector = newMovementVector;
 		}
 	}
 
