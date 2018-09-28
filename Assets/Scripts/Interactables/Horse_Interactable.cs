@@ -372,7 +372,6 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void MountHorse(Player player){
-		horseBehaviour.RidingHorse(true);
 
 		//move player to leading position
 		player.transform.position = playerMountedPos.position;
@@ -385,6 +384,8 @@ public class Horse_Interactable : Interactable {
 
 		//Disable horse's trigger
 		GetComponent<Collider>().enabled = false;
+
+		horseBehaviour.RidingHorse(true);
 	}
 
 	public void Dismount(Player player){

@@ -88,7 +88,7 @@ public class Horse_Mounted : MonoBehaviour {
 		}
 
 		changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
-		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		//Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 
 		switch (input) {
 		case dir.UP: 
@@ -128,15 +128,17 @@ public class Horse_Mounted : MonoBehaviour {
 
 		actualMovementSpeedMultiplier = minSpeedMod[horseBehaviour.currentHorseGait] + gaitWeight * (maxSpeedMod[horseBehaviour.currentHorseGait] - minSpeedMod[horseBehaviour.currentHorseGait] );
 
-		Debug.Log ("new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		//Debug.Log ("new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 	
 		ui.speedBar.fillAmount = gaitWeight;
 
 	}
 
 	public void Stop(){
-		horseBehaviour.ChangeGaitByRiding (0.1f, 0.1f);
+		Debug.Log ("HORSE STOP");
 		horseBehaviour.currentHorseGait = horseGait.STAND;
+		horseBehaviour.ChangeGaitByRiding (1f, 1f);
+		actualMovementSpeedMultiplier = 0;
 		ignorePlayerInput = true;
 		StartCoroutine (ResetIgnorePlayer ());
 	}
@@ -144,6 +146,8 @@ public class Horse_Mounted : MonoBehaviour {
 	private IEnumerator ResetIgnorePlayer(){
 		yield return new WaitForSeconds (3f);
 		ignorePlayerInput = false;
+		actualMovementSpeedMultiplier = 1;
+		Debug.Log ("HORSE IGNORING STOP");
 	}
 
 	private horseGait IncreaseGaitByOne(){

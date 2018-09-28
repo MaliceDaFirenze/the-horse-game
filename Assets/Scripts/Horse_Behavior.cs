@@ -167,18 +167,27 @@ public class Horse_Behavior : MonoBehaviour {
 
 	private IEnumerator BeRidden(){
 		//horse stays in this state until change from outside
+		Player ridingPlayer = transform.root.GetComponent<Player>();
+
 		while (true) {
 
-			//raycast ahead for obstacles
-			Vector3 castTarget = transform.position + transform.forward * 10;
-			RaycastHit hit;
+			//only cast ahead if horse is moving
+			if (ridingPlayer.PreviousMovementVector.magnitude > 0) {
+			
+				//raycast ahead for obstacles
+				Vector3 castTarget = transform.position + transform.forward * 10;
+				RaycastHit hit;
 
-			Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
-			if (Physics.Raycast(stats.headBone.position, castTarget-stats.headBone.position, out hit, 100, obstacleRaycastLayers)){
-				Debug.Log ("obstacle ahead: " + hit.collider.name);
-				mounted.Stop ();
-			} 
+				Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
+				if (Physics.Raycast (stats.headBone.position, castTarget - stats.headBone.position, out hit, 100, obstacleRaycastLayers)) {
+					Debug.Log ("obstacle ahead: " + hit.collider.name);
+					mounted.Stop ();
+				} 
 
+			} else {
+				Debug.Log ("horse was standing still, not casting");
+			}
+				
 			yield return waitASecond;
 		
 		}

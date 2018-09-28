@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 
 	//Physics
 	private Rigidbody rb;
-	private Vector3 previousMovementVector;
+	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
 
 	private void Start() {
 		//navMeshAgent = GetComponent<NavMeshAgent> ();
