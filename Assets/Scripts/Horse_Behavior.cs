@@ -175,13 +175,22 @@ public class Horse_Behavior : MonoBehaviour {
 			if (ridingPlayer.PreviousMovementVector.magnitude > 0) {
 			
 				//raycast ahead for obstacles
-				Vector3 castTarget = transform.position + transform.forward * 10;
+				Vector3 castTarget = transform.position + transform.forward * 2.5f * (int)currentHorseGait;
 				RaycastHit hit;
 
 				Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
 				if (Physics.Raycast (stats.headBone.position, castTarget - stats.headBone.position, out hit, 100, obstacleRaycastLayers)) {
-					Debug.Log ("obstacle ahead: " + hit.collider.name);
-					mounted.Stop ();
+					Debug.DrawRay (hit.point, hit.normal, Color.cyan, 0.5f);
+					float angle = Vector3.Angle (hit.normal, castTarget - stats.headBone.position);
+					Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
+
+					if (180-angle < 20) {
+						Debug.Log ("can jump");
+						StartCoroutine (Jump ());
+					} else {
+						Debug.Log ("obstacle ahead: " + hit.collider.name);
+						mounted.Stop ();
+					}
 				} 
 
 			} else {
@@ -191,7 +200,19 @@ public class Horse_Behavior : MonoBehaviour {
 			yield return waitASecond;
 		
 		}
+	}
 
+	private IEnumerator Jump(){
+		GenericUtilities.EnableAllColliders (transform, false); //this doesn't work because it falls through the floor. just need to disable collisions with obstacles for the jump duration
+		mounted.ignorePlayerInput = true;
+		anim.SetBool ("Jump", true);
+
+		yield return new WaitForSeconds (2f);
+
+		anim.SetBool ("Jump", false);
+		currentHorseGait = horseGait.CANTER;
+		mounted.ignorePlayerInput = false;
+		GenericUtilities.EnableAllColliders (transform, true);
 	}
 
 	private IEnumerator BeTiedToPost(){
