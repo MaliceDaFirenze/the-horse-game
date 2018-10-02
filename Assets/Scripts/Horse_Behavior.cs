@@ -39,12 +39,14 @@ public class Horse_Behavior : MonoBehaviour {
 	private float minIdleDuration = 3f;
 	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
+	private WaitForSeconds waitShort = new WaitForSeconds(0.2f);
 	private WaitForSeconds horseGaitChangeDelay = new WaitForSeconds(0.5f); //not bc I want delay but bc I don't want this to check every single frame
 
 	private float minManureDuration = 20f;
 	private float maxManureDuration = 40f;
 
 	public LayerMask obstacleRaycastLayers;
+	private bool jumpInProgress;
 
 	void Start () {
 		//Initialize
@@ -172,10 +174,10 @@ public class Horse_Behavior : MonoBehaviour {
 		while (true) {
 
 			//only cast ahead if horse is moving
-			if (ridingPlayer.PreviousMovementVector.magnitude > 0) {
+			if (ridingPlayer.PreviousMovementVector.magnitude > 0 && !jumpInProgress) {
 			
 				//raycast ahead for obstacles
-				Vector3 castTarget = transform.position + transform.forward * 2.5f * (int)currentHorseGait;
+				Vector3 castTarget = transform.position + transform.forward * 2.5f * mounted.actualMovementSpeedMultiplier;
 				RaycastHit hit;
 
 				Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
@@ -194,25 +196,29 @@ public class Horse_Behavior : MonoBehaviour {
 				} 
 
 			} else {
-				Debug.Log ("horse was standing still, not casting");
+				Debug.Log ("horse was standing still or jump in progress, not casting");
 			}
 				
-			yield return waitASecond;
+			yield return waitShort;
 		
 		}
 	}
 
 	private IEnumerator Jump(){
-		GenericUtilities.EnableAllColliders (transform, false); //this doesn't work because it falls through the floor. just need to disable collisions with obstacles for the jump duration
+		Debug.Log ("start jump coroutine");
+		jumpInProgress = true;
+		Physics.IgnoreLayerCollision (0, 8, true);
 		mounted.ignorePlayerInput = true;
 		anim.SetBool ("Jump", true);
 
-		yield return new WaitForSeconds (2f);
+		yield return new WaitForSeconds (3f);
 
 		anim.SetBool ("Jump", false);
 		currentHorseGait = horseGait.CANTER;
 		mounted.ignorePlayerInput = false;
-		GenericUtilities.EnableAllColliders (transform, true);
+		Physics.IgnoreLayerCollision (0, 8, false);
+		jumpInProgress = false;
+		Debug.Log ("end jump coroutine");
 	}
 
 	private IEnumerator BeTiedToPost(){
