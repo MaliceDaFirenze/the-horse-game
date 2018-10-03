@@ -177,13 +177,19 @@ public class Horse_Behavior : MonoBehaviour {
 			if (ridingPlayer.PreviousMovementVector.magnitude > 0 && !jumpInProgress) {
 			
 				//raycast ahead for obstacles
-				Vector3 castTarget = transform.position + transform.forward * 2.5f * mounted.actualMovementSpeedMultiplier;
+				Vector3 castTarget = transform.position + transform.forward * 4f * mounted.actualMovementSpeedMultiplier;
 				RaycastHit hit;
+
+				//works for slow canter. 
+				//why doesn't it work for fast canter? 
 
 				Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
 				if (Physics.Raycast (stats.headBone.position, castTarget - stats.headBone.position, out hit, 100, obstacleRaycastLayers)) {
 					Debug.DrawRay (hit.point, hit.normal, Color.cyan, 0.5f);
 					float angle = Vector3.Angle (hit.normal, castTarget - stats.headBone.position);
+
+					//the hit normal draws straight away from the obstacle. the angle is calculated in three dimensions, but I actually only care about x/z, not x/y or z/y. the hit point is below the ground
+
 					Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
 
 					if (180-angle < 20) {
@@ -196,7 +202,7 @@ public class Horse_Behavior : MonoBehaviour {
 				} 
 
 			} else {
-				Debug.Log ("horse was standing still or jump in progress, not casting");
+				//Debug.Log ("horse was standing still or jump in progress, not casting");
 			}
 				
 			yield return waitShort;
