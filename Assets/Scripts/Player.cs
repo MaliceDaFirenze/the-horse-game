@@ -83,7 +83,11 @@ public class Player : MonoBehaviour {
 				navMeshAgent.SetDestination (transform.position + overrideMoVe);
 			}*/
 
-			rb.MovePosition (rb.position + newMovementVector);
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait != horseGait.WALK && previousMovementVector.magnitude > 0) {
+				rb.MovePosition (rb.position + newMovementVector);
+			} else {
+				rb.MovePosition (rb.position + previousMovementVector);
+			}
 
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
@@ -175,7 +179,11 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			previousMovementVector = newMovementVector;
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait != horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+			//keep moving
+			} else {
+				previousMovementVector = newMovementVector;
+			}
 		}
 	}
 

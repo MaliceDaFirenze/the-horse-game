@@ -194,6 +194,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 					if (180-angle < 20) {
 						Debug.Log ("can jump");
+						Time.timeScale = 0f;
 						StartCoroutine (Jump ());
 					} else {
 						Debug.Log ("obstacle ahead: " + hit.collider.name);
@@ -209,6 +210,17 @@ public class Horse_Behavior : MonoBehaviour {
 		
 		}
 	}
+
+	private void Update(){
+		if (Input.GetKeyDown(KeyCode.Alpha1)){
+			Time.timeScale = 0.1f;
+		} else if (Input.GetKeyDown(KeyCode.Alpha2)){
+			Time.timeScale = 0.5f;
+		} else if (Input.GetKeyDown(KeyCode.Alpha3)){
+			Time.timeScale = 1.0f;
+		}
+	}
+
 
 	private IEnumerator Jump(){
 		Debug.Log ("start jump coroutine");
