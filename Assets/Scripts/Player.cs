@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
 					speedMultiplier = 1f;
 				}
 
-				if (currentlyEquippedItem != null && (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD || currentlyEquippedItem.id == equippableItemID.HORSE_MOUNTED)) {
+				if (currentlyEquippedItem != null && currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
 					//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
 
 					if (leadingHorse == null) {
@@ -175,7 +175,14 @@ public class Player : MonoBehaviour {
 				} 
 
 				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+
+					//TODO: This is triggered all the time because I don't reset previous Movement Vector anymore. I should have something separate like a horse movement vector maybe?
+					//how else to handle letting go of WASD but having the horse walk on? 
+
 					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
+				} else if (previousMovementVector.magnitude == 0 && newMovementVector.magnitude > 0) {
+					Debug.Log ("horse was standing, starts moving now");
+					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				}
 			}
 

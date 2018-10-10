@@ -88,7 +88,7 @@ public class Horse_Mounted : MonoBehaviour {
 		}
 
 		changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
-		//Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 
 		switch (input) {
 		case dir.UP: 
