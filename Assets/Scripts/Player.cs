@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
 	private float speedMultiplier = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
+	private bool keepHorseMoving;
 
 	//References
 	public UI ui;
@@ -69,7 +70,9 @@ public class Player : MonoBehaviour {
 			//}
 
 			//navMeshAgent.SetDestination (destination);
-			transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
+			if (newMovementVector.magnitude > 0){
+				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
+			}
 
 			/*if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
 				//the player is standing and moving against an edge of the navmesh
@@ -83,11 +86,16 @@ public class Player : MonoBehaviour {
 				navMeshAgent.SetDestination (transform.position + overrideMoVe);
 			}*/
 
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait != horseGait.WALK && previousMovementVector.magnitude > 0) {
-				rb.MovePosition (rb.position + newMovementVector);
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+				Debug.Log ("keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
+				keepHorseMoving = true;
+				newMovementVector = previousMovementVector;
 			} else {
-				rb.MovePosition (rb.position + previousMovementVector);
+				keepHorseMoving = false;
 			}
+
+			rb.MovePosition (rb.position + newMovementVector);
+
 
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
@@ -155,12 +163,7 @@ public class Player : MonoBehaviour {
 
 				speedMultiplier = ridingHorse.actualMovementSpeedMultiplier;
 
-				if (ridingHorse.horseBehaviour.currentHorseGait == horseGait.STAND && newMovementVector.magnitude > 0) {
-					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;
-					if (previousMovementVector.magnitude == 0) {
-						ridingHorse.ReceivePlayerInput (this, dir.UP);
-					}
-				} else if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
+				if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				}
 
@@ -174,20 +177,19 @@ public class Player : MonoBehaviour {
 					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				} 
 
-				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
-
-					//TODO: This is triggered all the time because I don't reset previous Movement Vector anymore. I should have something separate like a horse movement vector maybe?
-					//how else to handle letting go of WASD but having the horse walk on? 
-
-					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
+				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0 /*&& !keepHorseMoving*/) { 
+					ridingHorse.ReceivePlayerInput (this, dir.DOWN, true);
+				//	ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				} else if (previousMovementVector.magnitude == 0 && newMovementVector.magnitude > 0) {
 					Debug.Log ("horse was standing, starts moving now");
-					ridingHorse.ReceivePlayerInput (this, dir.UP);
+					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;
+					ridingHorse.ReceivePlayerInput (this, dir.UP, true);
 				}
 			}
 
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait != horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
-			//keep moving
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+				//keep moving
+				Debug.Log("keep movement vector, it's faster than walk");
 			} else {
 				previousMovementVector = newMovementVector;
 			}

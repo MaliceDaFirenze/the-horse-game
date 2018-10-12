@@ -81,14 +81,18 @@ public class Horse_Mounted : MonoBehaviour {
 	
 	}
 
-	public void ReceivePlayerInput(Player player, dir input/*, Vector3 playerMovementVector = Vector3.one*/){
+	public void ReceivePlayerInput(Player player, dir input, bool useMinChangeValue = false/*, Vector3 playerMovementVector = Vector3.one*/){
 
 		if (ignorePlayerInput) {
 			return;
 		}
 
-		changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
-		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
+		if (useMinChangeValue) {
+			changeSpeedValueBy = changeSpeedValueByMin;
+		} else {
+			changeSpeedValueBy = Random.Range (changeSpeedValueByMin, changeSpeedValueByMax);
+		}
+		Debug.Log ("player input: " + input + ". changevalueby: " + changeSpeedValueBy + ". BEFORE: new ani speed: " + gaitAniSpeed + ", in gait: " + horseBehaviour.currentHorseGait + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier + ". use min Value: " + useMinChangeValue);
 
 		switch (input) {
 		case dir.UP: 
@@ -164,7 +168,7 @@ public class Horse_Mounted : MonoBehaviour {
 		if ((int)result < 0) {
 			result = horseGait.STAND;
 		}
-		Debug.Log ("increase gait, old: " + horseBehaviour.currentHorseGait + " new: " + result); 
+		Debug.Log ("decrease gait, old: " + horseBehaviour.currentHorseGait + " new: " + result); 
 		return result;
 	}
 
