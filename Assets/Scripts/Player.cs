@@ -47,6 +47,9 @@ public class Player : MonoBehaviour {
 	private Rigidbody rb;
 	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
 
+	//Debug
+	public bool noInput = false;
+
 	private void Start() {
 		//navMeshAgent = GetComponent<NavMeshAgent> ();
 		ui = FindObjectOfType<UI> ();
@@ -86,8 +89,16 @@ public class Player : MonoBehaviour {
 				navMeshAgent.SetDestination (transform.position + overrideMoVe);
 			}*/
 
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+			if (Input.GetAxis ("Horizontal") == 0 && Input.GetAxis ("Vertical") == 0) {
+				//Debug.Log ("no input");
+				noInput = true;
+			} else {
+				noInput = false;
+			}
+
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude < previousMovementVector.magnitude && noInput) { //replacing nMV == 0 with nMV < prMV was useless, bc I undo that with checking for noInput.  
 				Debug.Log ("keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
+
 				keepHorseMoving = true;
 				newMovementVector = previousMovementVector;
 			} else {
@@ -96,7 +107,7 @@ public class Player : MonoBehaviour {
 
 			rb.MovePosition (rb.position + newMovementVector);
 
-
+		
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
@@ -177,7 +188,7 @@ public class Player : MonoBehaviour {
 					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				} 
 
-				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0 /*&& !keepHorseMoving*/) { 
+				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0/*&& !keepHorseMoving*/) { 
 					ridingHorse.ReceivePlayerInput (this, dir.DOWN, true);
 				//	ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				} else if (previousMovementVector.magnitude == 0 && newMovementVector.magnitude > 0) {
