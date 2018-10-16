@@ -28,6 +28,10 @@ public class Player : MonoBehaviour {
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
 	private bool keepHorseMoving;
+	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
+	private Vector3 movementVectorInput;
+	private float fullInputVectorMagnitude;
+
 
 	//References
 	public UI ui;
@@ -45,10 +49,6 @@ public class Player : MonoBehaviour {
 
 	//Physics
 	private Rigidbody rb;
-	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
-
-	//Debug
-	public bool noInput = false;
 
 	private void Start() {
 		//navMeshAgent = GetComponent<NavMeshAgent> ();
@@ -63,40 +63,26 @@ public class Player : MonoBehaviour {
 		if (allowPlayerInput) {
 			//---------MOVEMENT---------//
 			//GetAxis returns value between -1 and 1
-			newMovementVector.x = Input.GetAxis("Horizontal") * speed * speedMultiplier * Time.deltaTime;
-			newMovementVector.z = Input.GetAxis("Vertical") * speed * speedMultiplier * Time.deltaTime;
+			movementVectorInput.x = Input.GetAxis("Horizontal");
+			movementVectorInput.z = Input.GetAxis("Vertical");
 
-			/*if (destinationOverride != null) {
-				destination = destinationOverride.position;
-			} else {*/
-				destination = transform.position + newMovementVector;
-			//}
+			newMovementVector = movementVectorInput * speed * speedMultiplier * Time.deltaTime;
 
-			//navMeshAgent.SetDestination (destination);
+			if (fullInputVectorMagnitude < movementVectorInput.magnitude) {
+				fullInputVectorMagnitude = movementVectorInput.magnitude;
+				Debug.Log ("max input movement magnitude set to " + fullInputVectorMagnitude);
+			}
+
+			destination = transform.position + newMovementVector;
+
 			if (newMovementVector.magnitude > 0){
 				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
 			}
 
-			/*if (!navMeshAgent.hasPath && newMovementVector.magnitude != 0) {
-				//the player is standing and moving against an edge of the navmesh
-				//I need to check if there are offmesh links available nearby
 
-				Vector3 overrideMoVe;
-				Debug.Log ("no path, but trying to move");
-		
-				overrideMoVe = newMovementVector * movementVectorScale;
-				debugSphere.transform.position = transform.position + overrideMoVe;
-				navMeshAgent.SetDestination (transform.position + overrideMoVe);
-			}*/
-
-			if (Input.GetAxis ("Horizontal") == 0 && Input.GetAxis ("Vertical") == 0) {
-				//Debug.Log ("no input");
-				noInput = true;
-			} else {
-				noInput = false;
-			}
-
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude < previousMovementVector.magnitude && noInput) { //replacing nMV == 0 with nMV < prMV was useless, bc I undo that with checking for noInput.  
+			//moving with two keys at once (diagonal) has a bigger magnitude than only moving one way, so once this fullmagnitude is set, only chnanges with two keys are registered anymore
+			//maybe look at this with someone else, cause there's GOTTA be a way to do this without being so dumb
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.magnitude < fullInputVectorMagnitude) { 
 				Debug.Log ("keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
 
 				keepHorseMoving = true;
@@ -198,7 +184,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0) {
+			if (keepHorseMoving) {
 				//keep moving
 				Debug.Log("keep movement vector, it's faster than walk");
 			} else {
