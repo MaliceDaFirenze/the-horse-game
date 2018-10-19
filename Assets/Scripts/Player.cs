@@ -66,10 +66,12 @@ public class Player : MonoBehaviour {
 			movementVectorInput.x = Input.GetAxis("Horizontal");
 			movementVectorInput.z = Input.GetAxis("Vertical");
 
+
+		
 			newMovementVector = movementVectorInput * speed * speedMultiplier * Time.deltaTime;
 
-			if (fullInputVectorMagnitude < movementVectorInput.magnitude) {
-				fullInputVectorMagnitude = movementVectorInput.magnitude;
+			if (fullInputVectorMagnitude < movementVectorInput.normalized.magnitude) {
+				fullInputVectorMagnitude = movementVectorInput.normalized.magnitude;
 				Debug.Log ("max input movement magnitude set to " + fullInputVectorMagnitude);
 			}
 
@@ -80,9 +82,13 @@ public class Player : MonoBehaviour {
 			}
 
 
-			//moving with two keys at once (diagonal) has a bigger magnitude than only moving one way, so once this fullmagnitude is set, only chnanges with two keys are registered anymore
-			//maybe look at this with someone else, cause there's GOTTA be a way to do this without being so dumb
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.magnitude < fullInputVectorMagnitude) { 
+			//keephorsemoving/input vector override should ONLY occurr if the player is not giving input. this isn't the case atm
+			//currently, it slows down and moves at min speed even without me letting go once, so thats fucked up 
+			//I get the keep movement log all the time as soon as I'm trotting
+			if (ridingHorse != null){
+				Debug.Log("moveset is " + currentMovementSet + ", gait > walk is " + (ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK) + /*", input mag == 1: " + (movementVectorInput.normalized.magnitude==1) +*/ ", input magnitude normalized: " + movementVectorInput.normalized.magnitude + ", full mag: " + fullInputVectorMagnitude + " input mag < fullmag : " + (movementVectorInput.normalized.magnitude < fullInputVectorMagnitude));
+			}
+			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.normalized.magnitude != 1) { 
 				Debug.Log ("keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
 
 				keepHorseMoving = true;
