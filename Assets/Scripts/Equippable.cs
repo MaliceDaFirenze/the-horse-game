@@ -25,7 +25,7 @@ public enum containerStatus{
 }
 
 public class Equippable : MonoBehaviour {
-
+    
 	private Vector3 regularScale;
 	public float equippedScaleFactor = 1;
 	public float dropPosYOffset;
@@ -63,7 +63,7 @@ public class Equippable : MonoBehaviour {
 			consumable.enabled = false;
 		}
 
-		EnableAllColliders (overwriteCollidersTo);
+        EnableAllColliders (overwriteCollidersTo);
 
 		transform.localScale *= equippedScaleFactor;
 	}

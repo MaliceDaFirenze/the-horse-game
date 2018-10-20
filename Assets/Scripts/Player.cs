@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 	private float speed = 3f;//30f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
+    public float maximumTurnRate = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
 	private bool keepHorseMoving;
@@ -61,14 +62,18 @@ public class Player : MonoBehaviour {
 	private void Update() {
 
 		if (allowPlayerInput) {
-			//---------MOVEMENT---------//
-			//GetAxis returns value between -1 and 1
-			movementVectorInput.x = Input.GetAxis("Horizontal");
-			movementVectorInput.z = Input.GetAxis("Vertical");
-		
-			newMovementVector = movementVectorInput.normalized * speed * speedMultiplier * Time.deltaTime;
+            //---------MOVEMENT---------//
+            //GetAxis returns value between -1 and 1
+            //movementVectorInput.x = Input.GetAxis("Horizontal");
+            //movementVectorInput.z = Input.GetAxis("Vertical");
+            UpdateInputVector();
+            
+            newMovementVector = movementVectorInput.normalized * speed * speedMultiplier * Time.deltaTime;
 
-			destination = transform.position + newMovementVector;
+            LimitTurnRate();
+            
+
+            destination = transform.position + newMovementVector;
 
 			if (newMovementVector.magnitude > 0){
 				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
@@ -185,7 +190,34 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private void OnTriggerEnter(Collider trigger){
+    private void UpdateInputVector(){
+        movementVectorInput = Vector3.zero;
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
+            movementVectorInput.z = 1;
+        }
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
+            movementVectorInput.x = -1;
+        }
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey (KeyCode.W)){ 
+            movementVectorInput.z = -1;
+        }
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
+            movementVectorInput.x = 1;
+        }
+    }
+
+    private void LimitTurnRate (){
+        float turnAngle = Vector3.SignedAngle (transform.forward, newMovementVector, transform.up); // Should be <= 180 deg
+        float turnRate = turnAngle / Time.deltaTime;
+        // If resulting turnRate is too large, reduce it
+        if (Mathf.Abs (turnRate) > maximumTurnRate) {
+            turnRate = Mathf.Sign (turnRate) * maximumTurnRate;
+            turnAngle = turnRate * Time.deltaTime;
+            newMovementVector = Quaternion.AngleAxis (turnAngle, transform.up) * transform.forward * speed * speedMultiplier * Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter(Collider trigger){
 		Debug.Log ("enter trigger: " + trigger + ", collider is trigger: " + trigger.isTrigger);
 
 		nearestInteractable = trigger.GetComponent<Interactable> ();
