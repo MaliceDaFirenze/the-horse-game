@@ -65,15 +65,8 @@ public class Player : MonoBehaviour {
 			//GetAxis returns value between -1 and 1
 			movementVectorInput.x = Input.GetAxis("Horizontal");
 			movementVectorInput.z = Input.GetAxis("Vertical");
-
-
 		
-			newMovementVector = movementVectorInput * speed * speedMultiplier * Time.deltaTime;
-
-			if (fullInputVectorMagnitude < movementVectorInput.normalized.magnitude) {
-				fullInputVectorMagnitude = movementVectorInput.normalized.magnitude;
-				Debug.Log ("max input movement magnitude set to " + fullInputVectorMagnitude);
-			}
+			newMovementVector = movementVectorInput.normalized * speed * speedMultiplier * Time.deltaTime;
 
 			destination = transform.position + newMovementVector;
 
@@ -81,25 +74,18 @@ public class Player : MonoBehaviour {
 				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
 			}
 
-
-			//keephorsemoving/input vector override should ONLY occurr if the player is not giving input. this isn't the case atm
-			//currently, it slows down and moves at min speed even without me letting go once, so thats fucked up 
-			//I get the keep movement log all the time as soon as I'm trotting
-			if (ridingHorse != null){
-				Debug.Log("moveset is " + currentMovementSet + ", gait > walk is " + (ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK) + /*", input mag == 1: " + (movementVectorInput.normalized.magnitude==1) +*/ ", input magnitude normalized: " + movementVectorInput.normalized.magnitude + ", full mag: " + fullInputVectorMagnitude + " input mag < fullmag : " + (movementVectorInput.normalized.magnitude < fullInputVectorMagnitude));
-			}
 			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.normalized.magnitude != 1) { 
-				Debug.Log ("keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
-
+				Debug.Log ("no input. keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
 				keepHorseMoving = true;
 				newMovementVector = previousMovementVector;
 			} else {
 				keepHorseMoving = false;
 			}
 
-			rb.MovePosition (rb.position + newMovementVector);
+			//Problem now:
+			//horse maintains speed when no WASD input. that's wrong, it should still react to arrow key input
 
-		
+			rb.MovePosition (rb.position + newMovementVector);
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
