@@ -1829,7 +1829,7 @@ Prefab:
     - target: {fileID: 114377831620234292, guid: 3aa225812e74806469b710a27eb2ec11,
         type: 2}
       propertyPath: maximumTurnRate
-      value: 90
+      value: 360
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}

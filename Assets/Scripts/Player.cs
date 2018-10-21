@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
 			}
 
 			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.normalized.magnitude != 1) { 
-				Debug.Log ("no input. keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
+				//Debug.Log ("no input. keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
 				keepHorseMoving = true;
 				newMovementVector = previousMovementVector.normalized * speed * speedMultiplier * Time.deltaTime ;
 			} else {
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour {
 
 			if (keepHorseMoving) {
 				//keep moving
-				Debug.Log("keep movement vector, it's faster than walk");
+				//Debug.Log("keep movement vector, it's faster than walk");
 			} else {
 				previousMovementVector = newMovementVector;
 			}

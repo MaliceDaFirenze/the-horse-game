@@ -177,29 +177,35 @@ public class Horse_Behavior : MonoBehaviour {
 			if (ridingPlayer.PreviousMovementVector.magnitude > 0 && !jumpInProgress) {
 			
 				//raycast ahead for obstacles
-				Vector3 castTarget = transform.position + transform.forward * 4f * mounted.actualMovementSpeedMultiplier;
+				//Vector3 castTarget = transform.position + transform.forward * 4f * mounted.actualMovementSpeedMultiplier;
+                float yOffset = 1;
+                Vector3 castOrigin = transform.position + transform.up*yOffset;
+                Vector3 castDirection = transform.forward;
 				RaycastHit hit;
 
 				//works for slow canter. 
 				//why doesn't it work for fast canter? 
-
-				Debug.DrawRay (stats.headBone.position, castTarget - stats.headBone.position, Color.yellow, 0.5f);
-				if (Physics.Raycast (stats.headBone.position, castTarget - stats.headBone.position, out hit, 100, obstacleRaycastLayers)) {
+                //Vector3 castDirection = castTarget - stats.headBone.position;
+				Debug.DrawRay (castOrigin, castDirection*100, Color.yellow, 0.5f);
+				if (Physics.Raycast (castOrigin, castDirection, out hit, 100, obstacleRaycastLayers)) {
 					Debug.DrawRay (hit.point, hit.normal, Color.cyan, 0.5f);
-					float angle = Vector3.Angle (hit.normal, castTarget - stats.headBone.position);
+                    float distanceToObstace = hit.distance;
+					float angle = Vector3.Angle (hit.normal, castDirection);
 
 					//the hit normal draws straight away from the obstacle. the angle is calculated in three dimensions, but I actually only care about x/z, not x/y or z/y. the hit point is below the ground
 
 					Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
-
-					if (180-angle < 20) {
-						Debug.Log ("can jump");
-					//	Time.timeScale = 0f;
-						StartCoroutine (Jump ());
-					} else {
-						Debug.Log ("obstacle ahead: " + hit.collider.name);
-						mounted.Stop ();
-					}
+                    Debug.Log ("Distance " + distanceToObstace);
+                    if (distanceToObstace < 20) {
+					    if (180-angle < 20) {
+						    Debug.Log ("can jump");
+					    //	Time.timeScale = 0f;
+						    StartCoroutine (Jump ());
+					    } else {
+						    Debug.Log ("obstacle ahead: " + hit.collider.name);
+						    mounted.Stop ();
+					    }
+                    }
 				} 
 
 			} else {
@@ -229,9 +235,10 @@ public class Horse_Behavior : MonoBehaviour {
 		mounted.ignorePlayerInput = true;
 		anim.SetBool ("Jump", true);
 
-		yield return new WaitForSeconds (3f);
-
+		yield return new WaitForSeconds (1f);
 		anim.SetBool ("Jump", false);
+        yield return new WaitForSeconds (2f);
+
 		currentHorseGait = horseGait.CANTER;
 		mounted.ignorePlayerInput = false;
 		Physics.IgnoreLayerCollision (0, 8, false);

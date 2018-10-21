@@ -438,10 +438,10 @@ public class Horse_Interactable : Interactable {
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_SADDLE_WITH_PAD));
 			}
 
-			if (backGear != null && headGear != null && backGear.type == horseGearType.SADDLE_WITH_PAD && headGear.type == horseGearType.BRIDLE) {
+			//if (backGear != null && headGear != null && backGear.type == horseGearType.SADDLE_WITH_PAD && headGear.type == horseGearType.BRIDLE) {
 				currentlyRelevantActionIDs.Add (actionID.MOUNT_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.MOUNT_HORSE));
-			}
+			//}
 
 			break;
 		case equippableItemID.STRAW:
