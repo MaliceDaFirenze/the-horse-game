@@ -39,7 +39,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private float minIdleDuration = 3f;
 	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
-	private WaitForSeconds waitShort = new WaitForSeconds(0.2f);
+	private WaitForSeconds waitShort = new WaitForSeconds(0.01f);
 	private WaitForSeconds horseGaitChangeDelay = new WaitForSeconds(0.5f); //not bc I want delay but bc I don't want this to check every single frame
 
 	private float minManureDuration = 20f;
@@ -172,9 +172,9 @@ public class Horse_Behavior : MonoBehaviour {
 		Player ridingPlayer = transform.root.GetComponent<Player>();
 
 		while (true) {
-
+            Debug.Log("TRUE");
 			//only cast ahead if horse is moving
-			if (ridingPlayer.PreviousMovementVector.magnitude > 0 && !jumpInProgress) {
+			if (ridingPlayer.PreviousMovementVector.magnitude > 0){// && !jumpInProgress) {
 			
 				//raycast ahead for obstacles
 				//Vector3 castTarget = transform.position + transform.forward * 4f * mounted.actualMovementSpeedMultiplier;
@@ -189,18 +189,24 @@ public class Horse_Behavior : MonoBehaviour {
 				Debug.DrawRay (castOrigin, castDirection*100, Color.yellow, 0.5f);
 				if (Physics.Raycast (castOrigin, castDirection, out hit, 100, obstacleRaycastLayers)) {
 					Debug.DrawRay (hit.point, hit.normal, Color.cyan, 0.5f);
-                    float distanceToObstace = hit.distance;
+
+                    float distanceToObstacle = hit.distance;
 					float angle = Vector3.Angle (hit.normal, castDirection);
 
 					//the hit normal draws straight away from the obstacle. the angle is calculated in three dimensions, but I actually only care about x/z, not x/y or z/y. the hit point is below the ground
 
-					Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
-                    Debug.Log ("Distance " + distanceToObstace);
-                    if (distanceToObstace < 20) {
+					//Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
+     //               Debug.Log ("Distance " + distanceToObstace);
+                    float animationSpeed = mounted.gaitAniSpeed;
+                    float timeToJump = 2f/animationSpeed;
+                    float jumpDistance = mounted.currentTotalMovementSpeed * timeToJump; // 2 is the total time of the animation before the height of the jump
+
+                    Debug.Log ("Jump Distance " + jumpDistance + "\nDistance to object" + distanceToObstacle);
+                    if (distanceToObstacle < jumpDistance) {
 					    if (180-angle < 20) {
 						    Debug.Log ("can jump");
 					    //	Time.timeScale = 0f;
-						    StartCoroutine (Jump ());
+						    StartCoroutine (Jump (hit.collider));
 					    } else {
 						    Debug.Log ("obstacle ahead: " + hit.collider.name);
 						    mounted.Stop ();
@@ -228,11 +234,19 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 
-	private IEnumerator Jump(){
+	private IEnumerator Jump(Collider colliderToJump){
+        // If collider to specific obstace is already disabled, exit coroutine
+        if(colliderToJump.enabled == false) { 
+            yield break;
+        }
+
 		Debug.Log ("start jump coroutine");
 		jumpInProgress = true;
-		Physics.IgnoreLayerCollision (0, 8, true);
+        colliderToJump.enabled = false;
 		mounted.ignorePlayerInput = true;
+        //if (jumpInProgress) { 
+        //    anim.Play("Jump", -1, 0);
+        //}
 		anim.SetBool ("Jump", true);
 
 		yield return new WaitForSeconds (1f);
@@ -241,7 +255,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 		currentHorseGait = horseGait.CANTER;
 		mounted.ignorePlayerInput = false;
-		Physics.IgnoreLayerCollision (0, 8, false);
+        colliderToJump.enabled = true;
 		jumpInProgress = false;
 		Debug.Log ("end jump coroutine");
 	}

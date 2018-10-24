@@ -156,6 +156,9 @@ public class Player : MonoBehaviour {
 			if (currentMovementSet == playerMovementSet.RIDING) {
 
 				speedMultiplier = ridingHorse.actualMovementSpeedMultiplier;
+                ridingHorse.currentTotalMovementSpeed = speed * speedMultiplier;
+                
+                    //Debug.Log("SPEED: " + speed * speedMultiplier + " GOTO " + newMovementVector/Time.deltaTime);
 
 				if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
