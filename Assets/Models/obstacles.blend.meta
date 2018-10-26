@@ -10,6 +10,12 @@ ModelImporter:
     100008: Cylinder_001
     100010: Cylinder_002
     100012: Cylinder_003
+    100014: Bar_Color0
+    100016: Bar_Color1
+    100018: Holder1
+    100020: Holder2
+    100022: Pillar1
+    100024: Pillar2
     400000: //RootNode
     400002: Cube
     400004: Cube_001
@@ -17,6 +23,12 @@ ModelImporter:
     400008: Cylinder_001
     400010: Cylinder_002
     400012: Cylinder_003
+    400014: Bar_Color0
+    400016: Bar_Color1
+    400018: Holder1
+    400020: Holder2
+    400022: Pillar1
+    400024: Pillar2
     2100000: unnamed
     2300000: //RootNode
     2300002: Cube
@@ -25,6 +37,12 @@ ModelImporter:
     2300008: Cylinder_001
     2300010: Cylinder_002
     2300012: Cylinder_003
+    2300014: Bar_Color0
+    2300016: Bar_Color1
+    2300018: Holder1
+    2300020: Holder2
+    2300022: Pillar1
+    2300024: Pillar2
     3300000: //RootNode
     3300002: Cube
     3300004: Cube_001
@@ -32,12 +50,24 @@ ModelImporter:
     3300008: Cylinder_001
     3300010: Cylinder_002
     3300012: Cylinder_003
+    3300014: Bar_Color0
+    3300016: Bar_Color1
+    3300018: Holder1
+    3300020: Holder2
+    3300022: Pillar1
+    3300024: Pillar2
     4300000: Cube
     4300002: Cylinder_001
     4300004: Cylinder_003
     4300006: Cylinder_002
     4300008: Cylinder
     4300010: Cube_001
+    4300012: Pillar2
+    4300014: Holder2
+    4300016: Pillar1
+    4300018: Holder1
+    4300020: Bar_Color0
+    4300022: Bar_Color1
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
