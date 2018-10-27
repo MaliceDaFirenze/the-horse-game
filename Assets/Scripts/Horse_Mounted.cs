@@ -11,7 +11,7 @@ public class Horse_Mounted : MonoBehaviour {
 	//the speed up/down and gait up/down logic is handled
 
 	private float gaitWeight;
-	private float gaitAniSpeed;
+	public float gaitAniSpeed;
 
 	public float actualMovementSpeedMultiplier = 1f; //which is used by the player for the actual movement
 //	private float speedAdjustmentModifier = 0.5f;
@@ -36,6 +36,7 @@ public class Horse_Mounted : MonoBehaviour {
 	private float gaitChangeTapInterval = 0.6f;
 
 	public bool ignorePlayerInput;
+    public float currentTotalMovementSpeed;
 
 	private void Start(){
 
