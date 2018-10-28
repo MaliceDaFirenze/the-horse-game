@@ -24,9 +24,14 @@ public class Horse_Behavior : MonoBehaviour {
 
 	//---References---/
 	private Horse_Stats stats;
-	private Horse_Mounted mounted;
+	private Horse_RidingBehavior mounted;
 	private Animator anim;
 	private NavMeshAgent navMeshAgent;
+
+    private Collider colliderToAvoid = null;
+    public bool isAvoidingCollider = false;
+    public bool shouldAvoidInPositiveDirection = true;
+    private float timeOfLastCollisionDetection = 0.0f;
 
 	public horseState currentHorseState;
 	private Coroutine currentBehaviour;
@@ -53,7 +58,7 @@ public class Horse_Behavior : MonoBehaviour {
 		stats = GetComponent<Horse_Stats> ();
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		anim = GetComponentInChildren<Animator> ();
-		mounted	= GetComponent<Horse_Mounted>();
+		mounted	= GetComponent<Horse_RidingBehavior>();
 
 		ChangeState (horseState.IDLE);
 	}
@@ -172,7 +177,6 @@ public class Horse_Behavior : MonoBehaviour {
 		Player ridingPlayer = transform.root.GetComponent<Player>();
 
 		while (true) {
-            Debug.Log("TRUE");
 			//only cast ahead if horse is moving
 			if (ridingPlayer.PreviousMovementVector.magnitude > 0){// && !jumpInProgress) {
 			
@@ -192,27 +196,44 @@ public class Horse_Behavior : MonoBehaviour {
 
                     float distanceToObstacle = hit.distance;
 					float angle = Vector3.Angle (hit.normal, castDirection);
-
 					//the hit normal draws straight away from the obstacle. the angle is calculated in three dimensions, but I actually only care about x/z, not x/y or z/y. the hit point is below the ground
 
-					//Debug.Log ("angle " + angle + ". 180-angle: " + (180-angle));
-     //               Debug.Log ("Distance " + distanceToObstace);
                     float animationSpeed = mounted.gaitAniSpeed;
                     float timeToJump = 2f/animationSpeed;
                     float jumpDistance = mounted.currentTotalMovementSpeed * timeToJump; // 2 is the total time of the animation before the height of the jump
 
-                    Debug.Log ("Jump Distance " + jumpDistance + "\nDistance to object" + distanceToObstacle);
-                    if (distanceToObstacle < jumpDistance) {
+                    float jumpMargin = 1;
+                    float avoidTime = 1f;
+                    float timeToCollision = distanceToObstacle/mounted.currentTotalMovementSpeed;
+                    if (jumpDistance - jumpMargin < distanceToObstacle && distanceToObstacle < jumpDistance) {
 					    if (180-angle < 20) {
-						    Debug.Log ("can jump");
-					    //	Time.timeScale = 0f;
 						    StartCoroutine (Jump (hit.collider));
-					    } else {
-						    Debug.Log ("obstacle ahead: " + hit.collider.name);
-						    mounted.Stop ();
 					    }
+                    }                    
+                    
+                    if (hit.collider != colliderToAvoid) {
+                        Debug.Log("1:" + (Time.time - timeOfLastCollisionDetection));
+                        if(Time.time - timeOfLastCollisionDetection > 0.4f) { 
+                            isAvoidingCollider = false;
+                            colliderToAvoid = null;
+                        }
                     }
-				} 
+                    if (timeToCollision < avoidTime && !jumpInProgress) {
+                        Debug.Log ("obstacle ahead and not jumping: " + hit.collider.name);
+                        isAvoidingCollider = true;
+                        colliderToAvoid = hit.collider;
+                        shouldAvoidInPositiveDirection = (Vector3.SignedAngle (hit.normal, castDirection, transform.up) > 0.0f);
+                        timeOfLastCollisionDetection = Time.time;
+						//mounted.Stop ();
+                    }
+
+				} else { 
+                        Debug.Log("2:" + (Time.time - timeOfLastCollisionDetection));
+                    if(Time.time - timeOfLastCollisionDetection > 0.4f) { 
+                        isAvoidingCollider = false;
+                        colliderToAvoid = null;
+                    }
+                }
 
 			} else {
 				//Debug.Log ("horse was standing still or jump in progress, not casting");

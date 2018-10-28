@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Horse_Mounted : MonoBehaviour {
+/*
+ * Defines how the horse reacts to player input while riding.
+ */
+public class Horse_RidingBehavior : MonoBehaviour {
 
 	//what does this need to do?
 
@@ -55,12 +58,12 @@ public class Horse_Mounted : MonoBehaviour {
 		maxAniSpeed.Add (horseGait.CANTER, 2.3f);
 
 		//Movement Speed
-		minSpeedMod.Add (horseGait.STAND, 0.5f);
+		minSpeedMod.Add (horseGait.STAND, 0.0f);
 		minSpeedMod.Add (horseGait.WALK, 0.25f);
 		minSpeedMod.Add (horseGait.TROT, 0.7f);
 		minSpeedMod.Add (horseGait.CANTER, 1.3f);
 
-		maxSpeedMod.Add (horseGait.STAND, 1f);
+		maxSpeedMod.Add (horseGait.STAND, 0f);
 		maxSpeedMod.Add (horseGait.WALK, 1.4f);
 		maxSpeedMod.Add (horseGait.TROT, 2.4f);
 		maxSpeedMod.Add (horseGait.CANTER, 5.3f);
@@ -76,8 +79,9 @@ public class Horse_Mounted : MonoBehaviour {
 		gaitWeight = 0.5f;
 		gaitAniSpeed = 1f;
 		horseBehaviour.ChangeGaitByRiding (gaitWeight, gaitAniSpeed);
-		actualMovementSpeedMultiplier = minSpeedMod[horseGait.WALK] + gaitWeight * (maxSpeedMod[horseGait.WALK] - minSpeedMod[horseGait.WALK]);
-		ui.speedBar.fillAmount = gaitWeight;
+		//actualMovementSpeedMultiplier = minSpeedMod[horseGait.WALK] + gaitWeight * (maxSpeedMod[horseGait.WALK] - minSpeedMod[horseGait.WALK]);
+		actualMovementSpeedMultiplier =0;
+            ui.speedBar.fillAmount = gaitWeight;
 		Debug.Log ("mount horse: speed " + gaitAniSpeed + ", new gait weight: " + gaitWeight + ", actualSpeedMod: " + actualMovementSpeedMultiplier);
 	
 	}
@@ -166,7 +170,7 @@ public class Horse_Mounted : MonoBehaviour {
 
 	private horseGait DecreaseGaitByOne(){
 		horseGait result = horseBehaviour.currentHorseGait - 1;
-		if ((int)result < 0) {
+		if (result < horseGait.STAND) {
 			result = horseGait.STAND;
 		}
 		Debug.Log ("decrease gait, old: " + horseBehaviour.currentHorseGait + " new: " + result); 

@@ -58,7 +58,7 @@ public class TimeLogic : MonoBehaviour {
 		player.allowPlayerInput = true;
 
 		//Time-dependant objects
-		TimeDependantObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependantObject> ();
+		TimeDependentObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependentObject> ();
 		for (int i = 0; i < allTimeDependantObjects.Length; ++i) {
 			if (!allTimeDependantObjects [i].excludeFirstDayUpdate || day != 1) {
 				allTimeDependantObjects [i].StartNewDay ();
@@ -73,7 +73,7 @@ public class TimeLogic : MonoBehaviour {
 			dateText.text = "Day " + day + " - " + string.Format("{0:00}:{1:00}", (timePassedTodaySpan.Minutes + dayStartTimeAddition), timePassedTodaySpan.Seconds);
 
 			if (lastMinuteCount != timePassedTodaySpan.Seconds) {
-				TimeDependantObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependantObject> ();
+				TimeDependentObject[] allTimeDependantObjects = FindObjectsOfType<TimeDependentObject> ();
 				for (int i = 0; i < allTimeDependantObjects.Length; ++i) {
 					allTimeDependantObjects [i].IngameMinuteHasPassed ();
 				}

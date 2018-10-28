@@ -9,7 +9,7 @@ public enum horseNeed {
 	HYGIENE
 }
 
-public class Horse_Stats : TimeDependantObject {
+public class Horse_Stats : TimeDependentObject {
 
 	//---Needs---//
 	[SerializeField]

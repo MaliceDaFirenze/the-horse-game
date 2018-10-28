@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeDependantObject : MonoBehaviour {
+public class TimeDependentObject : MonoBehaviour {
 
 	public bool excludeFirstDayUpdate;
 

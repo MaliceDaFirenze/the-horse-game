@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	public Interactable nearestInteractable;
 	public Horse_Stats nearestHorse;
 	public Horse_Behavior leadingHorse;
-	public Horse_Mounted ridingHorse;
+	public Horse_RidingBehavior ridingHorse;
 	public Equippable currentlyEquippedItem;
 
 
@@ -28,7 +28,6 @@ public class Player : MonoBehaviour {
     public float maximumTurnRate = 1f;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
-	private bool keepHorseMoving;
 	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
 	private Vector3 movementVectorInput;
 	private float fullInputVectorMagnitude;
@@ -64,36 +63,29 @@ public class Player : MonoBehaviour {
 		if (allowPlayerInput) {
             //---------MOVEMENT---------//
             //GetAxis returns value between -1 and 1
-            //movementVectorInput.x = Input.GetAxis("Horizontal");
-            //movementVectorInput.z = Input.GetAxis("Vertical");
-            UpdateInputVector();
-            
-            newMovementVector = movementVectorInput.normalized * speed * speedMultiplier * Time.deltaTime;
+            movementVectorInput.x = Input.GetAxisRaw ("Horizontal");
+            movementVectorInput.z = Input.GetAxisRaw ("Vertical");
 
-            LimitTurnRate();
-            
+            if(currentMovementSet == playerMovementSet.WALKING) {
+                newMovementVector = getMovementVector(movementVectorInput);
+            } else if(currentMovementSet == playerMovementSet.RIDING) {
+                float desiredTurnRate;
+                if (ridingHorse.horseBehaviour.isAvoidingCollider) {
+                    desiredTurnRate = maximumTurnRate * (leadingHorse.shouldAvoidInPositiveDirection? -1.0f:1.0f);
+                } else {
+                    desiredTurnRate = movementVectorInput.x * maximumTurnRate;
+                }
+                newMovementVector = getMovementVector(desiredTurnRate);
+            }
 
             destination = transform.position + newMovementVector;
-
 			if (newMovementVector.magnitude > 0){
 				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
 			}
-
-			if (currentMovementSet == playerMovementSet.RIDING && ridingHorse.horseBehaviour.currentHorseGait > horseGait.WALK && movementVectorInput.normalized.magnitude != 1) { 
-				//Debug.Log ("no input. keep movement, it's faster than walk. using previousMovementVector with magnitude " + previousMovementVector.magnitude);
-				keepHorseMoving = true;
-				newMovementVector = previousMovementVector.normalized * speed * speedMultiplier * Time.deltaTime ;
-			} else {
-				keepHorseMoving = false;
-			}
-
-			//Problem now:
-			//horse maintains speed when no WASD input. that's wrong, it should still react to arrow key input
-
 			rb.MovePosition (rb.position + newMovementVector);
 
 			if (currentMovementSet == playerMovementSet.WALKING) {
-				if (currentlyEquippedItem != null && currentlyEquippedItem.playerSpeedModifier != 1 && currentlyEquippedItem.preventSprintingWhileEquipped) {
+				if (currentlyEquippedItem != null && currentlyEquippedItem.preventSprintingWhileEquipped) {
 					speedMultiplier = currentlyEquippedItem.playerSpeedModifier;
 				} else if (Input.GetKey (KeyCode.LeftShift)) {
 					speedMultiplier = sprintSpeedMultiplier;
@@ -164,13 +156,13 @@ public class Player : MonoBehaviour {
 					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				}
 
-				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				if (Input.GetKeyDown (KeyCode.Q)) {
 					ridingHorse.ReceivePlayerInput (this, dir.LEFT);
-				} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+				} else if (Input.GetKeyDown (KeyCode.S)) {
 					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
-				} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				} else if (Input.GetKeyDown (KeyCode.E)) {
 					ridingHorse.ReceivePlayerInput (this, dir.RIGHT);
-				} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				} else if (Input.GetKeyDown (KeyCode.W)) {
 					ridingHorse.ReceivePlayerInput (this, dir.UP);
 				} 
 
@@ -184,40 +176,32 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			if (keepHorseMoving) {
-				//keep moving
-				//Debug.Log("keep movement vector, it's faster than walk");
-			} else {
-				previousMovementVector = newMovementVector;
-			}
+			previousMovementVector = newMovementVector;
 		}
 	}
 
-    private void UpdateInputVector(){
-        movementVectorInput = Vector3.zero;
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
-            movementVectorInput.z = 1;
-        }
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)){
-            movementVectorInput.x = -1;
-        }
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey (KeyCode.W)){ 
-            movementVectorInput.z = -1;
-        }
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)){
-            movementVectorInput.x = 1;
-        }
-    }
-
-    private void LimitTurnRate (){
-        float turnAngle = Vector3.SignedAngle (transform.forward, newMovementVector, transform.up); // Should be <= 180 deg
+    private Vector3 getMovementVector (Vector3 input){
+        float turnAngle = Vector3.SignedAngle (transform.forward, input, transform.up); // Should be <= 180 deg
         float turnRate = turnAngle / Time.deltaTime;
         // If resulting turnRate is too large, reduce it
         if (Mathf.Abs (turnRate) > maximumTurnRate) {
             turnRate = Mathf.Sign (turnRate) * maximumTurnRate;
             turnAngle = turnRate * Time.deltaTime;
-            newMovementVector = Quaternion.AngleAxis (turnAngle, transform.up) * transform.forward * speed * speedMultiplier * Time.deltaTime;
-        }
+            input = Quaternion.AngleAxis (turnAngle, transform.up) * transform.forward;
+        } 
+        Vector3 movementVector = input.normalized * speed * speedMultiplier * Time.deltaTime;
+        return movementVector;
+    }
+
+    private Vector3 getMovementVector (float turnRate){
+        // If turnRate is too large, reduce it
+        if (Mathf.Abs (turnRate) > maximumTurnRate) {
+            turnRate = Mathf.Sign (turnRate) * maximumTurnRate;
+        } 
+        float turnAngle = turnRate * Time.deltaTime;
+        Vector3 direction = Quaternion.AngleAxis (turnAngle, transform.up) * transform.forward;
+        Vector3 movementVector = direction.normalized * speed * speedMultiplier * Time.deltaTime;
+        return movementVector;
     }
 
     private void OnTriggerEnter(Collider trigger){
@@ -291,7 +275,7 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 	}
 
-	public void MountHorse(Horse_Mounted mountedHorse){
+	public void MountHorse(Horse_RidingBehavior mountedHorse){
 		currentMovementSet = playerMovementSet.RIDING;
 		ridingHorse = mountedHorse;
 	}
