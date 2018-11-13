@@ -15,9 +15,7 @@ public class Player : MonoBehaviour {
 
 	//Interaction
 	public Interactable nearestInteractable;
-	public Horse_Stats nearestHorse;
-	public Horse_Behavior leadingHorse;
-	public Horse_RidingBehavior ridingHorse;
+	public Horse nearestHorse;
 	public Equippable currentlyEquippedItem;
 
 
@@ -70,8 +68,8 @@ public class Player : MonoBehaviour {
                 newMovementVector = getMovementVector(movementVectorInput);
             } else if(currentMovementSet == playerMovementSet.RIDING) {
                 float desiredTurnRate;
-                if (ridingHorse.horseBehaviour.isAvoidingCollider) {
-                    desiredTurnRate = maximumTurnRate * (leadingHorse.shouldAvoidInPositiveDirection? -1.0f:1.0f);
+				if (nearestHorse.horseBehavior.isAvoidingCollider) {
+					desiredTurnRate = maximumTurnRate * (nearestHorse.horseBehavior.shouldAvoidInPositiveDirection? -1.0f:1.0f);
                 } else {
                     desiredTurnRate = movementVectorInput.x * maximumTurnRate;
                 }
@@ -96,18 +94,18 @@ public class Player : MonoBehaviour {
 				if (currentlyEquippedItem != null && currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
 					//Debug.Log ("movement magnitude: " + newMovementVector.magnitude);
 
-					if (leadingHorse == null) {
-						leadingHorse = currentlyEquippedItem.GetComponent<Horse_Behavior> ();
+					if (nearestHorse == null) {
+						nearestHorse = currentlyEquippedItem.GetComponent<Horse> ();
 					}
 
 					if (newMovementVector.magnitude > 0) {
 						if (Input.GetKey (KeyCode.LeftShift)) {
-							leadingHorse.currentHorseGait = horseGait.TROT;
+							nearestHorse.horseBehavior.currentHorseGait = horseGait.TROT;
 						} else {
-							leadingHorse.currentHorseGait = horseGait.WALK;
+							nearestHorse.horseBehavior.currentHorseGait = horseGait.WALK;
 						}
 					} else {
-						leadingHorse.currentHorseGait = horseGait.STAND;
+						nearestHorse.horseBehavior.currentHorseGait = horseGait.STAND;
 					}
 				}
 
@@ -147,32 +145,32 @@ public class Player : MonoBehaviour {
 			//------RIDING-------//
 			if (currentMovementSet == playerMovementSet.RIDING) {
 
-				speedMultiplier = ridingHorse.actualMovementSpeedMultiplier;
-                ridingHorse.currentTotalMovementSpeed = speed * speedMultiplier;
+				speedMultiplier = nearestHorse.horseRidingBehavior.actualMovementSpeedMultiplier;
+				nearestHorse.horseRidingBehavior.currentTotalMovementSpeed = speed * speedMultiplier;
                 
                     //Debug.Log("SPEED: " + speed * speedMultiplier + " GOTO " + newMovementVector/Time.deltaTime);
 
-				if (ridingHorse.horseBehaviour.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
-					ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
+				if (nearestHorse.horseBehavior.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
+					nearestHorse.horseBehavior.currentHorseGait = horseGait.STAND;
 				}
 
 				if (Input.GetKeyDown (KeyCode.Q)) {
-					ridingHorse.ReceivePlayerInput (this, dir.LEFT);
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.LEFT);
 				} else if (Input.GetKeyDown (KeyCode.S)) {
-					ridingHorse.ReceivePlayerInput (this, dir.DOWN);
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.DOWN);
 				} else if (Input.GetKeyDown (KeyCode.E)) {
-					ridingHorse.ReceivePlayerInput (this, dir.RIGHT);
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.RIGHT);
 				} else if (Input.GetKeyDown (KeyCode.W)) {
-					ridingHorse.ReceivePlayerInput (this, dir.UP);
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.UP);
 				} 
 
 				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0/*&& !keepHorseMoving*/) { 
-					ridingHorse.ReceivePlayerInput (this, dir.DOWN, true);
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.DOWN, true);
 				//	ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				} else if (previousMovementVector.magnitude == 0 && newMovementVector.magnitude > 0) {
 					Debug.Log ("horse was standing, starts moving now");
-					ridingHorse.horseBehaviour.currentHorseGait = horseGait.WALK;
-					ridingHorse.ReceivePlayerInput (this, dir.UP, true);
+					nearestHorse.horseBehavior.currentHorseGait = horseGait.WALK;
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.UP, true);
 				}
 			}
 
@@ -212,9 +210,9 @@ public class Player : MonoBehaviour {
 			nearestInteractable.nextArrowIndexToInput = 0;
 			ui.ShowInstruction(nearestInteractable, this);
 
-			nearestHorse = nearestInteractable.GetComponent<Horse_Stats> ();
-			if (nearestHorse != null) {
-				ui.ShowHorseUI (nearestHorse);
+			if (nearestInteractable.GetComponent<Horse> () != null) {
+				nearestHorse = nearestInteractable.GetComponent<Horse> ();
+				ui.ShowHorseUI (nearestHorse.horseStats);
 			}
 		}
 
@@ -277,7 +275,7 @@ public class Player : MonoBehaviour {
 
 	public void MountHorse(Horse_RidingBehavior mountedHorse){
 		currentMovementSet = playerMovementSet.RIDING;
-		ridingHorse = mountedHorse;
+		nearestHorse = mountedHorse.horse;
 	}
 
 	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?

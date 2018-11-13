@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Horse_Interactable : Interactable {
-	
+
 	//References
-	private Horse_Stats horseStats;
-	private Horse_Behavior horseBehaviour;
+	public Horse horse;
+
 	private Equippable horseOnLeadEquippable;
 	private Equippable mountedHorseEquippable;
 	private Horse_RidingBehavior horseMounted;
@@ -28,8 +28,6 @@ public class Horse_Interactable : Interactable {
 	private Vector3 positionOnPost = new Vector3(3.2f, -0.4f, -11.4f);
 
 	private void Start(){
-		horseStats = GetComponent<Horse_Stats> ();
-		horseBehaviour = GetComponent<Horse_Behavior> ();
 		horseMounted = GetComponent<Horse_RidingBehavior> ();
 
 		//get all equippable components on this GO, go through and assign them by id
@@ -111,24 +109,24 @@ public class Horse_Interactable : Interactable {
 	}
 
 	private void PetHorse(Player player){
-		horseStats.SatisfyNeed (horseNeed.HAPPINESS, 10);
+		horse.horseStats.SatisfyNeed (horseNeed.HAPPINESS, 10);
 	
 	}
 
 	private void BrushHorse (Player player){
-		horseStats.SatisfyNeed(horseNeed.HYGIENE, 20);
+		horse.horseStats.SatisfyNeed(horseNeed.HYGIENE, 20);
 	}
 
 	private void FeedHorse(Player player){
 		Debug.Log ("feed horse, remainingNeedValue " + player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
-		horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
+		horse.horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
-		horseBehaviour.StartCoroutine (horseBehaviour.WaitToProduceManure ());
+		horse.horseBehavior.StartCoroutine (horse.horseBehavior.WaitToProduceManure ());
 	}
 
 	private void WaterHorse (Player player){
-		horseStats.SatisfyNeed(horseNeed.WATER, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
+		horse.horseStats.SatisfyNeed(horseNeed.WATER, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		player.currentlyEquippedItem.GetComponent<Consumable> ().remainingNeedValue = 0;
 		player.currentlyEquippedItem.GetComponent<WaterBucket_Consumable> ().UpdateValue ();
 	}
@@ -310,7 +308,7 @@ public class Horse_Interactable : Interactable {
 		headGearAttachment.transform.SetParent (leadTransformLeading);
 
 		//horseOnLead as equippable
-		horseBehaviour.PutHorseOnLead(true);
+		horse.horseBehavior.PutHorseOnLead(true);
 
 		//move player to leading position
 		player.transform.position = playerLeadingPos.position;
@@ -322,7 +320,7 @@ public class Horse_Interactable : Interactable {
 	private void StartLeadingHorseByReins(Player player){
 		headGear.anim.Play ("Leading");
 
-		horseBehaviour.PutHorseOnLead(true);
+		horse.horseBehavior.PutHorseOnLead(true);
 	
 		player.transform.position = playerLeadingPos.position;
 		player.transform.rotation = playerLeadingPos.rotation;
@@ -351,22 +349,22 @@ public class Horse_Interactable : Interactable {
 		headGearAttachment.transform.position = leadTransformTied.position;
 		headGearAttachment.transform.rotation = leadTransformTied.rotation;
 		headGearAttachment.transform.SetParent (leadTransformTied);
-		horseBehaviour.TieHorseToPost (true);
+		horse.horseBehavior.TieHorseToPost (true);
 		GenericUtilities.EnableAllColliders (transform, true);
 	}
 
 	public void TakeHorseFromPost(Player player){
-		horseBehaviour.TieHorseToPost (false);
+		horse.horseBehavior.TieHorseToPost (false);
 		player.EquipAnItem (horseOnLeadEquippable);
 		StartLeadingHorse (player);
 	}
 
 	private void StopLeadingHorse(Player player){
-		horseBehaviour.PutHorseOnLead(false);
+		horse.horseBehavior.PutHorseOnLead(false);
 	}
 	public void StopLeadingHorseByReins (Player player){
 		player.UnequipEquippedItem ();
-		horseBehaviour.PutHorseOnLead(false);
+		horse.horseBehavior.PutHorseOnLead(false);
 		headGear.anim.Play ("OnHorse");
 		GenericUtilities.EnableAllColliders (transform, true);
 	}
@@ -385,12 +383,12 @@ public class Horse_Interactable : Interactable {
 		//Disable horse's trigger
 		GetComponent<Collider>().enabled = false;
 
-		horseBehaviour.RidingHorse(true);
+		horse.horseBehavior.RidingHorse(true);
 	}
 
 	public void Dismount(Player player){
 		player.UnequipEquippedItem ();
-		horseBehaviour.RidingHorse(false);
+		horse.horseBehavior.RidingHorse(false);
 		player.transform.position = playerLeadingPos.position;
 		player.transform.rotation = playerLeadingPos.rotation;
 		player.playerModel.transform.position = player.transform.position;
@@ -445,19 +443,19 @@ public class Horse_Interactable : Interactable {
 
 			break;
 		case equippableItemID.STRAW:
-			if (horseStats.Food < Horse_Stats.NeedsMaximum) {
+			if (horse.horseStats.Food < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
 			}
 			break;
 		case equippableItemID.WATERBUCKET:
-			if (horseStats.Water < Horse_Stats.NeedsMaximum) {
+			if (horse.horseStats.Water < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.WATER_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.WATER_HORSE));
 			}
 			break;
 		case equippableItemID.BRUSH:
-			if (backGear == null && horseStats.Hygiene < Horse_Stats.NeedsMaximum) {
+			if (backGear == null && horse.horseStats.Hygiene < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.BRUSH_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.BRUSH_HORSE));
 			}

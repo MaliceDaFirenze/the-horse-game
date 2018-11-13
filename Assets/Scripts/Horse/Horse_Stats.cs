@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum horseNeed {
-	FOOD,
-	WATER,
-	HAPPINESS,
-	HYGIENE
-}
-
 public class Horse_Stats : TimeDependentObject {
+
+	public Horse horse;
 
 	//---Needs---//
 	[SerializeField]

@@ -3,29 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum horseState{
-	IDLE,
-	CONSUMING,
-	WALKINGTOTARGET,
-	PRODUCINGMANURE,
-	ONLEAD,
-	RIDING,
-	TIEDTOPOST
-}
 
-public enum horseGait{
-	STAND,
-	WALK,
-	TROT,
-	CANTER
-}
 
 public class Horse_Behavior : MonoBehaviour {
 
 	//---References---/
-	private Horse_Stats stats;
-	private Horse_RidingBehavior mounted;
-	private Animator anim;
+	public Horse horse;
 	private NavMeshAgent navMeshAgent;
 
     private Collider colliderToAvoid = null;
@@ -55,10 +38,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 	void Start () {
 		//Initialize
-		stats = GetComponent<Horse_Stats> ();
 		navMeshAgent = GetComponent<NavMeshAgent> ();
-		anim = GetComponentInChildren<Animator> ();
-		mounted	= GetComponent<Horse_RidingBehavior>();
 
 		ChangeState (horseState.IDLE);
 	}
@@ -68,8 +48,8 @@ public class Horse_Behavior : MonoBehaviour {
 			StopCoroutine (currentBehaviour);
 		}
 
-		anim.SetBool ("Eat", false);
-		anim.SetInteger ("GaitIndex", 0);
+		horse.horseAnimator.SetBool ("Eat", false);
+		horse.horseAnimator.SetInteger ("GaitIndex", 0);
 
 		currentHorseState = newState;
 		switch (newState) {
@@ -103,10 +83,10 @@ public class Horse_Behavior : MonoBehaviour {
 		Consumable availableFood = FindConsumableInRange (horseNeed.FOOD);
 		Consumable availableWater = FindConsumableInRange (horseNeed.WATER);
 
-		if (stats.Food < Horse_Stats.NeedsMaximum * 0.9f && availableFood != null) {
+		if (horse.horseStats.Food < Horse_Stats.NeedsMaximum * 0.9f && availableFood != null) {
 			currentTargetConsumable = availableFood;
 			ChangeState (horseState.WALKINGTOTARGET);
-		} else if (stats.Water < Horse_Stats.NeedsMaximum * 0.9f && availableWater != null) {
+		} else if (horse.horseStats.Water < Horse_Stats.NeedsMaximum * 0.9f && availableWater != null) {
 			currentTargetConsumable = availableWater;
 			ChangeState (horseState.WALKINGTOTARGET);
 		} else {
@@ -115,7 +95,7 @@ public class Horse_Behavior : MonoBehaviour {
 	}
 
 	private IEnumerator WalkToTarget(){
-		anim.SetInteger ("GaitIndex", 1);
+		horse.horseAnimator.SetInteger ("GaitIndex", 1);
 		navMeshAgent.SetDestination (currentTargetConsumable.transform.position);
 		while (Vector3.Distance (currentTargetConsumable.transform.position, transform.position) > reachDistToConsumable && currentTargetConsumable != null && currentTargetConsumable.enabled && currentTargetConsumable.remainingNeedValue > 0) {
 			yield return waitASecond;
@@ -124,7 +104,7 @@ public class Horse_Behavior : MonoBehaviour {
 		//navMeshAgent.Stop ();
 		navMeshAgent.isStopped = true;
 		navMeshAgent.ResetPath ();
-		anim.SetInteger ("GaitIndex", 0);
+		horse.horseAnimator.SetInteger ("GaitIndex", 0);
 
 		yield return new WaitForEndOfFrame ();
 
@@ -135,9 +115,9 @@ public class Horse_Behavior : MonoBehaviour {
 
 		bool hasEaten = false;
 
-		while (currentTargetConsumable != null && Vector3.Distance (currentTargetConsumable.transform.position, transform.position) <= reachDistToConsumable && currentTargetConsumable.remainingNeedValue > 0 && stats.GetNeedValue(currentTargetConsumable.needSatisfiedByThis) < Horse_Stats.NeedsMaximum){
-			anim.SetBool ("Eat", true);
-			stats.SatisfyNeed(currentTargetConsumable.needSatisfiedByThis, currentTargetConsumable.PartialConsume ());
+		while (currentTargetConsumable != null && Vector3.Distance (currentTargetConsumable.transform.position, transform.position) <= reachDistToConsumable && currentTargetConsumable.remainingNeedValue > 0 && horse.horseStats.GetNeedValue(currentTargetConsumable.needSatisfiedByThis) < Horse_Stats.NeedsMaximum){
+			horse.horseAnimator.SetBool ("Eat", true);
+			horse.horseStats.SatisfyNeed(currentTargetConsumable.needSatisfiedByThis, currentTargetConsumable.PartialConsume ());
 			hasEaten = true;
 			yield return waitASecond;
 		}
@@ -146,24 +126,24 @@ public class Horse_Behavior : MonoBehaviour {
 			StartCoroutine (WaitToProduceManure ());
 		}
 
-		anim.SetBool ("Eat", false);
+		horse.horseAnimator.SetBool ("Eat", false);
 		ChangeState (horseState.IDLE);
 	}
 
 	private IEnumerator ProduceManure(){
-		anim.SetBool ("Poop", false);
-		GameObject manurePile = Instantiate (PrefabManager.instance.manurePile, stats.poopSpawnPoint.position, stats.poopSpawnPoint.rotation) as GameObject;
+		horse.horseAnimator.SetBool ("Poop", false);
+		GameObject manurePile = Instantiate (PrefabManager.instance.manurePile, horse.horseStats.poopSpawnPoint.position, horse.horseStats.poopSpawnPoint.rotation) as GameObject;
 
 		yield return StartCoroutine( manurePile.GetComponent<ManurePile>().GetProduced() );
 
-		anim.SetBool ("Poop", false);
+		horse.horseAnimator.SetBool ("Poop", false);
 		ChangeState (horseState.IDLE);
 	}
 
 	private IEnumerator BeLead(){ 
-		anim.SetBool ("Still", true);
+		horse.horseAnimator.SetBool ("Still", true);
 		while (true) {
-			anim.SetInteger ("GaitIndex", (int)currentHorseGait);
+			horse.horseAnimator.SetInteger ("GaitIndex", (int)currentHorseGait);
 
 			//with "changegaitbyriding setting the index, this coroutine isn't needed anymore for riding
 			//need to set "Still" to true somewhere though? 
@@ -189,7 +169,7 @@ public class Horse_Behavior : MonoBehaviour {
 
 				//works for slow canter. 
 				//why doesn't it work for fast canter? 
-                //Vector3 castDirection = castTarget - stats.headBone.position;
+                //Vector3 castDirection = castTarget - horse.horseStats.headBone.position;
 				Debug.DrawRay (castOrigin, castDirection*100, Color.yellow, 0.5f);
 				if (Physics.Raycast (castOrigin, castDirection, out hit, 100, obstacleRaycastLayers)) {
 					Debug.DrawRay (hit.point, hit.normal, Color.cyan, 0.5f);
@@ -198,13 +178,13 @@ public class Horse_Behavior : MonoBehaviour {
 					float angle = Vector3.Angle (hit.normal, castDirection);
 					//the hit normal draws straight away from the obstacle. the angle is calculated in three dimensions, but I actually only care about x/z, not x/y or z/y. the hit point is below the ground
 
-                    float animationSpeed = mounted.gaitAniSpeed;
+					float animationSpeed = horse.horseRidingBehavior.gaitAniSpeed;
                     float timeToJump = 2f/animationSpeed;
-                    float jumpDistance = mounted.currentTotalMovementSpeed * timeToJump; // 2 is the total time of the animation before the height of the jump
+					float jumpDistance = horse.horseRidingBehavior.currentTotalMovementSpeed * timeToJump; // 2 is the total time of the animation before the height of the jump
 
                     float jumpMargin = 1;
                     float avoidTime = 1f;
-                    float timeToCollision = distanceToObstacle/mounted.currentTotalMovementSpeed;
+					float timeToCollision = distanceToObstacle/horse.horseRidingBehavior.currentTotalMovementSpeed;
                     if (jumpDistance - jumpMargin < distanceToObstacle && distanceToObstacle < jumpDistance) {
 					    if (180-angle < 20) {
 						    StartCoroutine (Jump (hit.collider));
@@ -212,7 +192,7 @@ public class Horse_Behavior : MonoBehaviour {
                     }                    
                     
                     if (hit.collider != colliderToAvoid) {
-                        Debug.Log("1:" + (Time.time - timeOfLastCollisionDetection));
+                        //Debug.Log("1:" + (Time.time - timeOfLastCollisionDetection));
                         if(Time.time - timeOfLastCollisionDetection > 0.4f) { 
                             isAvoidingCollider = false;
                             colliderToAvoid = null;
@@ -228,7 +208,7 @@ public class Horse_Behavior : MonoBehaviour {
                     }
 
 				} else { 
-                        Debug.Log("2:" + (Time.time - timeOfLastCollisionDetection));
+                        //Debug.Log("2:" + (Time.time - timeOfLastCollisionDetection));
                     if(Time.time - timeOfLastCollisionDetection > 0.4f) { 
                         isAvoidingCollider = false;
                         colliderToAvoid = null;
@@ -264,25 +244,25 @@ public class Horse_Behavior : MonoBehaviour {
 		Debug.Log ("start jump coroutine");
 		jumpInProgress = true;
         colliderToJump.enabled = false;
-		mounted.ignorePlayerInput = true;
+		horse.horseRidingBehavior.ignorePlayerInput = true;
         //if (jumpInProgress) { 
         //    anim.Play("Jump", -1, 0);
         //}
-		anim.SetBool ("Jump", true);
+		horse.horseAnimator.SetBool ("Jump", true);
 
 		yield return new WaitForSeconds (1f);
-		anim.SetBool ("Jump", false);
+		horse.horseAnimator.SetBool ("Jump", false);
         yield return new WaitForSeconds (2f);
 
 		currentHorseGait = horseGait.CANTER;
-		mounted.ignorePlayerInput = false;
+		horse.horseRidingBehavior.ignorePlayerInput = false;
         colliderToJump.enabled = true;
 		jumpInProgress = false;
 		Debug.Log ("end jump coroutine");
 	}
 
 	private IEnumerator BeTiedToPost(){
-		anim.SetBool ("Still", true);
+		horse.horseAnimator.SetBool ("Still", true);
 		while (true) {
 			yield return waitASecond;
 		}
@@ -294,7 +274,7 @@ public class Horse_Behavior : MonoBehaviour {
 			navMeshAgent.enabled = false;
 		} else {
 			navMeshAgent.enabled = true;
-			anim.SetBool ("Still", false);
+			horse.horseAnimator.SetBool ("Still", false);
 			currentHorseGait = horseGait.STAND;
 			ChangeState (horseState.IDLE);
 		}
@@ -306,7 +286,7 @@ public class Horse_Behavior : MonoBehaviour {
 			navMeshAgent.enabled = false;
 		} else {
 			navMeshAgent.enabled = true;
-			anim.SetBool ("Still", false);
+			horse.horseAnimator.SetBool ("Still", false);
 			currentHorseGait = horseGait.STAND;
 			ChangeState (horseState.IDLE);
 		}
@@ -318,16 +298,16 @@ public class Horse_Behavior : MonoBehaviour {
 			ChangeState (horseState.TIEDTOPOST);
 		} else {
 			navMeshAgent.enabled = true;
-			anim.SetBool ("Still", false);
+			horse.horseAnimator.SetBool ("Still", false);
 			ChangeState (horseState.IDLE);
 		}
 	}
 
 	public void ChangeGaitByRiding(float newGaitWeight, float newGaitAniSpeed){
-		anim.SetFloat ("GaitSpeedWeight", newGaitWeight);
-		anim.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
+		horse.horseAnimator.SetFloat ("GaitSpeedWeight", newGaitWeight);
+		horse.horseAnimator.SetFloat ("GaitAniSpeed", newGaitAniSpeed);
 
-		anim.SetInteger ("GaitIndex", (int)currentHorseGait);
+		horse.horseAnimator.SetInteger ("GaitIndex", (int)currentHorseGait);
 	}
 
 	private Consumable FindConsumableInRange(horseNeed need){
@@ -338,10 +318,10 @@ public class Horse_Behavior : MonoBehaviour {
 		RaycastHit hit;
 		for (int i = 0; i < allConsumables.Length; ++i) {
 			if (allConsumables [i].needSatisfiedByThis == need) {
-				float dist = Vector3.Distance (stats.headBone.position, allConsumables [i].transform.position);
+				float dist = Vector3.Distance (horse.horseStats.headBone.position, allConsumables [i].transform.position);
 				bool isVisible = false;  
-				Debug.DrawRay (stats.headBone.position, allConsumables [i].transform.position - stats.headBone.position, Color.red, 2f);
-				if (Physics.Raycast (stats.headBone.position, allConsumables [i].transform.position - stats.headBone.position, out hit)) {
+				Debug.DrawRay (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, Color.red, 2f);
+				if (Physics.Raycast (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, out hit)) {
 					//Debug.Log ("horse looking for consumable, raycast hit " + hit.collider.name + " with tag: " + hit.collider.tag);
 					if (hit.collider.tag.Equals("Consumable")){
 						isVisible = true;

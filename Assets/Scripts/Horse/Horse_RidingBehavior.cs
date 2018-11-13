@@ -7,11 +7,7 @@ using UnityEngine;
  */
 public class Horse_RidingBehavior : MonoBehaviour {
 
-	//what does this need to do?
-
-	//establish links to behaviour, maybe stats, interactable, player...
-	//input can be handled in Player script, but needs to be forwarded to this, where
-	//the speed up/down and gait up/down logic is handled
+	public Horse horse;
 
 	private float gaitWeight;
 	public float gaitAniSpeed;
