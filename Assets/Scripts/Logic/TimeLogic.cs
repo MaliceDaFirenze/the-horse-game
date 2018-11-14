@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class TimeLogic : MonoBehaviour {
 
@@ -26,7 +28,7 @@ public class TimeLogic : MonoBehaviour {
 
 	void Start () {
 		player = FindObjectOfType<Player> ();
-		NewGame ();
+		NewGame (); //only if no save game?
 	}
 
 	private void NewGame(){
@@ -38,6 +40,9 @@ public class TimeLogic : MonoBehaviour {
 		player.allowPlayerInput = false;
 		timeCounting = false;
 		++day;
+
+		SaveGame ();
+
 		StartCoroutine (DayEndFade ());
 	}
 
@@ -81,5 +86,26 @@ public class TimeLogic : MonoBehaviour {
 				lastMinuteCount = timePassedTodaySpan.Seconds;
 			}
 		}
+	}
+
+	private void SaveGame(){
+		Save save = CreateSaveGameObject ();
+
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Create (Application.persistentDataPath + "/gamesave.save");
+		bf.Serialize (file, save);
+		file.Close ();
+
+		Debug.Log ("game saved");
+	}
+
+
+	private Save CreateSaveGameObject(){
+		Save save = new Save ();
+
+		save.day = day;
+		//save.money = something?
+
+		return save;
 	}
 }
