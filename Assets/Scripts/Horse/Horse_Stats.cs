@@ -99,15 +99,13 @@ public class Horse_Stats : TimeDependentObject {
 	private ParticleSystem dustParticles;
 	private HorseUI horseUI;
 
-	private void Start(){
-		InitializeHorse (); //later, obvs don't call this from start anymore
-	}
+	public void InitializeHorse(){
+		//called from time logic, when new game starts
 
-	private void InitializeHorse(){
-		Food = needsMaximum * 0.8f;
-		Water = needsMaximum * 0.8f;
+		Food = needsMaximum * 0.4f;
+		Water = needsMaximum * 0.4f;
 		Happiness = needsMaximum * 0.6f;
-		Hygiene = needsMaximum * 0.9f;
+		Hygiene = needsMaximum * 0.7f;
 	}
 
 	public override void StartNewDay(){

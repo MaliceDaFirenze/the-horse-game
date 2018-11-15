@@ -26,14 +26,25 @@ public class TimeLogic : MonoBehaviour {
 	//Time-dependant objects
 	private int lastMinuteCount;
 
+	public bool forceNewGame; //at some point, do this from a main menu of course
+	private const string saveFilePath = "/gamesave.save";
+
 	void Start () {
 		player = FindObjectOfType<Player> ();
-		NewGame (); //only if no save game?
+
+		if (!forceNewGame && File.Exists(Application.persistentDataPath + saveFilePath)) {
+			LoadGame ();
+		} else {
+			NewGame (); 
+		}
 	}
 
 	private void NewGame(){
 		day = 1;
 		StartNewDay ();
+
+		//only works as long as it's the only horse in the scene of course, but that should be the case
+		FindObjectOfType<Horse> ().horseStats.InitializeHorse ();
 	}
 
 	public void EndDay(){
@@ -88,11 +99,22 @@ public class TimeLogic : MonoBehaviour {
 		}
 	}
 
+	private void LoadGame(){
+		//read file into a Save 
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Open (Application.persistentDataPath + saveFilePath, FileMode.Open);
+		Save save = (Save)bf.Deserialize (file);
+		file.Close ();
+
+		day = save.day;
+		StartNewDay ();
+	}
+
 	private void SaveGame(){
 		Save save = CreateSaveGameObject ();
 
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/gamesave.save");
+		FileStream file = File.Create (Application.persistentDataPath + saveFilePath);
 		bf.Serialize (file, save);
 		file.Close ();
 

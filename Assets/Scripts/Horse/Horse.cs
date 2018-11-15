@@ -35,7 +35,7 @@ public class Horse : MonoBehaviour {
 
 	public Animator horseAnimator;
 
-	void Start (){
+	void Awake (){
 		InitReferences ();
 	}
 
