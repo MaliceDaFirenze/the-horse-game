@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
+	//UI Element Refs
+
 	public GameObject[] instructionGOs;
 	public Text[] instructionTexts;
 	public Image[] instructionImages;
 
 	public GameObject arrowSequenceGO;
 	public Image[] arrows;
+
+	public Text moneyText;
+	//
 
 	public Color arrowCompleteColor;
 	public Color arrowIncompleteColor;
