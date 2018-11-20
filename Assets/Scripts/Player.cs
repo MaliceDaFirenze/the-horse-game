@@ -23,7 +23,8 @@ public class Player : MonoBehaviour {
 	private float speed = 3f;//30f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
-    public float maximumTurnRate = 1f;
+	private float defaultMaximumTurnRate = 500;
+	private float maximumTurnRate;
 	private Vector3 newMovementVector = new Vector3(0,0,0);
 	private playerMovementSet currentMovementSet = playerMovementSet.WALKING;
 	private Vector3 previousMovementVector; public Vector3 PreviousMovementVector{ get{return previousMovementVector;} }
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour {
 		playerHands = GetComponent<Equippable> ();
 		currentlyEquippedItem = playerHands;
 		rb = GetComponent<Rigidbody> ();
+		maximumTurnRate = defaultMaximumTurnRate;
 	}
 
 	private void Update() {
@@ -248,8 +250,8 @@ public class Player : MonoBehaviour {
 		if (currentlyEquippedItem.id != equippableItemID.HORSE_ON_LEAD && currentlyEquippedItem.id != equippableItemID.HORSE_MOUNTED) { 
 			currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
 		} 
-
 		currentlyEquippedItem.transform.SetParent (null);
+
 		currentlyEquippedItem.BeDropped();
 
 		if (currentlyEquippedItem.id == equippableItemID.HORSE_ON_LEAD) {
@@ -271,6 +273,7 @@ public class Player : MonoBehaviour {
 	public void UnequipEquippedItem(){
 		currentlyEquippedItem.transform.SetParent (null);
 		currentlyEquippedItem = playerHands;
+		maximumTurnRate = defaultMaximumTurnRate;
 	}
 
 	public void MountHorse(Horse_RidingBehavior mountedHorse){
@@ -284,6 +287,10 @@ public class Player : MonoBehaviour {
 		
 		equippableItem.BeEquipped (true);
 		currentlyEquippedItem = equippableItem;
+
+		if (currentlyEquippedItem.overrideTurnRate != -1) {
+			maximumTurnRate = currentlyEquippedItem.overrideTurnRate;
+		}
 
 		if (overwriteTransform != null) {
 			Debug.Log ("overwrite transform, parent " + overwriteTransform.name + " to equippeditemPos");

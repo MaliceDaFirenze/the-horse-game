@@ -27,7 +27,7 @@ public class Horse_Behavior : MonoBehaviour {
 	private float minIdleDuration = 3f;
 	private float maxIdleDuration = 12f;
 	private WaitForSeconds waitASecond = new WaitForSeconds(1f);
-	private WaitForSeconds waitShort = new WaitForSeconds(0.01f);
+	private WaitForSeconds waitShort = new WaitForSeconds(0.1f);
 	private WaitForSeconds horseGaitChangeDelay = new WaitForSeconds(0.5f); //not bc I want delay but bc I don't want this to check every single frame
 
 	private float minManureDuration = 20f;

@@ -1774,6 +1774,7 @@ MonoBehaviour:
   dropPosYOffset: 0
   equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
+  overrideTurnRate: 60
   preventSprintingWhileEquipped: 0
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 12
@@ -1795,6 +1796,7 @@ MonoBehaviour:
   dropPosYOffset: 0
   equippedOffset: {x: 1.8, y: -2, z: 0.2}
   playerSpeedModifier: 0.75
+  overrideTurnRate: 100
   preventSprintingWhileEquipped: 0
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 8
