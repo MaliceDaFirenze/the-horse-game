@@ -56,6 +56,8 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 		rb = GetComponent<Rigidbody> ();
 		maximumTurnRate = defaultMaximumTurnRate;
+
+		Dialogues.RetrieveDialogue (0, Character.GRANDMA, DialogueID.GREETING);
 	}
 
 	private void Update() {

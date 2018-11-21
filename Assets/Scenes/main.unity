@@ -5070,60 +5070,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114377831620234292, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: debugSphere
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 195566038197857512, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_AutoTraverseOffMeshLink
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54141527205615742, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54141527205615742, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195566038197857512, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54141527205615742, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54141527205615742, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54141527205615742, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 114377831620234292, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: maximumTurnRate
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352399959791966, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -77.689
-      objectReference: {fileID: 0}
-    - target: {fileID: 114921796864695578, guid: 3aa225812e74806469b710a27eb2ec11,
-        type: 2}
-      propertyPath: preventSprintingWhileEquipped
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
   m_IsPrefabAsset: 0
@@ -22038,6 +21984,21 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: "\xA2 0"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650708750662504, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 224650708750662504, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114749571312563158, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_Text
+      value: Day 1 - 06:00
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
