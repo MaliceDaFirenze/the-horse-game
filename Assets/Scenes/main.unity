@@ -23392,6 +23392,48 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7320509, y: 24.42, z: 2}
   m_Center: {x: 0.014957785, y: 10.91, z: -0.99978197}
+--- !u!1001 &1739197725
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.64208984
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469726883577460, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1741148339
 Prefab:
   m_ObjectHideFlags: 0
@@ -27917,11 +27959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2412e79d0f7eed845985fda82ab7d8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 0
   timePassedToday: 0
   dateText: {fileID: 2133887633}
   blackScreen: {fileID: 1041529519}
-  forceNewGame: 0
+  forceNewGame: 1
 --- !u!4 &2041024927
 Transform:
   m_ObjectHideFlags: 0

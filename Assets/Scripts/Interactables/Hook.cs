@@ -65,7 +65,6 @@ public class Hook : Interactable {
 				break;
 			}
 		}
-			
 
 	}
 

@@ -12,7 +12,7 @@ public class TimeLogic : MonoBehaviour {
 	private Player player;
 	private PlayerEconomy playerEconomy;
 
-	public int day;
+	public static int day { get; private set;}
 
 	private float dayStartTime;
 	private float dayStartTimeAddition = 6; //in "hours"

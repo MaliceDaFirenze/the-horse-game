@@ -41,6 +41,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.LEAD_BY_REINS, "Lead Horse by Reins");
 		allInteractionStrings.Add (actionID.STOP_LEADING_BY_REINS, "Stop Leading by Reins");
 		allInteractionStrings.Add (actionID.MOUNT_HORSE, "Mount Horse");
+		allInteractionStrings.Add (actionID.TALK_TO, "Talk");
 		allInteractionStrings.Add (actionID.DISMOUNT_HORSE, "Dismount"); //this is probably not used anywhere
 	}
 

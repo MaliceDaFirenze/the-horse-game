@@ -13,8 +13,6 @@ public enum DialogueID{
 	SALE
 }
 
-
-
 public struct dialogueLine {
 	public int day;
 	public Character character;
@@ -37,8 +35,6 @@ public class Dialogues {
 			Setup ();
 		}
 
-		//Can I check if there's a line for the day, char and id Im looking for by making a new struct? 
-
 		string result = "notFound";
 
 		allDialogues.TryGetValue (new dialogueLine (day, character, id), out result);
@@ -49,10 +45,9 @@ public class Dialogues {
 
 	private static void Setup(){
 
-		allDialogues.Add (new dialogueLine(0, Character.GRANDMA, DialogueID.GREETING), "It's good to have you here, dear. Here's some cash to buy supplies for the horse");
-		allDialogues.Add (new dialogueLine(0, Character.STORECLERK, DialogueID.GREETING), "Oh, you're the new person! What can I do for you?");
-		allDialogues.Add (new dialogueLine(1, Character.STORECLERK, DialogueID.GREETING), "Hi, welcome back! What can I do for you?");
-
+		allDialogues.Add (new dialogueLine(1, Character.GRANDMA, DialogueID.GREETING), "It's good to have you here, dear. Here's some cash to buy supplies for the horse");
+		allDialogues.Add (new dialogueLine(1, Character.STORECLERK, DialogueID.GREETING), "Oh, you're the new person! What can I do for you?");
+		allDialogues.Add (new dialogueLine(2, Character.STORECLERK, DialogueID.GREETING), "Hi, welcome back! What can I do for you?");
 
 		initialSetupComplete = true;
 	}
