@@ -15,6 +15,10 @@ public class UI : MonoBehaviour {
 	public Image[] arrows;
 
 	public Text moneyText;
+
+	public GameObject dialogueBox;
+	public Text dialogueText;
+	public Image portraitImage;
 	//
 
 	public Color arrowCompleteColor;
@@ -39,6 +43,17 @@ public class UI : MonoBehaviour {
 		originalArrowsPos = arrowSequenceGO.transform.position;
 		arrowOriginalScale = arrows[0].transform.localScale;
 		arrowBigScale = arrowOriginalScale * 1.4f;
+		dialogueBox.SetActive (false);
+	}
+
+	public void ShowDialogue(string dialogue, Sprite portrait, Character id){
+		Debug.LogWarning ("UI sets allowPlayerInput to false");
+		lastRelevantPlayer.allowPlayerInput = false;
+
+		dialogueBox.SetActive (true);
+		portraitImage.sprite = portrait;
+
+		dialogueText.text = id.ToString() + ": \n" + dialogue;
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){
@@ -184,5 +199,20 @@ public class UI : MonoBehaviour {
 
 		shakeDuration = 0f;
 		arrowSequenceGO.transform.position = originalArrowsPos;
+	}
+
+	//---Singleton---//
+	private static UI _instance;
+	public static UI instance {
+		get {
+			if (_instance == null) {
+				_instance = GameObject.FindObjectOfType<UI> ();
+				if (_instance == null) {
+					Debug.LogWarning ("no UI found");
+				}
+				DontDestroyOnLoad (_instance.gameObject);
+			} 
+			return _instance;
+		}
 	}
 }

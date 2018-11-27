@@ -69,16 +69,16 @@ public class Interactable : MonoBehaviour {
 		if (input == arrowInputRequired [nextArrowIndexToInput]) {
 			//Debug.Log ("arrow correct");
 			++nextArrowIndexToInput;
-			player.ui.UpdateArrows (nextArrowIndexToInput);
+			UI.instance.UpdateArrows (nextArrowIndexToInput);
 			if (arrowInputRequired.Length == nextArrowIndexToInput) {
 				PlayerInteracts (player);
-				player.ui.ArrowSequenceComplete ();
+				UI.instance.ArrowSequenceComplete ();
 			}
 		} else {
 			//Debug.Log ("arrow false");
 			nextArrowIndexToInput = 0;
-			player.ui.UpdateArrows (nextArrowIndexToInput);
-			player.ui.ShakeArrows ();
+			UI.instance.UpdateArrows (nextArrowIndexToInput);
+			UI.instance.ShakeArrows ();
 		}
 	}
 

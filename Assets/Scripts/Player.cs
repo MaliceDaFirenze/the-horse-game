@@ -33,7 +33,6 @@ public class Player : MonoBehaviour {
 
 
 	//References
-	public UI ui;
 	public Transform equippedItemPos;
 	public Transform dropItemPos;
 	private Equippable playerHands;
@@ -49,9 +48,12 @@ public class Player : MonoBehaviour {
 	//Physics
 	private Rigidbody rb;
 
+	//character
+	public Character characterId;
+	public Sprite portrait;
+
 	private void Start() {
 		//navMeshAgent = GetComponent<NavMeshAgent> ();
-		ui = FindObjectOfType<UI> ();
 		playerHands = GetComponent<Equippable> ();
 		currentlyEquippedItem = playerHands;
 		rb = GetComponent<Rigidbody> ();
@@ -115,7 +117,7 @@ public class Player : MonoBehaviour {
 				//------INTERACTION-------//
 				if (Input.GetKeyDown (KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null) {
 					nearestInteractable.PlayerInteracts (this);
-					ui.ShowInstruction (nearestInteractable, this);
+					UI.instance.ShowInstruction (nearestInteractable, this);
 				}
 
 				if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
@@ -136,7 +138,7 @@ public class Player : MonoBehaviour {
 						if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
 							nearestInteractable.selectedInteractionIndex = 0;
 						}
-						ui.ShowInstruction (nearestInteractable, this);
+						UI.instance.ShowInstruction (nearestInteractable, this);
 					}
 				}
 			}
@@ -211,11 +213,11 @@ public class Player : MonoBehaviour {
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
 			nearestInteractable.nextArrowIndexToInput = 0;
-			ui.ShowInstruction(nearestInteractable, this);
+			UI.instance.ShowInstruction(nearestInteractable, this);
 
 			if (nearestInteractable.GetComponent<Horse> () != null) {
 				nearestHorse = nearestInteractable.GetComponent<Horse> ();
-				ui.ShowHorseUI (nearestHorse.horseStats);
+				UI.instance.ShowHorseUI (nearestHorse.horseStats);
 			}
 		}
 
@@ -236,13 +238,13 @@ public class Player : MonoBehaviour {
 			ExitInteractableTrigger ();
 		}
 
-		ui.HideHorseUI ();
+		UI.instance.HideHorseUI ();
 	}
 
 	public void ExitInteractableTrigger(){
 		nearestInteractable = null;
-		if (!ui.arrowCompletionFXInProgress) {
-			ui.HideInstruction ();
+		if (!UI.instance.arrowCompletionFXInProgress) {
+			UI.instance.HideInstruction ();
 		}
 	}
 

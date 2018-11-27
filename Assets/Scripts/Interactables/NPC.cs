@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : Interactable {
 
 	public Character characterId;
+	public Sprite portrait;
 
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
@@ -12,8 +13,9 @@ public class NPC : Interactable {
 		if (currentlyRelevantActionIDs.Count > selectedInteractionIndex) {
 			switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 			case actionID.TALK_TO:
-				Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING);
+				
 
+				UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING), portrait, characterId);
 				//open dialogue window
 				break;
 			}

@@ -5070,6 +5070,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114377831620234292, guid: 3aa225812e74806469b710a27eb2ec11,
+        type: 2}
+      propertyPath: characterId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377831620234292, guid: 3aa225812e74806469b710a27eb2ec11,
+        type: 2}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: cecd0f3da2f865f4d8002a7cd391edf9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa225812e74806469b710a27eb2ec11, type: 2}
   m_IsPrefabAsset: 0
@@ -21975,31 +21986,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 436551711}
-    - target: {fileID: 224216148466437524, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114664053701670734, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
-        type: 2}
-      propertyPath: m_Text
-      value: "\xA2 0"
-      objectReference: {fileID: 0}
-    - target: {fileID: 224650708750662504, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 165
-      objectReference: {fileID: 0}
-    - target: {fileID: 224650708750662504, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114749571312563158, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
-        type: 2}
-      propertyPath: m_Text
-      value: Day 1 - 06:00
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
   m_IsPrefabAsset: 0
@@ -23431,6 +23417,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 114830788938598478, guid: 2ce18634d6f20ce4fb502eb017f97b87,
+        type: 2}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: cad3ccede8185524caa4accec00e11f2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ce18634d6f20ce4fb502eb017f97b87, type: 2}
   m_IsPrefabAsset: 0

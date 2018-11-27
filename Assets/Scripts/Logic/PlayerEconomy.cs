@@ -27,17 +27,6 @@ public class PlayerEconomy : MonoBehaviour {
 	}
 
 	private void MoneyValueWasUpdated(){
-		ui.moneyText.text = "¢ " + Money.ToString();
+		UI.instance.moneyText.text = "¢ " + Money.ToString();
 	}
-
-	private UI _ui;
-	private UI ui{
-		get { 
-			if (_ui == null) {
-				_ui = FindObjectOfType<UI> ();
-			}
-			return _ui;
-		}
-	}
-
 }
