@@ -38,6 +38,8 @@ public class UI : MonoBehaviour {
 	private Player lastRelevantPlayer;
 	private Interactable lastRelevantInteractable;
 
+	public bool dialogueIsVisible { get; private set; }
+
 	void Start(){
 		HideInstruction ();
 		originalArrowsPos = arrowSequenceGO.transform.position;
@@ -47,6 +49,7 @@ public class UI : MonoBehaviour {
 	}
 
 	public void ShowDialogue(string dialogue, Sprite portrait, Character id){
+		dialogueIsVisible = true;
 		Debug.LogWarning ("UI sets allowPlayerInput to false");
 		lastRelevantPlayer.allowPlayerInput = false;
 
@@ -54,6 +57,16 @@ public class UI : MonoBehaviour {
 		portraitImage.sprite = portrait;
 
 		dialogueText.text = id.ToString() + ": \n" + dialogue;
+	}
+
+	public void ContinueInDialogue(){
+		//eventually, this needs to handle multi-line dialogues
+		//tie dialogues in sequences somehow? 
+
+		//if (this line is last in sequence){
+		dialogueBox.SetActive (false);
+		lastRelevantPlayer.allowPlayerInput = true;
+		dialogueIsVisible = false;
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){

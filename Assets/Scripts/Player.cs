@@ -64,26 +64,26 @@ public class Player : MonoBehaviour {
 	private void Update() {
 
 		if (allowPlayerInput) {
-            //---------MOVEMENT---------//
-            //GetAxis returns value between -1 and 1
-            movementVectorInput.x = Input.GetAxisRaw ("Horizontal");
-            movementVectorInput.z = Input.GetAxisRaw ("Vertical");
+			//---------MOVEMENT---------//
+			//GetAxis returns value between -1 and 1
+			movementVectorInput.x = Input.GetAxisRaw ("Horizontal");
+			movementVectorInput.z = Input.GetAxisRaw ("Vertical");
 
-            if(currentMovementSet == playerMovementSet.WALKING) {
-                newMovementVector = getMovementVector(movementVectorInput);
-            } else if(currentMovementSet == playerMovementSet.RIDING) {
-                float desiredTurnRate;
+			if (currentMovementSet == playerMovementSet.WALKING) {
+				newMovementVector = getMovementVector (movementVectorInput);
+			} else if (currentMovementSet == playerMovementSet.RIDING) {
+				float desiredTurnRate;
 				if (nearestHorse.horseBehavior.isAvoidingCollider) {
-					desiredTurnRate = maximumTurnRate * (nearestHorse.horseBehavior.shouldAvoidInPositiveDirection? -1.0f:1.0f);
-                } else {
-                    desiredTurnRate = movementVectorInput.x * maximumTurnRate;
-                }
-                newMovementVector = getMovementVector(desiredTurnRate);
-            }
+					desiredTurnRate = maximumTurnRate * (nearestHorse.horseBehavior.shouldAvoidInPositiveDirection ? -1.0f : 1.0f);
+				} else {
+					desiredTurnRate = movementVectorInput.x * maximumTurnRate;
+				}
+				newMovementVector = getMovementVector (desiredTurnRate);
+			}
 
-            destination = transform.position + newMovementVector;
-			if (newMovementVector.magnitude > 0){
-				transform.LookAt(new Vector3(destination.x, transform.position.y, destination.z));
+			destination = transform.position + newMovementVector;
+			if (newMovementVector.magnitude > 0) {
+				transform.LookAt (new Vector3 (destination.x, transform.position.y, destination.z));
 			}
 			rb.MovePosition (rb.position + newMovementVector);
 
@@ -143,8 +143,8 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetKeyDown(KeyCode.F) && currentlyEquippedItem != playerHands){
-				DropEquippedItem();
+			if (Input.GetKeyDown (KeyCode.F) && currentlyEquippedItem != playerHands) {
+				DropEquippedItem ();
 			}
 
 			//------RIDING-------//
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour {
 				speedMultiplier = nearestHorse.horseRidingBehavior.actualMovementSpeedMultiplier;
 				nearestHorse.horseRidingBehavior.currentTotalMovementSpeed = speed * speedMultiplier;
                 
-                    //Debug.Log("SPEED: " + speed * speedMultiplier + " GOTO " + newMovementVector/Time.deltaTime);
+				//Debug.Log("SPEED: " + speed * speedMultiplier + " GOTO " + newMovementVector/Time.deltaTime);
 
 				if (nearestHorse.horseBehavior.currentHorseGait != horseGait.STAND && newMovementVector.magnitude == 0) {
 					nearestHorse.horseBehavior.currentHorseGait = horseGait.STAND;
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour {
 
 				if (previousMovementVector.magnitude > 0 && newMovementVector.magnitude == 0/*&& !keepHorseMoving*/) { 
 					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.DOWN, true);
-				//	ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
+					//	ridingHorse.horseBehaviour.currentHorseGait = horseGait.STAND;
 				} else if (previousMovementVector.magnitude == 0 && newMovementVector.magnitude > 0) {
 					Debug.Log ("horse was standing, starts moving now");
 					nearestHorse.horseBehavior.currentHorseGait = horseGait.WALK;
@@ -180,6 +180,10 @@ public class Player : MonoBehaviour {
 			}
 
 			previousMovementVector = newMovementVector;
+		} else {
+			if (Input.GetMouseButtonDown(0) && UI.instance.dialogueIsVisible) {
+				UI.instance.ContinueInDialogue ();
+			}
 		}
 	}
 
