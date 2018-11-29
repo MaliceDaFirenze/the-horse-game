@@ -13,7 +13,7 @@ public class NPC : Interactable {
 		if (currentlyRelevantActionIDs.Count > selectedInteractionIndex) {
 			switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 			case actionID.TALK_TO:
-				UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING), portrait, characterId);
+				UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING), portrait, characterId, Dialogues.RetrieveReward(TimeLogic.day, characterId, DialogueID.GREETING));
 				break;
 			}
 		}

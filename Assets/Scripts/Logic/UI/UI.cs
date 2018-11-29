@@ -16,9 +16,13 @@ public class UI : MonoBehaviour {
 
 	public Text moneyText;
 
+	//dialogue
 	public GameObject dialogueBox;
 	public Text dialogueText;
 	public Image portraitImage;
+	public GameObject rewardUIElements; //hide all if no reward
+	public Image rewardIcon;
+	public Text rewardText;
 	//
 
 	public Color arrowCompleteColor;
@@ -48,7 +52,7 @@ public class UI : MonoBehaviour {
 		dialogueBox.SetActive (false);
 	}
 
-	public void ShowDialogue(string dialogue, Sprite portrait, Character id){
+	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward){
 		dialogueIsVisible = true;
 		Debug.LogWarning ("UI sets allowPlayerInput to false");
 		lastRelevantPlayer.allowPlayerInput = false;
@@ -57,6 +61,14 @@ public class UI : MonoBehaviour {
 		portraitImage.sprite = portrait;
 
 		dialogueText.text = id.ToString() + ": \n" + dialogue;
+
+		if (reward.rewardType == RewardType.NONE) {
+			rewardUIElements.SetActive (false);
+		} else {
+			rewardUIElements.SetActive (true);
+			//assign reward icon based on an icon dictionary?
+			rewardText.text = reward.rewardAmount.ToString();
+		}
 	}
 
 	public void ContinueInDialogue(){
