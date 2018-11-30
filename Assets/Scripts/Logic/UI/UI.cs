@@ -43,6 +43,10 @@ public class UI : MonoBehaviour {
 	private Interactable lastRelevantInteractable;
 
 	public bool dialogueIsVisible { get; private set; }
+	private Reward currentReward = new Reward(RewardType.NONE, 0);
+
+
+	private Dictionary <RewardType, Sprite> rewardIcons = new Dictionary<RewardType, Sprite>();
 
 	void Start(){
 		HideInstruction ();
@@ -50,11 +54,13 @@ public class UI : MonoBehaviour {
 		arrowOriginalScale = arrows[0].transform.localScale;
 		arrowBigScale = arrowOriginalScale * 1.4f;
 		dialogueBox.SetActive (false);
+
+		//setup reward icons. do that with a for loop by type once I actually have several?
+		rewardIcons.Add(RewardType.MONEY, Resources.Load<Sprite>("RewardIcons/icon-" + RewardType.MONEY));
 	}
 
 	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward){
 		dialogueIsVisible = true;
-		Debug.LogWarning ("UI sets allowPlayerInput to false");
 		lastRelevantPlayer.allowPlayerInput = false;
 
 		dialogueBox.SetActive (true);
@@ -62,10 +68,13 @@ public class UI : MonoBehaviour {
 
 		dialogueText.text = id.ToString() + ": \n" + dialogue;
 
+		currentReward = reward;
 		if (reward.rewardType == RewardType.NONE) {
 			rewardUIElements.SetActive (false);
 		} else {
 			rewardUIElements.SetActive (true);
+			rewardIcon.sprite = rewardIcons [reward.rewardType];
+
 			//assign reward icon based on an icon dictionary?
 			rewardText.text = reward.rewardAmount.ToString();
 		}
@@ -75,10 +84,20 @@ public class UI : MonoBehaviour {
 		//eventually, this needs to handle multi-line dialogues
 		//tie dialogues in sequences somehow? 
 
+		//actually get reward upon continuing
+		switch (currentReward.rewardType) {
+		case RewardType.MONEY:
+			PlayerEconomy.ReceiveMoney (currentReward.rewardAmount);
+			break;
+		default:
+			break;
+		}
+
 		//if (this line is last in sequence){
 		dialogueBox.SetActive (false);
 		lastRelevantPlayer.allowPlayerInput = true;
 		dialogueIsVisible = false;
+		currentReward.rewardType = RewardType.NONE;
 	}
 
 	public void ShowInstruction(Interactable interactable, Player player){

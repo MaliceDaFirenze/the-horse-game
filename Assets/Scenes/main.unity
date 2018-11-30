@@ -21986,6 +21986,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 436551711}
+    - target: {fileID: 114291255684079076, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
   m_IsPrefabAsset: 0
@@ -27979,7 +27984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de57586416fa8cf4a8694626afe2cb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
 --- !u!1 &2045668353
 GameObject:
   m_ObjectHideFlags: 0

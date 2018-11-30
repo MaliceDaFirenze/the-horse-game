@@ -10,8 +10,8 @@ public class PlayerEconomy : MonoBehaviour {
 	//buy and sell functions
 
 	[SerializeField]
-	private int money;
-	public int Money{
+	private static int money;
+	public static int Money{
 		get {
 			return money;
 		}
@@ -21,12 +21,16 @@ public class PlayerEconomy : MonoBehaviour {
 		}
 	}
 
-	public void LoadMoneyFromSave(int newValue){
+	public static void ReceiveMoney(int amount){
+		Money += amount;
+	}
+
+	public static void LoadMoneyFromSave(int newValue){
 		Debug.Log ("loaded money from save: " + newValue);
 		Money = newValue;
 	}
 
-	private void MoneyValueWasUpdated(){
+	private static void MoneyValueWasUpdated(){
 		UI.instance.moneyText.text = "¢ " + Money.ToString();
 	}
 }

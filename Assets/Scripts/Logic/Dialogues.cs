@@ -57,8 +57,6 @@ public class Dialogues {
 
 		allDialogues.TryGetValue (new dialogueLine (day, character, id), out result);
 
-		Debug.Log ("dialogue returns: " + result);
-
 		return result;
 	}
 

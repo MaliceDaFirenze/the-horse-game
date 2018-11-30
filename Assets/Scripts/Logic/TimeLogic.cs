@@ -10,7 +10,6 @@ public class TimeLogic : MonoBehaviour {
 
 	//references
 	private Player player;
-	private PlayerEconomy playerEconomy;
 
 	public static int day { get; private set;}
 
@@ -32,7 +31,6 @@ public class TimeLogic : MonoBehaviour {
 
 	void Start () {
 		player = FindObjectOfType<Player> ();
-		playerEconomy = GetComponent<PlayerEconomy> ();
 
 		if (!forceNewGame && File.Exists(Application.persistentDataPath + saveFilePath)) {
 			LoadGame ();
@@ -109,7 +107,7 @@ public class TimeLogic : MonoBehaviour {
 		file.Close ();
 
 		day = save.day;
-		playerEconomy.LoadMoneyFromSave (save.money);
+		PlayerEconomy.LoadMoneyFromSave (save.money);
 		StartNewDay ();
 	}
 
@@ -129,7 +127,7 @@ public class TimeLogic : MonoBehaviour {
 		Save save = new Save ();
 
 		save.day = day;
-		save.money = playerEconomy.Money;
+		save.money = PlayerEconomy.Money;
 
 		return save;
 	}
