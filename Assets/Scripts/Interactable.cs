@@ -40,6 +40,7 @@ public enum actionID {
 	DISMOUNT_HORSE,
 	REARRANGE_OBSTACLES,
 	TALK_TO,
+	OPEN_SHOP,
 	PICK_UP
 }
 

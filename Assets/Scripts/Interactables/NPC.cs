@@ -26,6 +26,15 @@ public class NPC : Interactable {
 		result.Add (InteractionStrings.GetInteractionStringById(actionID.TALK_TO));
 		currentlyRelevantActionIDs.Add (actionID.TALK_TO);
 
+		switch (characterId) {
+		case Character.STORECLERK: 
+			result.Add (InteractionStrings.GetInteractionStringById(actionID.OPEN_SHOP));
+			currentlyRelevantActionIDs.Add (actionID.OPEN_SHOP);
+			break;
+		default:
+			break;
+		}
+
 		return result;
 	}
 }

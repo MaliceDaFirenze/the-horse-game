@@ -42,6 +42,10 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.STOP_LEADING_BY_REINS, "Stop Leading by Reins");
 		allInteractionStrings.Add (actionID.MOUNT_HORSE, "Mount Horse");
 		allInteractionStrings.Add (actionID.TALK_TO, "Talk");
+		allInteractionStrings.Add (actionID.OPEN_SHOP, "Open Shop");
+
+
+
 		allInteractionStrings.Add (actionID.DISMOUNT_HORSE, "Dismount"); //this is probably not used anywhere
 	}
 
@@ -49,8 +53,15 @@ public class InteractionStrings : MonoBehaviour {
 		if (allInteractionStrings.Count == 0) {
 			SetupStrings ();
 		}
-		//Debug.Log ("request string for id " + id);
 
-		return allInteractionStrings [id];
+		string result = "";
+
+		allInteractionStrings.TryGetValue (id, out result);
+		if (result == "") {
+			result = id.ToString ();
+			Debug.LogWarning ("no interaction string for " + result);
+		}
+
+		return result;
 	}
 }
