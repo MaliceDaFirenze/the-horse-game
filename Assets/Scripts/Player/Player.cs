@@ -37,6 +37,7 @@ public class Player : MonoBehaviour {
 	public Transform dropItemPos;
 	private Equippable playerHands;
 	public Transform playerModel; //to parent to horse pos for riding
+	private PlayerInventory inventory;
 
 	//NavmeshMovement
 	public Transform destinationOverride;
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour {
 		currentlyEquippedItem = playerHands;
 		rb = GetComponent<Rigidbody> ();
 		maximumTurnRate = defaultMaximumTurnRate;
-
+		inventory = GetComponent<PlayerInventory> ();
 	}
 
 	private void Update() {

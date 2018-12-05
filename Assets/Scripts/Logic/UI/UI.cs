@@ -16,6 +16,10 @@ public class UI : MonoBehaviour {
 
 	public Text moneyText;
 
+	public GameObject inventoryUI;
+	public Image activeSlotImage;
+	public Image[] slotImages;
+
 	//dialogue
 	public GameObject dialogueBox;
 	public Text dialogueText;
