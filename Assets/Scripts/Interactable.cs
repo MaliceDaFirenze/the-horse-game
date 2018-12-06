@@ -41,6 +41,7 @@ public enum actionID {
 	REARRANGE_OBSTACLES,
 	TALK_TO,
 	OPEN_SHOP,
+	PUT_INTO_POCKET,
 	PICK_UP
 }
 

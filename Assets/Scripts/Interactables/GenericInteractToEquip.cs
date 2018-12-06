@@ -9,7 +9,7 @@ public class GenericInteractToEquip : Interactable {
 
 		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 		case actionID.PICK_UP:
-			GetComponent<Equippable> ().BeEquipped ();
+			equippable.BeEquipped ();
 			player.EquipAnItem (equippable);
 			break;
 		}
@@ -21,8 +21,13 @@ public class GenericInteractToEquip : Interactable {
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS:
-			currentlyRelevantActionIDs.Add(actionID.PICK_UP);
-			result.Add(InteractionStrings.GetInteractionStringById(actionID.PICK_UP));
+			currentlyRelevantActionIDs.Add (actionID.PICK_UP);
+			result.Add (InteractionStrings.GetInteractionStringById (actionID.PICK_UP));
+
+			if (equippable.carriable) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_INTO_POCKET);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_INTO_POCKET));
+			}
 			break;
 		}
 

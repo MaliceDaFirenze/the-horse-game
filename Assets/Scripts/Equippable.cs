@@ -37,6 +37,7 @@ public class Equippable : MonoBehaviour {
 	private Consumable consumable;
 
 	public equippableItemID id;
+	public bool carriable = false;
 
 	private bool wasInitialized;
 
