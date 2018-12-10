@@ -15,8 +15,8 @@ public enum DialogueID{
 }
 
 public enum RewardType{
-	MONEY,
-	NONE
+	NONE,
+	MONEY
 }
 
 public struct dialogueLine {

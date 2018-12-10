@@ -16,9 +16,13 @@ public class UI : MonoBehaviour {
 
 	public Text moneyText;
 
+	//Inventory
 	public GameObject inventoryUI;
 	public Image activeSlotImage;
 	public Image[] slotImages;
+	public Transform regularInvPos;
+	public Transform dialogueInvPos;
+	//
 
 	//dialogue
 	public GameObject dialogueBox;
@@ -64,11 +68,15 @@ public class UI : MonoBehaviour {
 	}
 
 	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward){
+
+		Debug.Log ("show dialogue with reward: " + reward.rewardType + ", " + reward.rewardAmount);
+
 		dialogueIsVisible = true;
 		lastRelevantPlayer.allowPlayerInput = false;
 
 		dialogueBox.SetActive (true);
 		portraitImage.sprite = portrait;
+		inventoryUI.transform.position = dialogueInvPos.position;
 
 		dialogueText.text = id.ToString() + ": \n" + dialogue;
 
@@ -98,6 +106,7 @@ public class UI : MonoBehaviour {
 		}
 
 		//if (this line is last in sequence){
+		inventoryUI.transform.position = regularInvPos.position;
 		dialogueBox.SetActive (false);
 		lastRelevantPlayer.allowPlayerInput = true;
 		dialogueIsVisible = false;

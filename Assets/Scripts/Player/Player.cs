@@ -289,6 +289,10 @@ public class Player : MonoBehaviour {
 		nearestHorse = mountedHorse.horse;
 	}
 
+	public void PutEquippableIntoInventory(Equippable equippableItem){
+		inventory.AddItemToInventory (equippableItem);
+	}
+
 	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?
 
 		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);

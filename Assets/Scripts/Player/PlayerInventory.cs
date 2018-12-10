@@ -8,8 +8,19 @@ public class PlayerInventory : MonoBehaviour {
 	//give equippables a "can be put into inventory" property (carriable)
 	//start with sth like brush: equip, put away
 
-	void Start(){
-		//UI like this:
-	//	UI.instance.activeSlotImage
+	private int itemSlots;
+
+	private List<Equippable> _inventory = new List<Equippable>();
+	public List<Equippable> inventory {
+		get { return _inventory; }
+		private set { _inventory = value; }
+	}
+
+	private void Start(){
+		itemSlots = UI.instance.slotImages.Length;
+	}
+
+	public void AddItemToInventory(Equippable equippableItem){
+	
 	}
 }
