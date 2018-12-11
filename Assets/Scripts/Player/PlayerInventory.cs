@@ -9,18 +9,35 @@ public class PlayerInventory : MonoBehaviour {
 	//start with sth like brush: equip, put away
 
 	private int itemSlots;
+	private Dictionary <equippableItemID, Sprite> itemIcons = new Dictionary<equippableItemID, Sprite>();
 
-	private List<Equippable> _inventory = new List<Equippable>();
-	public List<Equippable> inventory {
+	private List<equippableItemID> _inventory = new List<equippableItemID>();
+	public List<equippableItemID> inventory {
 		get { return _inventory; }
 		private set { _inventory = value; }
 	}
 
 	private void Start(){
 		itemSlots = UI.instance.slotImages.Length;
+
+		for (int i = 0; i < itemSlots; ++i) {
+			inventory.Add (equippableItemID.BAREHANDS);
+		}
+
+		itemIcons.Add(equippableItemID.BRUSH, Resources.Load<Sprite>("RewardIcons/icon-" + equippableItemID.BRUSH));
+		itemIcons.Add(equippableItemID.BAREHANDS, Resources.Load<Sprite>("RewardIcons/icon-" + equippableItemID.BAREHANDS));
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){
-	
+		int index;
+		for (index = 0; index < itemSlots; ++index) {
+			if (inventory [index] == equippableItemID.BAREHANDS) {
+				//first slot that is free, use
+				break;
+			}
+		}
+
+		//if the last index wasn't free either, inventory is full, return
+
 	}
 }
