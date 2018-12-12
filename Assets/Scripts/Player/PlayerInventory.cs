@@ -29,6 +29,7 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){
+		//Find Free Slot
 		int index;
 		for (index = 0; index < itemSlots; ++index) {
 			if (inventory [index] == equippableItemID.BAREHANDS) {
@@ -38,6 +39,15 @@ public class PlayerInventory : MonoBehaviour {
 		}
 
 		//if the last index wasn't free either, inventory is full, return
+		if (inventory [index] != equippableItemID.BAREHANDS){
+			Debug.Log ("inventory is full");
+			return;
+		}
+
+		Debug.Log ("found slot " + index + " for item " + equippableItem.id);
+
+		inventory [index] = equippableItem.id;
+		UI.instance.slotImages [index].sprite = itemIcons [equippableItem.id];
 
 	}
 }
