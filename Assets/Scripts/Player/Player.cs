@@ -142,6 +142,15 @@ public class Player : MonoBehaviour {
 						UI.instance.ShowInstruction (nearestInteractable, this);
 					}
 				}
+
+				//-----------INVENTORY---------//
+				if (Input.GetAxis("Mouse ScrollWheel") > 0f){
+					//scrolling forward
+				} else if (Input.GetAxis("Mouse ScrollWheel") < 0f){
+					//scrolling backward
+				}
+
+
 			}
 
 			if (Input.GetKeyDown (KeyCode.F) && currentlyEquippedItem != playerHands) {
@@ -291,6 +300,7 @@ public class Player : MonoBehaviour {
 
 	public void PutEquippableIntoInventory(Equippable equippableItem){
 		inventory.AddItemToInventory (equippableItem);
+		equippableItem.gameObject.SetActive (false);
 	}
 
 	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?

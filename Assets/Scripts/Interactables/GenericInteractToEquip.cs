@@ -13,7 +13,7 @@ public class GenericInteractToEquip : Interactable {
 			player.EquipAnItem (equippable);
 			break;
 		case actionID.PUT_INTO_POCKET:
-			player.EquipAnItem (equippable);
+			player.PutEquippableIntoInventory (equippable);
 			break;
 		}
 	}

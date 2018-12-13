@@ -11,8 +11,10 @@ public class PlayerInventory : MonoBehaviour {
 	private int itemSlots;
 	private Dictionary <equippableItemID, Sprite> itemIcons = new Dictionary<equippableItemID, Sprite>();
 
-	private List<equippableItemID> _inventory = new List<equippableItemID>();
-	public List<equippableItemID> inventory {
+	private int currentlyActiveIndex;
+
+	private List<Equippable> _inventory = new List<Equippable>();
+	public List<Equippable> inventory {
 		get { return _inventory; }
 		private set { _inventory = value; }
 	}
@@ -21,33 +23,38 @@ public class PlayerInventory : MonoBehaviour {
 		itemSlots = UI.instance.slotImages.Length;
 
 		for (int i = 0; i < itemSlots; ++i) {
-			inventory.Add (equippableItemID.BAREHANDS);
+			inventory.Add (null);
 		}
 
-		itemIcons.Add(equippableItemID.BRUSH, Resources.Load<Sprite>("RewardIcons/icon-" + equippableItemID.BRUSH));
-		itemIcons.Add(equippableItemID.BAREHANDS, Resources.Load<Sprite>("RewardIcons/icon-" + equippableItemID.BAREHANDS));
+		itemIcons.Add(equippableItemID.BRUSH, Resources.Load<Sprite>("ItemIcons/icon-" + equippableItemID.BRUSH));
+		itemIcons.Add(equippableItemID.BAREHANDS, Resources.Load<Sprite>("ItemIcons/icon-" + equippableItemID.BAREHANDS));
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){
 		//Find Free Slot
 		int index;
 		for (index = 0; index < itemSlots; ++index) {
-			if (inventory [index] == equippableItemID.BAREHANDS) {
+			if (inventory [index] == null || inventory [index].id == equippableItemID.BAREHANDS) {
 				//first slot that is free, use
 				break;
 			}
 		}
 
 		//if the last index wasn't free either, inventory is full, return
-		if (inventory [index] != equippableItemID.BAREHANDS){
+		if (inventory [index] != null && inventory [index].id != equippableItemID.BAREHANDS){
 			Debug.Log ("inventory is full");
 			return;
 		}
 
 		Debug.Log ("found slot " + index + " for item " + equippableItem.id);
 
-		inventory [index] = equippableItem.id;
+		inventory [index] = equippableItem;
+		UI.instance.slotImages [index].name = equippableItem.id + " slot";
 		UI.instance.slotImages [index].sprite = itemIcons [equippableItem.id];
 
+	}
+
+	public void UpdateActiveSlot(){
+	
 	}
 }
