@@ -26,8 +26,16 @@ public class PlayerInventory : MonoBehaviour {
 			inventory.Add (null);
 		}
 
-		itemIcons.Add(equippableItemID.BRUSH, Resources.Load<Sprite>("ItemIcons/icon-" + equippableItemID.BRUSH));
-		itemIcons.Add(equippableItemID.BAREHANDS, Resources.Load<Sprite>("ItemIcons/icon-" + equippableItemID.BAREHANDS));
+
+		equippableItemID[] carriableItemIds = new equippableItemID[] {
+			equippableItemID.BRUSH,
+			equippableItemID.BAREHANDS,
+			equippableItemID.APPLE
+		};
+
+		for (int i = 0; i < carriableItemIds.Length; ++i) {
+			itemIcons.Add(carriableItemIds[i], Resources.Load<Sprite>("ItemIcons/icon-" + carriableItemIds[i]));
+		}
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){

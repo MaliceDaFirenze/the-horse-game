@@ -14,6 +14,7 @@ public class GenericInteractToEquip : Interactable {
 			break;
 		case actionID.PUT_INTO_POCKET:
 			player.PutEquippableIntoInventory (equippable);
+			equippable.EnableAllColliders (false);
 			break;
 		}
 	}
