@@ -51,6 +51,8 @@ public class Interactable : MonoBehaviour {
 	public Equippable equippable;
 	public Consumable consumable;
 
+	public bool pickUpable;
+
 	public List<actionID> currentlyRelevantActionIDs = new List<actionID>(); //changes based on equippable, get set on enter int trigger
 	public int selectedInteractionIndex;
 	public dir[] arrowInputRequired; //changes with actionID
@@ -87,6 +89,8 @@ public class Interactable : MonoBehaviour {
 	public virtual void PlayerInteracts(Player player){
 		nextArrowIndexToInput = 0;
 
+		//may have to add the generic interact to equip stuff here? 
+
 		//Debug.Log ("base interact");
 	}
 
@@ -98,8 +102,23 @@ public class Interactable : MonoBehaviour {
 	public virtual List<string> DefineInteraction(Player player){
 		currentlyRelevantActionIDs.Clear ();
 		List<string> result = new List<string> ();
-		result.Add (emptyHandsAction);
-		currentlyRelevantActionIDs.Add (actionID.NO_SEQUENCE);
+
+		if (player.currentlyEquippedItem.id == equippableItemID.BAREHANDS) {
+
+			if (pickUpable) {
+				currentlyRelevantActionIDs.Add (actionID.PICK_UP);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PICK_UP));
+			}
+
+
+			if (equippable != null && equippable.carriable) {
+				currentlyRelevantActionIDs.Add (actionID.PUT_INTO_POCKET);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_INTO_POCKET));
+			}
+		}
+	
+		//result.Add (emptyHandsAction);
+		//currentlyRelevantActionIDs.Add (actionID.NO_SEQUENCE);
 		return result;
 	}
 }

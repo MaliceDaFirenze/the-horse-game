@@ -116,32 +116,37 @@ public class Player : MonoBehaviour {
 				}
 
 				//------INTERACTION-------//
-				if (Input.GetKeyDown (KeyCode.E) && nearestInteractable != null && nearestInteractable.arrowInputRequired == null) {
-					nearestInteractable.PlayerInteracts (this);
-					UI.instance.ShowInstruction (nearestInteractable, this);
-				}
 
-				if (nearestInteractable != null && nearestInteractable.arrowInputRequired != null) {
-					if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-						nearestInteractable.PlayerPressesArrow (this, dir.LEFT);
-					} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-						nearestInteractable.PlayerPressesArrow (this, dir.DOWN);
-					} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-						nearestInteractable.PlayerPressesArrow (this, dir.RIGHT);
-					} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
-						nearestInteractable.PlayerPressesArrow (this, dir.UP);
-					}
-				}
-
-				if (nearestInteractable != null && nearestInteractable.currentlyRelevantActionIDs.Count > 1) {
-					if (Input.GetKeyDown (KeyCode.R)) {
-						++nearestInteractable.selectedInteractionIndex;
-						if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
-							nearestInteractable.selectedInteractionIndex = 0;
-						}
+				if (nearestInteractable != null) {
+				
+					if (Input.GetKeyDown (KeyCode.E)  && nearestInteractable.arrowInputRequired == null) {
+						nearestInteractable.PlayerInteracts (this);
 						UI.instance.ShowInstruction (nearestInteractable, this);
 					}
+
+					if (nearestInteractable.arrowInputRequired != null) {
+						if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+							nearestInteractable.PlayerPressesArrow (this, dir.LEFT);
+						} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+							nearestInteractable.PlayerPressesArrow (this, dir.DOWN);
+						} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+							nearestInteractable.PlayerPressesArrow (this, dir.RIGHT);
+						} else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+							nearestInteractable.PlayerPressesArrow (this, dir.UP);
+						}
+					}
+
+					if (nearestInteractable.currentlyRelevantActionIDs.Count > 1) {
+						if (Input.GetKeyDown (KeyCode.R)) {
+							++nearestInteractable.selectedInteractionIndex;
+							if (nearestInteractable.selectedInteractionIndex == nearestInteractable.currentlyRelevantActionIDs.Count) {
+								nearestInteractable.selectedInteractionIndex = 0;
+							}
+							UI.instance.ShowInstruction (nearestInteractable, this);
+						}
+					}
 				}
+					
 
 				//-----------INVENTORY---------//
 				if (Input.GetAxis("Mouse ScrollWheel") > 0f){
@@ -306,7 +311,7 @@ public class Player : MonoBehaviour {
 	public void EquipAnItem(Equippable equippableItem, bool moveItemToPlayer = true, Transform overwriteTransform = null){ //TODO Y U NO WORK? Transform is not passed. test again at some other point?
 
 		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);
-		
+
 		equippableItem.BeEquipped (true);
 		currentlyEquippedItem = equippableItem;
 

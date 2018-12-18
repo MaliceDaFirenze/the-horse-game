@@ -1481,74 +1481,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: a937425bf6990ce418cc2d1df9baa76e,
     type: 3}
   m_PrefabInternal: {fileID: 59102480}
---- !u!1001 &65540395
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 6.0317535
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 230.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -14.321518
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162004434543148, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_RootOrder
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 135899820558358536, guid: 709e93acaa5628442a603d10e4ca274c,
-        type: 2}
-      propertyPath: m_Radius
-      value: 4.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 1850647651710206, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-      propertyPath: m_Name
-      value: Apple (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &65540396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1898044206204628, guid: 709e93acaa5628442a603d10e4ca274c,
-    type: 2}
-  m_PrefabInternal: {fileID: 65540395}
---- !u!135 &65540397
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 65540396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0000002
-  m_Center: {x: 0, y: -0.0000076293945, z: -0.10529702}
 --- !u!1 &70614575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,6 +6001,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -12824,6 +12757,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -13222,31 +13156,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 135899820558358536, guid: 709e93acaa5628442a603d10e4ca274c,
-        type: 2}
-      propertyPath: m_Radius
-      value: 4.89
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 709e93acaa5628442a603d10e4ca274c, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &924436485 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1898044206204628, guid: 709e93acaa5628442a603d10e4ca274c,
-    type: 2}
-  m_PrefabInternal: {fileID: 924436484}
---- !u!135 &924436486
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 924436485}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0000002
-  m_Center: {x: 0, y: -0.0000076293945, z: -0.10529702}
 --- !u!1001 &925961647
 Prefab:
   m_ObjectHideFlags: 0
@@ -14350,6 +14262,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -17429,6 +17342,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -21884,6 +21798,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -23643,6 +23558,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 

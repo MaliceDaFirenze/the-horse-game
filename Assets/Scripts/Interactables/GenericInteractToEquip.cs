@@ -14,28 +14,17 @@ public class GenericInteractToEquip : Interactable {
 			break;
 		case actionID.PUT_INTO_POCKET:
 			player.PutEquippableIntoInventory (equippable);
-			equippable.EnableAllColliders (false);
+			player.ExitInteractableTrigger ();
 			break;
 		}
 	}
 
 	public override List<string> DefineInteraction (Player player)	{
-		List<string> result = new List<string> ();
-		currentlyRelevantActionIDs.Clear ();
 
-		switch (player.currentlyEquippedItem.id) {
-		case equippableItemID.BAREHANDS:
-			currentlyRelevantActionIDs.Add (actionID.PICK_UP);
-			result.Add (InteractionStrings.GetInteractionStringById (actionID.PICK_UP));
+		List<string> result = base.DefineInteraction (player);
 
-			if (equippable.carriable) {
-				currentlyRelevantActionIDs.Add (actionID.PUT_INTO_POCKET);
-				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_INTO_POCKET));
-			}
-			break;
-		}
+		//list can be expanded here
 
 		return result;
-
 	}
 }
