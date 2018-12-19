@@ -118,9 +118,17 @@ public class Player : MonoBehaviour {
 				//------INTERACTION-------//
 
 				if (nearestInteractable != null) {
-				
+
 					if (Input.GetKeyDown (KeyCode.E)  && nearestInteractable.arrowInputRequired == null) {
+
 						nearestInteractable.PlayerInteracts (this);
+						// ^ This can mean that nearestInteractable is set to null because of PutIntoInventory --> ExitInteractionTrigger. 
+
+						//check if that is the case, and don't finish the updae if so. 
+						if (nearestInteractable == null){
+							return;
+						}
+
 						UI.instance.ShowInstruction (nearestInteractable, this);
 					}
 
@@ -288,6 +296,8 @@ public class Player : MonoBehaviour {
 			horseInt.Dismount (this);
 			currentMovementSet = playerMovementSet.WALKING;
 		}
+
+		maximumTurnRate = defaultMaximumTurnRate;
 
 		currentlyEquippedItem = playerHands;
 	}

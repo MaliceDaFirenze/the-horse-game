@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1232615610324456}
   m_LocalRotation: {x: -0, y: -0.9719571, z: -0, w: 0.23515825}
-  m_LocalPosition: {x: -35.55, y: -3.7180133, z: -34.93}
+  m_LocalPosition: {x: -33.25, y: -3.7180133, z: -30.46}
   m_LocalScale: {x: 2.0736501, y: 2.0736504, z: 2.0736504}
   m_Children:
   - {fileID: 4967025491169172}
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedScaleFactor: 1
-  dropPosYOffset: 0.5
+  dropPosYOffset: 0.85
   equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
   overrideTurnRate: -1
@@ -286,6 +286,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 1
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
