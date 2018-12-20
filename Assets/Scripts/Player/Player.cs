@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	public Interactable nearestInteractable;
 	public Horse nearestHorse;
 	public Equippable currentlyEquippedItem;
-
+	private float mouseWheelInput;
 
 	//Movement
 	private float speed = 3f;//30f;
@@ -157,10 +157,9 @@ public class Player : MonoBehaviour {
 					
 
 				//-----------INVENTORY---------//
-				if (Input.GetAxis("Mouse ScrollWheel") > 0f){
-					//scrolling forward
-				} else if (Input.GetAxis("Mouse ScrollWheel") < 0f){
-					//scrolling backward
+				mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
+				if (mouseWheelInput != 0){
+					inventory.ScrollInput (mouseWheelInput);
 				}
 
 
@@ -341,5 +340,10 @@ public class Player : MonoBehaviour {
 			currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
 			currentlyEquippedItem.transform.localPosition = equippableItem.equippedOffset;
 		}
+
+		//update active slot in inventory
+		//update UI
+		//active slot always shows what you have currently equipped, whether it's something that can be put into inventory or not
+
 	}
 }

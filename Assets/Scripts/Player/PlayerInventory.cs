@@ -59,10 +59,18 @@ public class PlayerInventory : MonoBehaviour {
 		inventory [index] = equippableItem;
 		UI.instance.slotImages [index].name = equippableItem.id + " slot";
 		UI.instance.slotImages [index].sprite = itemIcons [equippableItem.id];
+	}
 
+	public void ScrollInput (float value){
+		//value > 0 is forward, < 0 is backward
+		Debug.Log("scroll value " + value);
 	}
 
 	public void UpdateActiveSlot(){
-	
+		//can scroll if
+			//active slot is empty
+			//active slot contains carriable and there's space for it in inventory
+
+		//otherwise, equippeditem is dropped now
 	}
 }
