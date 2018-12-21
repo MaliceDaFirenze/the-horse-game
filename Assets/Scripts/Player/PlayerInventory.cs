@@ -11,7 +11,7 @@ public class PlayerInventory : MonoBehaviour {
 	private int itemSlots;
 	private Dictionary <equippableItemID, Sprite> itemIcons = new Dictionary<equippableItemID, Sprite>();
 
-	private int currentlyActiveIndex;
+	private int currentlyActiveIndex = -1;
 
 	private List<Equippable> _inventory = new List<Equippable>();
 	public List<Equippable> inventory {
@@ -61,9 +61,40 @@ public class PlayerInventory : MonoBehaviour {
 		UI.instance.slotImages [index].sprite = itemIcons [equippableItem.id];
 	}
 
-	public void ScrollInput (float value){
+	public void ScrollInput (float scrollValue){
 		//value > 0 is forward, < 0 is backward
-		Debug.Log("scroll value " + value);
+		Debug.Log("scroll value " + scrollValue);
+
+		if (currentlyActiveIndex == -1]){ //active slot is empty
+			if (scrollValue > 0f) {
+				++currentlyActiveIndex;
+
+				int failsafe = 0;
+				while (inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
+					++currentlyActiveIndex;
+					if (currentlyActiveIndex >= inventory.Count){
+						currentlyActiveIndex = 0;
+					}
+					++failsafe;
+					if (failsafe > inventory.Count * 2) {
+						Debug.LogWarning ("inventory is empty, do nothing");
+						break;
+					}
+				}
+
+				if (failsafe > inventory.Count * 2) {
+					currentlyActiveIndex = -1;
+					return;
+				}
+
+				Debug.Log ("new active slot " + currentlyActiveIndex + ", selected item " + inventory [currentlyActiveIndex].id);
+			
+			} else {
+			/*	while (inventory.Count >= currentlyActiveIndex || inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
+
+				}*/
+			}
+		}
 	}
 
 	public void UpdateActiveSlot(){
