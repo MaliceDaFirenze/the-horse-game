@@ -65,7 +65,7 @@ public class PlayerInventory : MonoBehaviour {
 		//value > 0 is forward, < 0 is backward
 		Debug.Log("scroll value " + scrollValue);
 
-		if (currentlyActiveIndex == -1]){ //active slot is empty
+		if (currentlyActiveIndex == -1){ //active slot is empty
 			if (scrollValue > 0f) {
 				++currentlyActiveIndex;
 

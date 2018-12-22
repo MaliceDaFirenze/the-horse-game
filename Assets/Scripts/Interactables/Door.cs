@@ -31,4 +31,13 @@ public class Door : Interactable {
 		yield return new WaitForSeconds (openDuration);
 		doorCollider.enabled = setTo;
 	}
+
+	public override List<string> DefineInteraction(Player player){
+		List<string> result = base.DefineInteraction (player);
+
+		currentlyRelevantActionIDs.Add (actionID.OPEN_CLOSE_DOOR);
+		result.Add (InteractionStrings.GetInteractionStringById (actionID.OPEN_CLOSE_DOOR));
+
+		return result;
+	}
 }
