@@ -299,6 +299,7 @@ public class Player : MonoBehaviour {
 		maximumTurnRate = defaultMaximumTurnRate;
 
 		currentlyEquippedItem = playerHands;
+		inventory.UpdateUIAfterDroppingItem ();
 	}
 
 	public void UnequipEquippedItem(){
@@ -340,6 +341,8 @@ public class Player : MonoBehaviour {
 			currentlyEquippedItem.transform.localEulerAngles = currentlyEquippedItem.equippedRotation;
 			currentlyEquippedItem.transform.localPosition = equippableItem.equippedOffset;
 		}
+
+		inventory.UpdateActiveSlot (currentlyEquippedItem, false);
 
 		//update active slot in inventory
 		//update UI

@@ -26,15 +26,8 @@ public class PlayerInventory : MonoBehaviour {
 			inventory.Add (null);
 		}
 
-
-		equippableItemID[] carriableItemIds = new equippableItemID[] {
-			equippableItemID.BRUSH,
-			equippableItemID.BAREHANDS,
-			equippableItemID.APPLE
-		};
-
-		for (int i = 0; i < carriableItemIds.Length; ++i) {
-			itemIcons.Add(carriableItemIds[i], Resources.Load<Sprite>("ItemIcons/icon-" + carriableItemIds[i]));
+		foreach (equippableItemID id in System.Enum.GetValues(typeof(equippableItemID))) {
+			itemIcons.Add(id, Resources.Load<Sprite>("ItemIcons/icon-" + id));
 		}
 	}
 
@@ -88,6 +81,7 @@ public class PlayerInventory : MonoBehaviour {
 				}
 
 				Debug.Log ("new active slot " + currentlyActiveIndex + ", selected item " + inventory [currentlyActiveIndex].id);
+				//UpdateActiveSlot (inventory [currentlyActiveIndex], true);
 			
 			} else {
 			/*	while (inventory.Count >= currentlyActiveIndex || inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
@@ -97,11 +91,28 @@ public class PlayerInventory : MonoBehaviour {
 		}
 	}
 
-	public void UpdateActiveSlot(){
+	public void UpdateUIAfterDroppingItem(){
+		UI.instance.activeSlotImage.name = "empty slot";
+		UI.instance.activeSlotImage.sprite = null;
+	}
+
+	public void UpdateActiveSlot(Equippable newActiveItem, bool updateFromWithinInventory){
 		//can scroll if
 			//active slot is empty
 			//active slot contains carriable and there's space for it in inventory
 
 		//otherwise, equippeditem is dropped now
+
+		//I equip an item
+		//it is put into the active slot
+		//none of the inventory items are actually "active" right now, so active index is set to -1
+		if (!updateFromWithinInventory) {
+			currentlyActiveIndex = -1;
+		}
+
+		UI.instance.activeSlotImage.name = newActiveItem.id + " slot";
+		UI.instance.activeSlotImage.sprite = itemIcons [newActiveItem.id];
 	}
+
+
 }
