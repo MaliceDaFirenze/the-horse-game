@@ -10,6 +10,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	private int itemSlots;
 	private Dictionary <equippableItemID, Sprite> itemIcons = new Dictionary<equippableItemID, Sprite>();
+	private Player player;
 
 	private int currentlyActiveIndex = -1;
 
@@ -29,6 +30,7 @@ public class PlayerInventory : MonoBehaviour {
 		foreach (equippableItemID id in System.Enum.GetValues(typeof(equippableItemID))) {
 			itemIcons.Add(id, Resources.Load<Sprite>("ItemIcons/icon-" + id));
 		}
+		player = GetComponent<Player>();
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){
@@ -58,7 +60,39 @@ public class PlayerInventory : MonoBehaviour {
 		//value > 0 is forward, < 0 is backward
 		Debug.Log("scroll value " + scrollValue);
 
-		if (currentlyActiveIndex == -1){ //active slot is empty
+
+		/* * 
+		 * if the slot is empty (index == -1 and equippeditem.id == barehands), scrolling equips the next item 
+		 * scrolling selects the next item in any case, the question is what happens to the active item then:
+		 * drop it (if !carriable || inventory full), stow it in inventory (if carriable && inventory not full), nothing (if empty)
+		 * 
+		 * so first thing I do is decide which slot is "next" according to scroll direction, with nothing else done yet. This is to select the new
+		 * item, not yet to place the old one anywhere 
+		 * */
+		int newIndex = currentlyActiveIndex;
+
+		if (scrollValue > 0f) {
+			++newIndex;
+			if (newIndex >= inventory.Count) {
+				newIndex = 0;
+			} 
+		} else if (scrollValue < 0f) {
+			--newIndex;
+			if (newIndex < 0) {
+				newIndex = inventory.Count - 1;
+			}
+		}
+
+		Debug.Log ("new slot: " + newIndex);
+
+		//if slot is empty, nothing
+		//if active item carriable && inventory not full, stow previously active item
+		//if !carriable || inventory full, drop it
+
+		player.EquipAnItem (inventory [newIndex]);
+		currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
+
+		/*if (currentlyActiveIndex == -1){ //active slot is empty
 			if (scrollValue > 0f) {
 				++currentlyActiveIndex;
 
@@ -70,7 +104,7 @@ public class PlayerInventory : MonoBehaviour {
 					}
 					++failsafe;
 					if (failsafe > inventory.Count * 2) {
-						Debug.LogWarning ("inventory is empty, do nothing");
+						Debug.Log ("inventory is empty, do nothing");
 						break;
 					}
 				}
@@ -83,12 +117,12 @@ public class PlayerInventory : MonoBehaviour {
 				Debug.Log ("new active slot " + currentlyActiveIndex + ", selected item " + inventory [currentlyActiveIndex].id);
 				//UpdateActiveSlot (inventory [currentlyActiveIndex], true);
 			
-			} else {
-			/*	while (inventory.Count >= currentlyActiveIndex || inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
+			} else {*/
+			/*	while (inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
 
 				}*/
-			}
-		}
+			/*}
+		}*/
 	}
 
 	public void UpdateUIAfterDroppingItem(){
@@ -113,6 +147,4 @@ public class PlayerInventory : MonoBehaviour {
 		UI.instance.activeSlotImage.name = newActiveItem.id + " slot";
 		UI.instance.activeSlotImage.sprite = itemIcons [newActiveItem.id];
 	}
-
-
 }
