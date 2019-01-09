@@ -112,7 +112,7 @@ public class Interactable : MonoBehaviour {
 			}
 
 
-			if (equippable != null && equippable.carriable) {
+			if (equippable != null && equippable.carriable && player.inventory.GetFreeInventorySlot() != -1) {
 				currentlyRelevantActionIDs.Add (actionID.PUT_INTO_POCKET);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.PUT_INTO_POCKET));
 			}

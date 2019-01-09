@@ -34,26 +34,18 @@ public class PlayerInventory : MonoBehaviour {
 	}
 
 	public void AddItemToInventory(Equippable equippableItem){
-		//Find Free Slot
-		int index;
-		for (index = 0; index < itemSlots; ++index) {
-			if (inventory [index] == null || inventory [index].id == equippableItemID.BAREHANDS) {
-				//first slot that is free, use
-				break;
-			}
-		}
 
-		//if the last index wasn't free either, inventory is full, return
-		if (inventory [index] != null && inventory [index].id != equippableItemID.BAREHANDS){
-			Debug.Log ("inventory is full");
+		int slot = GetFreeInventorySlot ();
+		if (slot == -1) {
+			Debug.LogWarning ("called additemtoinventory despite no slot being available, this shouldn't happen");
 			return;
 		}
 
-		Debug.Log ("found slot " + index + " for item " + equippableItem.id);
+		Debug.Log ("found slot " + slot + " for item " + equippableItem.id);
 
-		inventory [index] = equippableItem;
-		UI.instance.slotImages [index].name = equippableItem.id + " slot";
-		UI.instance.slotImages [index].sprite = itemIcons [equippableItem.id];
+		inventory [slot] = equippableItem;
+		UI.instance.slotImages [slot].name = equippableItem.id + " slot";
+		UI.instance.slotImages [slot].sprite = itemIcons [equippableItem.id];
 	}
 
 	public void ScrollInput (float scrollValue){
@@ -85,44 +77,35 @@ public class PlayerInventory : MonoBehaviour {
 
 		Debug.Log ("new slot: " + newIndex);
 
-		//if slot is empty, nothing
-		//if active item carriable && inventory not full, stow previously active item
-		//if !carriable || inventory full, drop it
 
-		player.EquipAnItem (inventory [newIndex]);
-		currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
+		int slotToFill = GetFreeInventorySlot ();
 
-		/*if (currentlyActiveIndex == -1){ //active slot is empty
-			if (scrollValue > 0f) {
-				++currentlyActiveIndex;
+		if (player.currentlyEquippedItem.id == equippableItemID.BAREHANDS) {
+			Debug.Log ("active slot was empty before");
+			//if slot is empty, nothing
+		} else if (player.currentlyEquippedItem.carriable && slotToFill != -1) {
+			//if active item carriable && inventory not full, stow previously active item
+			Debug.Log ("gonna store previous item in slot " + slotToFill);
 
-				int failsafe = 0;
-				while (inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
-					++currentlyActiveIndex;
-					if (currentlyActiveIndex >= inventory.Count){
-						currentlyActiveIndex = 0;
-					}
-					++failsafe;
-					if (failsafe > inventory.Count * 2) {
-						Debug.Log ("inventory is empty, do nothing");
-						break;
-					}
-				}
+			/*YOU WERE HERE*/
 
-				if (failsafe > inventory.Count * 2) {
-					currentlyActiveIndex = -1;
-					return;
-				}
+			/* 
+			* UP NEXT:
+			* Put item into inventory from here, make sure there's no duplicates
+			*/
 
-				Debug.Log ("new active slot " + currentlyActiveIndex + ", selected item " + inventory [currentlyActiveIndex].id);
-				//UpdateActiveSlot (inventory [currentlyActiveIndex], true);
-			
-			} else {*/
-			/*	while (inventory [currentlyActiveIndex] == null || inventory [currentlyActiveIndex].id == equippableItemID.BAREHANDS) {
+		} else {
+			//if !carriable || inventory full, drop it
+			Debug.Log ("item " + player.currentlyEquippedItem.id + " isn't carriable (" + !player.currentlyEquippedItem.carriable + ") or inventory is full (" + (slotToFill == -1) + ")");
+			player.DropEquippedItem ();
+		}
 
-				}*/
-			/*}
-		}*/
+		if (inventory [newIndex] != null && inventory [newIndex].id != equippableItemID.BAREHANDS) {
+			player.EquipAnItem (inventory [newIndex]);
+			currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
+		} else {
+			currentlyActiveIndex = -1;
+		}
 	}
 
 	public void UpdateUIAfterDroppingItem(){
@@ -147,4 +130,25 @@ public class PlayerInventory : MonoBehaviour {
 		UI.instance.activeSlotImage.name = newActiveItem.id + " slot";
 		UI.instance.activeSlotImage.sprite = itemIcons [newActiveItem.id];
 	}
+
+	public int GetFreeInventorySlot(){
+		int result;
+		bool slotIsFree = false;
+
+		for (result = 0; result < inventory.Count; ++result){
+			if (inventory [result] == null || inventory [result].id == equippableItemID.BAREHANDS) {
+				slotIsFree = true;
+				break;
+			}
+		}
+
+		if (!slotIsFree) {
+			result = -1;
+			Debug.Log ("no free slot, returning -1");
+		} else {
+			Debug.Log ("slot " + result + " is lowest free");
+		}
+
+		return result;
+	} 
 }

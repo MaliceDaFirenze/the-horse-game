@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 	public Transform dropItemPos;
 	private Equippable playerHands;
 	public Transform playerModel; //to parent to horse pos for riding
-	private PlayerInventory inventory;
+	public PlayerInventory inventory;
 
 	//NavmeshMovement
 	public Transform destinationOverride;
@@ -274,7 +274,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private void DropEquippedItem(){
+	public void DropEquippedItem(){
 		Debug.Log ("drop item: " + currentlyEquippedItem.id);
 		if (currentlyEquippedItem.id != equippableItemID.HORSE_ON_LEAD && currentlyEquippedItem.id != equippableItemID.HORSE_MOUNTED) { 
 			currentlyEquippedItem.transform.position = new Vector3(dropItemPos.position.x, dropItemPos.position.y + currentlyEquippedItem.dropPosYOffset, dropItemPos.position.z);
