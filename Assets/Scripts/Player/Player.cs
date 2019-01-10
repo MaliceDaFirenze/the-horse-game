@@ -299,11 +299,13 @@ public class Player : MonoBehaviour {
 		maximumTurnRate = defaultMaximumTurnRate;
 
 		currentlyEquippedItem = playerHands;
-		inventory.UpdateUIAfterDroppingItem ();
+		inventory.SetActiveSlotUIToEmpty ();
 	}
 
-	public void UnequipEquippedItem(){
-		currentlyEquippedItem.transform.SetParent (null);
+	public void UnequipEquippedItem(bool setParent = true){
+		if (setParent) {
+			currentlyEquippedItem.transform.SetParent (null);
+		}
 		currentlyEquippedItem = playerHands;
 		maximumTurnRate = defaultMaximumTurnRate;
 	}

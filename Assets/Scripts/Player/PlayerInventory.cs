@@ -33,15 +33,18 @@ public class PlayerInventory : MonoBehaviour {
 		player = GetComponent<Player>();
 	}
 
-	public void AddItemToInventory(Equippable equippableItem){
+	public void AddItemToInventory(Equippable equippableItem, int overwriteSlot = -1){
+		int slot = overwriteSlot;
 
-		int slot = GetFreeInventorySlot ();
-		if (slot == -1) {
-			Debug.LogWarning ("called additemtoinventory despite no slot being available, this shouldn't happen");
-			return;
+		if (overwriteSlot == -1) {
+			slot = GetFreeInventorySlot ();
+			if (slot == -1) {
+				Debug.LogWarning ("called additemtoinventory despite no slot being available, this shouldn't happen");
+				return;
+			}
 		}
 
-		Debug.Log ("found slot " + slot + " for item " + equippableItem.id);
+		Debug.Log ("using slot " + slot + " for item " + equippableItem.id);
 
 		inventory [slot] = equippableItem;
 		UI.instance.slotImages [slot].name = equippableItem.id + " slot";
@@ -63,12 +66,12 @@ public class PlayerInventory : MonoBehaviour {
 		 * */
 		int newIndex = currentlyActiveIndex;
 
-		if (scrollValue > 0f) {
+		if (scrollValue < 0f) {
 			++newIndex;
 			if (newIndex >= inventory.Count) {
 				newIndex = 0;
 			} 
-		} else if (scrollValue < 0f) {
+		} else if (scrollValue > 0f) {
 			--newIndex;
 			if (newIndex < 0) {
 				newIndex = inventory.Count - 1;
@@ -77,6 +80,7 @@ public class PlayerInventory : MonoBehaviour {
 
 		Debug.Log ("new slot: " + newIndex);
 
+		//TODO: visualize new slot on UI somehow: place a frame or increase slot size or sth
 
 		int slotToFill = GetFreeInventorySlot ();
 
@@ -87,12 +91,12 @@ public class PlayerInventory : MonoBehaviour {
 			//if active item carriable && inventory not full, stow previously active item
 			Debug.Log ("gonna store previous item in slot " + slotToFill);
 
-			/*YOU WERE HERE*/
+			if (!inventory.Contains (player.currentlyEquippedItem)) {
+				AddItemToInventory (player.currentlyEquippedItem, slotToFill);
+			} 
 
-			/* 
-			* UP NEXT:
-			* Put item into inventory from here, make sure there's no duplicates
-			*/
+			SetActiveSlotUIToEmpty();
+			player.currentlyEquippedItem.gameObject.SetActive (false);
 
 		} else {
 			//if !carriable || inventory full, drop it
@@ -102,13 +106,15 @@ public class PlayerInventory : MonoBehaviour {
 
 		if (inventory [newIndex] != null && inventory [newIndex].id != equippableItemID.BAREHANDS) {
 			player.EquipAnItem (inventory [newIndex]);
-			currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
+			inventory [newIndex].gameObject.SetActive (true);
 		} else {
-			currentlyActiveIndex = -1;
+			player.UnequipEquippedItem (false);
 		}
+
+		currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
 	}
 
-	public void UpdateUIAfterDroppingItem(){
+	public void SetActiveSlotUIToEmpty(){
 		UI.instance.activeSlotImage.name = "empty slot";
 		UI.instance.activeSlotImage.sprite = null;
 	}
