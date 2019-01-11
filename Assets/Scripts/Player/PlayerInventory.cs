@@ -112,6 +112,18 @@ public class PlayerInventory : MonoBehaviour {
 		}
 
 		currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)
+
+		for (int i = 0; i < UI.instance.slotImages.Length; ++i) {
+			if (i == currentlyActiveIndex) {
+				UI.instance.frameImages [i].enabled = true;
+			} else {
+				UI.instance.frameImages [i].enabled = false;
+			}
+		}
+
+		if (currentlyActiveIndex != -1) {
+			UI.instance.activeFrameImage.enabled = false;
+		}
 	}
 
 	public void SetActiveSlotUIToEmpty(){
@@ -135,6 +147,7 @@ public class PlayerInventory : MonoBehaviour {
 
 		UI.instance.activeSlotImage.name = newActiveItem.id + " slot";
 		UI.instance.activeSlotImage.sprite = itemIcons [newActiveItem.id];
+		UI.instance.activeFrameImage.enabled = true;
 	}
 
 	public int GetFreeInventorySlot(){

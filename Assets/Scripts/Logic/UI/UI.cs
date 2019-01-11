@@ -19,7 +19,9 @@ public class UI : MonoBehaviour {
 	//Inventory
 	public GameObject inventoryUI;
 	public Image activeSlotImage;
+	public Image activeFrameImage;
 	public Image[] slotImages;
+	public Image[] frameImages;
 	public Transform regularInvPos;
 	public Transform dialogueInvPos;
 	//
