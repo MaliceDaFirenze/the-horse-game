@@ -40,9 +40,10 @@ GameObject:
   - component: {fileID: 114409599309291220}
   - component: {fileID: 114490198098185302}
   - component: {fileID: 135899820558358536}
+  - component: {fileID: 114102480693460454}
   m_Layer: 0
   m_Name: Apple
-  m_TagString: Untagged
+  m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,6 +209,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114102480693460454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850647651710206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6a8017fda5ef148b90a2b1a1c96f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needSatisfiedByThis: 0
+  totalNeedValue: 7
+  remainingNeedValue: 0
+  consumptionRate: 7
+  destroyWhenEmpty: 1
+  fullOnStart: 1
 --- !u!114 &114409599309291220
 MonoBehaviour:
   m_ObjectHideFlags: 1

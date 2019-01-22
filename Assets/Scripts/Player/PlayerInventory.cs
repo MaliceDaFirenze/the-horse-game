@@ -51,6 +51,15 @@ public class PlayerInventory : MonoBehaviour {
 		UI.instance.slotImages [slot].sprite = itemIcons [equippableItem.id];
 	}
 
+	public void RemoveActiveItemFromInventory(Equippable item){
+
+		if (inventory.Contains (item)) { //can also be only in active slot
+			inventory [inventory.IndexOf (item)] = null;
+		}
+		currentlyActiveIndex = -1;
+		SetActiveSlotUIToEmpty ();
+	}
+
 	public void ScrollInput (float scrollValue){
 		//value > 0 is forward, < 0 is backward
 		Debug.Log("scroll value " + scrollValue);

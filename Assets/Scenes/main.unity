@@ -27131,8 +27131,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.4800911, y: 0.012672424, z: -1.2034439}
-    m_Extent: {x: 2.4480393, y: 2.9040976, z: 1.8602765}
+    m_Center: {x: -0.4800911, y: 0.012672424, z: -1.2034438}
+    m_Extent: {x: 2.4480395, y: 2.9040976, z: 1.8602766}
   m_DirtyAABB: 0
 --- !u!4 &1862291329 stripped
 Transform:

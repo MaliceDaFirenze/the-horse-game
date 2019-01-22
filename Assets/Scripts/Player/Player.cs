@@ -119,7 +119,10 @@ public class Player : MonoBehaviour {
 
 				if (nearestInteractable != null) {
 
+					Debug.Log ("there is nearest int. arrowinput " + nearestInteractable.arrowInputRequired);
+
 					if (Input.GetKeyDown (KeyCode.E)  && nearestInteractable.arrowInputRequired == null) {
+						Debug.Log ("pressed E with nearest int input required == null");
 
 						nearestInteractable.PlayerInteracts (this);
 						// ^ This can mean that nearestInteractable is set to null because of PutIntoInventory --> ExitInteractionTrigger. 
@@ -299,13 +302,14 @@ public class Player : MonoBehaviour {
 		maximumTurnRate = defaultMaximumTurnRate;
 
 		currentlyEquippedItem = playerHands;
-		inventory.SetActiveSlotUIToEmpty ();
+		inventory.RemoveActiveItemFromInventory (currentlyEquippedItem);
 	}
 
 	public void UnequipEquippedItem(bool setParent = true){
 		if (setParent) {
 			currentlyEquippedItem.transform.SetParent (null);
 		}
+		inventory.RemoveActiveItemFromInventory (currentlyEquippedItem);
 		currentlyEquippedItem = playerHands;
 		maximumTurnRate = defaultMaximumTurnRate;
 	}

@@ -120,8 +120,8 @@ public class Horse_Interactable : Interactable {
 	private void FeedHorse(Player player){
 		Debug.Log ("feed horse, remainingNeedValue " + player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		horse.horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
-		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
+		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		horse.horseBehavior.StartCoroutine (horse.horseBehavior.WaitToProduceManure ());
 	}
 
@@ -443,6 +443,12 @@ public class Horse_Interactable : Interactable {
 
 			break;
 		case equippableItemID.STRAW:
+			if (horse.horseStats.Food < Horse_Stats.NeedsMaximum) {
+				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
+			}
+			break;
+		case equippableItemID.APPLE:
 			if (horse.horseStats.Food < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));

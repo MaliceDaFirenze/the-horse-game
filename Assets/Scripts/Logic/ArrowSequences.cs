@@ -19,8 +19,8 @@ public class ArrowSequences : MonoBehaviour {
 			return BrushHorse ();
 		case actionID.PET_HORSE:
 			return PetHorse ();
-		case actionID.FEED_HORSE:
-			return FeedHorse();
+		/*case actionID.FEED_HORSE:
+			return FeedHorse();*/
 		case actionID.WATER_HORSE:
 			return WaterHorse();
 		case actionID.CLEAN_MANURE:
