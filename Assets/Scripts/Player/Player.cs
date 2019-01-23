@@ -119,10 +119,10 @@ public class Player : MonoBehaviour {
 
 				if (nearestInteractable != null) {
 
-					Debug.Log ("there is nearest int. arrowinput " + nearestInteractable.arrowInputRequired);
+					//Debug.Log ("there is nearest int " + nearestInteractable.name + " (parent: " + nearestInteractable.transform.parent + "). arrowinput " + nearestInteractable.arrowInputRequired);
 
 					if (Input.GetKeyDown (KeyCode.E)  && nearestInteractable.arrowInputRequired == null) {
-						Debug.Log ("pressed E with nearest int input required == null");
+						//Debug.Log ("pressed E with nearest int input required == null");
 
 						nearestInteractable.PlayerInteracts (this);
 						// ^ This can mean that nearestInteractable is set to null because of PutIntoInventory --> ExitInteractionTrigger. 
@@ -328,7 +328,7 @@ public class Player : MonoBehaviour {
 
 		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);
 
-		equippableItem.BeEquipped (true);
+		equippableItem.BeEquipped (false);
 		currentlyEquippedItem = equippableItem;
 
 		if (currentlyEquippedItem.overrideTurnRate != -1) {

@@ -87,7 +87,16 @@ public class PlayerInventory : MonoBehaviour {
 			}
 		}
 
-		Debug.Log ("new slot: " + newIndex);
+		string debugStringInventory = "";
+		foreach (Equippable eq in inventory) {
+			if (eq == null) {
+				debugStringInventory += "empty\n";
+			} else {
+				debugStringInventory += eq.id + ", " + eq.name + "\n";
+			}
+		}
+
+		Debug.Log ("new slot: " + newIndex + ". currently equipped item: " + player.currentlyEquippedItem.id + " inventory:" + debugStringInventory);
 
 		//TODO: visualize new slot on UI somehow: place a frame or increase slot size or sth
 
@@ -116,8 +125,10 @@ public class PlayerInventory : MonoBehaviour {
 		if (inventory [newIndex] != null && inventory [newIndex].id != equippableItemID.BAREHANDS) {
 			player.EquipAnItem (inventory [newIndex]);
 			inventory [newIndex].gameObject.SetActive (true);
+			Debug.Log (inventory [newIndex].id + " selected, in slot " + newIndex);
 		} else {
 			player.UnequipEquippedItem (false);
+			Debug.Log ("no / empty item selected, in slot " + newIndex);
 		}
 
 		currentlyActiveIndex = newIndex; //set this once I don't need the old active index anymore, i.e. once the old item is dealt with (stowed, dropped, etc)

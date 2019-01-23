@@ -120,8 +120,8 @@ public class Horse_Interactable : Interactable {
 	private void FeedHorse(Player player){
 		Debug.Log ("feed horse, remainingNeedValue " + player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
 		horse.horseStats.SatisfyNeed(horseNeed.FOOD, player.currentlyEquippedItem.GetComponent<Consumable>().remainingNeedValue);
-		player.UnequipEquippedItem ();
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
+		player.UnequipEquippedItem ();
 		horse.horseBehavior.StartCoroutine (horse.horseBehavior.WaitToProduceManure ());
 	}
 

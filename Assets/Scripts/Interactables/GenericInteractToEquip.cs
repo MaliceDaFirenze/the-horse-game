@@ -9,7 +9,7 @@ public class GenericInteractToEquip : Interactable {
 
 		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
 		case actionID.PICK_UP:
-			equippable.BeEquipped ();
+			//equippable.BeEquipped (); not necessary, EquipAnItem calls this
 			player.EquipAnItem (equippable);
 			break;
 		case actionID.PUT_INTO_POCKET:
