@@ -300,16 +300,19 @@ public class Player : MonoBehaviour {
 		}
 
 		maximumTurnRate = defaultMaximumTurnRate;
-
-		currentlyEquippedItem = playerHands;
+		Debug.Log ("calling removeitem from Drop");
 		inventory.RemoveActiveItemFromInventory (currentlyEquippedItem);
+		currentlyEquippedItem = playerHands;
+
 	}
 
-	public void UnequipEquippedItem(bool setParent = true){
+	public void UnequipEquippedItem(bool setParent = true, bool removeFromInventory = true){
 		if (setParent) {
 			currentlyEquippedItem.transform.SetParent (null);
 		}
-		inventory.RemoveActiveItemFromInventory (currentlyEquippedItem);
+		if (removeFromInventory) {
+			inventory.RemoveActiveItemFromInventory (currentlyEquippedItem);
+		}
 		currentlyEquippedItem = playerHands;
 		maximumTurnRate = defaultMaximumTurnRate;
 	}
