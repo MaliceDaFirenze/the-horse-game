@@ -7,4 +7,6 @@ public class Save {
 
 	public int day;
 	public int money;
+	public int hayCartFill;
+	public int strawCartFill;
 }

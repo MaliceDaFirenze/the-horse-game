@@ -5,6 +5,7 @@ using UnityEngine;
 public enum equippableItemID{
 	BAREHANDS,
 	STRAW,
+	HAY,
 	WATERBUCKET,
 	BRUSH,
 	PITCHFORK,

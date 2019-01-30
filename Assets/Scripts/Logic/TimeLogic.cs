@@ -43,7 +43,16 @@ public class TimeLogic : MonoBehaviour {
 		day = 1;
 		StartNewDay ();
 
-		//only works as long as it's the only horse in the scene of course, but that should be the case
+		HayCart[] carts = FindObjectsOfType<HayCart> ();
+		for (int i = 0; i < carts.Length; ++i) {
+			if (carts [i].fillType == equippableItemID.HAY) {
+				carts [i].InitCartFromSave (7);
+			} else if (carts [i].fillType == equippableItemID.STRAW) {
+				carts [i].InitCartFromSave (3);
+			}
+		}
+
+		//only works as long as it's the only horse in the scene of course
 		FindObjectOfType<Horse> ().horseStats.InitializeHorse ();
 	}
 
@@ -107,6 +116,14 @@ public class TimeLogic : MonoBehaviour {
 		file.Close ();
 
 		day = save.day;
+		HayCart[] carts = FindObjectsOfType<HayCart> ();
+		for (int i = 0; i < carts.Length; ++i) {
+			if (carts [i].fillType == equippableItemID.HAY) {
+				carts [i].InitCartFromSave (save.hayCartFill);
+			} else if (carts [i].fillType == equippableItemID.STRAW) {
+				carts [i].InitCartFromSave (save.strawCartFill);
+			}
+		}
 		PlayerEconomy.LoadMoneyFromSave (save.money);
 		StartNewDay ();
 	}
@@ -128,6 +145,19 @@ public class TimeLogic : MonoBehaviour {
 
 		save.day = day;
 		save.money = PlayerEconomy.Money;
+		save.hayCartFill = 0;
+		save.strawCartFill = 0;
+
+		HayCart[] carts = FindObjectsOfType<HayCart> ();
+		for (int i = 0; i < carts.Length; ++i) {
+			if (carts [i].fillType == equippableItemID.STRAW) {
+				save.strawCartFill += carts [i].currentUnits;
+			}
+			if (carts [i].fillType == equippableItemID.HAY) {
+				save.hayCartFill += carts [i].currentUnits;
+			}
+		}
+
 
 		return save;
 	}

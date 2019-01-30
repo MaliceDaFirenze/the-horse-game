@@ -10,6 +10,7 @@ public class PrefabManager : MonoBehaviour {
 
 	//---Items---//
 	public GameObject hayBale;
+	public GameObject strawBale;
 	public GameObject manurePile;
 
 

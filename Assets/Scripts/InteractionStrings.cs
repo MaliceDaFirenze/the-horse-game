@@ -20,8 +20,8 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.NO_SEQUENCE, "");
 		allInteractionStrings.Add (actionID.PET_HORSE, "Pet Horse");
 		allInteractionStrings.Add (actionID.WATER_HORSE, "Water Horse");
-		allInteractionStrings.Add (actionID.TAKE_STRAW, "Pick Up");
-		allInteractionStrings.Add (actionID.PUT_AWAY_STRAW, "Put Straw Away");
+		allInteractionStrings.Add (actionID.TAKE_STRAW, "Take Portion");
+		allInteractionStrings.Add (actionID.PUT_AWAY_STRAW, "Return Portion");
 		allInteractionStrings.Add (actionID.TAKE_HALTER, "Take Halter");
 		allInteractionStrings.Add (actionID.TAKE_LEAD, "Take Lead");
 		allInteractionStrings.Add (actionID.TAKE_HALTER_AND_LEAD, "Take Halter and Lead");

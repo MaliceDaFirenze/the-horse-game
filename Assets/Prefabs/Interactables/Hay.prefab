@@ -175,9 +175,9 @@ GameObject:
   - component: {fileID: 114422664868700652}
   - component: {fileID: 135625730778578350}
   - component: {fileID: 114602865856247504}
-  - component: {fileID: 114089138844968432}
+  - component: {fileID: 114744717330264792}
   m_Layer: 0
-  m_Name: Straw
+  m_Name: Hay
   m_TagString: Consumable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983970110012648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: -0.027, z: -16.64}
+  m_LocalPosition: {x: 6.7369003, y: -0.86998975, z: -12.796776}
   m_LocalScale: {x: 0.40991277, y: 0.40991274, z: 0.40991274}
   m_Children:
   - {fileID: 4238998972829958}
@@ -337,7 +337,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -372,7 +372,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 7c7148c179827fd4ca8fcaa3e9103c89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -407,7 +407,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -442,7 +442,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -477,7 +477,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -512,7 +512,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -547,7 +547,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 7c7148c179827fd4ca8fcaa3e9103c89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -582,7 +582,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -665,25 +665,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1849520723714508}
   m_Mesh: {fileID: 4300006, guid: 7f3810fa2dc067c4bb05f585efeb96b0, type: 3}
---- !u!114 &114089138844968432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1983970110012648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1210bad3e66e1b4dbd8dca4e8211f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emptyHandsAction: 
-  equippable: {fileID: 0}
-  consumable: {fileID: 0}
-  pickUpable: 0
-  currentlyRelevantActionIDs: 
-  selectedInteractionIndex: 0
-  arrowInputRequired: 
-  nextArrowIndexToInput: 0
 --- !u!114 &114422664868700652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,11 +700,30 @@ MonoBehaviour:
   overrideTurnRate: -1
   preventSprintingWhileEquipped: 1
   equippedRotation: {x: 0, y: 0, z: 0}
-  id: 1
+  id: 2
   carriable: 0
   status: 0
   fillNullPos: {fileID: 0}
   content: {fileID: 0}
+--- !u!114 &114744717330264792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983970110012648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1210bad3e66e1b4dbd8dca4e8211f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyHandsAction: 
+  equippable: {fileID: 0}
+  consumable: {fileID: 0}
+  pickUpable: 0
+  currentlyRelevantActionIDs: 
+  selectedInteractionIndex: 0
+  arrowInputRequired: 
+  nextArrowIndexToInput: 0
 --- !u!135 &135164502533063232
 SphereCollider:
   m_ObjectHideFlags: 1

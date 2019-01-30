@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class HayCart : Interactable {
 
+	//for current implementation, it only really makes sense for one haycart and one strawcart to exist in the scene. Otherwise, the saving/loading breaks
+
+	public equippableItemID fillType;
+	public int currentUnits;
+
+	public void InitCartFromSave(int newFillAmount){
+		currentUnits = newFillAmount;
+	}
+
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
@@ -14,17 +23,26 @@ public class HayCart : Interactable {
 		case actionID.PUT_AWAY_STRAW:
 			PutAwayHayBale (player);
 			break;
-		default:
-			break;
 		}
 	}
 
 	private void TakeHayBale(Player player){
+
+		//NEXT: when currentunits == 0, hide pile model and don't allow taking more 
+
 		if (player.currentlyEquippedItem.id == equippableItemID.BAREHANDS) {
 
-			GameObject newHayBale = Instantiate (PrefabManager.instance.hayBale, player.equippedItemPos.position, player.equippedItemPos.rotation) as GameObject;
+			GameObject newBale;
+			if (fillType == equippableItemID.STRAW) {
+				newBale = Instantiate (PrefabManager.instance.strawBale, player.equippedItemPos.position, player.equippedItemPos.rotation) as GameObject;
+			
+			} else { // if (fillType == equippableItemID.HAY) { is implied but this way newbale is definitely defined
+				newBale = Instantiate (PrefabManager.instance.hayBale, player.equippedItemPos.position, player.equippedItemPos.rotation) as GameObject;
+			}
 
-			Equippable equippable = newHayBale.GetComponent<Equippable> ();
+			--currentUnits;
+
+			Equippable equippable = newBale.GetComponent<Equippable> ();
 			equippable.Initialize ();
 
 			player.EquipAnItem (equippable);
@@ -32,7 +50,7 @@ public class HayCart : Interactable {
 	}
 
 	private void PutAwayHayBale (Player player){
-
+		++currentUnits;
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
 	}
