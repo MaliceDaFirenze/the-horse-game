@@ -719,7 +719,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
-  pickUpable: 0
+  pickUpable: 1
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 

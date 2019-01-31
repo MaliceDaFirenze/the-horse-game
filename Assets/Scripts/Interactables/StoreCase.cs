@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class StoreCase : Interactable {
 
-	Horse_Interactable horseTiedHere;
+	public HayCart cartToRestock;
 
 	public override void PlayerInteracts(Player player){
 		base.PlayerInteracts (player);
 
 		switch (currentlyRelevantActionIDs [selectedInteractionIndex]) {
-		case actionID.OPEN_SHOP:
+		case actionID.RESTOCK:
 			break;
 		}
+	}
+
+	private void RestockHayCart(){
+	
 	}
 
 	public override List<string> DefineInteraction (Player player)	{
@@ -21,8 +25,10 @@ public class StoreCase : Interactable {
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS:
-			currentlyRelevantActionIDs.Add(actionID.OPEN_SHOP);
-			result.Add(InteractionStrings.GetInteractionStringById(actionID.OPEN_SHOP));
+			//NEXT: add different options, like restock 10 for x credits, or fill cart for y credits
+
+			currentlyRelevantActionIDs.Add(actionID.RESTOCK);
+			result.Add(InteractionStrings.GetInteractionStringById(actionID.RESTOCK));
 			break;
 		}
 

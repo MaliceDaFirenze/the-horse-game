@@ -7,10 +7,15 @@ public class HayCart : Interactable {
 	//for current implementation, it only really makes sense for one haycart and one strawcart to exist in the scene. Otherwise, the saving/loading breaks
 
 	public equippableItemID fillType;
+	public Renderer hayPileRenderer;
 	public int currentUnits;
 
 	public void InitCartFromSave(int newFillAmount){
 		currentUnits = newFillAmount;
+
+		if (currentUnits > 0) {
+			hayPileRenderer.enabled = true;
+		}
 	}
 
 	public override void PlayerInteracts(Player player){
@@ -28,8 +33,6 @@ public class HayCart : Interactable {
 
 	private void TakeHayBale(Player player){
 
-		//NEXT: when currentunits == 0, hide pile model and don't allow taking more 
-
 		if (player.currentlyEquippedItem.id == equippableItemID.BAREHANDS) {
 
 			GameObject newBale;
@@ -46,6 +49,10 @@ public class HayCart : Interactable {
 			equippable.Initialize ();
 
 			player.EquipAnItem (equippable);
+
+			if (currentUnits == 0) {
+				hayPileRenderer.enabled = false;
+			}
 		}
 	}
 
@@ -53,6 +60,10 @@ public class HayCart : Interactable {
 		++currentUnits;
 		GameObject.Destroy (player.currentlyEquippedItem.gameObject);
 		player.UnequipEquippedItem ();
+
+		if (currentUnits > 0 && !hayPileRenderer.enabled) {
+			hayPileRenderer.enabled = true;
+		}
 	}
 
 	public override List<string> DefineInteraction (Player player)	{
@@ -61,8 +72,10 @@ public class HayCart : Interactable {
 
 		switch (player.currentlyEquippedItem.id) {
 		case equippableItemID.BAREHANDS:
-			currentlyRelevantActionIDs.Add (actionID.TAKE_STRAW);
-			result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_STRAW));
+			if (currentUnits > 0) {
+				currentlyRelevantActionIDs.Add (actionID.TAKE_STRAW);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.TAKE_STRAW) + " (" + currentUnits + ")");
+			}
 			break;
 		case equippableItemID.STRAW:
 			currentlyRelevantActionIDs.Add(actionID.PUT_AWAY_STRAW);

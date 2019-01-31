@@ -112,8 +112,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171510649012460}
-  m_LocalRotation: {x: -0.26654303, y: -0.65494645, z: -0.65494645, w: 0.26654303}
-  m_LocalPosition: {x: 14.7894745, y: 0.26198676, z: -1.4053202}
+  m_LocalRotation: {x: 0.009939276, y: -0.7070369, z: -0.7070369, w: -0.009939276}
+  m_LocalPosition: {x: -22.520002, y: -3.7180133, z: -28.6}
   m_LocalScale: {x: 0.8621032, y: 1.1642337, z: 0.8621027}
   m_Children:
   - {fileID: 4694415061653922}
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 4406577169073638}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -135.71}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -181.611}
 --- !u!4 &4694415061653922
 Transform:
   m_ObjectHideFlags: 1
@@ -185,7 +185,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e63a3ba60583cd044a9fa59e60576cc4, type: 2}
+  - {fileID: 2100000, guid: 5b2d48774cca8eb459dc33d978f1996f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -292,6 +292,9 @@ MonoBehaviour:
   selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
+  fillType: 2
+  hayPileRenderer: {fileID: 23863671022719324}
+  currentUnits: 0
 --- !u!136 &136141650923889246
 CapsuleCollider:
   m_ObjectHideFlags: 1
