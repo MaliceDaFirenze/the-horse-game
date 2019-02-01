@@ -21,6 +21,10 @@ public class PlayerEconomy : MonoBehaviour {
 		}
 	}
 
+	public static void PayMoney(int amount){
+		Money -= amount;
+	}
+
 	public static void ReceiveMoney(int amount){
 		Money += amount;
 	}

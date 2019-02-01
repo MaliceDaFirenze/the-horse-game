@@ -4366,6 +4366,7 @@ MonoBehaviour:
   arrowInputRequired: 
   nextArrowIndexToInput: 0
   cartToRestock: {fileID: 0}
+  storeType: 0
 --- !u!1001 &225937803
 Prefab:
   m_ObjectHideFlags: 0
@@ -10314,7 +10315,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 658127529}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.58
@@ -10339,6 +10340,7 @@ MonoBehaviour:
   arrowInputRequired: 
   nextArrowIndexToInput: 0
   cartToRestock: {fileID: 1572136161}
+  storeType: 1
 --- !u!4 &662670198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150706553864786, guid: da71daefc79c80f419a820a307a73b7e,
@@ -18099,7 +18101,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1227233052}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.43
@@ -18124,6 +18126,7 @@ MonoBehaviour:
   arrowInputRequired: 
   nextArrowIndexToInput: 0
   cartToRestock: {fileID: 196094331}
+  storeType: 1
 --- !u!1 &1229863463
 GameObject:
   m_ObjectHideFlags: 0
@@ -23248,7 +23251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1556762269
 Transform:
   m_ObjectHideFlags: 0

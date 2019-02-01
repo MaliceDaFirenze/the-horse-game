@@ -46,9 +46,9 @@ public class TimeLogic : MonoBehaviour {
 		HayCart[] carts = FindObjectsOfType<HayCart> ();
 		for (int i = 0; i < carts.Length; ++i) {
 			if (carts [i].fillType == equippableItemID.HAY) {
-				carts [i].InitCartFromSave (7);
+				carts [i].InitOrRestockCart (7);
 			} else if (carts [i].fillType == equippableItemID.STRAW) {
-				carts [i].InitCartFromSave (3);
+				carts [i].InitOrRestockCart (3);
 			}
 		}
 
@@ -119,9 +119,9 @@ public class TimeLogic : MonoBehaviour {
 		HayCart[] carts = FindObjectsOfType<HayCart> ();
 		for (int i = 0; i < carts.Length; ++i) {
 			if (carts [i].fillType == equippableItemID.HAY) {
-				carts [i].InitCartFromSave (save.hayCartFill);
+				carts [i].InitOrRestockCart (save.hayCartFill);
 			} else if (carts [i].fillType == equippableItemID.STRAW) {
-				carts [i].InitCartFromSave (save.strawCartFill);
+				carts [i].InitOrRestockCart (save.strawCartFill);
 			}
 		}
 		PlayerEconomy.LoadMoneyFromSave (save.money);

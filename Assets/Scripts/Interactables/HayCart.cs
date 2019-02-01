@@ -9,9 +9,14 @@ public class HayCart : Interactable {
 	public equippableItemID fillType;
 	public Renderer hayPileRenderer;
 	public int currentUnits;
+	private int maximumUnits = 100;
 
-	public void InitCartFromSave(int newFillAmount){
+	public void InitOrRestockCart(int newFillAmount){
 		currentUnits = newFillAmount;
+
+		if (currentUnits > maximumUnits) {
+			currentUnits = maximumUnits;
+		}
 
 		if (currentUnits > 0) {
 			hayPileRenderer.enabled = true;
