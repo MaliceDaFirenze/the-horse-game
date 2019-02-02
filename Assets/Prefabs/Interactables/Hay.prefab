@@ -700,7 +700,7 @@ MonoBehaviour:
   overrideTurnRate: -1
   preventSprintingWhileEquipped: 1
   equippedRotation: {x: 0, y: 0, z: 0}
-  id: 2
+  id: 14
   carriable: 0
   status: 0
   fillNullPos: {fileID: 0}

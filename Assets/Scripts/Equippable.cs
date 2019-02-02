@@ -5,7 +5,6 @@ using UnityEngine;
 public enum equippableItemID{
 	BAREHANDS,
 	STRAW,
-	HAY,
 	WATERBUCKET,
 	BRUSH,
 	PITCHFORK,
@@ -17,7 +16,8 @@ public enum equippableItemID{
 	SADDLE_WITH_PAD,
 	BRIDLE,
 	HORSE_MOUNTED,
-	APPLE
+	APPLE,
+	HAY
 }
 
 public enum containerStatus{

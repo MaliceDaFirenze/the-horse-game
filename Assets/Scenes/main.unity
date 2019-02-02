@@ -156,6 +156,11 @@ Prefab:
       propertyPath: m_Name
       value: HayCart
       objectReference: {fileID: 0}
+    - target: {fileID: 114109596790500556, guid: e1da4a2b7b7ba884fb3ecd9494e58ac9,
+        type: 2}
+      propertyPath: fillType
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1da4a2b7b7ba884fb3ecd9494e58ac9, type: 2}
   m_IsPrefabAsset: 0
@@ -23251,7 +23256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1556762269
 Transform:
   m_ObjectHideFlags: 0
