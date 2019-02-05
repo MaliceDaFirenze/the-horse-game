@@ -17,7 +17,14 @@ public enum equippableItemID{
 	BRIDLE,
 	HORSE_MOUNTED,
 	APPLE,
-	HAY
+	HAY,
+	BLUEGEM,
+	REDGEM,
+	GREENGEM,
+	SMALLBRANCH,
+	BIGBRANCH,
+	SMALLANTLER,
+	BIGANTLER
 }
 
 public enum containerStatus{
@@ -40,6 +47,7 @@ public class Equippable : MonoBehaviour {
 
 	public equippableItemID id;
 	public bool carriable = false;
+	public bool sellable = false;
 
 	private bool wasInitialized;
 
