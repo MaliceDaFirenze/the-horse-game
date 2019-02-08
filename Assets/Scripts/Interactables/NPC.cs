@@ -15,6 +15,10 @@ public class NPC : Interactable {
 			case actionID.TALK_TO:
 				UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING), portrait, characterId, Dialogues.RetrieveReward(TimeLogic.day, characterId, DialogueID.GREETING));
 				break;
+			case actionID.SELL:
+				player.inventory.RemoveActiveItemFromInventory (player.currentlyEquippedItem);
+				PlayerEconomy.ReceiveMoney(Prices.GetPriceByID(player.currentlyEquippedItem.id));
+				break;
 			}
 		}
 	}
@@ -28,8 +32,11 @@ public class NPC : Interactable {
 
 		switch (characterId) {
 		case Character.STORECLERK: 
-			result.Add (InteractionStrings.GetInteractionStringById(actionID.OPEN_SHOP));
-			currentlyRelevantActionIDs.Add (actionID.OPEN_SHOP);
+			if (player.currentlyEquippedItem.sellable) {
+				result.Add (InteractionStrings.GetInteractionStringById(actionID.SELL) + player.currentlyEquippedItem.name + " (" + Prices.GetPriceByID(player.currentlyEquippedItem.id) + ")");
+				currentlyRelevantActionIDs.Add (actionID.SELL);
+			}
+
 			break;
 		default:
 			break;

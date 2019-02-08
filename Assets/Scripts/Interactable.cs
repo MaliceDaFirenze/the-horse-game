@@ -43,7 +43,7 @@ public enum actionID {
 	RESTOCK_CART,
 	REFILL_CART,
 	TALK_TO,
-	OPEN_SHOP,
+	SELL,
 	PUT_INTO_POCKET,
 	PICK_UP
 }

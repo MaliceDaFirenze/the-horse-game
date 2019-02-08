@@ -43,7 +43,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.STOP_LEADING_BY_REINS, "Stop Leading by Reins");
 		allInteractionStrings.Add (actionID.MOUNT_HORSE, "Mount Horse");
 		allInteractionStrings.Add (actionID.TALK_TO, "Talk");
-		allInteractionStrings.Add (actionID.OPEN_SHOP, "Open Shop");
+		allInteractionStrings.Add (actionID.SELL, "Sell: ");
 		allInteractionStrings.Add (actionID.RESTOCK_CART, "Restock");
 		allInteractionStrings.Add (actionID.REFILL_CART, "Refill Cart");
 		allInteractionStrings.Add (actionID.PUT_INTO_POCKET, "Put Away (Pocket)");

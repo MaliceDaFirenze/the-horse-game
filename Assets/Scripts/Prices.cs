@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pruices : MonoBehaviour {
+public class Prices : MonoBehaviour {
 
 	public static Dictionary<equippableItemID, int> sallSellingPrices = new Dictionary<equippableItemID, int>();
 
@@ -17,7 +17,7 @@ public class Pruices : MonoBehaviour {
 		sallSellingPrices.Add (equippableItemID.APPLE, 3); 
 	}
 
-	public static int GetInteractionStringById(equippableItemID id){
+	public static int GetPriceByID(equippableItemID id){
 		if (sallSellingPrices.Count == 0) {
 			Setup ();
 		}
