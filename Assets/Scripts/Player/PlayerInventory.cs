@@ -68,6 +68,20 @@ public class PlayerInventory : MonoBehaviour {
 		SetActiveSlotUIToEmpty ();
 
 
+		//DEBUG STRING ONLY
+		string debugStringInventory = "";
+		for (int i = 0; i < inventory.Count; ++i) {
+			debugStringInventory += i + ". ";
+			if (inventory[i] == null) {
+				debugStringInventory += "empty\n";
+			} else {
+				debugStringInventory += inventory[i].id + ", " + inventory[i].name + "\n";
+			}
+		}
+		//
+
+		Debug.Log ("inventory AFTER REMOVING:\n" + debugStringInventory);
+
 	}
 
 	public void ScrollInput (float scrollValue){

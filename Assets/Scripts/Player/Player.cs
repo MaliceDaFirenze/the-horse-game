@@ -331,7 +331,15 @@ public class Player : MonoBehaviour {
 
 		//Debug.Log ("equip an item with params: equippableItem " + equippableItem.name + ", moveItemToPlayer: " + moveItemToPlayer + ", overwriteTransform: " + overwriteTransform);
 
-		equippableItem.BeEquipped (false);
+
+		//I put this in bc horse sank through floor on mounting, but is it correct in every case?
+		if (equippableItem.id == equippableItemID.HORSE_MOUNTED) {
+			equippableItem.BeEquipped (true);
+		} else {
+			equippableItem.BeEquipped (false);
+		}
+
+
 		currentlyEquippedItem = equippableItem;
 
 		if (currentlyEquippedItem.overrideTurnRate != -1) {

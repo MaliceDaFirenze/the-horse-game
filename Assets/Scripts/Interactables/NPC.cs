@@ -16,8 +16,10 @@ public class NPC : Interactable {
 				UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (TimeLogic.day, characterId, DialogueID.GREETING), portrait, characterId, Dialogues.RetrieveReward(TimeLogic.day, characterId, DialogueID.GREETING));
 				break;
 			case actionID.SELL:
-				player.inventory.RemoveActiveItemFromInventory (player.currentlyEquippedItem);
-				PlayerEconomy.ReceiveMoney(Prices.GetPriceByID(player.currentlyEquippedItem.id));
+				Equippable item = player.currentlyEquippedItem;
+				PlayerEconomy.ReceiveMoney (Prices.GetPriceByID (player.currentlyEquippedItem.id));
+				player.UnequipEquippedItem (false, true);
+				Destroy (item.gameObject);
 				break;
 			}
 		}
