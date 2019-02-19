@@ -258,6 +258,7 @@ MonoBehaviour:
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 2
   carriable: 0
+  sellable: 0
   status: 0
   fillNullPos: {fileID: 0}
   content: {fileID: 0}
