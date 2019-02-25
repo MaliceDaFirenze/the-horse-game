@@ -717,10 +717,11 @@ MonoBehaviour:
   equippedOffset: {x: 0, y: 0, z: 0}
   playerSpeedModifier: 1
   overrideTurnRate: -1
-  preventSprintingWhileEquipped: 1
+  preventSprintingWhileEquipped: 0
   equippedRotation: {x: 0, y: 0, z: 0}
   id: 1
   carriable: 0
+  sellable: 0
   status: 0
   fillNullPos: {fileID: 0}
   content: {fileID: 0}

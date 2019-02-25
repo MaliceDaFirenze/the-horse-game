@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: 506d00d2fd6b0844eb668e5d8a8b8e54
-timeCreated: 1522596873
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Armature
     100002: Bone_008
@@ -50,6 +48,8 @@ ModelImporter:
     100084: Schweifwirbel4
     100086: Unterschenkel_L
     100088: Unterschenkel_R
+    100090: Cube_001
+    100092: Mane
     400000: Armature
     400002: Bone_008
     400004: Bone_009
@@ -95,8 +95,13 @@ ModelImporter:
     400084: Schweifwirbel4
     400086: Unterschenkel_L
     400088: Unterschenkel_R
+    400090: Cube_001
+    400092: Mane
     2100000: Material
+    2100002: unnamed
     4300000: Cube
+    4300002: Cube_001
+    4300004: Mane
     7400000: Default Take
     7400002: Eat
     7400004: Idle_001
@@ -114,6 +119,8 @@ ModelImporter:
     7400028: JumpLeftHigh
     9500000: //RootNode
     13700000: Cube
+    13700002: Cube_001
+    13700004: Mane
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -133,6 +140,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -556,6 +564,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -575,7 +585,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

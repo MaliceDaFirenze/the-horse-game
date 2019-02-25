@@ -5221,6 +5221,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -9933,7 +9934,7 @@ SkinnedMeshRenderer:
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: -0.00031661987, y: 0.09506607, z: 0.20776367}
-    m_Extent: {x: 2.4957, y: 1.1237843, z: 1.4908442}
+    m_Extent: {x: 2.4957001, y: 1.1237843, z: 1.4908442}
   m_DirtyAABB: 0
 --- !u!4 &768911841 stripped
 Transform:
@@ -10917,15 +10918,15 @@ Transform:
   - {fileID: 662670198}
   - {fileID: 1525306504}
   - {fileID: 960356758}
-  - {fileID: 1299783308}
   - {fileID: 657963117}
+  - {fileID: 1299783308}
   - {fileID: 1220789594}
   - {fileID: 132384730}
   - {fileID: 2081867496}
+  - {fileID: 981360415}
   - {fileID: 720414538}
   - {fileID: 1345726463}
   - {fileID: 1720931011}
-  - {fileID: 981360415}
   - {fileID: 837368938}
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -11467,6 +11468,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -12821,7 +12823,7 @@ Transform:
   - {fileID: 1506200490}
   - {fileID: 848146460}
   m_Father: {fileID: 856441032}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &981360416
 BoxCollider:
@@ -12849,6 +12851,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -15675,6 +15678,7 @@ MonoBehaviour:
   emptyHandsAction: 
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -19693,7 +19697,7 @@ Prefab:
     - target: {fileID: 2300006, guid: 7a750b284eed6b94d9cd6285802f3a69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 415bf0002442e3049be04ed4d47ff320, type: 2}
+      objectReference: {fileID: 2100000, guid: 064378df23eb56f45a8e4abffb14a09c, type: 2}
     - target: {fileID: 400006, guid: 7a750b284eed6b94d9cd6285802f3a69, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.3266866
@@ -20803,6 +20807,7 @@ MonoBehaviour:
   emptyHandsAction: Open / Close
   equippable: {fileID: 0}
   consumable: {fileID: 0}
+  pickUpable: 0
   currentlyRelevantActionIDs: 
   selectedInteractionIndex: 0
   arrowInputRequired: 
@@ -25596,10 +25601,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2412e79d0f7eed845985fda82ab7d8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 0
   timePassedToday: 0
   dateText: {fileID: 2133887633}
   blackScreen: {fileID: 1041529519}
+  forceNewGame: 0
 --- !u!4 &2041024927
 Transform:
   m_ObjectHideFlags: 0
