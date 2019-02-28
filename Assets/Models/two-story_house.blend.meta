@@ -7,20 +7,55 @@ ModelImporter:
     100002: house_basis
     100004: house_basis_001
     100006: //RootNode
+    100008: Cube_001
+    100010: house_firstfloor
+    100012: StairsModel
+    100014: StairsRampCollider
+    100016: Roof
+    100018: PorchSteps
+    100020: PorchStepsRampCollider
     400000: Cube
     400002: house_basis
     400004: house_basis_001
     400006: //RootNode
+    400008: Cube_001
+    400010: house_firstfloor
+    400012: StairsModel
+    400014: StairsRampCollider
+    400016: Roof
+    400018: PorchSteps
+    400020: PorchStepsRampCollider
     2100000: unnamed
     2300000: Cube
     2300002: house_basis
     2300004: house_basis_001
+    2300006: Cube_001
+    2300008: house_firstfloor
+    2300010: StairsModel
+    2300012: StairsRampCollider
+    2300014: Roof
+    2300016: PorchSteps
+    2300018: PorchStepsRampCollider
     3300000: Cube
     3300002: house_basis
     3300004: house_basis_001
+    3300006: Cube_001
+    3300008: house_firstfloor
+    3300010: StairsModel
+    3300012: StairsRampCollider
+    3300014: Roof
+    3300016: PorchSteps
+    3300018: PorchStepsRampCollider
     4300000: Cube
     4300002: house_basis_001
     4300004: house_basis
+    4300006: Cube_001
+    4300008: StairsRampCollider
+    4300010: StairsModel
+    4300012: house_firstfloor
+    4300014: Roof
+    4300016: PorchStepsRampCollider
+    4300018: PorchSteps
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
