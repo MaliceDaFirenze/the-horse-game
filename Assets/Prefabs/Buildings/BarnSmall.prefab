@@ -708,7 +708,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236218163049052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.657898, y: -4.775575, z: -20.583601}
+  m_LocalPosition: {x: -47.69, y: -4.775575, z: -20.59}
   m_LocalScale: {x: 2.07365, y: 2.07365, z: 2.07365}
   m_Children:
   - {fileID: 4093399016581514}
@@ -1852,7 +1852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de11040352f545e479d2b4dbb2f10b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideOnEntry: {fileID: 1303182741861004}
+  hideOnEntry:
+  - {fileID: 1303182741861004}
 --- !u!208 &208721061739449700
 NavMeshObstacle:
   m_ObjectHideFlags: 1

@@ -50,6 +50,8 @@ ModelImporter:
     100088: Unterschenkel_R
     100090: Cube_001
     100092: Mane
+    100094: Mane_001
+    100096: Tail
     400000: Armature
     400002: Bone_008
     400004: Bone_009
@@ -97,11 +99,15 @@ ModelImporter:
     400088: Unterschenkel_R
     400090: Cube_001
     400092: Mane
+    400094: Mane_001
+    400096: Tail
     2100000: Material
     2100002: unnamed
     4300000: Cube
     4300002: Cube_001
     4300004: Mane
+    4300006: Mane_001
+    4300008: Tail
     7400000: Default Take
     7400002: Eat
     7400004: Idle_001
@@ -121,6 +127,8 @@ ModelImporter:
     13700000: Cube
     13700002: Cube_001
     13700004: Mane
+    13700006: Mane_001
+    13700008: Tail
   externalObjects: {}
   materials:
     importMaterials: 1

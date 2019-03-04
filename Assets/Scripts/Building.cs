@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour {
 
-	public GameObject hideOnEntry;
+	public GameObject[] hideOnEntry;
 	//private bool playerIsInside;
 
 	private MainCam mainCam;
@@ -13,7 +13,10 @@ public class Building : MonoBehaviour {
 		if (mainCam == null) {
 			mainCam = FindObjectOfType<MainCam> ();
 		}
-		hideOnEntry.SetActive (false);
+
+		for (int i = 0; i < hideOnEntry.Length; ++i) {
+			hideOnEntry[i].SetActive (false);
+		}
 		mainCam.PlayerEntersBuilding ();
 	}
 
@@ -21,7 +24,9 @@ public class Building : MonoBehaviour {
 		if (mainCam == null) {
 			mainCam = FindObjectOfType<MainCam> ();
 		}
-		hideOnEntry.SetActive (true);
+		for (int i = 0; i < hideOnEntry.Length; ++i) {
+			hideOnEntry [i].SetActive (true);
+		}
 		mainCam.PlayerExitsBuilding ();
 	}
 }
