@@ -102,7 +102,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1565590791969280
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 65851178456885740}
   m_Layer: 0
   m_Name: UpperFloorTrigger
-  m_TagString: Untagged
+  m_TagString: BuildingEntrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +218,7 @@ Transform:
   - {fileID: 4734634081427314}
   - {fileID: 4487060848806914}
   - {fileID: 4324599854828758}
+  - {fileID: 4105709788463010}
   - {fileID: 4907381102534794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -228,12 +229,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565590791969280}
-  m_LocalRotation: {x: 0.7071068, y: 0.000000059604638, z: 0.000000059604638, w: 0.7071068}
-  m_LocalPosition: {x: 6.19, y: 1.12, z: 0.38}
-  m_LocalScale: {x: 23.849155, y: 1.8787224, z: 7.6418457}
+  m_LocalRotation: {x: -0, y: 0.7071067, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.1200008, y: 5.378124, z: 0.4220001}
+  m_LocalScale: {x: 6.148314, y: 1.8787227, z: 7.641848}
   m_Children: []
-  m_Father: {fileID: 4805089321088542}
-  m_RootOrder: 0
+  m_Father: {fileID: 4092264426010882}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4324599854828758
 Transform:
@@ -309,8 +310,7 @@ Transform:
   m_LocalRotation: {x: -0.50000006, y: 0.49999997, z: 0.49999997, w: 0.50000006}
   m_LocalPosition: {x: -0, y: 4.998124, z: -0.00000021847494}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4105709788463010}
+  m_Children: []
   m_Father: {fileID: 4092264426010882}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,7 +325,7 @@ Transform:
   m_LocalScale: {x: 7.2240934, y: 2.2451186, z: 7.6418366}
   m_Children: []
   m_Father: {fileID: 4092264426010882}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23057539738304642
 MeshRenderer:
@@ -482,7 +482,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 90ebc076d69ce77418f69770910006cd, type: 2}
+  - {fileID: 2100000, guid: 03b94ac5f4923ba4d9ae363d6d3570d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -816,6 +816,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideOnEntry:
   - {fileID: 1903059112259418}
+  hideOnFloorOne: []
+  type: 0
+  currentlyActiveTriggers: []
 --- !u!114 &114917195456890282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,3 +833,7 @@ MonoBehaviour:
   hideOnEntry:
   - {fileID: 1087505920844700}
   - {fileID: 1903059112259418}
+  hideOnFloorOne:
+  - {fileID: 1903059112259418}
+  type: 1
+  currentlyActiveTriggers: []

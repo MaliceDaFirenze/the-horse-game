@@ -237,7 +237,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider trigger){
-		Debug.Log ("enter trigger: " + trigger + ", collider is trigger: " + trigger.isTrigger);
+		Debug.Log ("enter trigger: " + trigger + ", tag: " + trigger.tag + ", collider is trigger: " + trigger.isTrigger);
 
 		nearestInteractable = trigger.GetComponent<Interactable> ();
 		if (nearestInteractable != null) {
@@ -251,7 +251,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (trigger.tag.Equals("BuildingEntrance")){
-			trigger.transform.parent.GetComponent<Building> ().PlayerEntersBuildingTrigger ();
+			trigger.transform.parent.GetComponent<Building> ().PlayerEntersBuildingTrigger (trigger.name);
 		}
 	}
 
@@ -260,7 +260,7 @@ public class Player : MonoBehaviour {
 		Debug.Log ("exit trigger: " + trigger + ", collider is trigger: " + trigger.isTrigger);
 
 		if (trigger.tag.Equals("BuildingEntrance")){
-			trigger.transform.parent.GetComponent<Building> ().PlayerExitsBuildingTrigger ();
+			trigger.transform.parent.GetComponent<Building> ().PlayerExitsBuildingTrigger (trigger.name);
 		}
 
 		if (nearestInteractable != null) {
