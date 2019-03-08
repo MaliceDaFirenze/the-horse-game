@@ -47,6 +47,7 @@ public class InteractionStrings : MonoBehaviour {
 		allInteractionStrings.Add (actionID.RESTOCK_CART, "Restock");
 		allInteractionStrings.Add (actionID.REFILL_CART, "Refill Cart");
 		allInteractionStrings.Add (actionID.PUT_INTO_POCKET, "Put Away (Pocket)");
+		allInteractionStrings.Add (actionID.OPEN_MENU, "Open Menu");
 
 
 

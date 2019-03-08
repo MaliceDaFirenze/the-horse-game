@@ -45,6 +45,7 @@ public enum actionID {
 	TALK_TO,
 	SELL,
 	PUT_INTO_POCKET,
+	OPEN_MENU,
 	PICK_UP
 }
 

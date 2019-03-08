@@ -35,6 +35,11 @@ public class UI : MonoBehaviour {
 	public Text rewardText;
 	//
 
+	//Construction Menu
+	public GameObject constructionUI;
+
+	//
+
 	public Color arrowCompleteColor;
 	public Color arrowIncompleteColor;
 	private Vector3 arrowOriginalScale;
