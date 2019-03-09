@@ -1221,6 +1221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4842423108585258}
+  - component: {fileID: 114718470635513786}
   m_Layer: 0
   m_Name: StallPaddockUnit
   m_TagString: Untagged
@@ -9649,6 +9650,19 @@ MonoBehaviour:
   doorCollider: {fileID: 65941545823018942}
   closedPosition: {fileID: 4678225880871828}
   openPosition: {fileID: 4631772357216506}
+--- !u!114 &114718470635513786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587511531147426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6433ba363427a6145aaa915c62bc6ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightWall: {fileID: 1214845877453640}
+  leftWall: {fileID: 1008481260394130}
 --- !u!208 &208868322617076394
 NavMeshObstacle:
   m_ObjectHideFlags: 1

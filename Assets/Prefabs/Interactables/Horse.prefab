@@ -742,6 +742,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4724917791759272}
   - component: {fileID: 95203239982969104}
+  - component: {fileID: 136964925156651542}
+  - component: {fileID: 136455793371479196}
   m_Layer: 0
   m_Name: horse_rigged
   m_TagString: Untagged
@@ -1284,14 +1286,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834302026077554}
-  m_LocalRotation: {x: -0, y: 0.8036035, z: -0, w: 0.5951651}
-  m_LocalPosition: {x: -18.89, y: -0.95109844, z: 11.08}
+  m_LocalRotation: {x: -0, y: 0.6865128, z: -0, w: -0.72711766}
+  m_LocalPosition: {x: -17.8, y: -0.95109844, z: 1.77}
   m_LocalScale: {x: 2.0736518, y: 2.0736504, z: 2.0736516}
   m_Children:
   - {fileID: 4724917791759272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 273.291, z: 0}
 --- !u!4 &4521904468532244
 Transform:
   m_ObjectHideFlags: 1
@@ -1716,7 +1718,7 @@ Animator:
   m_GameObject: {fileID: 1828145527255468}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 506d00d2fd6b0844eb668e5d8a8b8e54, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f298697cc9a445488346bf1eae8518b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1875,6 +1877,32 @@ MonoBehaviour:
   headBone: {fileID: 4958075067846770}
   withersBone: {fileID: 4429188296280738}
   poopSpawnPoint: {fileID: 4677956807246442}
+--- !u!136 &136455793371479196
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828145527255468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.69
+  m_Height: 9.94
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.21, z: -2.68}
+--- !u!136 &136964925156651542
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828145527255468}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.69
+  m_Height: 9.94
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.21, z: 2.77}
 --- !u!136 &136977364952744488
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1903,7 +1931,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 506d00d2fd6b0844eb668e5d8a8b8e54, type: 3}
+  - {fileID: 2100000, guid: a3ed0fd637b6fe447bec800096ee62c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1991,7 +2019,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: 506d00d2fd6b0844eb668e5d8a8b8e54, type: 3}
+  - {fileID: 2100000, guid: a3ed0fd637b6fe447bec800096ee62c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2079,7 +2107,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 506d00d2fd6b0844eb668e5d8a8b8e54, type: 3}
+  - {fileID: 2100000, guid: 0f51450648271664098e00cbcca8711f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
