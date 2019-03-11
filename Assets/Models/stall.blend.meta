@@ -68,6 +68,14 @@ ModelImporter:
     100124: FrontWallLeft
     100126: FrontWallRight
     100128: Bars
+    100130: Construction_Sign
+    100132: Cube_044
+    100134: Cube_045
+    100136: Cube_046
+    100138: Cube_047
+    100140: Cylinder
+    100142: Cylinder_001
+    100144: ConstructionSignParent
     400000: Cube
     400002: Cube_001
     400004: //RootNode
@@ -133,6 +141,14 @@ ModelImporter:
     400124: FrontWallLeft
     400126: FrontWallRight
     400128: Bars
+    400130: Construction_Sign
+    400132: Cube_044
+    400134: Cube_045
+    400136: Cube_046
+    400138: Cube_047
+    400140: Cylinder
+    400142: Cylinder_001
+    400144: ConstructionSignParent
     2100000: unnamed
     2300000: Cube
     2300002: Cube_001
@@ -198,6 +214,14 @@ ModelImporter:
     2300122: FrontWallLeft
     2300124: FrontWallRight
     2300126: Bars
+    2300128: Construction_Sign
+    2300130: Cube_044
+    2300132: Cube_045
+    2300134: Cube_046
+    2300136: Cube_047
+    2300138: Cylinder
+    2300140: Cylinder_001
+    2300142: ConstructionSignParent
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -262,6 +286,14 @@ ModelImporter:
     3300122: FrontWallLeft
     3300124: FrontWallRight
     3300126: Bars
+    3300128: Construction_Sign
+    3300130: Cube_044
+    3300132: Cube_045
+    3300134: Cube_046
+    3300136: Cube_047
+    3300138: Cylinder
+    3300140: Cylinder_001
+    3300142: ConstructionSignParent
     4300000: Cube_001
     4300002: Cube
     4300004: Cube_003
@@ -326,8 +358,17 @@ ModelImporter:
     4300122: Cube_041
     4300124: Cube_040
     4300126: Bars
+    4300128: Construction_Sign
+    4300130: Cube_047
+    4300132: Cube_046
+    4300134: Cube_045
+    4300136: Cylinder_001
+    4300138: Cylinder
+    4300140: Cube_044
+    4300142: ConstructionSignParent
     7400000: Default Take
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

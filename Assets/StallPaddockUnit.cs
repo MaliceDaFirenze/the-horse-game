@@ -6,4 +6,6 @@ public class StallPaddockUnit : MonoBehaviour {
 
 	public GameObject rightWall;
 	public GameObject leftWall;
+	public GameObject underConstruction;
+	public GameObject[] finished;
 }
