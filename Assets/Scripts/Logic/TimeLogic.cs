@@ -124,6 +124,9 @@ public class TimeLogic : MonoBehaviour {
 				carts [i].InitOrRestockCart (save.strawCartFill);
 			}
 		}
+
+		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave(save.unlockedStallUnits);
+
 		PlayerEconomy.LoadMoneyFromSave (save.money);
 		StartNewDay ();
 	}
@@ -158,6 +161,7 @@ public class TimeLogic : MonoBehaviour {
 			}
 		}
 
+		save.unlockedStallUnits = FindObjectOfType<ConstructionBook> ().unlockedStalls;
 
 		return save;
 	}

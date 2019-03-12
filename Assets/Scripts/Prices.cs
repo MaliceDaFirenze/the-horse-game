@@ -4,29 +4,51 @@ using UnityEngine;
 
 public class Prices : MonoBehaviour {
 
-	public static Dictionary<equippableItemID, int> sallSellingPrices = new Dictionary<equippableItemID, int>();
+	public static Dictionary<equippableItemID, int> allSellingPrices = new Dictionary<equippableItemID, int>();
+	public static List<int> stallConstructionPrices = new List<int>();
 
 	public static void Setup(){
-		sallSellingPrices.Add (equippableItemID.BLUEGEM, 20); 
-		sallSellingPrices.Add (equippableItemID.REDGEM, 75); 
-		sallSellingPrices.Add (equippableItemID.GREENGEM, 250); 
-		sallSellingPrices.Add (equippableItemID.SMALLANTLER, 6); 
-		sallSellingPrices.Add (equippableItemID.BIGANTLER, 10); 
-		sallSellingPrices.Add (equippableItemID.SMALLBRANCH, 1); 
-		sallSellingPrices.Add (equippableItemID.BIGBRANCH, 5); 
-		sallSellingPrices.Add (equippableItemID.APPLE, 3); 
+		allSellingPrices.Add (equippableItemID.BLUEGEM, 20); 
+		allSellingPrices.Add (equippableItemID.REDGEM, 75); 
+		allSellingPrices.Add (equippableItemID.GREENGEM, 250); 
+		allSellingPrices.Add (equippableItemID.SMALLANTLER, 6); 
+		allSellingPrices.Add (equippableItemID.BIGANTLER, 10); 
+		allSellingPrices.Add (equippableItemID.SMALLBRANCH, 1); 
+		allSellingPrices.Add (equippableItemID.BIGBRANCH, 5); 
+		allSellingPrices.Add (equippableItemID.APPLE, 3); 
+
+		stallConstructionPrices.Add (0);
+		stallConstructionPrices.Add (700);
+		stallConstructionPrices.Add (1500);
+		stallConstructionPrices.Add (3000);
 	}
 
 	public static int GetPriceByID(equippableItemID id){
-		if (sallSellingPrices.Count == 0) {
+		if (allSellingPrices.Count == 0) {
 			Setup ();
 		}
 
 		int result = -1;
 
-		sallSellingPrices.TryGetValue (id, out result);
+		allSellingPrices.TryGetValue (id, out result);
 		if (result == -1) {
 			Debug.LogWarning ("no price for " + result);
+		}
+
+		return result;
+	}
+
+	public static int GetStallConstructionPrice(int stallIndex){
+		if (stallConstructionPrices.Count == 0) {
+			Setup ();
+		}
+
+		int result = -1;
+
+		if (stallIndex < stallConstructionPrices.Count) {
+			result = stallConstructionPrices [stallIndex];
+		} else {
+			Debug.LogWarning ("no construction price for stall index " + stallIndex);
 		}
 
 		return result;

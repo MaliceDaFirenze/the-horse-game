@@ -9,4 +9,5 @@ public class Save {
 	public int money;
 	public int hayCartFill;
 	public int strawCartFill;
+	public int unlockedStallUnits;
 }
