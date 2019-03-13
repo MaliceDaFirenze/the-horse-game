@@ -52,6 +52,8 @@ public class TimeLogic : MonoBehaviour {
 			}
 		}
 
+		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave (1);
+
 		//only works as long as it's the only horse in the scene of course
 		FindObjectOfType<Horse> ().horseStats.InitializeHorse ();
 	}

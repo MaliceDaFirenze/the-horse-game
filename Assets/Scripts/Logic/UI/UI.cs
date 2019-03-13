@@ -36,7 +36,7 @@ public class UI : MonoBehaviour {
 	//
 
 	//Construction Menu
-	public GameObject constructionUI;
+	public ConstructionWindowUI constructionUI;
 
 	//
 

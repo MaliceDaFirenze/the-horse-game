@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 222577777590779616}
   - component: {fileID: 114756111591494874}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: Duration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 222664590527996692}
   - component: {fileID: 114594796464816356}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,7 +717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1308810864415398
 GameObject:
   m_ObjectHideFlags: 1
@@ -3669,7 +3669,7 @@ MonoBehaviour:
   rewardUIElements: {fileID: 1353250972696818}
   rewardIcon: {fileID: 114291255684079076}
   rewardText: {fileID: 114979384235408832}
-  constructionUI: {fileID: 1307200363764328}
+  constructionUI: {fileID: 114915872639831468}
   arrowCompleteColor: {r: 1, g: 1, b: 1, a: 0.872}
   arrowIncompleteColor: {r: 0, g: 0, b: 0, a: 0.62352943}
   selectedActionOptionColor: {r: 0.8666667, g: 0.8666667, b: 0.8666667, a: 0.59607846}
@@ -4415,6 +4415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafe472220b065d489b5fd10db32f682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priceForNextStall: {fileID: 114594796464816356}
+  durationForNextStall: {fileID: 114756111591494874}
 --- !u!114 &114931951445110048
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConstructionWindowUI : MonoBehaviour {
 
 	ConstructionBook constrBook;
+
+	public Text priceForNextStall;
+	public Text durationForNextStall;
 
 	void Start(){
 		constrBook = FindObjectOfType<ConstructionBook> ();

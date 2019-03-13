@@ -2281,7 +2281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1926569985673828
 GameObject:
   m_ObjectHideFlags: 1
@@ -10557,7 +10557,9 @@ MonoBehaviour:
   rightWall: {fileID: 1214845877453640}
   leftWall: {fileID: 1008481260394130}
   underConstruction: {fileID: 1918439809044110}
-  finished: []
+  finished:
+  - {fileID: 1550797434969304}
+  - {fileID: 1154056795361224}
 --- !u!208 &208868322617076394
 NavMeshObstacle:
   m_ObjectHideFlags: 1
