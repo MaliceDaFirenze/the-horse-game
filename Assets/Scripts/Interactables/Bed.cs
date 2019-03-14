@@ -9,4 +9,14 @@ public class Bed : Interactable {
 
 		FindObjectOfType<TimeLogic> ().EndDay ();
 	}
+
+	public override List<string> DefineInteraction(Player player){
+		currentlyRelevantActionIDs.Clear ();
+		List<string> result = new List<string> ();
+
+		currentlyRelevantActionIDs.Add (actionID.SLEEP);
+		result.Add (InteractionStrings.GetInteractionStringById(actionID.SLEEP));
+
+		return result;
+	}
 }

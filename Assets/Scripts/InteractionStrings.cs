@@ -9,6 +9,7 @@ public class InteractionStrings : MonoBehaviour {
 	public static void SetupStrings(){
 		allInteractionStrings.Add (actionID._EMPTYSTRING, "");
 		allInteractionStrings.Add (actionID.OPEN_CLOSE_DOOR, "Open / Close");
+		allInteractionStrings.Add (actionID.SLEEP, "Go to sleep");
 		allInteractionStrings.Add (actionID.PICK_UP, "Pick Up");
 		allInteractionStrings.Add (actionID.BRUSH_HORSE, "Brush Horse");
 		allInteractionStrings.Add (actionID.CLEAN_MANURE, "Clean Manure");

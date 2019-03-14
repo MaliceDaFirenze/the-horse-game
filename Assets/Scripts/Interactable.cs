@@ -5,6 +5,7 @@ using UnityEngine;
 public enum actionID {
 	_EMPTYSTRING,
 	OPEN_CLOSE_DOOR,
+	SLEEP,
 	NO_SEQUENCE,
 	BRUSH_HORSE,
 	PET_HORSE,
