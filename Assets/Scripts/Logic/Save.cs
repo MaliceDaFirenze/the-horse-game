@@ -10,4 +10,5 @@ public class Save {
 	public int hayCartFill;
 	public int strawCartFill;
 	public int unlockedStallUnits;
+	public Dictionary<int, int> buildingsUnderConstruction;
 }
