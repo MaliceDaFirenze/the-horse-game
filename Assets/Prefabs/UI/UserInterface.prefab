@@ -331,6 +331,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1175839384614670
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224249893091340188}
+  - component: {fileID: 222152998011864938}
+  - component: {fileID: 114426489636597018}
+  m_Layer: 5
+  m_Name: Text (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1184363113016136
 GameObject:
   m_ObjectHideFlags: 1
@@ -684,6 +701,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1300538167043478
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224462291776405300}
+  - component: {fileID: 222588362730657784}
+  - component: {fileID: 114324358450073318}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1303318832646602
 GameObject:
   m_ObjectHideFlags: 1
@@ -717,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1308810864415398
 GameObject:
   m_ObjectHideFlags: 1
@@ -1642,7 +1676,7 @@ GameObject:
   - component: {fileID: 222572287714874090}
   - component: {fileID: 114090316038217830}
   m_Layer: 5
-  m_Name: Text (6)
+  m_Name: Text (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1659,7 +1693,7 @@ GameObject:
   - component: {fileID: 222128733243832332}
   - component: {fileID: 114585498926322544}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2044,7 +2078,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Make space in your stable for one more horse
+  m_Text: explanation
 --- !u!114 &114095891158012032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2557,6 +2591,39 @@ MonoBehaviour:
   m_Text: 'Start
 
     building'
+--- !u!114 &114324358450073318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300538167043478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fdd8ce79c41c76743a48c776093dd440, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 81
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Add Stall and Paddock
 --- !u!114 &114328084461262640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2818,6 +2885,39 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Construction Office
+--- !u!114 &114426489636597018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175839384614670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fdd8ce79c41c76743a48c776093dd440, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 81
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Make space in your stable for one more horse
 --- !u!114 &114436344516623194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3393,7 +3493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Stall and Paddock
+  m_Text: Paddock Partitions
 --- !u!114 &114594796464816356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4417,6 +4517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priceForNextStall: {fileID: 114594796464816356}
   durationForNextStall: {fileID: 114756111591494874}
+  partitionText: {fileID: 114090316038217830}
 --- !u!114 &114931951445110048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4642,6 +4743,13 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1261194916293916}
+  m_CullTransparentMesh: 0
+--- !u!222 &222152998011864938
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175839384614670}
   m_CullTransparentMesh: 0
 --- !u!222 &222166928984649218
 CanvasRenderer:
@@ -4957,6 +5065,13 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668360553611572}
+  m_CullTransparentMesh: 0
+--- !u!222 &222588362730657784
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300538167043478}
   m_CullTransparentMesh: 0
 --- !u!222 &222593498528790504
 CanvasRenderer:
@@ -5411,15 +5526,17 @@ RectTransform:
   - {fileID: 224196367618814618}
   - {fileID: 224244839266535724}
   - {fileID: 224661342265709314}
-  - {fileID: 224691855772417220}
+  - {fileID: 224462291776405300}
   - {fileID: 224111166672548428}
   - {fileID: 224411618605524080}
   - {fileID: 224138837185208858}
   - {fileID: 224536603547000610}
   - {fileID: 224668409948140282}
-  - {fileID: 224355757268488976}
+  - {fileID: 224249893091340188}
   - {fileID: 224584280475075254}
   - {fileID: 224586558625810848}
+  - {fileID: 224691855772417220}
+  - {fileID: 224355757268488976}
   m_Father: {fileID: 224015975688572682}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5744,6 +5861,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000045776367, y: 226.3}
   m_SizeDelta: {x: 750, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224249893091340188
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175839384614670}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000281, y: 1.0000281, z: 1.0000281}
+  m_Children: []
+  m_Father: {fileID: 224095866946971608}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.0999756, y: 212.4}
+  m_SizeDelta: {x: 400, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224275206466753764
 RectTransform:
   m_ObjectHideFlags: 1
@@ -5862,14 +5997,14 @@ RectTransform:
   m_GameObject: {fileID: 1925296212594580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000281, y: 1.0000281, z: 1.0000281}
+  m_LocalScale: {x: 1.0000246, y: 1.0000246, z: 1.0000246}
   m_Children: []
   m_Father: {fileID: 224095866946971608}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.0999756, y: 212.4}
+  m_AnchoredPosition: {x: -161.3, y: 47.2}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224371568969785376
@@ -6109,6 +6244,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 240, y: 72}
   m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224462291776405300
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300538167043478}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000166, y: 1.0000166, z: 1.0000166}
+  m_Children: []
+  m_Father: {fileID: 224095866946971608}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.1, y: 247.8}
+  m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224501482499430132
 RectTransform:
@@ -6563,14 +6716,14 @@ RectTransform:
   m_GameObject: {fileID: 1951077465250316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000166, y: 1.0000166, z: 1.0000166}
+  m_LocalScale: {x: 1.0000126, y: 1.0000126, z: 1.0000126}
   m_Children: []
   m_Father: {fileID: 224095866946971608}
-  m_RootOrder: 3
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.1, y: 247.8}
+  m_AnchoredPosition: {x: -161.7, y: 77}
   m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224692194134727734

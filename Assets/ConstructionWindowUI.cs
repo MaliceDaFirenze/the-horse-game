@@ -9,6 +9,7 @@ public class ConstructionWindowUI : MonoBehaviour {
 
 	public Text priceForNextStall;
 	public Text durationForNextStall;
+	public Text partitionText;
 
 	void Start(){
 		constrBook = FindObjectOfType<ConstructionBook> ();
@@ -25,4 +26,7 @@ public class ConstructionWindowUI : MonoBehaviour {
 		constrBook.StartBuilding (buttonContent);
 	}
 
+	public void TogglePaddock (int index){
+		constrBook.TogglePaddockWall (index);
+	}
 }
