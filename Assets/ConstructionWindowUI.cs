@@ -11,6 +11,8 @@ public class ConstructionWindowUI : MonoBehaviour {
 	public Text durationForNextStall;
 	public Text partitionText;
 
+	public Toggle[] paddockToggles;
+
 	void Start(){
 		constrBook = FindObjectOfType<ConstructionBook> ();
 		if (constrBook == null) {
@@ -27,6 +29,6 @@ public class ConstructionWindowUI : MonoBehaviour {
 	}
 
 	public void TogglePaddock (int index){
-		constrBook.TogglePaddockWall (index);
+		constrBook.TogglePaddockWall (index, paddockToggles[index].isOn);
 	}
 }
