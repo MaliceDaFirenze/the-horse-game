@@ -10,8 +10,12 @@ public class ConstructionWindowUI : MonoBehaviour {
 	public Text priceForNextStall;
 	public Text durationForNextStall;
 	public Text partitionText;
+	public Text underConstructionDaysRemaining;
 
-	public Toggle[] paddockToggles;
+	public GameObject hideOnConstruction;
+	public GameObject showOnConstruction;
+
+	public StallToggleUI[] paddockToggles;
 
 	void Start(){
 		constrBook = FindObjectOfType<ConstructionBook> ();
@@ -29,6 +33,6 @@ public class ConstructionWindowUI : MonoBehaviour {
 	}
 
 	public void TogglePaddock (int index){
-		constrBook.TogglePaddockWall (index, paddockToggles[index].isOn);
+		constrBook.TogglePaddockWall (index, paddockToggles[index].toggle.isOn);
 	}
 }
