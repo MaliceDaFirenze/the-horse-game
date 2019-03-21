@@ -964,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1308810864415398
 GameObject:
   m_ObjectHideFlags: 1
@@ -5720,7 +5720,7 @@ MonoBehaviour:
   priceForNextStall: {fileID: 114594796464816356}
   durationForNextStall: {fileID: 114756111591494874}
   partitionText: {fileID: 114090316038217830}
-  underConstructionDaysRemaining: {fileID: 114108326675989446}
+  underConstructionDaysRemaining: {fileID: 114426489636597018}
   hideOnConstruction: {fileID: 1151417347683384}
   showOnConstruction: {fileID: 1098259660757376}
   paddockToggles:
