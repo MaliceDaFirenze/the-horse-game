@@ -11,4 +11,5 @@ public class Save {
 	public int strawCartFill;
 	public int unlockedStallUnits;
 	public Dictionary<int, int> buildingsUnderConstruction;
+	public List<bool> paddockPartitions;
 }

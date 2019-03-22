@@ -52,7 +52,7 @@ public class TimeLogic : MonoBehaviour {
 			}
 		}
 
-		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave (1, new Dictionary<int, int>());
+		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave (1, new Dictionary<int, int>(), new List<bool>());
 
 		//only works as long as it's the only horse in the scene of course
 		FindObjectOfType<Horse> ().horseStats.InitializeHorse ();
@@ -127,7 +127,7 @@ public class TimeLogic : MonoBehaviour {
 			}
 		}
 
-		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave(save.unlockedStallUnits, save.buildingsUnderConstruction);
+		FindObjectOfType<ConstructionBook> ().SetUnlockedStallsFromSave(save.unlockedStallUnits, save.buildingsUnderConstruction, save.paddockPartitions);
 
 		PlayerEconomy.LoadMoneyFromSave (save.money);
 		StartNewDay ();
@@ -163,8 +163,10 @@ public class TimeLogic : MonoBehaviour {
 			}
 		}
 
-		save.unlockedStallUnits = FindObjectOfType<ConstructionBook> ().unlockedStalls;
-		save.buildingsUnderConstruction = FindObjectOfType<ConstructionBook> ().constructionDaysRemainingPerStallIndex;
+		ConstructionBook conBook = FindObjectOfType<ConstructionBook> ();
+		save.unlockedStallUnits = conBook.unlockedStalls;
+		save.buildingsUnderConstruction = conBook.constructionDaysRemainingPerStallIndex;
+		save.paddockPartitions = conBook.partitionsEnabled;
 
 		return save;
 	}
