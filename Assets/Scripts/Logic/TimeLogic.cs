@@ -168,6 +168,8 @@ public class TimeLogic : MonoBehaviour {
 		save.buildingsUnderConstruction = conBook.constructionDaysRemainingPerStallIndex;
 		save.paddockPartitions = conBook.partitionsEnabled;
 
+		Debug.Log ("________________SAVE first parition enabled: " + save.paddockPartitions [0]);
+
 		return save;
 	}
 }
