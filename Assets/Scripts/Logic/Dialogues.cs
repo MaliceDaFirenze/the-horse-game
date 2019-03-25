@@ -75,7 +75,7 @@ public class Dialogues {
 	private static void Setup(){
 
 		allDialogues.Add (new dialogueLine(1, Character.GRANDMA, DialogueID.GREETING), "It's good to have you here, dear. Here's some cash to buy supplies for the horse");
-		allRewards.Add (new dialogueLine (1, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 100)); 
+		allRewards.Add (new dialogueLine (1, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 1000)); 
 		allDialogues.Add (new dialogueLine(1, Character.STORECLERK, DialogueID.GREETING), "Oh, you're the new person! What can I do for you?");
 		allDialogues.Add (new dialogueLine(2, Character.STORECLERK, DialogueID.GREETING), "Hi, welcome back! What can I do for you?");
 
