@@ -23,6 +23,8 @@ public class Horse_Stats : TimeDependentObject {
 		private set { 
 			if (value > needsMaximum) {
 				food = needsMaximum;
+			} else if (value < 0){
+				food = 0;
 			} else {
 				food = value;
 			}
@@ -37,6 +39,8 @@ public class Horse_Stats : TimeDependentObject {
 		private set { 
 			if (value > needsMaximum) {
 				water = needsMaximum;
+			} else if (value < 0){
+				water = 0;
 			} else {
 				water = value;
 			}
@@ -51,7 +55,9 @@ public class Horse_Stats : TimeDependentObject {
 		private set { 
 			if (value > needsMaximum) {
 				happiness = needsMaximum;
-			} else {
+			}  else if (value < 0){
+				happiness = 0;
+			}else {
 				happiness = value;
 			}
 			NeedsWereUpdated ();
@@ -65,6 +71,8 @@ public class Horse_Stats : TimeDependentObject {
 		private set { 
 			if (value > needsMaximum) {
 				hygiene = needsMaximum;
+			} else if (value < 0){
+				hygiene = 0;
 			} else {
 				hygiene = value;
 			}

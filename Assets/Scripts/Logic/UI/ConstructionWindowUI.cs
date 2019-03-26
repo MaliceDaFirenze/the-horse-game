@@ -17,11 +17,11 @@ public class ConstructionWindowUI : MonoBehaviour {
 
 	public StallToggleUI[] paddockToggles;
 
-	void Start(){
+	void Awake(){
 		constrBook = FindObjectOfType<ConstructionBook> ();
 		if (constrBook == null) {
 			Debug.LogWarning ("could not find construction book");
-		}
+		} 
 	}
 
 	public void CloseButtonPressed(){
