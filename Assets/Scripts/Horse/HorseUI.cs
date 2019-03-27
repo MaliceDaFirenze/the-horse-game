@@ -10,7 +10,7 @@ public class HorseUI : MonoBehaviour {
 	public Image foodImage;
 	public Image waterImage;
 	public Image happinessImage;
-	public Image hygieneImage;
+	public Image energyImage;
 
 	public GameObject uiElementsParent;
 
@@ -20,7 +20,7 @@ public class HorseUI : MonoBehaviour {
 		UpdateNeedsDisplay (horseNeed.FOOD, horse.Food);	
 		UpdateNeedsDisplay (horseNeed.WATER, horse.Water);	
 		UpdateNeedsDisplay (horseNeed.HAPPINESS, horse.Happiness);	
-		UpdateNeedsDisplay (horseNeed.HYGIENE, horse.Hygiene);	
+		UpdateNeedsDisplay (horseNeed.ENERGY, horse.Energy);	
 	}
 
 	public void Hide(){
@@ -41,8 +41,8 @@ public class HorseUI : MonoBehaviour {
 		case horseNeed.HAPPINESS:
 			imageToUpdate = happinessImage;
 			break;
-		case horseNeed.HYGIENE:
-			imageToUpdate = hygieneImage;
+		case horseNeed.ENERGY:
+			imageToUpdate = energyImage;
 			break;
 		}
 		

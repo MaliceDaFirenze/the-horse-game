@@ -22,7 +22,8 @@ public enum horseNeed {
 	FOOD,
 	WATER,
 	HAPPINESS,
-	HYGIENE
+	HYGIENE,
+	ENERGY
 }
 
 public class Horse : MonoBehaviour {

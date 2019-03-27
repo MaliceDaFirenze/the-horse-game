@@ -1653,7 +1653,7 @@ GameObject:
   - component: {fileID: 222015431326253116}
   - component: {fileID: 114227328523373782}
   m_Layer: 5
-  m_Name: hygieneImageBg
+  m_Name: energyImageBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 222049552986008940}
   - component: {fileID: 114735395738083002}
   m_Layer: 5
-  m_Name: hygieneLabel
+  m_Name: energyLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2276,7 +2276,7 @@ GameObject:
   - component: {fileID: 222250653557428262}
   - component: {fileID: 114393659676949952}
   m_Layer: 5
-  m_Name: hygieneImage
+  m_Name: energyImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4266,7 +4266,7 @@ MonoBehaviour:
   foodImage: {fileID: 114436344516623194}
   waterImage: {fileID: 114403256776776094}
   happinessImage: {fileID: 114051045608984346}
-  hygieneImage: {fileID: 114393659676949952}
+  energyImage: {fileID: 114393659676949952}
   uiElementsParent: {fileID: 1559807331533114}
 --- !u!114 &114572576288103794
 MonoBehaviour:
@@ -5108,7 +5108,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hygiene
+  m_Text: Energy
 --- !u!114 &114738668408486978
 MonoBehaviour:
   m_ObjectHideFlags: 1

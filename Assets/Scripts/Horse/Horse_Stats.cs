@@ -15,6 +15,8 @@ public class Horse_Stats : TimeDependentObject {
 	private float happiness;
 	[SerializeField]
 	private float hygiene;
+	[SerializeField]
+	private float energy;
 
 	public float Food{
 		get {
@@ -80,6 +82,22 @@ public class Horse_Stats : TimeDependentObject {
 		}
 	}
 
+	public float Energy{
+		get {
+			return energy;
+		}
+		private set { 
+			if (value > needsMaximum) {
+				energy = needsMaximum;
+			} else if (value < 0){
+				energy = 0;
+			} else {
+				energy = value;
+			}
+			NeedsWereUpdated ();
+		}
+	}
+
 	private static float needsMaximum = 100; //food, thirst, happiness and hygiene all have the same maximum, unlike stats like stamina or sth
 	public static float NeedsMaximum{
 		get { 
@@ -94,6 +112,8 @@ public class Horse_Stats : TimeDependentObject {
 	private float waterDecay = 0.05f;
 	private float happinessDecay = 0.03f;
 	private float hygieneDecay = 0.02f;
+	private float energyDecay = 0.02f;
+	private Dictionary<horseGait, float> energyDecayMultiplierPerGait = new Dictionary<horseGait, float> ();
 
 	//---Stats/Info---//
 	//Age (die after x days)
@@ -107,6 +127,13 @@ public class Horse_Stats : TimeDependentObject {
 	private ParticleSystem dustParticles;
 	private HorseUI horseUI;
 
+	private void Start(){
+		energyDecayMultiplierPerGait.Add (horseGait.STAND, 1f);
+		energyDecayMultiplierPerGait.Add (horseGait.WALK, 2f);
+		energyDecayMultiplierPerGait.Add (horseGait.TROT, 5f);
+		energyDecayMultiplierPerGait.Add (horseGait.CANTER, 10f);
+	}
+
 	public void InitializeHorse(){
 		//called from time logic, when new game starts
 
@@ -114,6 +141,7 @@ public class Horse_Stats : TimeDependentObject {
 		Water = needsMaximum * 0.4f;
 		Happiness = needsMaximum * 0.6f;
 		Hygiene = needsMaximum * 0.7f;
+		Energy = needsMaximum * 0.6f;
 	}
 
 	public override void StartNewDay(){
@@ -122,6 +150,7 @@ public class Horse_Stats : TimeDependentObject {
 		Water -= waterDecay * 800;
 		Happiness -= happinessDecay * 100;
 		Hygiene -= hygieneDecay * 200;
+		Energy = needsMaximum * 0.8f; //only if food & water the day before
 	}
 		
 	public override void IngameMinuteHasPassed(){
@@ -131,6 +160,7 @@ public class Horse_Stats : TimeDependentObject {
 		Water -= waterDecay;
 		Happiness -= happinessDecay;
 		Hygiene -= hygieneDecay;
+		Energy -= energyDecay;
 	}
 
 	public float GetNeedValue (horseNeed need) {
@@ -143,6 +173,8 @@ public class Horse_Stats : TimeDependentObject {
 			return Happiness;
 		case horseNeed.HYGIENE:
 			return Hygiene;
+		case horseNeed.ENERGY:
+			return Energy;
 		default: 
 			Debug.LogWarning ("get invalid need");
 			return Food;
@@ -181,6 +213,10 @@ public class Horse_Stats : TimeDependentObject {
 
 			dustParticles.GetComponent<DeactivateAfterTime> ().Activate ();
 			dustParticles.Play ();
+			break;
+
+		case horseNeed.ENERGY:
+			Energy += value;
 			break;
 		}
 	}
