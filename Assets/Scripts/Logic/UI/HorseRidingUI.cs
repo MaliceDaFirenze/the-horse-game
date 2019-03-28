@@ -6,4 +6,5 @@ using UnityEngine.UI;
 public class HorseRidingUI : MonoBehaviour {
 
 	public Image speedBar;
+	public Image energyBar;
 }

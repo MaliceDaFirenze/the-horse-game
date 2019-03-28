@@ -160,7 +160,7 @@ public class Horse_Stats : TimeDependentObject {
 		Water -= waterDecay;
 		Happiness -= happinessDecay;
 		Hygiene -= hygieneDecay;
-		Energy -= energyDecay;
+		Energy -= energyDecay * energyDecayMultiplierPerGait[horse.horseBehavior.currentHorseGait];
 	}
 
 	public float GetNeedValue (horseNeed need) {
@@ -228,5 +228,7 @@ public class Horse_Stats : TimeDependentObject {
 		if (horseUI.uiElementsParent.activeSelf && horseUI.currentlyShowingHorse == this) {
 			horseUI.ShowUIForHorse (this);
 		}
+
+		horseUI.UpdateNeedsDisplay (horseNeed.ENERGY, Energy, true);
 	}
 }

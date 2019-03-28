@@ -28,7 +28,7 @@ public class HorseUI : MonoBehaviour {
 		uiElementsParent.SetActive (false);
 	}
 
-	public void UpdateNeedsDisplay(horseNeed need, float newValue){
+	public void UpdateNeedsDisplay(horseNeed need, float newValue, bool updateRidingUI = false){
 		Image imageToUpdate = foodImage;
 
 		switch (need) {
@@ -42,14 +42,18 @@ public class HorseUI : MonoBehaviour {
 			imageToUpdate = happinessImage;
 			break;
 		case horseNeed.ENERGY:
-			imageToUpdate = energyImage;
+			if (updateRidingUI) {
+				imageToUpdate = UI.instance.ridingUI.energyBar;
+			} else {
+				imageToUpdate = energyImage;
+			}
 			break;
 		}
 		
 		imageToUpdate.fillAmount = newValue / 100;
-		if (newValue >= 50) {
+		if (newValue >= 40) {
 			imageToUpdate.color = Color.green;
-		} else if (newValue >= 25) {
+		} else if (newValue >= 20) {
 			imageToUpdate.color = Color.yellow;
 		} else {
 			imageToUpdate.color = Color.red;

@@ -49,6 +49,7 @@ public class UI : MonoBehaviour {
 	public Color inactiveActionOptionColor;
 
 	public HorseUI horseUI;
+	public HorseRidingUI ridingUI;
 
 	private Vector3 originalArrowsPos;
 
