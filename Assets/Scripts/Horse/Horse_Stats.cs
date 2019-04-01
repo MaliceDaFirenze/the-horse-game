@@ -114,6 +114,9 @@ public class Horse_Stats : TimeDependentObject {
 	private float hygieneDecay = 0.02f;
 	private float energyDecay = 0.02f;
 	private Dictionary<horseGait, float> energyDecayMultiplierPerGait = new Dictionary<horseGait, float> ();
+	private float energyDecayFoodMultiplier;
+	private float energyDecayFoodMultiplierNeutral = 1f;
+	private float energyDecayFoodMultiplierMax = -3f;
 
 	//---Stats/Info---//
 	//Age (die after x days)
@@ -160,7 +163,14 @@ public class Horse_Stats : TimeDependentObject {
 		Water -= waterDecay;
 		Happiness -= happinessDecay;
 		Hygiene -= hygieneDecay;
-		Energy -= energyDecay * energyDecayMultiplierPerGait[horse.horseBehavior.currentHorseGait];
+		if (horse.horseBehavior.currentHorseGait == horseGait.STAND) {
+			//set multiplier according to hunger/water levels. Positive multi (faster decay) when it's really low, negative multiplier (restore) for when the horse has just eaten
+
+			Energy -= energyDecay * energyDecayFoodMultiplier;
+
+		} else {
+			Energy -= energyDecay * energyDecayMultiplierPerGait [horse.horseBehavior.currentHorseGait];
+		}
 	}
 
 	public float GetNeedValue (horseNeed need) {

@@ -314,14 +314,15 @@ public class Horse_Behavior : MonoBehaviour {
 		Consumable result = null;
 		Consumable[] allConsumables = FindObjectsOfType<Consumable> ();
 
-		float minDist = 200f;
+		float maxDist = 60f;
+		float minDist = maxDist;
 		RaycastHit hit;
 		for (int i = 0; i < allConsumables.Length; ++i) {
 			if (allConsumables [i].needSatisfiedByThis == need) {
 				float dist = Vector3.Distance (horse.horseStats.headBone.position, allConsumables [i].transform.position);
 				bool isVisible = false;  
 				Debug.DrawRay (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, Color.red, 2f);
-				if (Physics.Raycast (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, out hit)) {
+				if (Physics.Raycast (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, maxDist, out hit)) {
 					//Debug.Log ("horse looking for consumable, raycast hit " + hit.collider.name + " with tag: " + hit.collider.tag);
 					if (hit.collider.tag.Equals("Consumable")){
 						isVisible = true;
