@@ -322,7 +322,7 @@ public class Horse_Behavior : MonoBehaviour {
 				float dist = Vector3.Distance (horse.horseStats.headBone.position, allConsumables [i].transform.position);
 				bool isVisible = false;  
 				Debug.DrawRay (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, Color.red, 2f);
-				if (Physics.Raycast (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, maxDist, out hit)) {
+				if (Physics.Raycast (horse.horseStats.headBone.position, allConsumables [i].transform.position - horse.horseStats.headBone.position, out hit, maxDist)) {
 					//Debug.Log ("horse looking for consumable, raycast hit " + hit.collider.name + " with tag: " + hit.collider.tag);
 					if (hit.collider.tag.Equals("Consumable")){
 						isVisible = true;
