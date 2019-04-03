@@ -155,6 +155,14 @@ public class Horse_Stats : TimeDependentObject {
 		Hygiene -= hygieneDecay * 200;
 		Energy = needsMaximum * 0.8f; //only if food & water the day before
 	}
+
+	public void AdjustEnergyMultiplier(bool horseJustAte){
+		if (horseJustAte) {
+			energyDecayFoodMultiplier = energyDecayFoodMultiplierMax;
+		} else {
+			energyDecayFoodMultiplier = energyDecayFoodMultiplierNeutral;
+		}
+	}
 		
 	public override void IngameMinuteHasPassed(){
 		base.IngameMinuteHasPassed ();

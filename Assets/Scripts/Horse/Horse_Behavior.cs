@@ -124,6 +124,9 @@ public class Horse_Behavior : MonoBehaviour {
 
 		if (hasEaten) {
 			StartCoroutine (WaitToProduceManure ());
+
+			//adjust energy decay
+			horse.horseStats.AdjustEnergyMultiplier(true);
 		}
 
 		horse.horseAnimator.SetBool ("Eat", false);
@@ -137,6 +140,7 @@ public class Horse_Behavior : MonoBehaviour {
 		yield return StartCoroutine( manurePile.GetComponent<ManurePile>().GetProduced() );
 
 		horse.horseAnimator.SetBool ("Poop", false);
+		horse.horseStats.AdjustEnergyMultiplier(false);
 		ChangeState (horseState.IDLE);
 	}
 
