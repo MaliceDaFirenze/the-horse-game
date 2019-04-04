@@ -116,7 +116,7 @@ public class Horse_Stats : TimeDependentObject {
 	private Dictionary<horseGait, float> energyDecayMultiplierPerGait = new Dictionary<horseGait, float> ();
 	private float energyDecayFoodMultiplier;
 	private float energyDecayFoodMultiplierNeutral = 1f;
-	private float energyDecayFoodMultiplierMax = -3f;
+	private float energyDecayFoodMultiplierMax = -5f;
 
 	//---Stats/Info---//
 	//Age (die after x days)
@@ -149,11 +149,20 @@ public class Horse_Stats : TimeDependentObject {
 
 	public override void StartNewDay(){
 		base.StartNewDay ();
+
+		if (Food > needsMaximum * 0.45f) {
+			Energy = needsMaximum * 0.8f; //only if food & water the day before
+		} else if (Food > needsMaximum * 0.2f){
+			Energy = needsMaximum * 0.4f; //only if food & water the day before
+		} else {
+			Energy = needsMaximum * 0.2f; //only if food & water the day before
+		}
+
+
 		Food -= foodDecay * 1000;
 		Water -= waterDecay * 800;
 		Happiness -= happinessDecay * 100;
 		Hygiene -= hygieneDecay * 200;
-		Energy = needsMaximum * 0.8f; //only if food & water the day before
 	}
 
 	public void AdjustEnergyMultiplier(bool horseJustAte){
