@@ -448,6 +448,12 @@ public class Horse_Interactable : Interactable {
 				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
 			}
 			break;
+		case equippableItemID.HAY:
+			if (horse.horseStats.Food < Horse_Stats.NeedsMaximum) {
+				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);
+				result.Add (InteractionStrings.GetInteractionStringById (actionID.FEED_HORSE));
+			}
+			break;
 		case equippableItemID.APPLE:
 			if (horse.horseStats.Food < Horse_Stats.NeedsMaximum) {
 				currentlyRelevantActionIDs.Add (actionID.FEED_HORSE);

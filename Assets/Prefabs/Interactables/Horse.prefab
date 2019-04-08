@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4689797830733450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: H_fte_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4770702081736802}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_ckenwirbel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4959577638551978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HalswirbelOben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978242316597034}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Kruppenwirbel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4803205366629170}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerMountedPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4044916183396538}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufVorne_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029450579807564}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Elle_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4476779210425982}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KopfIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600423777564970}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4459771897994488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Unterschenkel_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4345022585091668}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oberarm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181230007497058}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Kiefer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4999933976577708}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oberschenkel_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4733670696183046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oberarm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958075067846770}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Kopf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4996160864156844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schweifwirbel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558918571740184}
   - component: {fileID: 137139746182787500}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521904468532244}
   - component: {fileID: 137240314967897284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4742645296271990}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4469073295857986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_ckenwirbel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4189847972942346}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerLeadingPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4312612125428680}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Unterschenkel_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4609875605360758}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SaddlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4056525129213844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_hrbein_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4831442637481788}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4676244996902230}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufHintenIK_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4640149122337986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufVorne_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4551057970300552}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Elle_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4834440159442524}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: H_fte_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4494905652767550}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schweifwirbel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4723862557015054}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Oberschenkel_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372142242303346}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FesselHinten_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4664942653989198}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufHintenIK_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4192706092644754}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeadPositionTied
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4722014472326540}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufVorneIK_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210930840279360}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schweifwirbel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429188296280738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HalswirbelUnten
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4321348086211808}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ManePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4606055454515836}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schweifwirbel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4486493281346776}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufVorneIK_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4588160562658780}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schulter_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4786437614578552}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FesselHinten_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4842935514358304}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Schulter_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308314618235250}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufHinten_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073536475091192}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeadPositionLeading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4354997733677634}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HalswirbelMitte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4012558315431812}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HufHinten_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4031190369162390}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FesselVorne_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 95203239982969104}
   - component: {fileID: 136964925156651542}
   - component: {fileID: 136455793371479196}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: horse_rigged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4231069707505538}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: R_hrbein_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4526221620377204}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeadPositionHanging
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4335752522532240}
   - component: {fileID: 137734429102649856}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387911555155720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BridlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4230765476310896}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FesselVorne_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4014614795633134}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HalterPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247908252845974}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677956807246442}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PoopSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1287,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834302026077554}
   m_LocalRotation: {x: -0, y: 0.6865128, z: -0, w: -0.72711766}
-  m_LocalPosition: {x: -17.8, y: -0.95109844, z: 1.77}
+  m_LocalPosition: {x: -20.73, y: -0.95109844, z: 1.94}
   m_LocalScale: {x: 2.0736518, y: 2.0736504, z: 2.0736516}
   m_Children:
   - {fileID: 4724917791759272}
@@ -1450,7 +1450,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987251678105670}
   m_LocalRotation: {x: -0.014712633, y: -0, z: -0, w: 0.99989176}
-  m_LocalPosition: {x: 0, y: -5.8784237, z: -5.991541}
+  m_LocalPosition: {x: 0, y: -5.53, z: -6}
   m_LocalScale: {x: 6.604393, y: 6.6043983, z: 6.604396}
   m_Children: []
   m_Father: {fileID: 4724917791759272}
@@ -1874,6 +1874,7 @@ MonoBehaviour:
   water: 0
   happiness: 0
   hygiene: 0
+  energy: 0
   headBone: {fileID: 4958075067846770}
   withersBone: {fileID: 4429188296280738}
   poopSpawnPoint: {fileID: 4677956807246442}
