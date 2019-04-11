@@ -57,6 +57,7 @@ ModelImporter:
     100102: hoof_001
     100104: hoof_002
     100106: hoof_003
+    100108: hoof_004
     400000: Armature
     400002: Bone_008
     400004: Bone_009
@@ -111,6 +112,7 @@ ModelImporter:
     400102: hoof_001
     400104: hoof_002
     400106: hoof_003
+    400108: hoof_004
     2100000: Material
     2100002: unnamed
     2300000: Cylinder
@@ -125,6 +127,7 @@ ModelImporter:
     4300014: hoof_003
     4300016: hoof_002
     4300018: hoof_001
+    4300020: hoof_004
     7400000: Default Take
     7400002: Eat
     7400004: Idle_001
@@ -151,6 +154,7 @@ ModelImporter:
     13700014: hoof_001
     13700016: hoof_002
     13700018: hoof_003
+    13700020: hoof_004
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
