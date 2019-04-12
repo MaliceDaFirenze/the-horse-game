@@ -26,13 +26,13 @@ public class TimeLogic : MonoBehaviour {
 	//Time-dependant objects
 	private int lastMinuteCount;
 
-	public bool forceNewGame; //at some point, do this from a main menu of course
+	//public bool forceNewGame; //at some point, do this from a main menu of course
 	private const string saveFilePath = "/gamesave.save";
 
 	void Start () {
 		player = FindObjectOfType<Player> ();
 
-		if (!forceNewGame && File.Exists(Application.persistentDataPath + saveFilePath)) {
+		if (!GlobalGameLogic.instance.forceNewGame && File.Exists(Application.persistentDataPath + saveFilePath)) {
 			LoadGame ();
 		} else {
 			NewGame (); 

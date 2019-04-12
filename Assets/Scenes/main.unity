@@ -29832,7 +29832,6 @@ MonoBehaviour:
   timePassedToday: 0
   dateText: {fileID: 2133887633}
   blackScreen: {fileID: 1041529519}
-  forceNewGame: 0
 --- !u!4 &2041024927
 Transform:
   m_ObjectHideFlags: 0
