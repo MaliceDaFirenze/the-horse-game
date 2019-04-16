@@ -26,16 +26,16 @@ public class MenuWaypostSign : MonoBehaviour {
 	}
 
 	private IEnumerator ReturnToRegular(){
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.1f);
 		meshRenderer.materials = regularMats;
 
 	}
 
 	private void OnMouseEnter (){
-		LeanTween.scale (gameObject, activeScale, 0.3f);
+		LeanTween.scale (gameObject, activeScale, 0.07f);
 	}
 
 	private void OnMouseExit (){
-		LeanTween.scale (gameObject, regularScale, 0.3f);
+		LeanTween.scale (gameObject, regularScale, 0.07f);
 	}
 }
