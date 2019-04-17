@@ -26,7 +26,7 @@ public class MenuWaypostSign : MonoBehaviour {
 	}
 
 	private IEnumerator ReturnToRegular(){
-		yield return new WaitForSeconds (0.1f);
+		yield return new WaitForSeconds (0.05f);
 		meshRenderer.materials = regularMats;
 
 	}
