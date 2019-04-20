@@ -80,7 +80,9 @@ public class UI : MonoBehaviour {
 		Debug.Log ("show dialogue with reward: " + reward.rewardType + ", " + reward.rewardAmount);
 
 		dialogueIsVisible = true;
-		lastRelevantPlayer.allowPlayerInput = false;
+		if (lastRelevantPlayer != null) {
+			lastRelevantPlayer.allowPlayerInput = false;
+		}
 
 		dialogueBox.SetActive (true);
 		portraitImage.sprite = portrait;

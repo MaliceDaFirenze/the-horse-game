@@ -17,7 +17,7 @@ public class MenuWaypost : MonoBehaviour {
 			break;
 		case 1: 
 			GlobalGameLogic.instance.forceNewGame = true;
-			SceneManager.LoadScene ("main");
+			SceneManager.LoadScene ("intro");
 			break;
 		case 2: 
 			SceneManager.LoadScene ("credits");
