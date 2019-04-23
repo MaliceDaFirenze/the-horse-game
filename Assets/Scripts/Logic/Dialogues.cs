@@ -44,6 +44,17 @@ public struct Reward{
 }
 
 public class Dialogues {
+
+	/*multi-line dialogues:
+	 * 
+	 * 
+	 * use string[] instead of string as value in dictionary
+	 * create string[] with one or several elements in setup dialogues
+	 * when calling showdialogue, pass index for string array? 
+	 * 
+	 * see ContinueInDialogue in UI script? 
+	 * */
+
 	
 	private static bool initialSetupComplete;
 	private static Dictionary<dialogueLine, string> allDialogues = new Dictionary<dialogueLine, string> ();
