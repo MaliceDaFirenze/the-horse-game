@@ -8,12 +8,12 @@ public class IntroLogic : MonoBehaviour {
 
 	public Sprite portrait;
 
-	private int introSteps = 1;
+	private int introSteps = 4;
 	private int currentIntroIndex = 0;
 
 	// Use this for initialization
 	void Start () {
-		UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (0, Character.GRANDMA, DialogueID.INTRO), portrait, Character.GRANDMA, Dialogues.RetrieveReward(0, Character.GRANDMA, DialogueID.INTRO));
+		UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (0, Character.GRANDMA, DialogueID.INTRO)[0], portrait, Character.GRANDMA);
 
 	}
 

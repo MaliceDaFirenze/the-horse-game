@@ -75,7 +75,7 @@ public class UI : MonoBehaviour {
 		rewardIcons.Add(RewardType.MONEY, Resources.Load<Sprite>("RewardIcons/icon-" + RewardType.MONEY));
 	}
 
-	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward){
+	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward = new Reward()){
 
 		Debug.Log ("show dialogue with reward: " + reward.rewardType + ", " + reward.rewardAmount);
 
