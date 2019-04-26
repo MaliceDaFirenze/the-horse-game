@@ -6,23 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class IntroLogic : MonoBehaviour {
 
-	public Sprite portrait;
+	public Sprite grandmaPortrait;
+	public Sprite playerPortrait;
 
-	private int introSteps = 4;
+	private int introSteps = 8;
 	private int currentIntroIndex = 0;
-
-	// Use this for initialization
-	void Start () {
-		UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (0, Character.GRANDMA, DialogueID.INTRO)[0], portrait, Character.GRANDMA);
-
-	}
+	private int dialogueIndex = 0;
 
 	void Update(){
 		if (Input.GetMouseButtonDown (0)) {
-			++currentIntroIndex;
 
 			if (currentIntroIndex >= introSteps) {
 				SceneManager.LoadScene ("main");
+			} else {
+				if (currentIntroIndex % 2 == 0) {
+					UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (0, Character.GRANDMA, DialogueID.INTRO)[dialogueIndex], grandmaPortrait, Character.GRANDMA);
+				} else {
+					UI.instance.ShowDialogue (Dialogues.RetrieveDialogue (0, Character.PLAYER, DialogueID.INTRO)[dialogueIndex], playerPortrait, Character.PLAYER);
+				}
+
+				++currentIntroIndex;
+				dialogueIndex = currentIntroIndex / 2;
 			}
 		}
 	}

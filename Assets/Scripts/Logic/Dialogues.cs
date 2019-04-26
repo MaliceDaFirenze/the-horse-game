@@ -93,10 +93,10 @@ public class Dialogues {
 	private static void Setup(){
 
 		//Intro
-		allDialogues.Add (new dialogueLine(0, Character.GRANDMA, DialogueID.INTRO), new string[]{"Belle, my dear, I'm so glad you have come!"});
-		allDialogues.Add (new dialogueLine(0, Character.PLAYER, DialogueID.INTRO), new string[]{"Of course, Grandma!"});
-		//allDialogues.Add (new dialogueLine(0, Character.GRANDMA, DialogueID.INTRO), "I hope not to impose on you too long... Just until I'm back on my feet...");
-	//	allDialogues.Add (new dialogueLine(0, Character.PLAYER, DialogueID.INTRO), "Oh that's alright. I don't have... well, I'm very glad to stay as long as you need me to.");
+		allDialogues.Add (new dialogueLine(0, Character.GRANDMA, DialogueID.INTRO), new string[]{"Belle, my dear, I'm so glad you have come!", "I hope not to impose on you too long... Just until I'm back on my feet...", 
+			"The farm is in the most horrible disarray after I've been away at the hospital for so long. There will be a lot to do!", 
+			"First of all, you should check on the horse. My friend Martha has been feeding her, but she did not have time to properly care for the animal."});
+		allDialogues.Add (new dialogueLine(0, Character.PLAYER, DialogueID.INTRO), new string[]{"Of course, Grandma!", "Oh that's alright. I don't have any... \nWell, I'm very glad to stay as long as you need me to.", "Well, I have time", "Will do!"});
 
 		//TODO: for one dialgogue id, pass and index for progress in that conversation, for dialgoues with more than one line. doesn't make sense to give them all individual dialogue ids
 

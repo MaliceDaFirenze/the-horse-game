@@ -4976,7 +4976,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5080b466df50c43870612f4e78b680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 0}
+  grandmaPortrait: {fileID: 21300000, guid: cad3ccede8185524caa4accec00e11f2, type: 3}
+  playerPortrait: {fileID: 21300000, guid: cecd0f3da2f865f4d8002a7cd391edf9, type: 3}
 --- !u!4 &296555605
 Transform:
   m_ObjectHideFlags: 0

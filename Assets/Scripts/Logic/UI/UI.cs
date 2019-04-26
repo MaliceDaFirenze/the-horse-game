@@ -118,7 +118,9 @@ public class UI : MonoBehaviour {
 		//if (this line is last in sequence){
 		inventoryUI.transform.position = regularInvPos.position;
 		dialogueBox.SetActive (false);
-		lastRelevantPlayer.allowPlayerInput = true;
+		if (lastRelevantPlayer != null) {
+			lastRelevantPlayer.allowPlayerInput = true;
+		}
 		dialogueIsVisible = false;
 		currentReward.rewardType = RewardType.NONE;
 	}
