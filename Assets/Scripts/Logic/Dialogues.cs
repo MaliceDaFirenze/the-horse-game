@@ -75,6 +75,8 @@ public class Dialogues {
 
 		allDialogues.TryGetValue (new dialogueLine (day, character, id), out result);
 
+		Debug.Log ("result: " + result);
+
 		return result;
 	}
 
@@ -98,13 +100,14 @@ public class Dialogues {
 			"First of all, you should check on the horse. My friend Martha has been feeding her, but she did not have time to properly care for the animal."});
 		allDialogues.Add (new dialogueLine(0, Character.PLAYER, DialogueID.INTRO), new string[]{"Of course, Grandma!", "Oh that's alright. I don't have any... \nWell, I'm very glad to stay as long as you need me to.", "Well, I have time", "Will do!"});
 
-		//TODO: for one dialgogue id, pass and index for progress in that conversation, for dialgoues with more than one line. doesn't make sense to give them all individual dialogue ids
-
 		//Game
-		allDialogues.Add (new dialogueLine(1, Character.GRANDMA, DialogueID.GREETING), new string[]{"It's good to have you here, dear. Here's some cash to buy supplies for the horse"});
-		allRewards.Add (new dialogueLine (1, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 1000)); 
+		allDialogues.Add (new dialogueLine(1, Character.GRANDMA, DialogueID.GREETING), new string[]{"You'll probably have to stock up on hay and straw soon. Here's some cash, the store is just a short walk East of the farm." });
+		allRewards.Add (new dialogueLine (1, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 100)); 
 		allDialogues.Add (new dialogueLine(1, Character.STORECLERK, DialogueID.GREETING), new string[]{"Oh, you're the new person! What can I do for you?"});
 		allDialogues.Add (new dialogueLine(2, Character.STORECLERK, DialogueID.GREETING), new string[]{"Hi, welcome back! What can I do for you?"});
+		allDialogues.Add (new dialogueLine(8, Character.GRANDMA, DialogueID.GREETING), new string[]{"test"});
+		//TODO: there is an exception if you try to retrieve a dialogue that's not set
+		//TODO: if there is no defined dialogue for a day, choose from a set of random lines! 
 
 		initialSetupComplete = true;
 	}

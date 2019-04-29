@@ -279,7 +279,7 @@ public class UI : MonoBehaviour {
 				if (_instance == null) {
 					Debug.LogWarning ("no UI found");
 				}
-				DontDestroyOnLoad (_instance.gameObject);
+				//DontDestroyOnLoad (_instance.gameObject);
 			} 
 			return _instance;
 		}
