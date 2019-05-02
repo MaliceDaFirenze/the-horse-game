@@ -2,6 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum QuestID {
+	
+}
+
+public enum QuestStatus {
+	UNAVAILABLE,	//quest not yet available
+	OPEN,			//quest available, but nothing done yet
+	ACTIVE,			//some tasks done, some still open
+	COMPLETED 		//all tasks done
+}
+
+public struct Quest {
+	public QuestID id;
+	public string name;
+	public int progressIndex;
+	public QuestStatus status;
+	public List<bool[]> conditions; //every step of the quest can have one or several bools that need to be true in order to progress
+	public string[] instrcutions; //instructions for every step of the quest
+
+}
+
 public class Quests : MonoBehaviour {
 
 	/* quests / tasks are supposed to guide the player through the mechanics and lead them to discover things. 
