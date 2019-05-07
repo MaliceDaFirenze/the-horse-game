@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum QuestID {
-	
+	FIRST_FEEDING,
+	FIRST_SUPPLIES
 }
 
 public enum QuestStatus {
@@ -42,5 +43,34 @@ public class Quests : MonoBehaviour {
 	 * 	- conditions for progress at every step of the way. a struct of bools perhaps? for item needed, character talked to etc? 
 	 * 	- probably a status of INVISIBLE, IN PROGRESS, DONE
 	 * 
+	 * 
+	 * 
+	 * store quests in a dictionary with the key being a struct of conditions to unlock the quest? 
+	 * just use list for now, figure out the rest later
 	 * */
+
+	private bool questsInitialized;
+	private List<Quest> allQuests = new List<Quest>();
+
+	private Quest GetQuest(int index){
+		if (!questsInitialized) {
+			InitQuests ();
+		}
+
+		return allQuests [index];
+	}
+
+	private void InitQuests(){
+	
+		Quest newQuest = new Quest ();
+
+		newQuest.id = QuestID.FIRST_FEEDING;
+		newQuest.status = QuestStatus.OPEN;
+		newQuest.name = "Food for the horse";
+
+		allQuests.Add (newQuest);
+
+		questsInitialized = true;
+	}
 }
+
