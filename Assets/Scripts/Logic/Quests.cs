@@ -67,6 +67,10 @@ public class Quests : MonoBehaviour {
 		newQuest.id = QuestID.FIRST_FEEDING;
 		newQuest.status = QuestStatus.OPEN;
 		newQuest.name = "Food for the horse";
+		newQuest.progressIndex = 0;
+
+		//a list of boolean arrays for conditions is not good enough because it's all one-dimensional. 
+		// what I'd need is a dictionary or a jtoken, where the key can be the condition, and the value can be true/false
 
 		allQuests.Add (newQuest);
 
