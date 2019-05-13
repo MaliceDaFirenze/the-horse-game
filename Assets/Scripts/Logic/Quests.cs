@@ -7,6 +7,11 @@ public enum QuestID {
 	FIRST_SUPPLIES
 }
 
+public enum QuestTask{
+	TAKE_HAY,
+	DROP_HAY_IN_PADDOCK
+}
+
 public enum QuestStatus {
 	UNAVAILABLE,	//quest not yet available
 	OPEN,			//quest available, but nothing done yet
@@ -19,9 +24,8 @@ public struct Quest {
 	public string name;
 	public int progressIndex;
 	public QuestStatus status;
-	public List<bool[]> conditions; //every step of the quest can have one or several bools that need to be true in order to progress
-	public string[] instrcutions; //instructions for every step of the quest
-
+	public List<Dictionary<QuestTask, bool>> conditions; //every step of the quest can have one or several bools that need to be true in order to progress
+	public List<List<string>> instrcutions; //instructions for every step of the quest
 }
 
 public class Quests : MonoBehaviour {
@@ -68,9 +72,20 @@ public class Quests : MonoBehaviour {
 		newQuest.status = QuestStatus.OPEN;
 		newQuest.name = "Food for the horse";
 		newQuest.progressIndex = 0;
+		newQuest.conditions = new List<Dictionary<QuestTask, bool>> ();
+		newQuest.instrcutions = new List<List<string>> ();
 
-		//a list of boolean arrays for conditions is not good enough because it's all one-dimensional. 
-		// what I'd need is a dictionary or a jtoken, where the key can be the condition, and the value can be true/false
+		newQuest.conditions.Add(new Dictionary<QuestTask, bool>{
+			{ QuestTask.TAKE_HAY , false},
+			{ QuestTask.TAKE_HAY, false}
+		});
+
+		newQuest.instrcutions.Add(new List<string>{
+			"Take a portion of hay from haystack",
+			"Drop the hay in the paddock"
+		});
+
+		//does it work to have instruction and condition in one like this? having the key as a string is not ideal, right? 
 
 		allQuests.Add (newQuest);
 
