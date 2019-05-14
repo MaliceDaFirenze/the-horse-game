@@ -64,6 +64,9 @@ public class Quests : MonoBehaviour {
 		return allQuests [index];
 	}
 
+	//now that a quest is set up, set up a second quest to figure out how? 
+	//display quest goals and check if they were achieved
+
 	private void InitQuests(){
 	
 		Quest newQuest = new Quest ();
@@ -84,8 +87,6 @@ public class Quests : MonoBehaviour {
 			"Take a portion of hay from haystack",
 			"Drop the hay in the paddock"
 		});
-
-		//does it work to have instruction and condition in one like this? having the key as a string is not ideal, right? 
 
 		allQuests.Add (newQuest);
 
