@@ -35,9 +35,9 @@ public class UI : MonoBehaviour {
 	public Text rewardText;
 	//
 
-	//Construction Menu
+	//Other Menues
 	public ConstructionWindowUI constructionUI;
-
+	public QuestUI questUI;
 	//
 
 	public Color arrowCompleteColor;

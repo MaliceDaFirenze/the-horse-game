@@ -25,7 +25,7 @@ public struct Quest {
 	public int progressIndex;
 	public QuestStatus status;
 	public List<Dictionary<QuestTask, bool>> conditions; //every step of the quest can have one or several bools that need to be true in order to progress
-	public List<List<string>> instrcutions; //instructions for every step of the quest
+	public List<List<string>> instructions; //instructions for every step of the quest
 }
 
 public class Quests : MonoBehaviour {
@@ -76,14 +76,14 @@ public class Quests : MonoBehaviour {
 		newQuest.name = "Food for the horse";
 		newQuest.progressIndex = 0;
 		newQuest.conditions = new List<Dictionary<QuestTask, bool>> ();
-		newQuest.instrcutions = new List<List<string>> ();
+		newQuest.instructions = new List<List<string>> ();
 
 		newQuest.conditions.Add(new Dictionary<QuestTask, bool>{
 			{ QuestTask.TAKE_HAY , false},
-			{ QuestTask.TAKE_HAY, false}
+			{ QuestTask.DROP_HAY_IN_PADDOCK, false}
 		});
 
-		newQuest.instrcutions.Add(new List<string>{
+		newQuest.instructions.Add(new List<string>{
 			"Take a portion of hay from haystack",
 			"Drop the hay in the paddock"
 		});
