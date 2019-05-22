@@ -8,6 +8,7 @@ public enum QuestID {
 }
 
 public enum QuestTask{
+	TALK_TO_GRANDMA,
 	TAKE_HAY,
 	DROP_HAY_IN_PADDOCK
 }
@@ -54,14 +55,22 @@ public class Quests : MonoBehaviour {
 	 * */
 
 	private bool questsInitialized;
-	private List<Quest> allQuests = new List<Quest>();
+	private Dictionary<QuestID, Quest> allQuests = new Dictionary<QuestID, Quest>();
 
-	private Quest GetQuest(int index){
+	public void ActivateQuest(QuestID id){
+		//activate first quest from timelogic/new day
+		//display goals in quest UI
+		//on interacting, check if it was achieved? 
+
+
+	}
+
+	private Quest GetQuest(QuestID id){
 		if (!questsInitialized) {
 			InitQuests ();
 		}
 
-		return allQuests [index];
+		return allQuests [id];
 	}
 
 	//now that a quest is set up, set up a second quest to figure out how? 
@@ -79,18 +88,36 @@ public class Quests : MonoBehaviour {
 		newQuest.instructions = new List<List<string>> ();
 
 		newQuest.conditions.Add(new Dictionary<QuestTask, bool>{
+			{ QuestTask.TALK_TO_GRANDMA, false},
 			{ QuestTask.TAKE_HAY , false},
 			{ QuestTask.DROP_HAY_IN_PADDOCK, false}
 		});
 
 		newQuest.instructions.Add(new List<string>{
+			"Talk to Grandma",
 			"Take a portion of hay from haystack",
 			"Drop the hay in the paddock"
 		});
 
-		allQuests.Add (newQuest);
+		allQuests.Add (newQuest.id, newQuest);
 
 		questsInitialized = true;
+	}
+
+	//---Singleton---//
+	private static Quests _instance;
+	public static Quests instance {
+		get {
+			if (_instance == null) {
+				_instance = GameObject.FindObjectOfType<Quests> ();
+				if (_instance == null) {
+					GameObject go = new GameObject ();
+					_instance = go.AddComponent<Quests> ();
+				}
+				DontDestroyOnLoad (_instance.gameObject);
+			} 
+			return _instance;
+		}
 	}
 }
 

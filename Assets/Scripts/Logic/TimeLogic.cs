@@ -56,6 +56,8 @@ public class TimeLogic : MonoBehaviour {
 
 		//only works as long as it's the only horse in the scene of course
 		FindObjectOfType<Horse> ().horseStats.InitializeHorse ();
+
+		Quests.instance.ActivateQuest (QuestID.FIRST_FEEDING);
 	}
 
 	public void EndDay(){

@@ -13,4 +13,9 @@ public class QuestUI : MonoBehaviour {
 		// quest name
 		// current objective
 		//done objectives?
+
+
+	public void ChangeTab(string id){
+		//active here actually includes open and active
+	}
 }
