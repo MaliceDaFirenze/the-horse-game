@@ -14,6 +14,10 @@ public class QuestUI : MonoBehaviour {
 		// current objective
 		//done objectives?
 
+	public void ShowQuestUI(bool show){
+		gameObject.SetActive (show);
+		Quests.instance.questUIVisible = show;
+	}
 
 	public void ChangeTab(string id){
 		//active here actually includes open and active

@@ -54,14 +54,29 @@ public class Quests : MonoBehaviour {
 	 * just use list for now, figure out the rest later
 	 * */
 
+	public bool questUIVisible;
+	private QuestUI _questUI;
+	public QuestUI questUI { 
+		get { 
+			if (_questUI == null) {
+				_questUI = FindObjectOfType<QuestUI> ();
+			} 
+			return _questUI;
+		} 
+	}
+
 	private bool questsInitialized;
 	private Dictionary<QuestID, Quest> allQuests = new Dictionary<QuestID, Quest>();
+
+	private void Start(){
+		questUIVisible = false;
+		questUI.gameObject.SetActive (false);
+	}
 
 	public void ActivateQuest(QuestID id){
 		//activate first quest from timelogic/new day
 		//display goals in quest UI
 		//on interacting, check if it was achieved? 
-
 
 	}
 
@@ -112,6 +127,7 @@ public class Quests : MonoBehaviour {
 				_instance = GameObject.FindObjectOfType<Quests> ();
 				if (_instance == null) {
 					GameObject go = new GameObject ();
+					go.name = "QuestsGO";
 					_instance = go.AddComponent<Quests> ();
 				}
 				DontDestroyOnLoad (_instance.gameObject);

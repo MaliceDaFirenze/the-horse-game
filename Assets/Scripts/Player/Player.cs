@@ -158,18 +158,11 @@ public class Player : MonoBehaviour {
 					}
 				}
 					
-
 				//-----------INVENTORY---------//
 				mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
 				if (mouseWheelInput != 0){
 					inventory.ScrollInput (mouseWheelInput);
 				}
-
-
-			}
-
-			if (Input.GetKeyDown (KeyCode.F) && currentlyEquippedItem != playerHands) {
-				DropEquippedItem ();
 			}
 
 			//------RIDING-------//
@@ -205,6 +198,20 @@ public class Player : MonoBehaviour {
 			}
 
 			previousMovementVector = newMovementVector;
+
+			if (Input.GetKeyDown (KeyCode.F) && currentlyEquippedItem != playerHands) {
+				DropEquippedItem ();
+			}
+
+			if (Input.GetKeyDown (KeyCode.J)) {
+				//Open/Close Quests/Journal
+				Debug.Log("qu instance name " + Quests.instance.name);
+				Debug.Log("qui GO name " + Quests.instance.questUI.gameObject.name);
+				Quests.instance.questUI.ShowQuestUI(!Quests.instance.questUIVisible);
+			}
+
+
+
 		} else {
 			if (Input.GetMouseButtonDown(0) && UI.instance.dialogueIsVisible) {
 				UI.instance.ContinueInDialogue ();
