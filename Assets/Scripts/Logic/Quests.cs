@@ -67,6 +67,7 @@ public class Quests : MonoBehaviour {
 
 	private bool questsInitialized;
 	private Dictionary<QuestID, Quest> allQuests = new Dictionary<QuestID, Quest>();
+	private Dictionary<QuestID, Quest> activeQuests = new Dictionary<QuestID, Quest>();
 
 	private void Start(){
 		questUIVisible = false;
@@ -77,7 +78,8 @@ public class Quests : MonoBehaviour {
 		//activate first quest from timelogic/new day
 		//display goals in quest UI
 		//on interacting, check if it was achieved? 
-
+		questUI.DisplayQuest(allQuests[id]);
+		activeQuests.Add (id, allQuests [id]);
 	}
 
 	private Quest GetQuest(QuestID id){

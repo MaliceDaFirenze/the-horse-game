@@ -14,6 +14,10 @@ public class QuestUI : MonoBehaviour {
 		// current objective
 		//done objectives?
 
+	//display
+	public Transform containerParent; //spawn new containers as child of this
+	public List<QuestUIContainer> questContainters = new List<QuestUIContainer>(); //either pool these or just create/destroy for now? 
+
 	public void ShowQuestUI(bool show){
 		gameObject.SetActive (show);
 		Quests.instance.questUIVisible = show;
@@ -21,5 +25,9 @@ public class QuestUI : MonoBehaviour {
 
 	public void ChangeTab(string id){
 		//active here actually includes open and active
+	}
+
+	public void DisplayQuest (Quest quest){
+	
 	}
 }
