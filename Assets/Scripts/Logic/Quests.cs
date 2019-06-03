@@ -78,8 +78,8 @@ public class Quests : MonoBehaviour {
 		//activate first quest from timelogic/new day
 		//display goals in quest UI
 		//on interacting, check if it was achieved? 
-		questUI.DisplayQuest(allQuests[id]);
-		activeQuests.Add (id, allQuests [id]);
+		questUI.DisplayQuest(GetQuest(id));
+		activeQuests.Add (id, GetQuest(id));
 	}
 
 	private Quest GetQuest(QuestID id){
@@ -115,6 +115,8 @@ public class Quests : MonoBehaviour {
 			"Take a portion of hay from haystack",
 			"Drop the hay in the paddock"
 		});
+
+		//wait why are instructions a list of lists, and not just a list? Why so convoluted? 
 
 		allQuests.Add (newQuest.id, newQuest);
 

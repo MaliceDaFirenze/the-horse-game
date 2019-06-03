@@ -13,6 +13,9 @@ public class PrefabManager : MonoBehaviour {
 	public GameObject strawBale;
 	public GameObject manurePile;
 
+	//--UI--//
+	public GameObject questUIContainer;
+
 
 	//---Singleton---//
 	private static PrefabManager _instance;

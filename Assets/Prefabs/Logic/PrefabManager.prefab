@@ -58,3 +58,5 @@ MonoBehaviour:
   hayBale: {fileID: 1983970110012648, guid: ace70b6c08e451a42aa1be4e6b2f76c8, type: 2}
   strawBale: {fileID: 1983970110012648, guid: da71daefc79c80f419a820a307a73b7e, type: 2}
   manurePile: {fileID: 1290200686215056, guid: fc98842abf4c8244c8ee01decfa6b1ce, type: 2}
+  questUIContainer: {fileID: 1842285001870650, guid: 0f78f6b5f2e012943a73383d3e571eda,
+    type: 2}

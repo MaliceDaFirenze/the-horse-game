@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class QuestUIContainer : MonoBehaviour {
 
+	public Text titleTextBox;
 	public Text mainTextBox;
 	public Image icon;
 

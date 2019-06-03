@@ -16,7 +16,7 @@ public class QuestUI : MonoBehaviour {
 
 	//display
 	public Transform containerParent; //spawn new containers as child of this
-	public List<QuestUIContainer> questContainters = new List<QuestUIContainer>(); //either pool these or just create/destroy for now? 
+	public List<QuestUIContainer> questContainers = new List<QuestUIContainer>(); //either pool these or just create/destroy for now? 
 
 	public void ShowQuestUI(bool show){
 		gameObject.SetActive (show);
@@ -28,6 +28,11 @@ public class QuestUI : MonoBehaviour {
 	}
 
 	public void DisplayQuest (Quest quest){
-	
+		QuestUIContainer newQuestUIContainer = Instantiate (PrefabManager.instance.questUIContainer, containerParent).GetComponent<QuestUIContainer>();
+		questContainers.Add (newQuestUIContainer);
+
+		newQuestUIContainer.titleTextBox.text = quest.name;
+		newQuestUIContainer.mainTextBox.text = quest.instructions[0][quest.progressIndex];
+
 	}
 }
