@@ -90,8 +90,11 @@ public class Quests : MonoBehaviour {
 		return allQuests [id];
 	}
 
-	//now that a quest is set up, set up a second quest to figure out how? 
-	//display quest goals and check if they were achieved
+	private void Update(){
+		foreach (KeyValuePair<QuestID, Quest> activeQuest in activeQuests) {
+			//if (activeQuest.Value.conditions			
+		}
+	}
 
 	private void InitQuests(){
 	
