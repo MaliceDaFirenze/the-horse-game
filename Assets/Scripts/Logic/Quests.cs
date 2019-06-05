@@ -90,9 +90,11 @@ public class Quests : MonoBehaviour {
 		return allQuests [id];
 	}
 
-	private void Update(){
+	public void FulfilledQuestCondition(QuestTask task){
 		foreach (KeyValuePair<QuestID, Quest> activeQuest in activeQuests) {
-			//if (activeQuest.Value.conditions			
+			if (activeQuest.Value.conditions [activeQuest.Value.progressIndex].ContainsKey (task)) {
+				activeQuest.Value.conditions [activeQuest.Value.progressIndex] [task] = true;
+			}			
 		}
 	}
 

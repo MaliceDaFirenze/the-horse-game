@@ -32,7 +32,7 @@ public class QuestUI : MonoBehaviour {
 		questContainers.Add (newQuestUIContainer);
 
 		newQuestUIContainer.titleTextBox.text = quest.name;
-		newQuestUIContainer.mainTextBox.text = quest.instructions[0][quest.progressIndex];
+		newQuestUIContainer.mainTextBox.text = quest.instructions[0][quest.progressIndex]; //<-- wrong way around, right? progress index should be the first of those. but the first quest just doesn't need the second one? 
 
 	}
 }
