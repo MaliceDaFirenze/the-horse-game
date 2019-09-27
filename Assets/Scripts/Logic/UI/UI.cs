@@ -38,6 +38,7 @@ public class UI : MonoBehaviour {
 	//Other Menues
 	public ConstructionWindowUI constructionUI;
 	public QuestUI questUI;
+	public GameObject helpUI;
 	//
 
 	public Color arrowCompleteColor;

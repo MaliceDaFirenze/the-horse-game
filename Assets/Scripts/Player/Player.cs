@@ -12,6 +12,7 @@ public enum playerMovementSet{
 public class Player : MonoBehaviour {
 
 	public bool allowPlayerInput;
+	public bool helpVisible;
 
 	//Interaction
 	public Interactable nearestInteractable;
@@ -208,6 +209,10 @@ public class Player : MonoBehaviour {
 				Debug.Log("qu instance name " + Quests.instance.name);
 				Debug.Log("qui GO name " + Quests.instance.questUI.gameObject.name);
 				Quests.instance.questUI.ShowQuestUI(!Quests.instance.questUIVisible);
+			}
+
+			if (Input.GetKeyDown (KeyCode.H)) {
+				UI.instance.helpUI.SetActive (!helpVisible);
 			}
 
 
