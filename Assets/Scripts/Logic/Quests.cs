@@ -55,11 +55,15 @@ public class Quests : MonoBehaviour {
 	 * */
 
 	public bool questUIVisible;
+
 	private QuestUI _questUI;
 	public QuestUI questUI { 
 		get { 
 			if (_questUI == null) {
 				_questUI = FindObjectOfType<QuestUI> ();
+				if (questUI == null) {
+					Debug.LogWarning("could not find quest UI, is probably inactive in scene?");
+				}
 			} 
 			return _questUI;
 		} 
@@ -69,7 +73,7 @@ public class Quests : MonoBehaviour {
 	private Dictionary<QuestID, Quest> allQuests = new Dictionary<QuestID, Quest>();
 	private Dictionary<QuestID, Quest> activeQuests = new Dictionary<QuestID, Quest>();
 
-	private void Start(){
+	private void Awake(){
 		questUIVisible = false;
 		questUI.gameObject.SetActive (false);
 	}
@@ -78,6 +82,7 @@ public class Quests : MonoBehaviour {
 		//activate first quest from timelogic/new day
 		//display goals in quest UI
 		//on interacting, check if it was achieved? 
+
 		questUI.DisplayQuest(GetQuest(id));
 		activeQuests.Add (id, GetQuest(id));
 	}
@@ -125,6 +130,7 @@ public class Quests : MonoBehaviour {
 
 		allQuests.Add (newQuest.id, newQuest);
 
+		Debug.Log ("init quests end");
 		questsInitialized = true;
 	}
 

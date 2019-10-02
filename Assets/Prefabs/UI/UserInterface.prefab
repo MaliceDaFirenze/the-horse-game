@@ -1726,7 +1726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1575415568268346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3424,11 +3424,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "HOW TO PLAY:\n\nWalk: \t\t\t\t\t\t\t\t\t\tWASD\nInteract:\t\t\t\t\t\t\t\t\tE\nContinue
-    Dialogue:\t\t\t\tLeft Click\nDrop Item:\t\t\t\t\t\t\t\tF\nInventory:\t\t\t\t\t\t\t\tMouse
-    Wheel\nShow/Hide Help:\t\t\t\t\tH\nShow/Hide Journal: \t\t\tJ\n\nHorse Riding:\t\nDriving
-    Aids: \t\t\t\t\t\t\tE\nHalting Aids:\t\t\t\t\t\t\tQ\nSwitch Gait Up: \t\t\t\t\tW
-    (double tap)\nSwitch Gait Down: \t\t\t\tS (double tap)\t\t\nDismount: \t\t\t\t\t\t\t\tF\n"
+  m_Text: "HOW TO PLAY:\n\nWalk: \t\t\t\t\t\t\t\t\t\t\t\t\tWASD\nInteract:\t\t\t\t\t\t\t\t\t\t\t\tE\nContinue
+    Dialogue:\t\t\t\t\t\t\tLeft Click\nDrop Item:\t\t\t\t\t\t\t\t\t\t\tF\nInventory:\t\t\t\t\t\t\t\t\t\t\tMouse
+    Wheel\nShow/Hide Help:\t\t\t\t\t\t\t\tH\nShow/Hide Journal: \t\t\t\t\t\tJ\n\nHorse
+    Riding:\t\nDriving Aids (Faster): \t\t\t\t\t\tE\nHalting Aids (Slower):\t\t\t\t\t\tQ\nSwitch
+    Gait Up: \t\t\t\t\t\t\t\tW (double tap)\nSwitch Gait Down: \t\t\t\t\t\t\tS (double
+    tap)\t\t\nDismount: \t\t\t\t\t\t\t\t\t\t\tF\n"
 --- !u!114 &114165624149488130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8691,7 +8692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 644, y: -378}
+  m_AnchoredPosition: {x: 318.5, y: -302.3}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224292040558514704
@@ -9935,7 +9936,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5.6755276, y: 7.094588}
-  m_SizeDelta: {x: 1100, y: 600}
+  m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224717266006846236
 RectTransform:
@@ -10481,7 +10482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 56.75599, y: 61}
+  m_AnchoredPosition: {x: 330, y: 61}
   m_SizeDelta: {x: 850, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224907861968998436

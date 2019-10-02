@@ -12969,6 +12969,32 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 436551711}
+    - target: {fileID: 1567458917816566, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575415568268346, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
+      propertyPath: m_Name
+      value: QuestUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575415568268346, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114164051775696640, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_Text
+      value: "HOW TO PLAY:\n\nWalk: \t\t\t\t\t\t\t\t\t\t\t\t\tWASD\nInteract:\t\t\t\t\t\t\t\t\t\t\t\tE\nContinue
+        Dialogue:\t\t\t\t\t\t\tLeft Click\nDrop Item:\t\t\t\t\t\t\t\t\t\t\tF\nInventory:\t\t\t\t\t\t\t\t\t\t\tMouse
+        Wheel\nShow/Hide Help:\t\t\t\t\t\t\t\tH\nShow/Hide Journal: \t\t\t\t\t\tJ\n\nHorse
+        Riding:\t\nDriving Aids (Faster): \t\t\t\t\t\tE\nHalting Aids (Slower):\t\t\t\t\tQ\nSwitch
+        Gait Up: \t\t\t\t\t\t\t\tW (double tap)\nSwitch Gait Down: \t\t\t\t\t\t\tS
+        (double tap)\t\t\nDismount: \t\t\t\t\t\t\t\t\t\t\tF\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329444909688120, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
   m_IsPrefabAsset: 0
