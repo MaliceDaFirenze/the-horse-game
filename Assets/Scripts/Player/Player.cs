@@ -207,12 +207,14 @@ public class Player : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.J)) {
 				//Open/Close Quests/Journal
 				Debug.Log("qu instance name " + Quests.instance.name);
-				Debug.Log("qui GO name " + Quests.instance.questUI.gameObject.name);
+				Debug.Log("qui GO name " + Quests.instance.questUI.gameObject.name + ". is visible: " + Quests.instance.questUIVisible);
 				Quests.instance.questUI.ShowQuestUI(!Quests.instance.questUIVisible);
 			}
 
 			if (Input.GetKeyDown (KeyCode.H)) {
+				Debug.Log("pressed H. help visible: " + helpVisible);
 				UI.instance.helpUI.SetActive (!helpVisible);
+				helpVisible = !helpVisible;
 			}
 
 

@@ -78,7 +78,7 @@ public class UI : MonoBehaviour {
 
 	public void ShowDialogue(string dialogue, Sprite portrait, Character id, Reward reward = new Reward()){
 
-		Debug.Log ("show dialogue with reward: " + reward.rewardType + ", " + reward.rewardAmount);
+		//Debug.Log ("show dialogue with reward: " + reward.rewardType + ", " + reward.rewardAmount);
 
 		dialogueIsVisible = true;
 		if (lastRelevantPlayer != null) {

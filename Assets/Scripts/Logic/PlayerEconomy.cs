@@ -30,7 +30,7 @@ public class PlayerEconomy : MonoBehaviour {
 	}
 
 	public static void LoadMoneyFromSave(int newValue){
-		Debug.Log ("loaded money from save: " + newValue);
+		//Debug.Log ("loaded money from save: " + newValue);
 		Money = newValue;
 	}
 

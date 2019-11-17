@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 114813910590850300}
   - component: {fileID: 114734154351011154}
   - component: {fileID: 114967843816555852}
+  - component: {fileID: 135558876907554720}
   m_Layer: 0
   m_Name: Bridle
   m_TagString: Untagged
@@ -314,7 +315,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629085980235510}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.82281, y: 0.9824613, z: 4.07}
+  m_LocalPosition: {x: -1.7205429, y: 0.42, z: 13.311687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4890680019867064}
@@ -499,6 +500,18 @@ MonoBehaviour:
   selectedInteractionIndex: 0
   arrowInputRequired: 
   nextArrowIndexToInput: 0
+--- !u!135 &135558876907554720
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629085980235510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137300647902179496
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

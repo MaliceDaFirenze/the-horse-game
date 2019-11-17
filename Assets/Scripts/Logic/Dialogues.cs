@@ -75,7 +75,7 @@ public class Dialogues {
 
 		allDialogues.TryGetValue (new dialogueLine (day, character, id), out result);
 
-		Debug.Log ("result: " + result);
+		//Debug.Log ("result: " + result);
 
 		return result;
 	}

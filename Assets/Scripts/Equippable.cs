@@ -91,7 +91,7 @@ public class Equippable : MonoBehaviour {
 	}
 
 	public void EnableAllColliders (bool enable, bool forceUpdateCollidersList = false){
-		Debug.Log ("set all colliders on " + name + " to enabled == " + enable);
+		//Debug.Log ("set all colliders on " + name + " to enabled == " + enable);
 
 		//if (allColliders.Length == 0 || forceUpdateCollidersList) {
 			allColliders = GetComponentsInChildren<Collider> ();

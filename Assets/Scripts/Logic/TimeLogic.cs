@@ -59,6 +59,7 @@ public class TimeLogic : MonoBehaviour {
 
 		UI.instance.helpUI.SetActive (true);
 		player.helpVisible = true;
+		Debug.Log ("helpVisible: " + player.helpVisible);
 
 		Quests.instance.ActivateQuest (QuestID.FIRST_FEEDING);
 	}

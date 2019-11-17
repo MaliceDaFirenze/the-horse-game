@@ -466,7 +466,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4126542236809466, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -34.91317
+      value: -21.38
       objectReference: {fileID: 0}
     - target: {fileID: 4126542236809466, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.y
@@ -474,7 +474,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4126542236809466, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -21.278275
+      value: -19.11
       objectReference: {fileID: 0}
     - target: {fileID: 4126542236809466, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalRotation.x
@@ -543,11 +543,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4947309893868524, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.304
+      value: -0.347
       objectReference: {fileID: 0}
     - target: {fileID: 4947309893868524, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.047
+      value: -0.046
       objectReference: {fileID: 0}
     - target: {fileID: 4676105868224284, guid: 398334d7334f065498b53a17a2edef49, type: 2}
       propertyPath: m_LocalPosition.x
@@ -7681,7 +7681,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 945993cd0b8030248a9852d4e745f444, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.1012807
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 945993cd0b8030248a9852d4e745f444, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7689,7 +7689,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 945993cd0b8030248a9852d4e745f444, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.104197
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 945993cd0b8030248a9852d4e745f444, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10714,6 +10714,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 798070632}
   m_Mesh: {fileID: 4300002, guid: 5363752448bcc514cb59b8da47c94759, type: 3}
+--- !u!1 &805623705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1329444909688120, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805623706}
+  - component: {fileID: 805623708}
+  - component: {fileID: 805623707}
+  m_Layer: 5
+  m_Name: Help text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &805623706
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 224902704227001068, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 805623705}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4188988, y: 1.4188988, z: 1.4188988}
+  m_Children: []
+  m_Father: {fileID: 904351962}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 200, y: 32.000015}
+  m_SizeDelta: {x: 200, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &805623707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114164051775696640, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 805623705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: fdd8ce79c41c76743a48c776093dd440, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\n\n\nWASD\nE\nLeft Click\nF\nMouse Wheel \nH\nJ\n\n\nE\nQ\nW (double tap)\nS
+    (double tap)\t\t\nF\n"
+--- !u!222 &805623708
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 222161016301219608, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 805623705}
+  m_CullTransparentMesh: 0
 --- !u!1001 &810552425
 Prefab:
   m_ObjectHideFlags: 0
@@ -12971,7 +13051,7 @@ Prefab:
       objectReference: {fileID: 436551711}
     - target: {fileID: 1567458917816566, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1575415568268346, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
       propertyPath: m_Name
@@ -12984,20 +13064,27 @@ Prefab:
     - target: {fileID: 114164051775696640, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
         type: 2}
       propertyPath: m_Text
-      value: "HOW TO PLAY:\n\nWalk: \t\t\t\t\t\t\t\t\t\t\t\t\tWASD\nInteract:\t\t\t\t\t\t\t\t\t\t\t\tE\nContinue
-        Dialogue:\t\t\t\t\t\t\tLeft Click\nDrop Item:\t\t\t\t\t\t\t\t\t\t\tF\nInventory:\t\t\t\t\t\t\t\t\t\t\tMouse
-        Wheel\nShow/Hide Help:\t\t\t\t\t\t\t\tH\nShow/Hide Journal: \t\t\t\t\t\tJ\n\nHorse
-        Riding:\t\nDriving Aids (Faster): \t\t\t\t\t\tE\nHalting Aids (Slower):\t\t\t\t\tQ\nSwitch
-        Gait Up: \t\t\t\t\t\t\t\tW (double tap)\nSwitch Gait Down: \t\t\t\t\t\t\tS
-        (double tap)\t\t\nDismount: \t\t\t\t\t\t\t\t\t\t\tF\n"
+      value: "HOW TO PLAY:\n\nWalk: \nInteract:\nContinue Dialogue:\nDrop Item:\nInventory:\nShow/Hide
+        Help:\nShow/Hide Journal: \n\nHorse Riding:\t\nDriving Aids (Faster): \nHalting
+        Aids (Slower):\nSwitch Gait Up:  (double tap)\nSwitch Gait Down:  \t\nDismount: "
       objectReference: {fileID: 0}
     - target: {fileID: 1329444909688120, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224902704227001068, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
   m_IsPrefabAsset: 0
+--- !u!224 &904351962 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224451472444611738, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
+    type: 2}
+  m_PrefabInternal: {fileID: 904351961}
 --- !u!1001 &908754478
 Prefab:
   m_ObjectHideFlags: 0
@@ -19412,6 +19499,16 @@ Prefab:
     - target: {fileID: 4884685169900510, guid: 068e3b58efb473c44bc6fd3276449841, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.48224163
+      objectReference: {fileID: 0}
+    - target: {fileID: 135558876907554720, guid: 068e3b58efb473c44bc6fd3276449841,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135558876907554720, guid: 068e3b58efb473c44bc6fd3276449841,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 068e3b58efb473c44bc6fd3276449841, type: 2}
