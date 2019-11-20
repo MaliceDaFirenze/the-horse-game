@@ -103,9 +103,17 @@ public class Dialogues {
 		//Game
 		allDialogues.Add (new dialogueLine(1, Character.GRANDMA, DialogueID.GREETING), new string[]{"You'll probably have to stock up on hay and straw soon. Here's some cash, the store is just a short walk East of the farm." });
 		allRewards.Add (new dialogueLine (1, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 100)); 
+		allDialogues.Add (new dialogueLine(2, Character.GRANDMA, DialogueID.GREETING), new string[]{"If you find any gems in the woods, you can sell them at the general store to the East." });
+		allDialogues.Add (new dialogueLine(3, Character.GRANDMA, DialogueID.GREETING), new string[]{"If you don't feed the horse enough, its energy won't properly replenish overnight." });
+		allDialogues.Add (new dialogueLine(4, Character.GRANDMA, DialogueID.GREETING), new string[]{"It's been such a great help to have you here, dear." });
+		allDialogues.Add (new dialogueLine(5, Character.GRANDMA, DialogueID.GREETING), new string[]{"You can order a new stall for more horses at the construction office next to the general store." });
+		allDialogues.Add (new dialogueLine(6, Character.GRANDMA, DialogueID.GREETING), new string[]{"Here's a bit of financial aid for you, dear." });
+		allRewards.Add (new dialogueLine (6, Character.GRANDMA, DialogueID.GREETING), new Reward (RewardType.MONEY, 100)); 
+
+
 		allDialogues.Add (new dialogueLine(1, Character.STORECLERK, DialogueID.GREETING), new string[]{"Oh, you're the new person! What can I do for you?"});
 		allDialogues.Add (new dialogueLine(2, Character.STORECLERK, DialogueID.GREETING), new string[]{"Hi, welcome back! What can I do for you?"});
-		allDialogues.Add (new dialogueLine(8, Character.GRANDMA, DialogueID.GREETING), new string[]{"test"});
+		//allDialogues.Add (new dialogueLine(8, Character.GRANDMA, DialogueID.GREETING), new string[]{"test"});
 		//TODO: there is an exception if you try to retrieve a dialogue that's not set
 		//TODO: if there is no defined dialogue for a day, choose from a set of random lines! 
 
