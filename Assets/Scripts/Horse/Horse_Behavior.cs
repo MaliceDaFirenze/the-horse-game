@@ -49,6 +49,7 @@ public class Horse_Behavior : MonoBehaviour {
 		}
 
 		horse.horseAnimator.SetBool ("Eat", false);
+		Debug.Log ("change horse state to " + newState);
 		horse.horseAnimator.SetInteger ("GaitIndex", 0);
 
 		currentHorseState = newState;
@@ -348,6 +349,10 @@ public class Horse_Behavior : MonoBehaviour {
 		float duration = Random.Range (minManureDuration, maxManureDuration);
 
 		yield return new WaitForSeconds (duration);
-		ChangeState (horseState.PRODUCINGMANURE);
+		if (currentHorseState != horseState.RIDING) {
+			ChangeState (horseState.PRODUCINGMANURE);
+		} else {
+			StartCoroutine (WaitToProduceManure ());
+		}
 	}
 }

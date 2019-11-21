@@ -12,7 +12,7 @@ public enum dir{
 public class ArrowSequences : MonoBehaviour {
 
 	public static dir[] GetArrowSequence(actionID id){
-		switch (id) {
+		/*switch (id) {
 		case actionID.NO_SEQUENCE:
 			return null;
 		case actionID.BRUSH_HORSE:
@@ -21,7 +21,7 @@ public class ArrowSequences : MonoBehaviour {
 			return PetHorse ();
 		/*case actionID.FEED_HORSE:
 			return FeedHorse();*/
-		case actionID.WATER_HORSE:
+		/*case actionID.WATER_HORSE:
 			return WaterHorse();
 		case actionID.CLEAN_MANURE:
 			return CleanManure();
@@ -41,9 +41,9 @@ public class ArrowSequences : MonoBehaviour {
 			return PutOnSaddleWithPad();
 		case actionID.PUT_ON_BRIDLE:
 			return PutOnBridle();
-		default:
+		default:*/
 			return null;
-		}
+		//}
 	}
 
 	private static dir[] BrushHorse (){
