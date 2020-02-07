@@ -10784,8 +10784,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\n\n\nWASD\nE\nLeft Click\nF\nMouse Wheel \nH\nJ\n\n\nE\nQ\nW (double tap)\nS
-    (double tap)\t\t\nF\n"
+  m_Text: "\n\n\nWASD\nShift (hold)\nE\nR\nLeft Click\nF\nMouse Wheel \nH\nJ\n\n\nE\nQ\nW
+    (double tap)\nS (double tap)\t\t\nF\n"
 --- !u!222 &805623708
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13063,9 +13063,10 @@ Prefab:
     - target: {fileID: 114164051775696640, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49,
         type: 2}
       propertyPath: m_Text
-      value: "HOW TO PLAY:\n\nWalk: \nInteract:\nContinue Dialogue:\nDrop Item:\nInventory:\nShow/Hide
-        Help:\nShow/Hide Journal: \n\nHorse Riding:\t\nDriving Aids (Faster): \nHalting
-        Aids (Slower):\nSwitch Gait Up:  (double tap)\nSwitch Gait Down:  \t\nDismount: "
+      value: "HOW TO PLAY:\n\nWalk:\nSprint: \nInteract:\nScroll through interactions:\nContinue
+        Dialogue:\nDrop Item:\nInventory:\nShow/Hide Help:\nShow/Hide Journal: \n\nHorse
+        Riding:\t\nDriving Aids (Faster): \nHalting Aids (Slower):\nSwitch Gait Up:
+        \ \nSwitch Gait Down:  \t\nDismount: "
       objectReference: {fileID: 0}
     - target: {fileID: 1329444909688120, guid: ecf9b3dc98ad9f04799e95f6c8d8ea49, type: 2}
       propertyPath: m_IsActive

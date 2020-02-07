@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	private float mouseWheelInput;
 
 	//Movement
-	private float speed = 3f;//30f;
+	private float speed = 3.5f;//30f;
 	private float sprintSpeedMultiplier = 1.8f;
 	private float speedMultiplier = 1f;
 	private float defaultMaximumTurnRate = 500;
@@ -178,13 +178,13 @@ public class Player : MonoBehaviour {
 					nearestHorse.horseBehavior.currentHorseGait = horseGait.STAND;
 				}
 
-				if (Input.GetKeyDown (KeyCode.Q)) {
+				if (Input.GetKeyDown (KeyCode.S)) {
 					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.LEFT);
-				} else if (Input.GetKeyDown (KeyCode.S)) {
+				} else if (Input.GetKeyDown (KeyCode.Q)) {
 					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.DOWN);
-				} else if (Input.GetKeyDown (KeyCode.E)) {
-					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.RIGHT);
 				} else if (Input.GetKeyDown (KeyCode.W)) {
+					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.RIGHT);
+				} else if (Input.GetKeyDown (KeyCode.E)) {
 					nearestHorse.horseRidingBehavior.ReceivePlayerInput (this, dir.UP);
 				} 
 
