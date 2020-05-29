@@ -6,7 +6,7 @@ public class StallDirt : TimeDependentObject {
 
 	public Gradient colorProgression;
 	public MeshRenderer[] strawParts;
-	private float dirtLevel = 0;
+	public float dirtLevel = 0;
 	private float dirtLevelIncreasePerDay = 0.15f;
 
 	public override void StartNewDay(){
@@ -16,6 +16,15 @@ public class StallDirt : TimeDependentObject {
 			dirtLevel = 1;
 		}
 
+		UpdateStrawColor ();
+	}
+
+	public void Clean(){
+		dirtLevel = 0;
+		UpdateStrawColor ();
+	}
+
+	private void UpdateStrawColor(){
 		foreach (MeshRenderer mr in strawParts) {
 			mr.materials [0].color = colorProgression.Evaluate (dirtLevel);
 		}
